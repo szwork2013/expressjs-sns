@@ -1,0 +1,47 @@
+@import 'vars';
+
+//reset
+//------------------------------------------
+
+html{
+    font:$font;
+}
+
+body{
+    margin:0;
+    padding:0;
+    background:$body-bg;
+    width:100%;
+}
+
+//Links
+a{
+    color:$link-color;
+    text-decoration:none;
+    &:hover,
+    &:focus {
+        color: $link-hover-color;
+        text-decoration: underline;
+    }
+}
+
+//Images
+img{
+    vertical-align:middle;
+    border:0;
+}
+
+p,ul,ol{
+    margin:0;
+}
+
+ul,ol{
+   padding-left:0; 
+   list-style:none;
+}
+
+.list-inline{
+    >li{
+        display:inline-block; 
+    }
+}

@@ -1,0 +1,5 @@
+<ul>
+    {{#users}}
+    <li class="{{_id}}">用户邮箱:{{email}}用户名:{{name}}</li>
+    {{/users}}
+</ul>

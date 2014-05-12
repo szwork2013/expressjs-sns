@@ -1,0 +1,69 @@
+$total:100%;
+$container-width:$total;
+$grid-gutter-width:0;
+$grid-columns:12;
+
+ .container{
+    width:$total;
+    margin:0 auto;
+}
+
+@mixin make-column($columns, $gutter: $grid-gutter-width) {
+  width: percentage(($columns / $grid-columns));
+  padding-left:  ($gutter / 2);
+  padding-right: ($gutter / 2);
+}
+
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col{
+    min-height:1px;
+    position:relative;
+    float:left;
+}
+
+.col-1{
+    @include make-column(1,0);
+}
+.col-2{
+    @include make-column(2,0);
+}
+.col-3{
+    @include make-column(3,0);
+}
+.col-4{
+    @include make-column(4,0);
+}
+.col-5{
+    @include make-column(5,0);
+}
+.col-6{
+    @include make-column(6,0);
+}
+.col-7{
+    @include make-column(7,0);
+}
+.col-8{
+    @include make-column(8,0);
+}
+.col-9{
+    @include make-column(9,0);
+}
+.col-10{
+    @include make-column(10,0);
+}
+.col-11{
+    @include make-column(11,0);
+}
+.col-12{
+    @include make-column(12,0);
+}

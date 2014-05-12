@@ -1,0 +1,50 @@
+//
+// Utility classes
+// --------------------------------------------------
+
+@import 'functions';
+
+// Floats
+// -------------------------
+
+.clearfix{
+  @include clearfix();
+}
+.fr{
+  float: right !important;
+}
+.fl{
+  float: left !important;
+}
+
+//text align
+.t-r{
+    text-align:right;
+}
+.t-c{
+    text-align:center;
+}
+.t-l{
+    text-align:left;
+}
+
+
+// Toggling content
+// -------------------------
+
+.hide {
+  display: none !important;
+}
+.show {
+  display: block !important;
+}
+.invisible {
+  visibility: hidden;
+}
+
+// For Affix plugin
+// -------------------------
+
+.posfix {
+  position: fixed;
+}

@@ -1,0 +1,32 @@
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table; }
+.clearfix:after {
+  clear: both; }
+
+.fr {
+  float: right !important; }
+
+.fl {
+  float: left !important; }
+
+.t-r {
+  text-align: right; }
+
+.t-c {
+  text-align: center; }
+
+.t-l {
+  text-align: left; }
+
+.hide {
+  display: none !important; }
+
+.show {
+  display: block !important; }
+
+.invisible {
+  visibility: hidden; }
+
+.posfix {
+  position: fixed; }

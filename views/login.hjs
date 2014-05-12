@@ -1,0 +1,14 @@
+<form action="/login" method="post">
+    <h2>登录</h2>
+    <div class="row">
+        <label for="">账号</label> 
+        <input type="text" name="username" placeholder="邮箱" />
+    </div>
+    <div class="row">
+        <label for="">密码</label> 
+        <input type="password" name="userpwd"/>
+    </div>
+    <div class="row">
+        <button type="submit">登录</button>
+    </div>
+</form>

@@ -1,0 +1,110 @@
+//Grid 
+//----------------------------------
+@import 'functions';
+//global width
+$container-width:970px;
+// Grid system
+// --------------------------------------------------
+.container{
+    width:$container-width;
+    @include center-block();
+}
+
+// Number of columns in the grid system
+$grid-columns:              12 !default;
+// Padding, to be divided by two and applied to the left and right of all columns
+$grid-gutter-width:         30px !default;
+
+@mixin make-layout($gutter: $grid-gutter-width) {
+  @include clearfix();
+  margin-left:  ($gutter / -2);
+  margin-right: ($gutter / -2);
+
+}
+
+@mixin init-layout($gutter: $grid-gutter-width) {
+    margin-left:$gutter/2;
+    margin-right:$gutter/2;
+}
+
+@mixin calc-width($colnum,$gutter: $grid-gutter-width){
+    width:($container-width+$gutter)*($colnum/$grid-columns)-$gutter;
+}
+
+
+.layout{
+  @include make-layout();
+}
+
+.row{
+  @include make-layout(0);
+}
+
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col{
+    min-height:1px;
+    position:relative;
+    float:left;
+}
+
+.col{
+      @include init-layout();
+}
+.col-1{
+      @include init-layout();
+      @include calc-width(1);
+}
+.col-2{
+      @include init-layout();
+      @include calc-width(2);
+}
+.col-3{
+      @include init-layout();
+      @include calc-width(3);
+}
+.col-4{
+      @include init-layout();
+      @include calc-width(4);
+}
+.col-5{
+      @include init-layout();
+      @include calc-width(5);
+}
+.col-6{
+      @include init-layout();
+      @include calc-width(6);
+}
+.col-7{
+      @include init-layout();
+      @include calc-width(7);
+}
+.col-8{
+      @include init-layout();
+      @include calc-width(8);
+}
+.col-9{
+      @include init-layout();
+      @include calc-width(9);
+}
+.col-10{
+      @include init-layout();
+      @include calc-width(10);
+}
+.col-11{
+      @include init-layout();
+      @include calc-width(11);
+}
+.col-12{
+      @include init-layout();
+      @include calc-width(12);
+}

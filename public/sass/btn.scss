@@ -1,0 +1,40 @@
+// Button
+//----------------------------
+
+@import 'functions';
+
+$btn-height-base:20px;
+$btn-font-size:12px;
+$btn-padding:2px 3px;
+$btn-bg-base:#ddd;
+$btn-color-base:#111;
+
+.btn{
+    display:inline-block;
+    margin-bottom:0;
+    color:$btn-color-base;
+    font-size:$btn-font-size;
+    height:$btn-height-base;
+    line-height:$btn-height-base;
+    padding:$btn-padding $btn-padding;
+    background:$btn-bg-base;
+    text-align:center;
+    vertical-align:middle;
+    cursor:pointer;
+    border:0;
+    &:focus{
+        @include tab-focus(); 
+    }
+    &:hover,&:focus{
+        color:$btn-color-base;
+        text-decoration:none;    
+    }
+
+
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+        cursor:not-allowed; 
+    }
+}
+

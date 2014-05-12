@@ -1,0 +1,29 @@
+html {
+  font: 12px/1.5 tahoma, arial, "Hiragino Sans GB", \5b8b\4f53, sans-serif; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: white;
+  width: 100%; }
+
+a {
+  color: blue;
+  text-decoration: none; }
+  a:hover, a:focus {
+    color: red;
+    text-decoration: underline; }
+
+img {
+  vertical-align: middle;
+  border: 0; }
+
+p, ul, ol {
+  margin: 0; }
+
+ul, ol {
+  padding-left: 0;
+  list-style: none; }
+
+.list-inline > li {
+  display: inline-block; }

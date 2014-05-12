@@ -1,0 +1,22 @@
+.pager:before, .pager:after {
+  content: "";
+  display: table; }
+.pager:after {
+  clear: both; }
+.pager ul > li {
+  float: left;
+  margin-right: 15px;
+  border: 1px solid #cccccc;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center; }
+  .pager ul > li > a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: #111111;
+    background: #dddddd; }
+    .pager ul > li > a:hover {
+      text-decoration: none; }

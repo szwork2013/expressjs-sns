@@ -1,0 +1,47 @@
+@import 'functions';
+
+$nav-height:50px;
+$nav-bg:#fff000;
+$nav-container-width:970px;
+$nav-container-height:50px;
+$nav-container-bg:#ccc;
+$menu-margin:30px;
+$menu-width:120px;
+$nav-link-color:#111;
+
+.nav{
+    display:table;
+    width:100%;
+    height:$nav-height;
+    background:$nav-bg;
+    margin-bottom:0;
+    padding-left:0;
+    @include clearfix();
+    .nav-container{
+        @include center-block(); 
+        background:$nav-container-bg;
+        height:$nav-container-height;
+        width:$nav-container-width;
+    }
+    .logo{
+        float:left;
+    }
+    li{
+        position:relative; 
+        >a{
+            color:$nav-link-color; 
+            &:hover,&:focus{
+                text-decoration:none; 
+            }
+        }
+
+    }
+    .menu{
+        >li{
+            width:$menu-width;
+            margin-right:$menu-margin;
+            float:left;
+            text-align:center;
+        }
+    }
+}

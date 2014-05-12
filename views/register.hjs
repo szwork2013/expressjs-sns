@@ -1,0 +1,39 @@
+<form action="/register" enctype="multipart/form-data" method="post">
+    <h2>注册</h2>
+    <div class="row">
+        <label for="uemail">邮箱</label>
+        <input type="text" name="uemail" />
+        <span class="tips">请填写正确地邮箱</span>
+    </div>
+    <div class="row">
+        <label for="u-name">昵称</label>
+        <input type="text" name = "uname" />
+        <span class="tips">您输入的昵称已被占用</span>
+    </div>
+    <div class="row">
+        <label for="upwd">密码</label>
+        <input type="password" name="upwd" />
+    </div>
+    <div class="row">
+        <label for="urepwd">重复密码</label>
+        <input type="password" name="urepwd" />
+        <span class="tips">密码不一致</span>
+    </div>
+    <div class="row">
+        <label for="signature">描述</label>
+        <textarea id="udesc" name="signature" rows="5" cols="30"></textarea>
+    </div>
+
+    <div class="row">
+        <label for="img-avatar">头像</label>
+        <input type="file" name="img-avatar" />
+    </div>
+
+    <div class="row">
+        <div class="act">
+            <button type="submit">提交</button> 
+        </div>
+    </div>
+</form>
+<script>
+</script>

@@ -1,0 +1,22 @@
+.btn {
+  display: inline-block;
+  margin-bottom: 0;
+  color: #111111;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  padding: 2px 3px 2px 3px;
+  background: #dddddd;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 0; }
+  .btn:focus {
+    outline: thin dotted #333;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px; }
+  .btn:hover, .btn:focus {
+    color: #111111;
+    text-decoration: none; }
+  .btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+    cursor: not-allowed; }

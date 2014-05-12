@@ -1,0 +1,32 @@
+@import "functions.scss";
+
+$pager-w:30px;
+$pager-c:#111;
+$pager-back:#ddd;
+$pager-h:30px;
+$pager-m:15px;
+$pager-b:1px solid #ccc;
+
+.pager{
+    @include clearfix();
+    ul > li{
+        float:left; 
+        margin-right:$pager-m;
+        border:$pager-b;
+        width:$pager-w;
+        height:$pager-h;
+        line-height:$pager-h;
+        text-align:center;
+        > a {
+            display:inline-block; 
+            width:$pager-w;
+            height:$pager-h;
+            line-height:$pager-h;
+            color:$pager-c;
+            background:$pager-back;
+            &:hover {
+                text-decoration:none;
+            }
+        }
+    }
+}

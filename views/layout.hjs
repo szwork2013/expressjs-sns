@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{ title }} {{ gtitle }}</title>
+<link rel="stylesheet" href="./css/lion.css" />
+<link rel="stylesheet" href="./css/style.css" />
+<script src="./js/jquery.min.js"></script>
+</head>
+<body>
+<header class="nav">
+
+    <div class="logo">
+        <a href="/">logo</a> 
+    </div>
+
+    <a href="/register">注册</a>
+    <a href="/login">登陆</a>
+
+
+</header>
+{{{ body }}}
+<footer>
+    &copy;2014 , all rights reserved 
+</footer>
+</body>
+</html>
