@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "express-sns",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -12,7 +12,11 @@
     "cookie-parser": "~1.0.1",
     "body-parser": "~1.0.0",
     "debug": "~0.7.4",
+    "express-partials":"*",
+    "express-session":"~1.1.0",
+    "formidable":"~1.0.14",
+    "mongoose":"~3.8.9",
     "hjs": "~0.0.6",
-    "express-partials":"*"
+    "connect-mongo":"~0.4.1"
   }
 }
