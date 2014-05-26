@@ -8,7 +8,7 @@ var UserModel = mongoose.model('User');
 var formidable = require('formidable');
 router.get('/', function(req, res) {
     res.render('index', { 
-        title: ''
+        title: 'rabbit'
     });
 
 });
@@ -27,28 +27,26 @@ router.post('/register', function(req, res) {
     });
     /*
        new UserModel({
-       email:req.body.uemail,
-       name:req.body.uname,
-       pwd:req.body.upwd,
-       signature:req.body.signature
+           email:req.body.uemail,
+           name:req.body.uname,
+           pwd:req.body.upwd,
+           signature:req.body.signature
        }).save( function( err, todo, count ){
        if(err){
-//res.json({success:0});
-res.redirect( '/error' );
-}else{
-    //res.json({success:1});
-    res.redirect( '/user' );
-    }
-    });
+            //res.json({success:0});
+            res.redirect( '/error' );
+            }else{
+            //res.json({success:1});
+            res.redirect( '/user' );
+            }
+        });
     */
-
 });
 
 router.post('/userv', function(req, res) {
     var message = '';
 
 });
-
 
 router.get('/login', function(req, res) {
     res.render('login', { title: '登陆' });
@@ -70,6 +68,10 @@ router.post('/login', function(req, res) {
             res.redirect('/');
         }
     });
+});
+
+router.get('/about', function(req, res) {
+    res.render('about', { title: '关于' });
 });
 
 module.exports = router;

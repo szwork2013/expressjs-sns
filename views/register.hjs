@@ -24,10 +24,10 @@
         <textarea id="udesc" name="signature" rows="5" cols="30"></textarea>
     </div>
 
-    <div class="row">
+    <!--<div class="row">
         <label for="img-avatar">头像</label>
         <input type="file" name="img-avatar" />
-    </div>
+    </div>-->
 
     <div class="row">
         <div class="act">

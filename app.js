@@ -8,13 +8,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var partials = require('express-partials');
+var formidable = require('formidable');
 var routes = require('./routes/index');
 var user = require('./routes/user');
-var formidable = require('formidable');
-
 
 var app = express();
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
