@@ -1,37 +1,31 @@
-<form action="/register" enctype="multipart/form-data" method="post">
-    <h2>注册</h2>
+<form action="/register" method="post" class="reg-form">
     <div class="row">
-        <label for="uemail">邮箱</label>
-        <input type="text" name="uemail" />
+        <label for="uemail">邮箱：</label>
+        <input type="text" name="uemail" placeholder="请输入邮箱" />
         <span class="tips">请填写正确地邮箱</span>
     </div>
     <div class="row">
-        <label for="u-name">昵称</label>
-        <input type="text" name = "uname" />
+        <label for="u-name">昵称：</label>
+        <input type="text" name = "uname" placeholder="请输入昵称" />
         <span class="tips">您输入的昵称已被占用</span>
     </div>
     <div class="row">
-        <label for="upwd">密码</label>
-        <input type="password" name="upwd" />
+        <label for="upwd">密码：</label>
+        <input type="password" name="upwd" placeholder="请输入密码"/>
+        <span class="tips">密码必须由字符组成</span>
     </div>
-    <div class="row">
+    <!--<div class="row">
         <label for="urepwd">重复密码</label>
         <input type="password" name="urepwd" />
         <span class="tips">密码不一致</span>
-    </div>
-    <div class="row">
-        <label for="signature">描述</label>
-        <textarea id="udesc" name="signature" rows="5" cols="30"></textarea>
-    </div>
-
+    </div>-->
     <!--<div class="row">
         <label for="img-avatar">头像</label>
         <input type="file" name="img-avatar" />
     </div>-->
-
     <div class="row">
         <div class="act">
-            <button type="submit">提交</button> 
+            <button type="submit">注册</button> 
         </div>
     </div>
 </form>

@@ -1,5 +1,6 @@
-<ul>
+<!--<ul>
     {{#users}}
     <li class="{{_id}}">用户邮箱:{{email}}用户名:{{name}}</li>
     {{/users}}
-</ul>
+</ul>-->
+<img src="../img/1.jpg" alt="" width="300" height="300" />

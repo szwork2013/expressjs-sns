@@ -1,0 +1,46 @@
+.main {
+  width: 970px;
+  margin: auto; }
+  .main:before, .main:after {
+    content: "";
+    display: table; }
+  .main:after {
+    clear: both; }
+
+.reg-form, .login-form {
+  width: 44%;
+  margin-left: 33%; }
+  .reg-form .row, .login-form .row {
+    margin: 50px 0px; }
+  .reg-form input[type="text"], .reg-form input[type="password"], .login-form input[type="text"], .login-form input[type="password"] {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    height: 20px;
+    line-height: 20px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    vertical-align: middle; }
+  .reg-form label, .reg-form span.tips, .login-form label, .login-form span.tips {
+    vertical-align: middle; }
+  .reg-form label, .login-form label {
+    width: 50px; }
+  .reg-form span.tips, .login-form span.tips {
+    color: red; }
+  .reg-form .act, .login-form .act {
+    text-align: center; }
+    .reg-form .act button, .login-form .act button {
+      height: 50px;
+      padding: 0 30px;
+      border: none;
+      color: #fff;
+      background: red;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
+      border-radius: 3px; }

@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>{{ title }} - {{ gtitle }}</title>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <link rel="stylesheet" href="./css/lion.css" />
 <link rel="stylesheet" href="./css/style.css" />
 <script src="./js/jquery.min.js"></script>
@@ -15,8 +15,9 @@
             <a href="/">rabbit</a>
         </div>
 
-        <form action="/search" class="fl">
+        <form action="/search" class="fl search-form">
             <input type="text" id-"q" name="q" class="search" placeholder="避震" />
+            <button type="submit">搜索</button>
         </form>
 
         <ul class="fr menu">
@@ -27,7 +28,9 @@
     
 </header>
 
-{{{ body }}}
+<section class="main">
+    {{{ body }}}
+</section>
 
 <footer>
     &copy;2014 , all rights reserved 

@@ -2,5 +2,46 @@
 @import "animate.scss";
 
 .main{
+    width:970px;
+    margin:auto;
+    @include clearfix();
+}
+
+.reg-form,.login-form{
+    width:44%;
+    margin-left:33%;
+    .row{
+        margin:50px 0px; 
+    }
+    input[type="text"],input[type="password"]{
+        width:200px;
+        padding:10px;
+        font-size:16px;
+        height:20px; 
+        line-height:20px;
+        @include border-radius(3px);
+        border:1px solid #ccc;
+        vertical-align:middle;
+    }
+    label,span.tips{
+        vertical-align:middle;
+    }
+    label{
+        width:50px;
+    }
+    span.tips{
+        color:$global-color;
+    }
+    .act{
+        text-align:center;
+        button{
+                height:50px;     
+                padding:0 30px;
+                border:none;
+                color:#fff;
+                background:$global-color;
+                @include border-radius(3px);
+        } 
+    }
 
 }

@@ -4,8 +4,9 @@ var express = require('express');
 var router = express.Router();
 
 var mongoose = require( 'mongoose' );
-var UserModel = mongoose.model('User');
+var User = mongoose.model('User');
 var formidable = require('formidable');
+
 router.get('/', function(req, res) {
     res.render('index', { 
         title: 'rabbit'
@@ -19,28 +20,23 @@ router.get('/register', function(req, res) {
 
 router.post('/register', function(req, res) {
 
-        var form = new formidable.IncomingForm();
-
-    form.parse(req, function(err, fields, files) {
-        console.info(fields);
-        console.info(files);
+         /*
+     new formidable.IncomingForm().parse(req, function(err, fields, files) {
+         //console.info(files);
+         console.info(fields);
     });
-    /*
-       new UserModel({
+    */
+       new User({
            email:req.body.uemail,
            name:req.body.uname,
-           pwd:req.body.upwd,
-           signature:req.body.signature
+           pwd:req.body.upwd
        }).save( function( err, todo, count ){
        if(err){
-            //res.json({success:0});
-            res.redirect( '/error' );
+            res.redirect('/error');
             }else{
-            //res.json({success:1});
-            res.redirect( '/user' );
+            res.redirect('/');
             }
         });
-    */
 });
 
 router.post('/userv', function(req, res) {
@@ -55,7 +51,7 @@ router.get('/login', function(req, res) {
 router.post('/login', function(req, res) {
     var username = req.body.username;
     var userpwd = req.body.userpwd;
-    UserModel.findOne({name:username},function(err,user){
+    User.findOne({name:username},function(err,user){
         if(err){
             next(err); 
         }
