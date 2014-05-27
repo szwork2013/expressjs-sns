@@ -30,14 +30,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 //session
 var MongoStore = require('connect-mongo')(session);
 app.use(session({
-    secret:'sp',
+    secret:'secret',
     store: new MongoStore({
-        db : 'sessions',
-    })
+        db : 'session',
+    }),
+    name:'sid'
 }));
 
-app.use('/', routes);
-app.use('/user', user);
+app.use(function(req, res, next){
+  res.locals.user = req.session.user;
+  next();
+});
 
 
 app.use(bodyParser({ uploadDir: './uploads'}));
@@ -46,6 +49,9 @@ app.use(bodyParser({ uploadDir: './uploads'}));
 app.locals = {
     gtitle:'sns'
 };
+
+app.use('/', routes);
+app.use('/user', user);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
@@ -77,5 +83,7 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
+
 
 module.exports = app;

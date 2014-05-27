@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+{{^title}}
+<title>{{ gtitle }}</title>
+{{/title}}
+{{#title}}
 <title>{{ title }} - {{ gtitle }}</title>
+{{/title}}
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <link rel="stylesheet" href="./css/lion.css" />
 <link rel="stylesheet" href="./css/style.css" />
@@ -21,8 +26,14 @@
         </form>
 
         <ul class="fr menu">
+            {{^user}}
             <li><a href="/register" class="reg">注册</a></li>
-            <li><a href="/login" class="login">登陆</a></li>
+            <li><a href="/login" class="login">登录</a></li>
+            {{/user}}
+            {{#user}}
+            <li><a href="/settings" class="">欢迎，{{user.name}}</a></li>
+            <li><a href="/logout" class="loginout">退出</a></li>
+            {{/user}}
         </ul>
     </div>
     

@@ -1,0 +1,9 @@
+
+<div class="user-show">
+    {{user.name}}        
+</div>
+
+
+<div class="settings">
+
+</div>
