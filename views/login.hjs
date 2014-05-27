@@ -1,11 +1,11 @@
 <form action="/login" method="post" class="login-form">
     <div class="row">
         <label for="">邮箱</label> 
-        <input type="text" name="username" placeholder="邮箱" />
+        <input type="text" name="username" placeholder="邮箱或昵称" />
     </div>
     <div class="row">
         <label for="">密码</label> 
-        <input type="password" name="userpwd"/>
+        <input type="password" name="userpwd" placeholder="密码" />
     </div>
     <div class="row">
         <div class="act">

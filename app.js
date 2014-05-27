@@ -26,7 +26,6 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 //session
 var MongoStore = require('connect-mongo')(session);
 app.use(session({
@@ -42,9 +41,7 @@ app.use(function(req, res, next){
   next();
 });
 
-
 app.use(bodyParser({ uploadDir: './uploads'}));
-
 
 app.locals = {
     gtitle:'sns'
@@ -83,7 +80,5 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
-
 
 module.exports = app;

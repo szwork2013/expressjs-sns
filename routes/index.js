@@ -47,15 +47,22 @@ router.get('/login', function(req, res) {
 router.post('/login', function(req, res) {
     var username = req.body.username;
     var userpwd = req.body.userpwd;
-    User.findOne({name:username},function(err,user){
+    User.findOne({$or:[{ name:username }, {email:username }]},function(err,user){
         if(!user){
-            res.redirect('/error'); 
-        }
-        if(user){
-            //登陆成功
-            req.session.user = user;
-            req.session.save();
-            res.redirect('/');
+            res.render('error',{
+                error:'用户名不存在'
+            });
+        }else{
+            if(userpwd === user.pwd){
+                //登陆成功
+                req.session.user = user;
+                req.session.save();
+                res.redirect('/');
+            }else{
+                res.render('error',{
+                    error:'密码错误'
+                });
+            }
         }
     });
 });
@@ -77,7 +84,7 @@ router.get('/about', function(req, res) {
     res.render('about', { title: '关于' });
 });
 
-router.get('/settings', function(req, res) {
+router.get('/u/:name', function(req, res) {
     res.render('settings', { title: '账户设置' });
 });
 

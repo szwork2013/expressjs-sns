@@ -8,9 +8,9 @@
 <title>{{ title }} - {{ gtitle }}</title>
 {{/title}}
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<link rel="stylesheet" href="./css/lion.css" />
-<link rel="stylesheet" href="./css/style.css" />
-<script src="./js/jquery.min.js"></script>
+<link rel="stylesheet" href="../css/lion.css" />
+<link rel="stylesheet" href="../css/style.css" />
+<script src="../js/jquery.min.js"></script>
 </head>
 <body>
 <header class="nav">
@@ -31,7 +31,7 @@
             <li><a href="/login" class="login">登录</a></li>
             {{/user}}
             {{#user}}
-            <li><a href="/settings" class="">欢迎，{{user.name}}</a></li>
+            <li><a href="/u/{{user.name}}" class="">欢迎，{{user.name}}</a></li>
             <li><a href="/logout" class="loginout">退出</a></li>
             {{/user}}
         </ul>

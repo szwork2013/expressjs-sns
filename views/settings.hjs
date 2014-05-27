@@ -1,9 +1,7 @@
-
 <div class="user-show">
-    {{user.name}}        
+    {{user.name}}
 </div>
 
-
 <div class="settings">
-
+    <img src="../img/2.jpg" alt="">
 </div>
