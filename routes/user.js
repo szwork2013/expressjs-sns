@@ -5,7 +5,6 @@ var router = express.Router();
 
 var mongoose = require( 'mongoose' );
 var User = mongoose.model('User');
-/* GET users listing. */
 
 router.get('/', function(req, res) {
     User.find(function(err,users,count){
@@ -13,6 +12,10 @@ router.get('/', function(req, res) {
             users:users
         });
     });
+});
+
+router.get('/:name', function(req, res) {
+    res.render('settings', { title: '账户设置' });
 });
 
 module.exports = router;

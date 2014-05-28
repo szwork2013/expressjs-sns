@@ -8,8 +8,8 @@
 }
 
 .reg-form,.login-form{
-    width:44%;
-    margin-left:33%;
+    width:60%;
+    margin-left:30%;
     .row{
         margin:50px 0px; 
     }
@@ -31,10 +31,12 @@
     }
     span.tips{
         color:$global-color;
+        margin-left:10px;
+        display:none;
     }
     .act{
-        text-align:center;
         button{
+                margin-left:52px;
                 height:50px;     
                 padding:0 30px;
                 border:none;

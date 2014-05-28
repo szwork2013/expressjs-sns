@@ -2,27 +2,24 @@
     <div class="row">
         <label for="uemail">邮箱：</label>
         <input type="text" name="uemail" placeholder="请输入邮箱" />
-        <span class="tips">请填写正确地邮箱</span>
+        <span class="tips1 tips">请输入正确的邮箱</span>
+        <span class="tips2 tips">邮箱已经重复注册</span>
     </div>
     <div class="row">
-        <label for="u-name">昵称：</label>
+        <label for="uname">昵称：</label>
         <input type="text" name = "uname" placeholder="请输入昵称" />
         <span class="tips">您输入的昵称已被占用</span>
     </div>
     <div class="row">
+        <label for="uphone">手机：</label>
+        <input type="text" name = "uphone" placeholder="请输入手机" />
+        <span class="tips">请输入正确的手机号码</span>
+    </div>
+    <div class="row">
         <label for="upwd">密码：</label>
         <input type="password" name="upwd" placeholder="请输入密码"/>
-        <span class="tips">密码必须由字符组成</span>
+        <span class="tips">由英文字母（含大小写）和数字组成</span>
     </div>
-    <!--<div class="row">
-        <label for="urepwd">重复密码</label>
-        <input type="password" name="urepwd" />
-        <span class="tips">密码不一致</span>
-    </div>-->
-    <!--<div class="row">
-        <label for="img-avatar">头像</label>
-        <input type="file" name="img-avatar" />
-    </div>-->
     <div class="row">
         <div class="act">
             <button type="submit">注册</button> 
@@ -30,4 +27,51 @@
     </div>
 </form>
 <script>
+
+        (function(){
+
+            var form_validate = true;
+
+            var emailRegex = /^[a-zA-Z0-9.!#$%&amp;'*+\-\/=?\^_`{|}~\-]+@[a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]+)*$/,
+                pwdRegex = /^[A-Za-z0-9]+$/,
+                phoneRegex = /^0?(13[0-9]|15[012356789]|18[0-9]|14[57])[0-9]{8}$/;
+
+            function RegexValidate(v,regex){
+                return regex.test(v);
+            }
+
+            $('.reg-form input').blur(function(){
+                 var val = $(this).val();
+                 if($(this).attr('name') === 'uemail'){
+                    $(this).next('.tips1').css('display',RegexValidate(val,emailRegex)?'none':'inline-block');
+                    var self = $(this);
+                    $.ajax({
+                         url:'/validate',
+                         type:'post',
+                         data:'email='+val,
+                    }).done(function(re){
+                           self.nextAll('.tips2').css('display',re.emailsuccess===0?'none':'inline-block');
+                    });
+                 }else if($(this).attr('name') === 'uname'){
+                         var self = $(this);
+                         $.ajax({
+                             url:'/validate',
+                             type:'post',
+                             data:'name='+val,
+                         }).done(function(re){
+                               self.next('.tips').css('display',re.namesuccess===0?'none':'inline-block');
+                         });
+                 }else if($(this).attr('name') === 'uphone'){
+                    $(this).next('.tips').css('display',RegexValidate(val,phoneRegex)?'none':'inline-block');
+                 }else if($(this).attr('name') === 'upwd'){
+                    $(this).next('.tips').css('display',RegexValidate(val,pwdRegex)?'none':'inline-block');
+                 }
+            });
+
+            $('.reg-form .act button').click(function(e){
+                 $('.reg-form').submit();
+            });
+
+        })()
+
 </script>

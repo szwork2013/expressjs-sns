@@ -51,15 +51,14 @@ $nav-link-color:$global-color;
             height:30px;
             margin:10px;
             line-height:30px;
-            border:1px solid $global-color;
-            width:50px;
             float:left;
             text-align:center;
             vertical-align:middle;
             @include border-radius(3px);
             a{
+                border:1px solid $global-color;
+                padding:0 10px;
                 @include border-radius(3px);
-                width:50px;
                 display:inline-block; 
                 &:hover{
                     background:$global-color;
@@ -67,10 +66,19 @@ $nav-link-color:$global-color;
                     text-decoration:none; 
                 }
             }
+            &.wel-user{
+                a{
+                    border:none; 
+                        &:hover{
+                            text-decoration:underline; 
+                            color:$global-color;
+                            background:#fff;
+                        }
+                }
+            }
         }
     }
 }
-
 
 footer{
     margin-top:30px;

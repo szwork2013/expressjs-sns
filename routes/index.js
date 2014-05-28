@@ -21,16 +21,11 @@ router.get('/register', function(req, res) {
 });
 
 router.post('/register', function(req, res) {
-        /*
-        new formidable.IncomingForm().parse(req, function(err, fields, files) {
-             console.info(files);
-             console.info(fields);
-        });
-        */
        new User({
            email:req.body.uemail,
            name:req.body.uname,
-           pwd:req.body.upwd
+           pwd:req.body.upwd,
+           phone:req.body.uphone
        }).save( function( err, todo, count ){
        if(err){
             res.redirect('/error');
@@ -48,21 +43,23 @@ router.post('/login', function(req, res) {
     var username = req.body.username;
     var userpwd = req.body.userpwd;
     User.findOne({$or:[{ name:username }, {email:username }]},function(err,user){
-        if(!user){
+        var error_msg = '';
+
+        if(!user || userpwd != user.pwd){
+            if(!user) {
+                error_msg = '用户不存在';
+            }else if(userpwd != user.pwd){
+                error_msg = '密码错误';
+            }
+
             res.render('error',{
-                error:'用户名不存在'
+                error:error_msg
             });
         }else{
-            if(userpwd === user.pwd){
-                //登陆成功
-                req.session.user = user;
-                req.session.save();
-                res.redirect('/');
-            }else{
-                res.render('error',{
-                    error:'密码错误'
-                });
-            }
+            //登陆成功
+            req.session.user = user;
+            req.session.save();
+            res.redirect('/');
         }
     });
 });
@@ -84,8 +81,28 @@ router.get('/about', function(req, res) {
     res.render('about', { title: '关于' });
 });
 
-router.get('/u/:name', function(req, res) {
-    res.render('settings', { title: '账户设置' });
+
+router.post('/validate', function(req, res) {
+
+    if(req.body.name){
+        User.findOne({name:req.body.name},function(err,user){
+            if(user){
+                res.json({'namesuccess':1});
+            }else{
+                res.json({'namesuccess':0});
+            }
+        });
+    }
+    if(req.body.email){
+        User.findOne({email:req.body.email},function(err,user){
+            if(user){
+                res.json({'emailsuccess':1});
+            }else{
+                res.json({'emailsuccess':0});
+            }
+        });
+    }
+
 });
 
 /*

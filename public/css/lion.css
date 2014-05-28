@@ -493,8 +493,6 @@ textarea {
     height: 30px;
     margin: 10px;
     line-height: 30px;
-    border: 1px solid red;
-    width: 50px;
     float: left;
     text-align: center;
     vertical-align: middle;
@@ -504,17 +502,24 @@ textarea {
     -o-border-radius: 3px;
     border-radius: 3px; }
     .nav .menu > li a {
+      border: 1px solid red;
+      padding: 0 10px;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       -ms-border-radius: 3px;
       -o-border-radius: 3px;
       border-radius: 3px;
-      width: 50px;
       display: inline-block; }
       .nav .menu > li a:hover {
         background: red;
         color: #fff;
         text-decoration: none; }
+    .nav .menu > li.wel-user a {
+      border: none; }
+      .nav .menu > li.wel-user a:hover {
+        text-decoration: underline;
+        color: red;
+        background: #fff; }
 
 footer {
   margin-top: 30px;
