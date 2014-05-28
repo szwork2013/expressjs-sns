@@ -104,10 +104,4 @@ router.post('/validate', function(req, res) {
 
 });
 
-/*
-router.use(function(req, res) {
-    console.info(123);
-});
-*/
-
 module.exports = router;

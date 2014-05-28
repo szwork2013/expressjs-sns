@@ -3,5 +3,5 @@
 </div>
 
 <div class="settings">
-    <label>{{user.email}}</label>
+    {{user.email}}
 </div>
