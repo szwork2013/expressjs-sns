@@ -40,36 +40,62 @@
                 return regex.test(v);
             }
 
-            $('.reg-form input').blur(function(){
-                 var val = $(this).val();
-                 if($(this).attr('name') === 'uemail'){
-                    $(this).next('.tips1').css('display',RegexValidate(val,emailRegex)?'none':'inline-block');
-                    var self = $(this);
+            var validateObj = {
+                email:function(e){
+                    $(e).nextAll('.tips1').css('display',RegexValidate($(e).val(),emailRegex)?'none':'inline-block');
                     $.ajax({
                          url:'/validate',
                          type:'post',
-                         data:'email='+val,
+                         data:'email='+$(e).val(),
                     }).done(function(re){
-                           self.nextAll('.tips2').css('display',re.emailsuccess===0?'none':'inline-block');
+                         $(e).nextAll('.tips2').css('display',re.emailsuccess===0?'none':'inline-block');
+                           if(re.namesuccess===1) return false;
                     });
+                    if(!RegexValidate($(e).val(),emailRegex)) return false;
+                    return true;
+                },
+                name:function(e){
+                    $.ajax({
+                         url:'/validate',
+                         type:'post',
+                         data:'name='+$(e).val(),
+                    }).done(function(re){
+                           $(e).next('.tips').css('display',re.namesuccess===0?'none':'inline-block');
+                           if(re.emailsuccess===1) return false;
+                    });
+                    return true;
+                },
+                phone:function(e){
+                    $(e).next('.tips').css('display',RegexValidate($(e).val(),phoneRegex)?'none':'inline-block');
+                    if(!RegexValidate($(e).val(),phoneRegex)) return false;
+                    return true;
+                },
+                pwd:function(e){
+                    $(e).next('.tips').css('display',RegexValidate($(e).val(),pwdRegex)?'none':'inline-block');
+                    if(!RegexValidate($(e).val(),pwdRegex)) return false;
+                    return true;
+                }
+            };
+
+            $('.reg-form input').blur(function(){
+                 if($(this).attr('name') === 'uemail'){
+                    validateObj.email($(this));
                  }else if($(this).attr('name') === 'uname'){
-                         var self = $(this);
-                         $.ajax({
-                             url:'/validate',
-                             type:'post',
-                             data:'name='+val,
-                         }).done(function(re){
-                               self.next('.tips').css('display',re.namesuccess===0?'none':'inline-block');
-                         });
+                    validateObj.name($(this));
                  }else if($(this).attr('name') === 'uphone'){
-                    $(this).next('.tips').css('display',RegexValidate(val,phoneRegex)?'none':'inline-block');
+                    validateObj.phone($(this));
                  }else if($(this).attr('name') === 'upwd'){
-                    $(this).next('.tips').css('display',RegexValidate(val,pwdRegex)?'none':'inline-block');
+                    validateObj.pwd($(this));
                  }
             });
 
             $('.reg-form .act button').click(function(e){
-                 $('.reg-form').submit();
+                    if(validateObj.email($('input[name="uemail"]')) && validateObj.name($('input[name="uname"]')) && validateObj.phone($('input[name="uphone"]')) && validateObj.pwd($('input[name="upwd"]'))){
+                        console.info(313);
+                        $('.reg-form').submit();
+                    }else{
+                        e.preventDefault();
+                    }
             });
 
         })()

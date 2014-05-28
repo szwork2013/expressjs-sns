@@ -3,5 +3,5 @@
 </div>
 
 <div class="settings">
-    dsjakdjl
+    <label>{{user.email}}</label>
 </div>
