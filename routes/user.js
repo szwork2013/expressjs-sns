@@ -26,20 +26,24 @@ router.post('/:name/save-settings', function(req, res) {
     new formidable.IncomingForm().parse(req,function(err,fields,files){
 
         /*
-         *upload avatar
+         *  check floder  
          */
-        fs.mkdir('./public/uploads/'+req.session.user.name,function(){
-            var target_url = './public/uploads/'+req.session.user.name+'/'+files.avatar.name;
-            fs.rename(files.avatar.path,target_url,function(err){
+        if(!fs.existsSync('./public/uploads/'+req.session.user.name)){
+            fs.mkdirSync('./public/uploads/'+req.session.user.name);
+        }
+        /*
+         *  upload avatar
+         */
+        var target_url = './public/uploads/'+req.session.user.name+'/'+files.avatar.name;
+        fs.rename(files.avatar.path,target_url,function(err){
+            if(err) res.redirect('/error');
+            fs.unlink(files.avatar.path, function() {
+                if (!err) res.redirect('back');
+            });
+            req.session.user.avatar = target_url; 
+            User.findOneAndUpdate({name:req.session.user.name},{avatar:target_url},function(err){
                 if(err) res.redirect('/error');
-                fs.unlink(files.avatar.path, function() {
-                    if (!err) res.redirect('back');
-                });
-                req.session.user.avatar = target_url; 
-                User.findOneAndUpdate({name:req.session.user.name},{avatar:target_url},function(err){
-                    if(err) res.redirect('/error');
-                    res.redirect('/');
-                });
+                res.redirect('/');
             });
         });
 
