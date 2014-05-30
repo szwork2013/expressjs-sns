@@ -21,7 +21,9 @@ var User = new mongoose.Schema({
     following_count:{type:Number,default:0},
 
     create_at: { type: Date, default: Date.now },
-    update_at: { type: Date, default: Date.now }
+    update_at: { type: Date, default: Date.now },
+
+    avatar: { type: String}
 
 });
 

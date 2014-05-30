@@ -15,6 +15,9 @@
 </form> 
 
 <script>
-
-
+    $('.login-form .act button').click(function(e){
+            $.ajax({
+                url:'/validate'    
+            });
+    });
 </script>

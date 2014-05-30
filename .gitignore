@@ -2,3 +2,4 @@
 /public/.sass-cache/*
 *.swo
 *.swp
+.DS_Store

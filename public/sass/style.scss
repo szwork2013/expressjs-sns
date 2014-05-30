@@ -47,3 +47,16 @@
     }
 
 }
+
+/*
+* settings
+*/
+#show-avatar{
+    width:64px;
+    height:64px;
+    @include border-radius(3px);
+}
+
+
+
+

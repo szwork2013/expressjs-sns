@@ -1,9 +1,1 @@
 <h1>{{ error }}</h1>
-
-<script>
-(function(){
-     setTimeout(function(){
-         location.href="/";
-     },3000); 
- })()
-</script>

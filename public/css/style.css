@@ -45,3 +45,15 @@
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
     border-radius: 3px; }
+
+/*
+* settings
+*/
+#show-avatar {
+  width: 64px;
+  height: 64px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
