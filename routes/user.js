@@ -18,16 +18,24 @@ router.get('/', function(req, res) {
     });
 });
 
-router.get('/:name', function(req, res) {
-    res.render('settings', { title: '账户设置' });
+router.get('/:_id', function(req, res) {
+    if(req.session.user){
+        res.render('settings', { title: '账户设置' });
+    }else{
+        res.redirect('/error');
+    }
 });
 
-router.post('/:name/save-settings', function(req, res) {
+router.post('/:_id/save-settings', function(req, res) {
     new formidable.IncomingForm().parse(req,function(err,fields,files){
 
         /*
          *  check floder  
          */
+
+        if(!fs.existsSync('./public/uploads/')){
+            fs.mkdirSync('./public/uploads/');
+        }
         var target_floder = './public/uploads/'+req.session.user.name;
         if(!fs.existsSync(target_floder)){
             fs.mkdirSync(target_floder);
@@ -45,8 +53,7 @@ router.post('/:name/save-settings', function(req, res) {
 
             req.session.user.avatar = save_url; 
             User.findOneAndUpdate({name:req.session.user.name},{avatar:save_url},function(err){
-                if(err) res.redirect('/error');
-                res.redirect('/');
+                if(!err) res.redirect('back');
             });
         });
     });

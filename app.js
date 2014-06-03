@@ -11,6 +11,7 @@ var partials = require('express-partials');
 var formidable = require('formidable');
 var routes = require('./routes/index');
 var user = require('./routes/user');
+var topic = require('./routes/topic');
 
 var app = express();
 
@@ -49,6 +50,7 @@ app.locals = {
 
 app.use('/', routes);
 app.use('/user', user);
+app.use('/topic', topic);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

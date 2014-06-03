@@ -3,4 +3,6 @@
     <li class="{{_id}}">用户邮箱:{{email}}用户名:{{name}}</li>
     {{/users}}
 </ul>
-<img src="../img/1.jpg" alt="" width="300" height="300" />
+{{#user}}
+    <a href="/topic/new" class="new-post">发布新话题</a>
+{{/user}}

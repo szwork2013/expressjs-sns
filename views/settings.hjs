@@ -15,7 +15,6 @@
     </form>
 </div>
 
-<script src="http://10.31.17.197:8000/_/js/reloader.js"></script>
 <script>
     (function(){
      $('#take-avatar').change(function(e){
