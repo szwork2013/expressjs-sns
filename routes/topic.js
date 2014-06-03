@@ -15,4 +15,8 @@ router.get('/new', function(req, res) {
     });
 });
 
+router.post('/new', function(req, res) {
+
+});
+
 module.exports = router;

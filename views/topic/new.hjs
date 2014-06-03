@@ -1,11 +1,19 @@
-<div class="new-post-form">
+<link rel="stylesheet" href="/css/editor/umeditor.min.css">
+<script src="/js/editor/umeditor.config.js"></script>
+<script src="/js/editor/umeditor.min.js"></script>
+<script src="/js/editor/zh-cn.js"></script>
 
 
 
+<form action="/topic/new" method="post" style="margin-top:20px;">
 
-</div>
+    <script type="text/plain" id="myEditor" style="width:970px;height:240px;">
+        <p>这里我可以写一些输入提示</p>
+    </script>
+
+</form>
 
 
-
-
-
+<script>
+   var um = UM.getEditor('myEditor');
+</script>
