@@ -20,7 +20,12 @@ router.get('/', function(req, res) {
 
 router.get('/:_id', function(req, res) {
     if(req.session.user){
-        res.render('settings', { title: '账户设置' });
+        User.findOne({name:req.session.user.name},function(err,user){
+            res.render('settings', { 
+                title: '账户设置',
+                user:user
+            });
+        });
     }else{
         res.redirect('/error');
     }
@@ -32,7 +37,6 @@ router.post('/:_id/save-settings', function(req, res) {
         /*
          *  check floder  
          */
-
         if(!fs.existsSync('./public/uploads/')){
             fs.mkdirSync('./public/uploads/');
         }
