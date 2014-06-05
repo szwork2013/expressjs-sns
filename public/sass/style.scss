@@ -47,7 +47,6 @@
     }
 
 }
-
 /*
 * settings
 */
@@ -55,4 +54,40 @@
     width:64px;
     height:64px;
     @include border-radius(3px);
+}
+
+/*
+* new topic
+*/
+#new-topic{
+    font-size:16px;
+    margin-top:50px;
+    h1{
+         font-size:24px; 
+    }
+    input,textarea{
+        border:1px solid #ccc;
+        @include border-radius(3px); 
+        margin:10px 0;
+    }
+    #new-topic-title{
+        width:900px;
+        height:40px;
+        padding:0 15px;
+        font-weight:bold;
+    }
+    #new-topic-content{
+        width:970px;
+        height:300px;
+        padding:15px;
+    }
+    button[type=submit]{
+        width:100px; 
+        height:40px;
+        line-height:40px;
+        background:$global-color;
+        color:#fff;
+        border:none;
+        padding:0;
+    }
 }

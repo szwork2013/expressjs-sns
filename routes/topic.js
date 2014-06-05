@@ -16,7 +16,7 @@ router.get('/new', function(req, res) {
 });
 
 router.post('/new', function(req, res) {
-
+    console.info(req.body);
 });
 
 module.exports = router;

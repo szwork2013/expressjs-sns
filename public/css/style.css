@@ -57,3 +57,37 @@
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px; }
+
+/*
+* new topic
+*/
+#new-topic {
+  font-size: 16px;
+  margin-top: 50px; }
+  #new-topic h1 {
+    font-size: 24px; }
+  #new-topic input, #new-topic textarea {
+    border: 1px solid #ccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    margin: 10px 0; }
+  #new-topic #new-topic-title {
+    width: 900px;
+    height: 40px;
+    padding: 0 15px;
+    font-weight: bold; }
+  #new-topic #new-topic-content {
+    width: 970px;
+    height: 300px;
+    padding: 15px; }
+  #new-topic button[type=submit] {
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    background: red;
+    color: #fff;
+    border: none;
+    padding: 0; }
