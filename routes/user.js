@@ -56,7 +56,7 @@ router.post('/:_id/save-settings', function(req, res) {
             });
 
             req.session.user.avatar = save_url; 
-            User.findOneAndUpdate({name:req.session.user.name},{avatar:save_url},function(err){
+            User.findOneAndUpdate({name:req.session.user.name},{avatar_url:save_url},function(err){
                 if(!err) res.redirect('back');
             });
         });

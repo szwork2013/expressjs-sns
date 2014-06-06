@@ -23,7 +23,7 @@ var User = new mongoose.Schema({
     create_at: { type: Date, default: Date.now },
     update_at: { type: Date, default: Date.now },
 
-    avatar: { type: String}
+    avatar_url: { type: String}
 
 });
 

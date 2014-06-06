@@ -1,8 +1,10 @@
 <ul>
-    {{#users}}
-    <li class="{{_id}}">用户邮箱:{{email}}用户名:{{name}}</li>
-    {{/users}}
+    {{#topics}}
+    <li>
+        <a href="/topic/{{_id}}">{{title}}</a>
+    </li>
+    {{/topics}}
 </ul>
 {{#user}}
-    <a href="/topic/new" class="new-post">发布新话题</a>
+    <a href="/topic/new" class="new-post fr">发布新话题</a>
 {{/user}}

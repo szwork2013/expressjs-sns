@@ -6,13 +6,16 @@ var router = express.Router();
 //data
 var mongoose = require( 'mongoose' );
 var User = mongoose.model('User');
+var Topic = mongoose.model('Topic');
 
 
 var formidable = require('formidable');
 
 router.get('/', function(req, res) {
-    res.render('index', { 
-        title: 'no1'
+     Topic.find(function(err,topics,count){
+        res.render('index', { 
+            topics:topics
+        });
     });
 });
 
