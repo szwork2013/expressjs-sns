@@ -40,6 +40,8 @@ app.use(session({
 
 app.use(function(req, res, next){
   res.locals.user = req.session.user;
+  console.info(req);
+  //console.info(res);
   next();
 });
 

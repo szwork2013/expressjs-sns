@@ -4,6 +4,7 @@ var Topic = new mongoose.Schema({
     title:String,
     content:String,
     author_id:{type:mongoose.Schema.Types.ObjectId},
+    author_name:{type:String},
     top: { type: Boolean, default: false },
     reply_count: { type: Number, default: 0 },
     visit_count: { type: Number, default: 0 },
