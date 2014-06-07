@@ -7,6 +7,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Topic = mongoose.model('Topic');
+var Reply = mongoose.model('Reply');
 
 var formidable = require('formidable');
 
@@ -34,6 +35,18 @@ router.get('/:_id', function(req, res) {
             topic:topic
         })
     });
+});
+
+router.post('/addreply',function(req,res){
+   new Reply({
+       content:req.body.replyContent,
+       topic_id:req.body.topic_id,
+       author_id:req.session.user._id
+   }).save(function(err){
+        if(!err){
+            res.json({s:1,content:req.body.replyContent})
+        }
+   }); 
 });
 
 module.exports = router;

@@ -1,16 +1,45 @@
 <h1>{{topic.title}}</h1>
 <p>
-    {{topic.content}}
-</p>
-<p>
     {{topic.create_date_format}}
 </p>
+<p>
+    {{topic.content}}
+</p>
 
-<form action="/addreply" method="post">
+<ul class="reply-list">
+    <li>
+        {{reply.content}} 
+    </li>
+</ul>
+
+
+
+<form action="/addreply" method="post" class="reply-form" id="reply-form">
         <div class="row">
-            <textarea id="reply-content" name="reply-content" placeholder="回复内容...."></textarea>
+            <textarea id="replyContent" name="replyContent" placeholder="回复内容...."></textarea>
         </div>
         <div class="row act">
             <button type="submit">提交</button> 
         </div>
+
 </form>
+
+<script type="text/templete">
+    <li>
+    
+    </li>
+</script>
+
+
+<script>
+    $('.reply-form button[type="submit"]').click(function(e){
+        e.preventDefault();
+        $.ajax({
+            url:'/topic/addreply',
+            method:'post',
+            data:$('.reply-form').serialize()+'&topic_id={{topic._id}}'
+        }).done(function(re){
+           $('.reply-list').append('<li>'+re.content+'</li>');
+        });
+    });
+</script>
