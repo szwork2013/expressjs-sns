@@ -20,8 +20,8 @@ var User = new mongoose.Schema({
     follower_count:{type:Number,default:0},
     following_count:{type:Number,default:0},
 
-    create_at: { type: Date, default: Date.now },
-    update_at: { type: Date, default: Date.now },
+    create_date: { type: Date, default: Date.now },
+    update_date: { type: Date, default: Date.now },
 
     avatar_url: { type: String}
 

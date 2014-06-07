@@ -40,7 +40,9 @@
 </header>
 
 <section class="main">
-    {{{ body }}}
+    <div class="main-wrapper">
+        {{{ body }}}
+    </div>
 </section>
 
 <footer>

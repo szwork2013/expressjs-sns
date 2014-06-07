@@ -1,10 +1,14 @@
-<ul>
-    {{#topics}}
-    <li>
-        <a href="/topic/{{_id}}">{{title}}</a>
-    </li>
-    {{/topics}}
-</ul>
-{{#user}}
-    <a href="/topic/new" class="new-post fr">发布新话题</a>
-{{/user}}
+<div class="row clearfix">
+    <a href="/topic/new" class="new-post-btn">发布新话题</a>
+</div>
+
+<div class="row">
+    <ul>
+        {{#topics}}
+        <li>
+            <a href="/topic/{{_id}}">{{title}}</a>
+            {{create_date_format}}
+        </li>
+        {{/topics}}
+    </ul>
+</div>

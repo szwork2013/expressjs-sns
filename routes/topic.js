@@ -8,8 +8,6 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Topic = mongoose.model('Topic');
 
-
-var moment = require('moment');
 var formidable = require('formidable');
 
 router.get('/new', function(req, res) {
@@ -33,8 +31,7 @@ router.post('/new', function(req, res) {
 router.get('/:_id', function(req, res) {
     Topic.findOne({_id:req.params._id},function(err,topic){
         res.render('topic/detail',{
-            topic:topic,
-            moment:moment(topic.create_at).format("YYYY-MM-DD HH:mm")
+            topic:topic
         })
     });
 });

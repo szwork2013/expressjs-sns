@@ -1,11 +1,35 @@
 .main {
-  width: 970px;
-  margin: auto; }
-  .main:before, .main:after {
-    content: "";
-    display: table; }
-  .main:after {
-    clear: both; }
+  width: 100%;
+  padding: 20px 0; }
+  .main .main-wrapper {
+    margin: 0 auto;
+    width: 970px; }
+    .main .main-wrapper:before, .main .main-wrapper:after {
+      content: "";
+      display: table; }
+    .main .main-wrapper:after {
+      clear: both; }
+
+.new-post-btn {
+  display: inline-block;
+  float: right;
+  width: 60px;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid red;
+  color: red;
+  padding: 0 10px;
+  text-decoration: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
+  .new-post-btn:hover {
+    text-decoration: none;
+    background: red;
+    color: #fff;
+    border: none; }
 
 .reg-form, .login-form {
   width: 60%;

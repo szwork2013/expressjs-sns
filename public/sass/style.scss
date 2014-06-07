@@ -2,9 +2,33 @@
 @import "animate.scss";
 
 .main{
-    width:970px;
-    margin:auto;
-    @include clearfix();
+    width:100%;
+    padding:20px 0;
+    .main-wrapper{
+        @include clearfix();
+        margin:0 auto;
+        width:970px;
+    }
+}
+//index
+
+.new-post-btn{
+    display:inline-block;
+    float:right;
+    width:60px;
+    height:40px;
+    line-height:40px;
+    border:1px solid $global-color;
+    color: $global-color;
+    padding:0 10px;
+    text-decoration:none;
+    @include border-radius(3px);
+    &:hover{
+        text-decoration:none;
+        background:$global-color;
+        color:#fff;
+        border:none;
+    }
 }
 
 .reg-form,.login-form{

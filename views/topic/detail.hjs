@@ -1,3 +1,16 @@
-{{topic.content}}
-at
-{{moment}}
+<h1>{{topic.title}}</h1>
+<p>
+    {{topic.content}}
+</p>
+<p>
+    {{topic.create_date_format}}
+</p>
+
+<form action="/addreply" method="post">
+        <div class="row">
+            <textarea id="reply-content" name="reply-content" placeholder="回复内容...."></textarea>
+        </div>
+        <div class="row act">
+            <button type="submit">提交</button> 
+        </div>
+</form>
