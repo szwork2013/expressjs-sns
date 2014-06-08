@@ -1,15 +1,16 @@
 <h1>{{topic.title}}</h1>
-<p>
-    {{topic.create_date_format}}
-</p>
-<p>
+<div class="topic-tags">
+    发布日期：{{topic.create_date_format}}
+</div>
+<p class="topic-content">
     {{topic.content}}
 </p>
 
+<h2>留言：</h2>
 <ul class="reply-list">
-    <li>
-        {{reply.content}} 
-    </li>
+    {{#replys}}
+        <li>{{author_name}}说：{{content}}</li>        
+    {{/replys}}
 </ul>
 
 
@@ -30,7 +31,6 @@
     </li>
 </script>
 
-
 <script>
     $('.reply-form button[type="submit"]').click(function(e){
         e.preventDefault();
@@ -39,7 +39,7 @@
             method:'post',
             data:$('.reply-form').serialize()+'&topic_id={{topic._id}}'
         }).done(function(re){
-           $('.reply-list').append('<li>'+re.content+'</li>');
+           $('.reply-list').append('<li>'+re.author_name+'说：'+re.content+'</li>');
         });
     });
 </script>

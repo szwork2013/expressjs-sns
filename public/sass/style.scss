@@ -11,7 +11,6 @@
     }
 }
 //index
-
 .new-post-btn{
     display:inline-block;
     float:right;
@@ -30,6 +29,44 @@
         border:none;
     }
 }
+.topic-list{
+    width:100%;
+    overflow:hidden;
+    li{
+        border-bottom:1px solid #e8e8e8;
+        position:relative;
+        width:100%;
+        padding:30px 0px;
+    }
+}
+//detail
+.topic-tags{
+    color:#666;
+}
+.topic-content{
+    margin:20px 0;
+    font-size:14px;
+}
+#replyContent{
+    width:100%;
+    height:300px;
+    border:1px solid #ddd;
+    padding:1%;
+    font-size:14px;
+}
+.reply-form{
+    margin-top:20px;
+    button[type=submit]{
+        width:100px; 
+        height:40px;
+        margin-top:20px;
+        border:1px solid $global-color;
+        background:#fff;
+        color:$global-color;
+        @include border-radius(3px);
+    }
+}
+
 
 .reg-form,.login-form{
     width:60%;

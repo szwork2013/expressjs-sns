@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var moment =  require('moment');
 
 var Topic = new mongoose.Schema({
-    title:String,
-    content:String,
+    title:{type:String,required:true},
+    content:{type:String,required:true},
     author_id:{type:mongoose.Schema.Types.ObjectId},
     author_name:{type:String},
     top: { type: Boolean, default: false },

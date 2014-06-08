@@ -21,7 +21,8 @@ router.post('/new', function(req, res) {
    new Topic({
        title:req.body.title,
        content:req.body.content,
-       author_id:req.session.user._id
+       author_id:req.session.user._id,
+       author_name:req.session.user.name,
    }).save(function(err){
         if(!err){
             res.redirect('/');
@@ -31,9 +32,15 @@ router.post('/new', function(req, res) {
 
 router.get('/:_id', function(req, res) {
     Topic.findOne({_id:req.params._id},function(err,topic){
-        res.render('topic/detail',{
-            topic:topic
-        })
+        if(topic){
+            Reply.find({topic_id:topic._id},function(err,replys){
+                res.render('topic/detail',{
+                    topic:topic,
+                    replys:replys,
+                    title:topic.title
+                })
+            }) 
+        }
     });
 });
 
@@ -41,10 +48,11 @@ router.post('/addreply',function(req,res){
    new Reply({
        content:req.body.replyContent,
        topic_id:req.body.topic_id,
-       author_id:req.session.user._id
+       author_id:req.session.user._id,
+       author_name:req.session.user.name
    }).save(function(err){
         if(!err){
-            res.json({s:1,content:req.body.replyContent})
+            res.json({s:1,content:req.body.replyContent,author_name:req.session.user.name})
         }
    }); 
 });

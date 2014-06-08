@@ -31,6 +31,44 @@
     color: #fff;
     border: none; }
 
+.topic-list {
+  width: 100%;
+  overflow: hidden; }
+  .topic-list li {
+    border-bottom: 1px solid #e8e8e8;
+    position: relative;
+    width: 100%;
+    padding: 30px 0px; }
+
+.topic-tags {
+  color: #666; }
+
+.topic-content {
+  margin: 20px 0;
+  font-size: 14px; }
+
+#replyContent {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #ddd;
+  padding: 1%;
+  font-size: 14px; }
+
+.reply-form {
+  margin-top: 20px; }
+  .reply-form button[type=submit] {
+    width: 100px;
+    height: 40px;
+    margin-top: 20px;
+    border: 1px solid red;
+    background: #fff;
+    color: red;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px; }
+
 .reg-form, .login-form {
   width: 60%;
   margin-left: 30%; }

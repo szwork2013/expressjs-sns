@@ -3,11 +3,15 @@
 </div>
 
 <div class="row">
-    <ul>
+    <ul class="topic-list">
         {{#topics}}
         <li>
-            <a href="/topic/{{_id}}">{{title}}</a>
-            {{create_date_format}}
+            <h2><a href="/topic/{{_id}}">{{title}}</a></h2>
+            <p>
+                发表自<a href="/user/{{author_id}}">{{author_name}}</a>
+                在 
+                {{create_date_format}}
+            </p>
         </li>
         {{/topics}}
     </ul>
