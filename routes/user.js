@@ -37,9 +37,6 @@ router.post('/:_id/save-settings', function(req, res) {
         /*
          *  check floder  
          */
-        if(!fs.existsSync('./public/uploads/')){
-            fs.mkdirSync('./public/uploads/');
-        }
         var target_floder = './public/uploads/'+req.session.user.name;
         if(!fs.existsSync(target_floder)){
             fs.mkdirSync(target_floder);
