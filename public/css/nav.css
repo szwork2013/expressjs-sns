@@ -17,7 +17,7 @@
     height: 50px;
     padding: 0 10px; }
   .nav a {
-    color: red; }
+    color: #ed0000; }
   .nav .search-form {
     width: 250px;
     margin-left: 50px; }
@@ -39,7 +39,7 @@
       padding: 0 10px;
       color: #fff;
       border: none;
-      background: red;
+      background: #ed0000;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       -ms-border-radius: 3px;
@@ -58,7 +58,7 @@
     -o-border-radius: 3px;
     border-radius: 3px; }
     .nav .menu > li a {
-      border: 1px solid red;
+      border: 1px solid #ed0000;
       padding: 0 10px;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
@@ -67,14 +67,14 @@
       border-radius: 3px;
       display: inline-block; }
       .nav .menu > li a:hover {
-        background: red;
+        background: #ed0000;
         color: #fff;
         text-decoration: none; }
     .nav .menu > li.wel-user a {
       border: none; }
       .nav .menu > li.wel-user a:hover {
         text-decoration: underline;
-        color: red;
+        color: #ed0000;
         background: #fff; }
 
 footer {

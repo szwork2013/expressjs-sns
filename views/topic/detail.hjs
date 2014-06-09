@@ -9,7 +9,10 @@
 <h2>留言：</h2>
 <ul class="reply-list">
     {{#replys}}
-        <li>{{author_name}}说：{{content}}</li>        
+        <li>
+            {{author_name}}说：{{content}}
+            {{create_date_format}}
+        </li>        
     {{/replys}}
 </ul>
 
@@ -25,9 +28,9 @@
 
 </form>
 
-<script type="text/templete">
+<script src="/js/handlebars-v1.3.0.js"></script>
+<script type="text/x-handlebars-template">
     <li>
-    
     </li>
 </script>
 
@@ -42,4 +45,8 @@
            $('.reply-list').append('<li>'+re.author_name+'说：'+re.content+'</li>');
         });
     });
+
+    //handlebars demo
+    //$('.main-list').append(Handlebars.compile($('#index-list-item').html())(i));
+
 </script>

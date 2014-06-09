@@ -16,8 +16,8 @@
   width: 60px;
   height: 40px;
   line-height: 40px;
-  border: 1px solid red;
-  color: red;
+  border: 1px solid #ed0000;
+  color: #ed0000;
   padding: 0 10px;
   text-decoration: none;
   -webkit-border-radius: 3px;
@@ -27,7 +27,7 @@
   border-radius: 3px; }
   .new-post-btn:hover {
     text-decoration: none;
-    background: red;
+    background: #ed0000;
     color: #fff;
     border: none; }
 
@@ -60,9 +60,9 @@
     width: 100px;
     height: 40px;
     margin-top: 20px;
-    border: 1px solid red;
+    border: 1px solid #ed0000;
     background: #fff;
-    color: red;
+    color: #ed0000;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -92,7 +92,7 @@
   .reg-form label, .login-form label {
     width: 50px; }
   .reg-form span.tips, .login-form span.tips {
-    color: red;
+    color: #ed0000;
     margin-left: 10px;
     display: none; }
   .reg-form .act button, .login-form .act button {
@@ -101,7 +101,7 @@
     padding: 0 30px;
     border: none;
     color: #fff;
-    background: red;
+    background: #ed0000;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -149,7 +149,7 @@
     width: 100px;
     height: 40px;
     line-height: 40px;
-    background: red;
+    background: #ed0000;
     color: #fff;
     border: none;
     padding: 0; }

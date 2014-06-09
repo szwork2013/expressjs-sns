@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var moment =  require('moment');
 
 var User = new mongoose.Schema({
 
@@ -25,6 +26,13 @@ var User = new mongoose.Schema({
 
     avatar_url: { type: String}
 
+});
+
+User.virtual('create_date_format').get(function(){
+    return moment(this.create_date).format('YYYY-MM-DD HH:mm');
+});
+User.virtual('update_date_format').get(function(){
+    return moment(this.update_date).format('YYYY-MM-DD HH:mm');
 });
 
 var UserModel = mongoose.model('User',User);
