@@ -80,8 +80,17 @@ router.get('/logout', function(req, res) {
 });
 
 
-router.get('/about', function(req, res) {
-    res.render('about', { title: '关于' });
+router.get('/search', function(req, res) {
+    Topic.find({title: new RegExp(req.query.q, 'i')},function(err,topics){
+        if(topics.length>0){
+            res.render('index', { 
+                title: '搜索结果',
+                topics:topics
+            });
+        }else{
+            res.redirect('/error');
+        }
+    });
 });
 
 
@@ -107,7 +116,5 @@ router.post('/validate', function(req, res) {
     }
 
 });
-
-
 
 module.exports = router;
