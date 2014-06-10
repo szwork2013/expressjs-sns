@@ -1,0 +1,10 @@
+@media screen and (min-device-width: 320px) and (max-device-width: 768px) {
+  .nav .search-form {
+    margin-left: 10px; }
+    .nav .search-form button {
+      margin-left: 0; }
+  .nav .menu > li {
+    margin: 10px 3px; }
+
+  .main {
+    width: 400px; } }

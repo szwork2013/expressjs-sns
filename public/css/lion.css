@@ -463,7 +463,7 @@ textarea {
   .nav a {
     color: #ed0000; }
   .nav .search-form {
-    width: 250px;
+    width: 50%;
     margin-left: 50px; }
     .nav .search-form .search {
       display: inline-block;
@@ -524,3 +524,170 @@ textarea {
 footer {
   padding: 30px;
   border-top: 1px dashed #ddd; }
+
+.main {
+  width: 100%;
+  padding: 20px 0; }
+  .main .main-wrapper {
+    margin: 0 auto;
+    width: 970px; }
+    .main .main-wrapper:before, .main .main-wrapper:after {
+      content: "";
+      display: table; }
+    .main .main-wrapper:after {
+      clear: both; }
+
+.new-post-btn {
+  display: inline-block;
+  float: right;
+  width: 60px;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #ed0000;
+  color: #ed0000;
+  padding: 0 10px;
+  text-decoration: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
+  .new-post-btn:hover {
+    text-decoration: none;
+    background: #ed0000;
+    color: #fff;
+    border: none; }
+
+.topic-list {
+  width: 100%;
+  overflow: hidden; }
+  .topic-list li {
+    border-bottom: 1px solid #e8e8e8;
+    position: relative;
+    width: 100%;
+    padding: 30px 0px; }
+
+.topic-tags {
+  color: #666; }
+
+.topic-content {
+  margin: 20px 0;
+  font-size: 14px; }
+
+#replyContent {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #ddd;
+  padding: 1%;
+  font-size: 14px; }
+
+.reply-form {
+  margin-top: 20px; }
+  .reply-form button[type=submit] {
+    width: 100px;
+    height: 40px;
+    margin-top: 20px;
+    border: 1px solid #ed0000;
+    background: #fff;
+    color: #ed0000;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px; }
+
+.reg-form, .login-form {
+  width: 60%;
+  margin-left: 30%; }
+  .reg-form .row, .login-form .row {
+    margin: 50px 0px; }
+  .reg-form input[type="text"], .reg-form input[type="password"], .login-form input[type="text"], .login-form input[type="password"] {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    height: 20px;
+    line-height: 20px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    vertical-align: middle; }
+  .reg-form label, .reg-form span.tips, .login-form label, .login-form span.tips {
+    vertical-align: middle; }
+  .reg-form label, .login-form label {
+    width: 50px; }
+  .reg-form span.tips, .login-form span.tips {
+    color: #ed0000;
+    margin-left: 10px;
+    display: none; }
+  .reg-form .act button, .login-form .act button {
+    margin-left: 52px;
+    height: 50px;
+    padding: 0 30px;
+    border: none;
+    color: #fff;
+    background: #ed0000;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px; }
+
+/*
+* settings
+*/
+#show-avatar, #current-avatar {
+  width: 64px;
+  height: 64px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
+
+/*
+* new topic
+*/
+#new-topic {
+  font-size: 16px;
+  margin-top: 50px; }
+  #new-topic h1 {
+    font-size: 24px; }
+  #new-topic input, #new-topic textarea {
+    border: 1px solid #ccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    margin: 10px 0; }
+  #new-topic #new-topic-title {
+    width: 100%;
+    height: 40px;
+    padding: 0 15px;
+    font-weight: bold; }
+  #new-topic #new-topic-content {
+    width: 100%;
+    height: 300px;
+    padding: 15px; }
+  #new-topic button[type=submit] {
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    background: #ed0000;
+    color: #fff;
+    border: none;
+    padding: 0; }
+
+@media screen and (min-device-width: 320px) and (max-device-width: 768px) {
+  .nav .search-form {
+    margin-left: 10px; }
+    .nav .search-form button {
+      margin-left: 0; }
+  .nav .menu > li {
+    margin: 10px 3px; }
+
+  .main {
+    width: 400px; } }

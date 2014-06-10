@@ -19,7 +19,7 @@
   .nav a {
     color: #ed0000; }
   .nav .search-form {
-    width: 250px;
+    width: 50%;
     margin-left: 50px; }
     .nav .search-form .search {
       display: inline-block;

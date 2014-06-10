@@ -73,6 +73,12 @@ router.post('/:_id/save-settings', function(req, res) {
             });
 
         });
+
+        //name
+
+
+
+
     });
 });
 
