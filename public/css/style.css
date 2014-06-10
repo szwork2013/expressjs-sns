@@ -16,7 +16,6 @@
   width: 60px;
   height: 40px;
   line-height: 40px;
-  border: 1px solid #ed0000;
   color: #ed0000;
   padding: 0 10px;
   text-decoration: none;
@@ -60,9 +59,9 @@
     width: 100px;
     height: 40px;
     margin-top: 20px;
-    border: 1px solid #ed0000;
-    background: #fff;
-    color: #ed0000;
+    background: #ed0000;
+    color: #fff;
+    border: none;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;

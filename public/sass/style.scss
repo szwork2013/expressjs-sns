@@ -17,7 +17,6 @@
     width:60px;
     height:40px;
     line-height:40px;
-    border:1px solid $global-color;
     color: $global-color;
     padding:0 10px;
     text-decoration:none;
@@ -60,9 +59,9 @@
         width:100px; 
         height:40px;
         margin-top:20px;
-        border:1px solid $global-color;
-        background:#fff;
-        color:$global-color;
+        background:$global-color;
+        color:#fff;
+        border:none;
         @include border-radius(3px);
     }
 }

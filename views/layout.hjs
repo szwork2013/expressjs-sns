@@ -48,5 +48,8 @@
     &copy;2014 , all rights reserved 
 </footer>
 
+<script>
+    //alert($(window).width())
+</script>
 </body>
 </html>

@@ -543,7 +543,6 @@ footer {
   width: 60px;
   height: 40px;
   line-height: 40px;
-  border: 1px solid #ed0000;
   color: #ed0000;
   padding: 0 10px;
   text-decoration: none;
@@ -587,9 +586,9 @@ footer {
     width: 100px;
     height: 40px;
     margin-top: 20px;
-    border: 1px solid #ed0000;
-    background: #fff;
-    color: #ed0000;
+    background: #ed0000;
+    color: #fff;
+    border: none;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -681,7 +680,7 @@ footer {
     border: none;
     padding: 0; }
 
-@media screen and (min-device-width: 320px) and (max-device-width: 768px) {
+@media screen and (max-device-width: 479px) {
   .nav .search-form {
     margin-left: 10px; }
     .nav .search-form button {
@@ -689,5 +688,5 @@ footer {
   .nav .menu > li {
     margin: 10px 3px; }
 
-  .main {
-    width: 400px; } }
+  .main .main-wrapper {
+    width: 320px; } }

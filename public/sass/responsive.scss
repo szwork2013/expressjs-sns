@@ -1,9 +1,11 @@
-@media screen and (min-device-width: 768px) {
+//pad
+@media screen and (min-device-width: 480px) and (max-device-width: 768px) {
 
-}
-
-@media screen and (min-device-width: 320px) and (max-device-width: 768px) {
     
+}
+//phone
+@media screen and (max-device-width: 479px){
+
     .nav{
         .search-form{
             margin-left:10px;
@@ -20,8 +22,9 @@
         }
     }
 
-    .main{
-        width:400px; 
+    .main{ 
+        .main-wrapper{
+            width:320px; 
+        }
     }
-
 }
