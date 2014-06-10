@@ -1,0 +1,4 @@
+<div class="user-show">
+    <h1>{{user.name}}</h1>
+    <img src="{{user.avatar_url}}" id="current-avatar" />
+</div>

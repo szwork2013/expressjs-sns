@@ -1,8 +1,3 @@
-<div class="user-show">
-    <h1>{{user.name}}</h1>
-    <img src="{{user.avatar_url}}" id="current-avatar" />
-</div>
-
 <div class="settings">
     <form action="/user/{{user.name}}/save-settings" enctype="multipart/form-data" method="post">
         <div class="row">

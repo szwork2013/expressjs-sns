@@ -34,7 +34,7 @@ router.get('/:_id', function(req, res) {
     Topic.findOne({_id:req.params._id},function(err,topic){
         if(topic){
             Reply.find({topic_id:topic._id},function(err,replys){
-                res.render('topic/detail',{
+                res.render('topic/index',{
                     topic:topic,
                     replys:replys,
                     title:topic.title
