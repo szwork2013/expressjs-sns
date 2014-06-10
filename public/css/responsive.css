@@ -1,10 +1,9 @@
-@media screen and (max-device-width: 479px) {
-  .nav .search-form {
-    margin-left: 10px; }
-    .nav .search-form button {
-      margin-left: 0; }
-  .nav .menu > li {
-    margin: 10px 3px; }
-
+@media screen and (min-width: 767px) and (max-width: 970px) {
+  .main .main-wrapper {
+    width: 767px; } }
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .main .main-wrapper {
+    width: 480px; } }
+@media screen and (max-width: 479px) {
   .main .main-wrapper {
     width: 320px; } }

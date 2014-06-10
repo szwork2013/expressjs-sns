@@ -136,14 +136,14 @@
     border-radius: 3px;
     margin: 10px 0; }
   #new-topic #new-topic-title {
-    width: 100%;
+    width: 96%;
     height: 40px;
-    padding: 0 15px;
+    padding: 0 2%;
     font-weight: bold; }
   #new-topic #new-topic-content {
-    width: 100%;
+    width: 96%;
     height: 300px;
-    padding: 15px; }
+    padding: 2%; }
   #new-topic button[type=submit] {
     width: 100px;
     height: 40px;

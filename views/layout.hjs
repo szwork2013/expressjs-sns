@@ -15,7 +15,7 @@
 <header class="nav">
 
     <div class="nav-container">
-        <div class="logo fl">
+        <div class="logo">
             <a href="/">rabbit</a>
         </div>
 
@@ -24,7 +24,7 @@
             <button type="submit">搜索</button>
         </form>
 
-        <ul class="fr menu">
+        <ul class="menu">
             {{^user}}
             <li><a href="/register" class="reg">注册</a></li>
             <li><a href="/login" class="login">登录</a></li>

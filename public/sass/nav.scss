@@ -13,16 +13,20 @@ $nav-link-color:$global-color;
     @include clearfix();
     @include box-shadow(0px 0px 10px #999);
     .nav-container{
+        .logo{
+            float:left; 
+        }
         @include center-block(); 
         height:$nav-container-height;
-        padding:0 10px;
+        padding:0 2%;
+        position:relative;
     }
     a{
         color:$global-color; 
     }
     .search-form{
         width:50%;
-        margin-left:50px;
+        margin-left:2%;
         .search{
             display:inline-block;
             width:60%;
@@ -36,7 +40,7 @@ $nav-link-color:$global-color;
         button{
             display:inline-block;
             vertical-align:middle;
-            margin-left:20px;
+            margin-left:2%;
             height:30px;
             line-height:30px;
             padding:0 10px;
@@ -47,11 +51,15 @@ $nav-link-color:$global-color;
         }
     }
     .menu{
+        position:absolute;
+        text-align:right;
+        right:0;
+        width:30%;
+        height:50px;
         >li{
-            height:30px;
-            margin:10px;
+            margin:9px 2%; 
             line-height:30px;
-            float:left;
+            float:right;
             text-align:center;
             vertical-align:middle;
             @include border-radius(3px);
@@ -68,7 +76,7 @@ $nav-link-color:$global-color;
             }
             &.wel-user{
                 a{
-                    border:none; 
+                    border:1px solid #fff; 
                         &:hover{
                             text-decoration:underline; 
                             color:$global-color;
