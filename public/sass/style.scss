@@ -8,17 +8,18 @@
         @include clearfix();
         margin:0 auto;
         width:970px;
+        padding:1%;
     }
 }
 //index
 .new-post-btn{
     display:inline-block;
-    float:right;
-    width:60px;
     height:40px;
     line-height:40px;
-    color: $global-color;
-    padding:0 10px;
+    background: $global-color;
+    color:#fff;
+    padding:0 15px;
+    border:none;
     text-decoration:none;
     @include border-radius(3px);
     &:hover{
@@ -65,7 +66,43 @@
         @include border-radius(3px);
     }
 }
-
+.reply-list{
+    .reply-item{
+        width:100%;
+        @include clearfix(); 
+    }
+    .reply-wrapper{
+        margin:20px 0;
+        position:relative;
+    }
+   .user-avatar{
+       position:absolute;
+       left:0;
+       top:0;
+       width:48px; 
+       height:48px;
+       margin-right:1%;
+       img{
+            width:48px; 
+            height:48px;
+            @include border-radius(3px);
+       }
+   }
+   .reply-main{
+       padding:0 0 0 60px;
+       @include clearfix();
+       margin:10px 0; 
+        .uname{
+            font-size:16px; 
+            vertical-align:middle;
+        }
+        .date{
+            margin-left:2%;
+            vertical-align:middle;
+            color:#ccc;
+        }
+   }
+}
 
 .reg-form,.login-form{
     width:60%;

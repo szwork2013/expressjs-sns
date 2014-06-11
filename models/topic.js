@@ -6,13 +6,14 @@ var Topic = new mongoose.Schema({
     content:{type:String,required:true},
     author_id:{type:mongoose.Schema.Types.ObjectId},
     author_name:{type:String},
-    top: { type: Boolean, default: false },
+    avatar_url:{type:String},
     reply_count: { type: Number, default: 0 },
     visit_count: { type: Number, default: 0 },
     fav_count: { type: Number, default: 0 },
     last_reply: { type:mongoose.Schema.Types.ObjectId},
     content_is_html: { type: Boolean },
     last_reply_date: { type: Date, default: Date.now },
+    top: { type: Boolean, default: false },
     create_date: { type: Date, default: Date.now },
     update_date: { type: Date, default: Date.now }
 });

@@ -14,7 +14,7 @@ var formidable = require('formidable');
 
 router.get('/', function(req, res) {
      Topic.find(function(err,topics,count){
-        res.render('index', { 
+        res.render('index', {
             topics:topics
         });
     });

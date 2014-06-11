@@ -7,15 +7,24 @@
 </p>
 
 <h2>留言：</h2>
-<ul class="reply-list">
+<div class="reply-list">
     {{#replys}}
-        <li>
-            {{author_name}}说：{{content}}
-            {{create_date_format}}
-        </li>        
+    <div class="reply-item">
+        <div class="reply-wrapper">
+            <div class="user-avatar">
+                <img class="user-avatar" src="{{avatar_url}}" />
+            </div>
+            <div class="reply-main">
+                <span class="uname">{{author_name}}</span>
+                <span class="date">{{create_date_format}}</span>
+                <div class="reply-content">
+                {{content}}
+                </div>
+            </div>
+        </div>
+    </div>
     {{/replys}}
-</ul>
-
+</div>
 
 
 <form action="/addreply" method="post" class="reply-form" id="reply-form">
@@ -25,16 +34,28 @@
         <div class="row act">
             <button type="submit">提交</button> 
         </div>
-
 </form>
 
-<script src="/js/handlebars-v1.3.0.js"></script>
-<script type="text/x-handlebars-template">
-    <li>
-    </li>
+<script src="http://underscorejs.org/underscore.js"></script>
+<script type="text/template" id="reply-item-temp">
+<div class="reply-item">
+        <div class="reply-wrapper">
+            <div class="user-avatar">
+                <img class="user-avatar" src="<%= avatar_url %>" />
+            </div>
+            <div class="reply-main">
+                <span class="uname"><%= author_name %></span>
+                <span class="date"><%= create_date_format %></span>
+                <div class="reply-content">
+                <%= content %>
+                </div>
+            </div>
+        </div>
+    </div>
 </script>
 
 <script>
+
     $('.reply-form button[type="submit"]').click(function(e){
         e.preventDefault();
         $.ajax({
@@ -42,11 +63,8 @@
             method:'post',
             data:$('.reply-form').serialize()+'&topic_id={{topic._id}}'
         }).done(function(re){
-           $('.reply-list').append('<li>'+re.author_name+'说：'+re.content+'</li>');
+           $('.reply-list').append(_.template($('#reply-item-temp').html())(re));
         });
     });
-
-    //handlebars demo
-    //$('.main-list').append(Handlebars.compile($('#index-list-item').html())(i));
 
 </script>

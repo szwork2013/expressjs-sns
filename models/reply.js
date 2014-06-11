@@ -7,12 +7,15 @@ var ObjectId = Schema.ObjectId;
 var Reply = new Schema({
 	content: { type: String },
 	topic_id: { type: ObjectId},
+	reply_id : { type: ObjectId },
 	author_id: { type: ObjectId },
 	author_name: { type: String },
-	reply_id : { type: ObjectId },
+    avatar_url:{type:String},
 	create_date: { type: Date, default: Date.now },
 	update_date: { type: Date, default: Date.now },
-	content_is_html: { type: Boolean }
+	content_is_html: { type: Boolean },
+    up:{ type: Number },
+    down:{ type: Number }
 });
 
 Reply.virtual('create_date_format').get(function(){

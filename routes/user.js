@@ -9,7 +9,6 @@ var User = mongoose.model('User');
 
 var formidable = require('formidable');
 var fs = require('fs');
-
 /*
 router.get('/', function(req, res) {
     User.find(function(err,users,count){
@@ -65,16 +64,17 @@ router.post('/:_id/save-settings', function(req, res) {
         fs.rename(files.avatar.path,target_url,function(err){
             if(err) res.redirect('/error');
             fs.unlink(files.avatar.path, function() {
-                req.session.user.avatar_url = save_url; 
                 User.findOneAndUpdate({name:req.session.user.name},{avatar_url:save_url},function(err,user){
-                    if(!err) 
-                    res.redirect('/user/'+user._id);
+                    if(!err){
+                        req.session.user.avatar_url = save_url; 
+                        res.redirect('/user/'+user._id);
+                    }
                 });
             });
-
         });
 
         //name
+
 
     });
 });

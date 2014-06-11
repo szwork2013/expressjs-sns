@@ -26,12 +26,12 @@
 
         <ul class="menu">
             {{^user}}
-            <li><a href="/register" class="reg">注册</a></li>
             <li><a href="/login" class="login">登录</a></li>
+            <li><a href="/register" class="reg">注册</a></li>
             {{/user}}
             {{#user}}
-            <li class="wel-user"><a href="/user/{{user._id}}/settings" class="wel-user">欢迎，{{user.name}}</a></li>
             <li><a href="/logout" class="loginout">退出</a></li>
+            <li class="wel-user"><a href="/user/{{user._id}}/settings" class="wel-user">欢迎，{{user.name}}</a></li>
             {{/user}}
         </ul>
     </div>
