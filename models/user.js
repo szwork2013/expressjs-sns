@@ -24,7 +24,7 @@ var User = new mongoose.Schema({
     create_date: { type: Date, default: Date.now },
     update_date: { type: Date, default: Date.now },
 
-    avatar_url: { type: String}
+    avatar_url: { type: String,default: '/img/1.jpg'}
 
 });
 

@@ -27,7 +27,7 @@
 </div>
 
 
-<form action="/addreply" method="post" class="reply-form" id="reply-form">
+<form action="/topic/addreply" method="post" class="reply-form" id="reply-form">
         <div class="row">
             <textarea id="replyContent" name="replyContent" placeholder="回复内容...."></textarea>
         </div>
@@ -36,7 +36,7 @@
         </div>
 </form>
 
-<script src="http://underscorejs.org/underscore.js"></script>
+<script src="/js/underscore.js"></script>
 <script type="text/template" id="reply-item-temp">
 <div class="reply-item">
         <div class="reply-wrapper">
@@ -55,7 +55,6 @@
 </script>
 
 <script>
-
     $('.reply-form button[type="submit"]').click(function(e){
         e.preventDefault();
         $.ajax({
