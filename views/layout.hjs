@@ -31,7 +31,7 @@
             {{/user}}
             {{#user}}
             <li><a href="/logout" class="loginout">退出</a></li>
-            <li class="wel-user"><a href="/user/{{user._id}}/settings" class="wel-user">欢迎，{{user.name}}</a></li>
+            <li class="wel-user"><a href="/user/{{user._id}}" class="wel-user">欢迎，{{user.name}}</a></li>
             {{/user}}
         </ul>
     </div>
@@ -41,12 +41,12 @@
 <section class="main">
     <div class="main-wrapper">
         {{{ body }}}
+        <footer>
+            &copy;2014 , all rights reserved 
+        </footer>
     </div>
 </section>
 
-<footer>
-    &copy;2014 , all rights reserved 
-</footer>
 
 <script>
     //alert($(window).width())

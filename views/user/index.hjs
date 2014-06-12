@@ -2,3 +2,8 @@
     <h1>{{user.name}}</h1>
     <img src="{{user.avatar_url}}" id="current-avatar" />
 </div>
+
+
+<div>
+    <a href="/user/{{user._id}}/settings">账号设置</a>
+</div>

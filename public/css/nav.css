@@ -20,7 +20,7 @@
     .nav .nav-container .logo {
       float: left; }
   .nav a {
-    color: #ed0000; }
+    color: #e60000; }
   .nav .search-form {
     width: 50%;
     margin-left: 2%; }
@@ -42,7 +42,7 @@
       padding: 0 10px;
       color: #fff;
       border: none;
-      background: #ed0000;
+      background: #e60000;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       -ms-border-radius: 3px;
@@ -66,7 +66,7 @@
       -o-border-radius: 3px;
       border-radius: 3px; }
       .nav .menu > li a {
-        border: 1px solid #ed0000;
+        border: 1px solid #e60000;
         padding: 0 10px;
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
@@ -75,16 +75,12 @@
         border-radius: 3px;
         display: inline-block; }
         .nav .menu > li a:hover {
-          background: #ed0000;
+          background: #e60000;
           color: #fff;
           text-decoration: none; }
       .nav .menu > li.wel-user a {
         border: 1px solid #fff; }
         .nav .menu > li.wel-user a:hover {
           text-decoration: underline;
-          color: #ed0000;
+          color: #e60000;
           background: #fff; }
-
-footer {
-  padding: 30px;
-  border-top: 1px dashed #ddd; }

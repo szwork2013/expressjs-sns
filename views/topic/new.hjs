@@ -5,7 +5,7 @@
 
 <form id="new-topic" action="/topic/new" method="post">
 
-    <h1>表布新讨论</h1>
+    <h1>发布新讨论</h1>
 
     <div class="row">
         <input type="text" name="title" id="new-topic-title" placeholder="标题字数10字以上"/>
