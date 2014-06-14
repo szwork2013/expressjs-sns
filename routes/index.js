@@ -13,7 +13,7 @@ var Topic = mongoose.model('Topic');
 var formidable = require('formidable');
 
 router.get('/', function(req, res) {
-     Topic.find(function(err,topics,count){
+     Topic.find({},null,{sort:{create_date:-1}},function(err,topics,count){
         res.render('index', {
             topics:topics
         });

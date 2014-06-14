@@ -39,7 +39,7 @@ router.get('/:_id', function(req, res) {
     }else{
         Topic.findOne({_id:req.params._id},function(err,topic){
             if(topic){
-                Reply.find({topic_id:topic._id},function(err,replys){
+                Reply.find({topic_id:topic._id},null,{sort:{create_date:-1}},function(err,replys){
                     res.render('topic/index',{
                         title:topic.title,
                         topic:topic,
