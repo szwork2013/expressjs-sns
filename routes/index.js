@@ -24,7 +24,6 @@ router.get('/', function(req, res) {
                  cb();
              });
          },function(err){
-             //console.info(n_topics);
             res.render('index', {
                 topics:n_topics
             });

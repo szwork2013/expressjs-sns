@@ -21,21 +21,21 @@ router.get('/', function(req, res) {
 
 router.get('/:_id', function(req, res) {
     if(req.session.user){
-        User.findOne({name:req.session.user.name},function(err,user){
+        User.findOne({_id:req.params._id},function(err,user){
             res.render('./user/index', { 
                 title: '账户信息',
-                user:user
+                user:req.session.user,
+                showuser:user
             });
         });
     }else{
         res.redirect('/error');
     }
-
 });
 
 router.get('/:_id/settings', function(req, res) {
     if(req.session.user){
-        User.findOne({name:req.session.user.name},function(err,user){
+        User.findOne({_id:req.session.user._id},function(err,user){
             res.render('./user/settings', { 
                 title: '账户设置',
                 user:user
