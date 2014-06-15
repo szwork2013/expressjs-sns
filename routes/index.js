@@ -2,21 +2,33 @@ require( '../db' );
 
 var express = require('express');
 var router = express.Router();
+var async =  require('async');
 
 //data
 var mongoose = require( 'mongoose' );
 var User = mongoose.model('User');
 var Topic = mongoose.model('Topic');
 
-//date format
-
 var formidable = require('formidable');
 
+//获取标题列表
 router.get('/', function(req, res) {
      Topic.find({},null,{sort:{create_date:-1}},function(err,topics,count){
-        res.render('index', {
-            topics:topics
-        });
+         var n_topics = [];
+         async.eachSeries(topics,function(topic,cb){
+             User.findOne({_id:topic.author_id},'name',function(err,user){
+                 var temp_topic = topic.toObject();
+                 temp_topic.author_name = user.name;
+                 temp_topic.create_date_format = topic.create_date_format;
+                 n_topics.push(temp_topic);
+                 cb();
+             });
+         },function(err){
+             //console.info(n_topics);
+            res.render('index', {
+                topics:n_topics
+            });
+         });
     });
 });
 

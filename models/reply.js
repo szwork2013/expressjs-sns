@@ -9,8 +9,6 @@ var Reply = new Schema({
 	topic_id: { type: ObjectId},
 	reply_id : { type: ObjectId },
 	author_id: { type: ObjectId },
-	author_name: { type: String },
-    avatar_url:{type:String},
 	create_date: { type: Date, default: Date.now },
 	update_date: { type: Date, default: Date.now },
 	content_is_html: { type: Boolean },

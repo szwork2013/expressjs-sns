@@ -5,8 +5,6 @@ var Topic = new mongoose.Schema({
     title:{type:String,required:true},
     content:{type:String,required:true},
     author_id:{type:mongoose.Schema.Types.ObjectId},
-    author_name:{type:String},
-    avatar_url:{type:String},
     reply_count: { type: Number, default: 0 },
     visit_count: { type: Number, default: 0 },
     fav_count: { type: Number, default: 0 },
