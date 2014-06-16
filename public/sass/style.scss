@@ -58,6 +58,7 @@
     border:1px solid #ddd;
     padding:1%;
     font-size:14px;
+    resize:vertical;
 }
 .reply-form{
     margin-top:20px;
@@ -182,6 +183,7 @@
         width:95%;
         height:300px;
         padding:2%;
+        resize:vertical;
     }
     button[type=submit]{
         width:100px; 

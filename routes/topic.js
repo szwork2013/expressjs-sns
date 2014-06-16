@@ -41,7 +41,7 @@ router.get('/:_id', function(req, res) {
     if(!req.session.user){
         res.redirect('/login');
     }else{
-        Topic.findOne({_id:req.params._id},function(err,topic){
+        Topic.findOneAndUpdate({_id:req.params._id},{$inc:{visit_count:1}},function(err,topic){
             if(topic){
                 Reply.find({topic_id:topic._id},null,{sort:{create_date:-1}},function(err,replys){
 
@@ -75,13 +75,16 @@ router.post('/addreply',function(req,res){
        topic_id:req.body.topic_id,
        author_id:req.session.user._id
    }).save(function(err,reply){
-       var result = reply.toObject();
-       result.create_date_format = moment(reply.create_date_format).format('YYYY-MM-DD HH:mm');
-       result.author_name = req.session.user.name;
-       result.avatar_url = req.session.user.avatar_url;
-        if(!err){
-            res.json(result);
-        }
+
+       Topic.findOneAndUpdate({_id:req.body.topic_id},{$inc:{reply_count:1}},function(err,topic){
+           var result = reply.toObject();
+           result.create_date_format = moment(reply.create_date_format).format('YYYY-MM-DD HH:mm');
+           result.author_name = req.session.user.name;
+           result.avatar_url = req.session.user.avatar_url;
+            if(!err){
+                res.json(result);
+            }
+       })
    }); 
 });
 

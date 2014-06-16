@@ -5,10 +5,12 @@ var router = express.Router();
 
 var mongoose = require( 'mongoose' );
 var User = mongoose.model('User');
-
+var Topic = mongoose.model('Topic');
+var Reply = mongoose.model('Reply');
 
 var formidable = require('formidable');
 var fs = require('fs');
+
 /*
 router.get('/', function(req, res) {
     User.find(function(err,users,count){
@@ -22,14 +24,20 @@ router.get('/', function(req, res) {
 router.get('/:_id', function(req, res) {
     if(req.session.user){
         User.findOne({_id:req.params._id},function(err,user){
-            res.render('./user/index', { 
-                title: '账户信息',
-                user:req.session.user,
-                showuser:user
-            });
+            Topic.find({author_id:req.params._id},null,{sort:{create_date:-1}},function(err,topics){
+                Reply.find({author_id:req.params._id},null,{sort:{create_date:-1}},function(err,replys){
+                    res.render('./user/index', { 
+                        title: user.name,
+                        user:req.session.user,
+                        showuser:user,
+                        topics:topics,
+                        replys:replys
+                    });
+                })
+            })
         });
     }else{
-        res.redirect('/error');
+        res.redirect('/login');
     }
 });
 

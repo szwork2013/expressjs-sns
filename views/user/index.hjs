@@ -3,6 +3,25 @@
     <img src="{{showuser.avatar_url}}" id="current-avatar" />
 </div>
 
-<div>
-    <a href="/user/{{showuser._id}}/settings">账号设置</a>
+<div class="user-topics">
+    <h2>最近发表过的帖子<h2>
+
+    <ul class="user-topic-list">
+        {{#topics}}
+        <li>
+            <h2><a href="/topic/{{_id}}">{{title}}</a></h2>
+        </li>
+        {{/topics}}
+    </ul>
+</div>
+
+<div class="user-replys">
+    <h2>最近回复过的帖子<h2>
+    <ul class="user-reply-list">
+        {{#replys}}
+        <li>
+            <h2>{{content}}</h2>
+        </li>
+        {{/replys}}
+    </ul>
 </div>

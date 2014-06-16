@@ -12,6 +12,9 @@
                 在 
                 {{create_date_format}}
             </p>
+            <p>
+            {{reply_count}}/{{visit_count}}
+            </p>
         </li>
         {{/topics}}
     </ul>

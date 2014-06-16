@@ -31,6 +31,7 @@
             {{/user}}
             {{#user}}
             <li><a href="/logout" class="loginout">退出</a></li>
+            <li class="wel-user"><a href="/user/{{user._id}}/settings" class="wel-user">用户设置</a></li>
             <li class="wel-user"><a href="/user/{{user._id}}" class="wel-user">欢迎，{{user.name}}</a></li>
             {{/user}}
         </ul>
