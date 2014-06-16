@@ -25,7 +25,11 @@ router.get('/:_id', function(req, res) {
     if(req.session.user){
         User.findOne({_id:req.params._id},function(err,user){
             Topic.find({author_id:req.params._id},null,{sort:{create_date:-1}},function(err,topics){
-                Reply.find({author_id:req.params._id},null,{sort:{create_date:-1}},function(err,replys){
+                Reply.find({author_id:req.params._id},'content',{sort:{create_date:-1}},function(err,replys){
+                    replys.forEach(function(reply){
+                            reply.set('content',reply.content.substr(0,3)+'...');
+                    });
+
                     res.render('./user/index', { 
                         title: user.name,
                         user:req.session.user,
