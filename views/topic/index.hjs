@@ -55,6 +55,21 @@
 </script>
 
 <script>
+
+        
+        /*
+        $.ajax({
+            url:'/topic/getallreply',
+            data:'topic_id={{topic._id}}'
+        }).done(function(re){
+            $(re).each(function(k,i){
+                $('.reply-list').append(_.template($('#reply-item-temp').html())(i));
+            });
+        });
+        */
+        
+
+
     $('.reply-form button[type="submit"]').click(function(e){
         e.preventDefault();
         $.ajax({

@@ -36,37 +36,36 @@ router.post('/new', function(req, res) {
    }); 
 });
 
-//获取topic页面
-router.get('/:_id', function(req, res) {
-    if(!req.session.user){
-        res.redirect('/login');
-    }else{
-        Topic.findOneAndUpdate({_id:req.params._id},{$inc:{visit_count:1}},function(err,topic){
-            if(topic){
-                Reply.find({topic_id:topic._id},null,{sort:{create_date:-1}},function(err,replys){
-
-                    var replys_o = [];
-                    async.eachSeries(replys, function(reply, callback) {
-                        User.findOne({_id:reply.author_id },'name avatar_url', function(error, user) {
-                           var reply_temp = reply.toObject();
-                           reply_temp.create_date_format = reply.create_date_format;
-                           reply_temp.author_name = user.name;
-                           reply_temp.avatar_url = user.avatar_url;
-                           replys_o.push(reply_temp);
-                           callback();
-                        });
-                    }, function (err) {
-                        res.render('topic/index',{
-                            title:topic.title,
-                            topic:topic,
-                            replys:replys_o
-                        })
+function GetAllreplyById(id,cb){
+        var re = [];
+        Reply.find({topic_id:id},null,{sort:{create_date:-1}},function(err,replys){
+                var replys_o = [];
+                async.eachSeries(replys, function(reply, callback) {
+                    User.findOne({_id:reply.author_id },'name avatar_url', function(error, user) {
+                       var reply_temp = reply.toObject();
+                       reply_temp.create_date_format = reply.create_date_format;
+                       reply_temp.author_name = user.name;
+                       reply_temp.avatar_url = user.avatar_url;
+                       replys_o.push(reply_temp);
+                       callback();
                     });
-                })
-            }
+                }, function (err) {
+                    cb(replys_o);
+                });
         });
-    }
+}
+
+
+//router.param('_id',function(){});
+
+
+//获取topic留言
+router.get('/getallreply',function(req,res){
+    GetAllreplyById(req.query.topic_id,function(replys){
+            res.json(replys);
+    });
 });
+
 
 //添加留言api
 router.post('/addreply',function(req,res){
@@ -75,7 +74,6 @@ router.post('/addreply',function(req,res){
        topic_id:req.body.topic_id,
        author_id:req.session.user._id
    }).save(function(err,reply){
-
        Topic.findOneAndUpdate({_id:req.body.topic_id},{$inc:{reply_count:1}},function(err,topic){
            var result = reply.toObject();
            result.create_date_format = moment(reply.create_date_format).format('YYYY-MM-DD HH:mm');
@@ -86,6 +84,27 @@ router.post('/addreply',function(req,res){
             }
        })
    }); 
+});
+
+//获取topic页面
+router.get('/:_id', function(req, res, next) {
+    if(!req.session.user){
+        res.redirect('/login');
+    }else{
+        Topic.findOneAndUpdate({_id:req.params._id},{$inc:{visit_count:1}},function(err,topic){
+            if(topic){
+                GetAllreplyById(topic.id,function(replys){
+                    res.render('topic/index',{
+                        title:topic.title,
+                        topic:topic,
+                        replys:replys
+                    })
+                });
+            }else{
+                next(); 
+            }
+        });
+    }
 });
 
 module.exports = router;
