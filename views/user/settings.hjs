@@ -1,5 +1,40 @@
 <div class="settings">
-    <form action="/user/{{user.name}}/save-settings" enctype="multipart/form-data" method="post">
+
+    <h2>修改基础信息</h2>
+    <form action="/user/{{user.name}}/savebasesettings" method="post">
+        <div class="row">
+            <label for="uname">昵称</label>
+            <input type="text" name="uname" id="uname" value="{{user.name}}">
+        </div>
+
+        <div class="row">
+            <label for="uemail">邮箱</label>
+            <input type="text" name="uemail" id="uemail" value="{{user.email}}">
+        </div>
+
+        <div class="row">
+            <button type="submit">提交</button>
+        </div>
+
+    </form>
+
+    <h2>修改密码</h2>
+    <form action="/user/{{user.name}}/savepwdsettings" method="post">
+        <div class="row">
+            <label for="oldupwd">密码</label>
+            <input type="password" name="oldupwd" id="oldupwd" value="">
+        </div>
+        <div class="row">
+            <label for="newupwd">密码</label>
+            <input type="password" name="newupwd" id="newupwd" value="">
+        </div>
+        <div class="row">
+            <button type="submit">提交</button>
+        </div>
+    </form>
+
+    <h2>修改头像</h2>
+    <form action="/user/{{user.name}}/saveimgsettings" enctype="multipart/form-data" method="post">
         <div class="row">
             <label>上传头像</label>
             <input name="avatar" type="file" accept="image/*" id="take-avatar"></input>
@@ -8,6 +43,7 @@
             <button type="submit">提交</button>
         </div>
     </form>
+
 </div>
 
 <script>

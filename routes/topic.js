@@ -12,6 +12,25 @@ var Topic = mongoose.model('Topic');
 var Reply = mongoose.model('Reply');
 var formidable = require('formidable');
 
+function GetAllreplyById(id,cb){
+        var re = [];
+        Reply.find({topic_id:id},null,{sort:{create_date:-1}},function(err,replys){
+                var replys_o = [];
+                async.eachSeries(replys, function(reply, callback) {
+                    User.findOne({_id:reply.author_id },'name avatar_url', function(error, user) {
+                       var reply_temp = reply.toObject();
+                       reply_temp.create_date_format = reply.create_date_format;
+                       reply_temp.author_name = user.name;
+                       reply_temp.avatar_url = user.avatar_url;
+                       replys_o.push(reply_temp);
+                       callback();
+                    });
+                }, function (err) {
+                    cb(replys_o);
+                });
+        });
+}
+
 //获取添加topic页面
 router.get('/new', function(req, res) {
     if(!req.session.user){
@@ -35,29 +54,6 @@ router.post('/new', function(req, res) {
         }
    }); 
 });
-
-function GetAllreplyById(id,cb){
-        var re = [];
-        Reply.find({topic_id:id},null,{sort:{create_date:-1}},function(err,replys){
-                var replys_o = [];
-                async.eachSeries(replys, function(reply, callback) {
-                    User.findOne({_id:reply.author_id },'name avatar_url', function(error, user) {
-                       var reply_temp = reply.toObject();
-                       reply_temp.create_date_format = reply.create_date_format;
-                       reply_temp.author_name = user.name;
-                       reply_temp.avatar_url = user.avatar_url;
-                       replys_o.push(reply_temp);
-                       callback();
-                    });
-                }, function (err) {
-                    cb(replys_o);
-                });
-        });
-}
-
-
-//router.param('_id',function(){});
-
 
 //获取topic留言
 router.get('/getallreply',function(req,res){
