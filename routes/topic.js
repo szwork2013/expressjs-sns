@@ -13,7 +13,6 @@ var Reply = mongoose.model('Reply');
 var formidable = require('formidable');
 
 function GetAllreplyById(id,cb){
-        var re = [];
         Reply.find({topic_id:id},null,{sort:{create_date:-1}},function(err,replys){
                 var replys_o = [];
                 async.eachSeries(replys, function(reply, callback) {

@@ -8,8 +8,8 @@
         </div>
 
         <div class="row">
-            <label for="uemail">邮箱</label>
-            <input type="text" name="uemail" id="uemail" value="{{user.url}}">
+            <label for="uemail">个性网址</label>
+            <input type="text" name="uurl" id="uurl" value="{{user.url}}">
             <p>http://www.com/<span>{{user.url}}</span></p>
         </div>
 

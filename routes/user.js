@@ -3,6 +3,7 @@ require( '../db' );
 var express = require('express');
 var router = express.Router();
 
+var path = require( 'path' );
 var mongoose = require( 'mongoose' );
 var User = mongoose.model('User');
 var Topic = mongoose.model('Topic');
@@ -11,15 +12,16 @@ var Reply = mongoose.model('Reply');
 var formidable = require('formidable');
 var fs = require('fs');
 
-router.get('/:_id', function(req, res) {
+
+router.get('/:url', function(req, res) {
     if(req.session.user){
-        User.findOne({_id:req.params._id},function(err,user){
+        User.findOne({$or:[{url:req.params.url},{_id:req.params.url}]},function(err,user){
+            console.info(user);
             Topic.find({author_id:req.params._id},null,{sort:{create_date:-1}},function(err,topics){
                 Reply.find({author_id:req.params._id},'content',{sort:{create_date:-1}},function(err,replys){
                     replys.forEach(function(reply){
                             reply.set('content',reply.content.substr(0,3)+'...');
                     });
-
                     res.render('./user/index', { 
                         title: user.name,
                         user:req.session.user,
@@ -30,12 +32,15 @@ router.get('/:_id', function(req, res) {
                 })
             })
         });
+
+
+
     }else{
         res.redirect('/login');
     }
 });
 
-router.get('/:_id/settings', function(req, res) {
+router.get('/:url/settings', function(req, res) {
     if(req.session.user){
         User.findOne({_id:req.session.user._id},function(err,user){
             res.render('./user/settings', { 
@@ -48,7 +53,7 @@ router.get('/:_id/settings', function(req, res) {
     }
 });
 
-router.post('/:_id/saveimgsettings', function(req, res) {
+router.post('/:url/saveimgsettings', function(req, res) {
     new formidable.IncomingForm().parse(req,function(err,fields,files){
 
         if(!files.avatar.name) {
@@ -64,9 +69,8 @@ router.post('/:_id/saveimgsettings', function(req, res) {
             /*
              *  upload avatar
              */
-            console.info(files.avatar);
-            var target_url =  process.cwd()+'/public/uploads/'+req.session.user._id+'/'+files.avatar.name;
-            var save_url =  '/uploads/'+req.session.user._id+'/'+files.avatar.name;
+            var target_url =  process.cwd()+'/public/uploads/'+req.session.user._id+'/u_'+req.session.user._id+path.extname(files.avatar.name);
+            var save_url =  '/uploads/'+req.session.user._id+'/u_'+req.session.user._id+path.extname(files.avatar.name);
             fs.rename(files.avatar.path,target_url,function(err){
                 if(err) res.redirect('/error');
                 fs.unlink(files.avatar.path, function() {
@@ -82,14 +86,12 @@ router.post('/:_id/saveimgsettings', function(req, res) {
     });
 });
 
-router.post('/:_id/savebasesettings', function(req, res) {
+router.post('/:url/savebasesettings', function(req, res) {
         var newname = req.body.uname,
-            newemail = req.body.uemail;
-        User.findOneAndUpdate({name:req.session.user.name},{name:newname,email:newemail},function(err,user){
-            console.info(err);
-            console.info(user);
+            newemail = req.body.uemail,
+            newurl = req.body.uurl;
+        User.findOneAndUpdate({name:req.session.user.name},{name:newname,email:newemail,url:newurl},function(err,user){
             if(!err){
-                console.info(user);
                 req.session.user.name = newname; 
                 req.session.user.email = newemail; 
                 res.redirect('/user/'+user._id);
@@ -97,7 +99,7 @@ router.post('/:_id/savebasesettings', function(req, res) {
         });
 });
 
-router.post('/:_id/savepwdsettings', function(req, res) {
+router.post('/:url/savepwdsettings', function(req, res) {
         var newpwd = req.body.newupwd;
         User.findOneAndUpdate({name:req.session.user.name},{
                 pwd:newpwd 
