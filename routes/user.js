@@ -13,28 +13,41 @@ var formidable = require('formidable');
 var fs = require('fs');
 
 
+
+function GetUserIndexByUser(req,res,user){
+
+        Topic.find({author_id:user._id},null,{sort:{create_date:-1}},function(err,topics){
+            Reply.find({author_id:user._id},'content',{sort:{create_date:-1}},function(err,replys){
+                replys.forEach(function(reply){
+                        reply.set('content',reply.content.substr(0,3)+'...');
+                });
+                res.render('./user/index', { 
+                    title: user.name,
+                    user:req.session.user,
+                    showuser:user,
+                    topics:topics,
+                    replys:replys
+                });
+            })
+        })
+}
+
+
 router.get('/:url', function(req, res) {
     if(req.session.user){
-        User.findOne({$or:[{url:req.params.url},{_id:req.params.url}]},function(err,user){
-            console.info(user);
-            Topic.find({author_id:req.params._id},null,{sort:{create_date:-1}},function(err,topics){
-                Reply.find({author_id:req.params._id},'content',{sort:{create_date:-1}},function(err,replys){
-                    replys.forEach(function(reply){
-                            reply.set('content',reply.content.substr(0,3)+'...');
-                    });
-                    res.render('./user/index', { 
-                        title: user.name,
-                        user:req.session.user,
-                        showuser:user,
-                        topics:topics,
-                        replys:replys
-                    });
-                })
-            })
+        User.findOne({url:req.params.url},function(err,user){
+            if(!user){
+                User.findOne({_id:req.params.url},function(err,user){
+                    if(!user){
+                        res.redirect('/error');
+                    }else{
+                        GetUserIndexByUser(req,res,user);
+                    }
+                });
+            }else{
+                    GetUserIndexByUser(req,res,user);
+            }
         });
-
-
-
     }else{
         res.redirect('/login');
     }
@@ -94,7 +107,8 @@ router.post('/:url/savebasesettings', function(req, res) {
             if(!err){
                 req.session.user.name = newname; 
                 req.session.user.email = newemail; 
-                res.redirect('/user/'+user._id);
+                req.session.user.url = newurl; 
+                res.redirect('/user/'+newurl);
             }
         });
 });
