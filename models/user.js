@@ -4,6 +4,7 @@ var moment =  require('moment');
 var User = new mongoose.Schema({
 
     name : {type:String,required:true},
+    url : {type:String},
     email : {type:String,required:true},
     pwd : {type:String,required:true},
     phone:{type:String,required:true},

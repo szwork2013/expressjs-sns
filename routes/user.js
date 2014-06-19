@@ -57,15 +57,16 @@ router.post('/:_id/saveimgsettings', function(req, res) {
             /*
              *  check floder  
              */
-            var target_floder = process.cwd()+'/public/uploads/'+req.session.user.name;
+            var target_floder = process.cwd()+'/public/uploads/'+req.session.user._id;
             if(!fs.existsSync(target_floder)){
                 fs.mkdirSync(target_floder);
             }
             /*
              *  upload avatar
              */
-            var target_url =  process.cwd()+'/public/uploads/'+req.session.user.name+'/'+files.avatar.name;
-            var save_url =  '/uploads/'+req.session.user.name+'/'+files.avatar.name;
+            console.info(files.avatar);
+            var target_url =  process.cwd()+'/public/uploads/'+req.session.user._id+'/'+files.avatar.name;
+            var save_url =  '/uploads/'+req.session.user._id+'/'+files.avatar.name;
             fs.rename(files.avatar.path,target_url,function(err){
                 if(err) res.redirect('/error');
                 fs.unlink(files.avatar.path, function() {
