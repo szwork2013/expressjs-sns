@@ -10,6 +10,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <link rel="stylesheet" href="/css/lion.css" />
 <script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.bpopup.js"></script>
+<script src="/js/jquery.spopup.js"></script>
 </head>
 <body>
 <header class="nav">
@@ -53,6 +55,12 @@
         </footer>
     </div>
 </section>
+
+
+<div id="popup">
+    <span class="p-close">X</span>
+    dsakdjlajkdljsaljdkl
+</div>
 
 
 <script>

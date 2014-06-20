@@ -1,8 +1,3 @@
-<!--<link rel="stylesheet" href="/css/editor/umeditor.min.css">
-<script src="/js/editor/umeditor.config.js"></script>
-<script src="/js/editor/umeditor.min.js"></script>
-<script src="/js/editor/zh-cn.js"></script>-->
-
 <form id="new-topic" action="/topic/new" method="post">
 
     <h1>发布新讨论</h1>
@@ -21,5 +16,11 @@
 </form>
 
 <script>
-   //var um = UM.getEditor('myEditor');
+
+        $('#new-topic').submit(function(e){
+            e.preventDefault(); 
+            var a = $('#popup').spopup();
+        })
+
+
 </script>

@@ -733,6 +733,11 @@ textarea {
     border: none;
     padding: 0; }
 
+#popup {
+  width: 50%;
+  background: #fff;
+  display: none; }
+
 @media screen and (min-width: 767px) and (max-width: 970px) {
   .main .main-wrapper {
     width: 767px; } }

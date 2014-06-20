@@ -200,3 +200,8 @@
     color: #fff;
     border: none;
     padding: 0; }
+
+#popup {
+  width: 50%;
+  background: #fff;
+  display: none; }
