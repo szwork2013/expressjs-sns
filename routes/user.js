@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 
 var path = require( 'path' );
+var gm = require( 'gm' );
 var mongoose = require( 'mongoose' );
 var User = mongoose.model('User');
 var Topic = mongoose.model('Topic');
@@ -82,8 +83,11 @@ router.post('/:url/saveimgsettings', function(req, res) {
             /*
              *  upload avatar
              */
-            var target_url =  process.cwd()+'/public/uploads/'+req.session.user._id+'/u_'+req.session.user._id+path.extname(files.avatar.name);
-            var save_url =  '/uploads/'+req.session.user._id+'/u_'+req.session.user._id+path.extname(files.avatar.name);
+            var target_url_l =  process.cwd()+'/public/uploads/'+req.session.user._id+'/u_l_'+req.session.user._id+path.extname(files.avatar.name);
+            var target_url_s =  process.cwd()+'/public/uploads/'+req.session.user._id+'/u_s_'+req.session.user._id+path.extname(files.avatar.name);
+            var save_url =  '/uploads/'+req.session.user._id+'/u_l_'+req.session.user._id+path.extname(files.avatar.name);
+
+            /*
             fs.rename(files.avatar.path,target_url,function(err){
                 if(err) res.redirect('/error');
                 fs.unlink(files.avatar.path, function() {
@@ -95,6 +99,17 @@ router.post('/:url/saveimgsettings', function(req, res) {
                     });
                 });
             });
+            */
+            gm(files.avatar.path).resize(100,100,'!').write(target_url_l,function(){
+                gm(files.avatar.path).resize(48,48,'!').write(target_url_s,function(){
+                    User.findOneAndUpdate({name:req.session.user.name},{avatar_url:save_url},function(err,user){
+                        if(!err){
+                            req.session.user.avatar_url = save_url;
+                            res.redirect('/user/'+user._id);
+                        }
+                    });
+                })
+            })
         }
     });
 });
