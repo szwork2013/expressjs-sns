@@ -1,5 +1,4 @@
 <form id="new-topic" action="/topic/new" method="post">
-
     <h1>发布新讨论</h1>
 
     <div class="row">
@@ -12,15 +11,20 @@
     <div class="row">
         <button type="submit">提交</button>
     </div>
-
 </form>
 
+<div id="popup">
+    发布成功！
+</div>
+
 <script>
-
-        $('#new-topic').submit(function(e){
-            e.preventDefault(); 
-            var a = $('#popup').spopup();
-        })
-
-
+    $('#new-topic button[type="submit"]').click(function(e){
+        e.preventDefault(); 
+        $('#popup').spopup({
+            autoClose:2000,
+            onClose:function(){
+                 $('#new-topic').submit();
+            }
+        });
+    })
 </script>

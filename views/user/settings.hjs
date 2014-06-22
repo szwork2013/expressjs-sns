@@ -27,11 +27,11 @@
     <h2>修改密码</h2>
     <form action="/user/{{user.name}}/savepwdsettings" method="post">
         <div class="row">
-            <label for="oldupwd">密码</label>
+            <label for="oldupwd">旧密码</label>
             <input type="password" name="oldupwd" id="oldupwd" value="">
         </div>
         <div class="row">
-            <label for="newupwd">密码</label>
+            <label for="newupwd">新密码</label>
             <input type="password" name="newupwd" id="newupwd" value="">
         </div>
         <div class="row">
@@ -65,6 +65,12 @@
                 };
                 fileReader.readAsDataURL(file);
             }
-         })
+     })
+
+    $('form').submit(function(){
+    
+    
+    })
+
     })()
 </script>

@@ -56,13 +56,6 @@
     </div>
 </section>
 
-
-<div id="popup">
-    <span class="p-close">X</span>
-    dsakdjlajkdljsaljdkl
-</div>
-
-
 <script>
     //alert($(window).width())
 </script>

@@ -42,6 +42,7 @@ router.get('/:url', function(req, res) {
                     if(!user){
                         res.redirect('/error');
                     }else{
+                        if(user.url) res.redirect('/user/'+user.url);
                         GetUserIndexByUser(req,res,user);
                     }
                 });
@@ -129,11 +130,14 @@ router.post('/:url/savebasesettings', function(req, res) {
 });
 
 router.post('/:url/savepwdsettings', function(req, res) {
-        var newpwd = req.body.newupwd;
-        User.findOneAndUpdate({name:req.session.user.name},{
-                pwd:newpwd 
+        var newpwd = req.body.newupwd,
+            oldpwd = req.body.oldupwd;
+        User.findOneAndUpdate({name:req.session.user.name,pwd:oldpwd},{
+                pwd:newpwd
         },function(err,user){
-            if(!err){
+            if(!user || err){
+                res.redirect('/error')
+            }else{
                 req.session.user.pwd = newpwd; 
                 res.redirect('/user/'+user._id);
             }

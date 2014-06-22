@@ -24,7 +24,8 @@
             init();
         })
 
-        function init(p){
+        function init(){
+            if(o.onOpen) o.onOpen.call($spopup);
             $spopup.css({
                 'width':o.width,
                 'position':o.positionStyle,
@@ -43,6 +44,8 @@
                     close(); 
                 },o.autoClose);
             }
+            if(o.onComplete) o.onComplete.call($spopup);
+            if(callback) callback.call($spopup);
         }
 
         function recenter(){
@@ -54,7 +57,7 @@
 
         function render(){
             if(o.ismasking) masking();
-             $spopup.appendTo('body').show(o.speed);
+             $spopup.appendTo('body').show();
         }
 
         function masking(){
@@ -77,13 +80,14 @@
         }
 
         function close(){
-            $spopup.hide(o.speed);
-            $mask.hide(o.speed);
+            $spopup.hide();
+            $mask.hide();
+            if(o.onClose) o.onClose.call($spopup);
         }
     }
 
     $.fn.spopup.defaults = {
-        mtop:100,
+        mtop:'30%',
         width:'50%',
         appendTo:'body',
 		speed:250,
@@ -94,7 +98,10 @@
         ismasking:true,
         maskcolor:'#000',
         maskopacity:'0.7',
-        zindex:9999
+        zindex:9999,
+        onClose:function(){},
+        onOpen:function(){},
+        onComplete:function(){}
     }
 
 })(jQuery);
