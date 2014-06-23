@@ -2,7 +2,6 @@ require( '../db' );
 
 var express = require('express');
 var router = express.Router();
-var moment =  require('moment');
 var async =  require('async');
 
 //data
@@ -71,7 +70,7 @@ router.post('/addreply',function(req,res){
    }).save(function(err,reply){
        Topic.findOneAndUpdate({_id:req.body.topic_id},{$inc:{reply_count:1}},function(err,topic){
            var result = reply.toObject();
-           result.create_date_format = moment(reply.create_date_format).format('YYYY-MM-DD HH:mm');
+           result.create_date_format = reply.create_date_format;
            result.author_name = req.session.user.name;
            result.avatar_url = req.session.user.avatar_url;
             if(!err){
