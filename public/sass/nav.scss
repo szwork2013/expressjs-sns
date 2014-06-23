@@ -9,7 +9,8 @@ $nav-link-color:$global-color;
     width:100%;
     height:$nav-height;
     line-height:$nav-height;
-    background:#fff;
+    color:#fff;
+    background:#333;
     @include clearfix();
     @include box-shadow(0px 0px 10px #999);
     .nav-container{
@@ -57,32 +58,21 @@ $nav-link-color:$global-color;
         width:40%;
         height:50px;
         >li{
-            margin:9px 2%; 
-            line-height:30px;
             float:right;
             text-align:center;
             vertical-align:middle;
             @include border-radius(3px);
             a{
-                border:1px solid $global-color;
+                border:none;
                 padding:0 10px;
                 @include border-radius(3px);
                 display:inline-block; 
+                color:#999;
                 &:hover{
-                    background:$global-color;
-                    color:#fff;
-                    text-decoration:none; 
+                    color:#ddd;
                 }
             }
             &.wel-user{
-                a{
-                    border:1px solid #fff; 
-                        &:hover{
-                            text-decoration:underline; 
-                            color:$global-color;
-                            background:#fff;
-                        }
-                }
             }
         }
     }

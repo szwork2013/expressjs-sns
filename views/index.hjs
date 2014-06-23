@@ -17,5 +17,17 @@
             </p>
         </li>
         {{/topics}}
+        <li class="more"></li>
     </ul>
 </div>
+
+<script>
+    (function (){
+        $('.more').hide(); 
+        $(window).scroll(function(e){
+            if($(this).scrollTop()>$('footer').offset().top-$(window).height()+80){
+                $('.more').show(); 
+            }
+        });
+    })() 
+</script>

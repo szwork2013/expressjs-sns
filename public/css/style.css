@@ -205,3 +205,6 @@
   width: 50%;
   background: #fff;
   display: none; }
+
+.more {
+  background: url(../img/loading.gif) no-repeat center center; }
