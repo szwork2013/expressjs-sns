@@ -683,8 +683,8 @@ textarea {
 * settings
 */
 #show-avatar, #current-avatar {
-  width: 64px;
-  height: 64px;
+  width: 100px;
+  height: 100px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
