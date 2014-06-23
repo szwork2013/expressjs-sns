@@ -12,6 +12,7 @@ var formidable = require('formidable');
 var routes = require('./routes/index');
 var user = require('./routes/user');
 var topic = require('./routes/topic');
+var message = require('./routes/message');
 
 var app = express();
 
