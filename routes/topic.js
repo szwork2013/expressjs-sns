@@ -12,13 +12,15 @@ var Reply = mongoose.model('Reply');
 var formidable = require('formidable');
 
 function GetAllreplyById(id,cb){
-        Reply.find({topic_id:id},null,{sort:{create_date:-1}},function(err,replys){
+        Reply.find({topic_id:id},null,{sort:{create_date:1}},function(err,replys){
                 var replys_o = [];
                 async.eachSeries(replys, function(reply, callback) {
-                    User.findOne({_id:reply.author_id },'name avatar_url', function(error, user) {
+                    User.findOne({_id:reply.author_id },'name url avatar_url', function(error, user) {
                        var reply_temp = reply.toObject();
                        reply_temp.create_date_format = reply.create_date_format;
                        reply_temp.author_name = user.name;
+                       reply_temp.author_url = user.url;
+                       console.info(user);
                        reply_temp.avatar_url = user.avatar_url;
                        replys_o.push(reply_temp);
                        callback();

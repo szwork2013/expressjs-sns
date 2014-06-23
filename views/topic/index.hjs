@@ -15,7 +15,7 @@
                 <img class="user-avatar" src="{{avatar_url}}" />
             </div>
             <div class="reply-main">
-                <span class="uname">{{author_name}}</span>
+                <span class="uname"><a href="/user/{{author_url}}">{{author_name}}</a></span>
                 <span class="date">{{create_date_format}}</span>
                 <div class="reply-content">
                 {{content}}
