@@ -51,6 +51,7 @@ app.locals = {
 app.use('/', routes);
 app.use('/user', user);
 app.use('/topic', topic);
+app.use('/message', message);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
