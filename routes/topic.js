@@ -19,7 +19,7 @@ function GetAllreplyById(id,cb){
                        var reply_temp = reply.toObject();
                        reply_temp.create_date_format = reply.create_date_format;
                        reply_temp.author_name = user.name;
-                       reply_temp.author_url = user.url;
+                       reply_temp.author_url = user.url?user.url:user._id;
                        console.info(user);
                        reply_temp.avatar_url = user.avatar_url;
                        replys_o.push(reply_temp);
