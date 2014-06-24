@@ -8,7 +8,7 @@
         <li>
             <h2><a href="/topic/{{_id}}">{{title}}</a></h2>
             <p>
-                发表自<a href="/user/{{author_id}}">{{author_name}}</a>
+                发表自<a href="/user/{{author_url}}">{{author_name}}</a>
                 在 
                 {{create_date_format}}
             </p>

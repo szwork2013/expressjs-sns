@@ -16,9 +16,10 @@ router.get('/', function(req, res) {
      Topic.find({},null,{sort:{create_date:-1}},function(err,topics,count){
          var n_topics = [];
          async.eachSeries(topics,function(topic,cb){
-             User.findOne({_id:topic.author_id},'name',function(err,user){
+             User.findOne({_id:topic.author_id},'name url',function(err,user){
                  var temp_topic = topic.toObject();
                  temp_topic.author_name = user.name;
+                 temp_topic.author_url = user.url?user.url:user._id;
                  temp_topic.create_date_format = topic.create_date_format;
                  n_topics.push(temp_topic);
                  cb();
