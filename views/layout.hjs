@@ -33,14 +33,9 @@
             {{/user}}
             {{#user}}
             <li><a href="/logout" class="loginout">退出</a></li>
-            {{#user.url}}
-            <li class="wel-user"><a href="/user/{{user.url}}/settings" class="wel-user">用户设置</a></li>
-            <li class="wel-user"><a href="/user/{{user.url}}" class="wel-user">欢迎，{{user.name}}</a></li>
-            {{/user.url}}
-            {{^user.url}}
-            <li class="wel-user"><a href="/user/{{user._id}}/settings" class="wel-user">用户设置</a></li>
-            <li class="wel-user"><a href="/user/{{user._id}}" class="wel-user">欢迎，{{user.name}}</a></li>
-            {{/user.url}}
+            <li class="wel-user"><a href="/message">消息</a></li>
+            <li class="wel-user"><a href="/user/settings">用户设置</a></li>
+            <li class="wel-user"><a href="/user/{{user.url}}">欢迎，{{user.name}}</a></li>
             {{/user}}
         </ul>
     </div>

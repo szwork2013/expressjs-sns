@@ -13,13 +13,13 @@ var formidable = require('formidable');
 
 //获取标题列表
 router.get('/', function(req, res) {
-     Topic.find({},null,{sort:{create_date:-1}},function(err,topics,count){
+     Topic.find({},null,{sort:{create_date:-1}},function(err,topics){
          var n_topics = [];
          async.eachSeries(topics,function(topic,cb){
              User.findOne({_id:topic.author_id},'name url',function(err,user){
                  var temp_topic = topic.toObject();
                  temp_topic.author_name = user.name;
-                 temp_topic.author_url = user.url?user.url:user._id;
+                 temp_topic.author_url = user.url;
                  temp_topic.create_date_format = topic.create_date_format;
                  n_topics.push(temp_topic);
                  cb();
@@ -42,11 +42,13 @@ router.post('/register', function(req, res) {
            name:req.body.uname,
            pwd:req.body.upwd,
            phone:req.body.uphone
-       }).save( function( err, todo, count ){
-       if(err){
-            res.redirect('/error');
+       }).save( function( err,user){
+           if(err){
+                res.redirect('/error');
             }else{
-            res.redirect('/');
+                User.findOneAndUpdate({_id:user._id},{url:user._id},function(){
+                    res.redirect('/');
+                })
             }
         });
 });
@@ -74,7 +76,7 @@ router.post('/login', function(req, res) {
             //登陆成功
             req.session.user = user;
             req.session.save();
-            res.redirect('/');
+            res.redirect('back');
         }
     });
 });
@@ -100,7 +102,9 @@ router.get('/search', function(req, res) {
                 topics:topics
             });
         }else{
-            res.redirect('/error');
+            res.render('error',{
+                error:'没有结果请重试'
+            });
         }
     });
 });

@@ -1,7 +1,7 @@
 <div class="settings">
 
     <h2>修改基础信息</h2>
-    <form action="/user/{{user.name}}/savebasesettings" method="post">
+    <form action="/user/savebasesettings" method="post">
         <div class="row">
             <label for="uname">昵称</label>
             <input type="text" name="uname" id="uname" value="{{user.name}}">
@@ -25,7 +25,7 @@
     </form>
 
     <h2>修改密码</h2>
-    <form action="/user/{{user.name}}/savepwdsettings" method="post">
+    <form action="/user/savepwdsettings" method="post">
         <div class="row">
             <label for="oldupwd">旧密码</label>
             <input type="password" name="oldupwd" id="oldupwd" value="">
@@ -40,7 +40,7 @@
     </form>
 
     <h2>修改头像</h2>
-    <form action="/user/{{user.name}}/saveimgsettings" enctype="multipart/form-data" method="post">
+    <form action="/user/saveimgsettings" enctype="multipart/form-data" method="post">
         <div class="row">
             <label>上传头像</label>
             <input name="avatar" type="file" accept="image/*" id="take-avatar"></input>

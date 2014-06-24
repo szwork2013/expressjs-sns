@@ -19,8 +19,7 @@ function GetAllreplyById(id,cb){
                        var reply_temp = reply.toObject();
                        reply_temp.create_date_format = reply.create_date_format;
                        reply_temp.author_name = user.name;
-                       reply_temp.author_url = user.url?user.url:user._id;
-                       console.info(user);
+                       reply_temp.author_url = user.url;
                        reply_temp.avatar_url = user.avatar_url;
                        replys_o.push(reply_temp);
                        callback();
@@ -75,7 +74,7 @@ router.post('/addreply',function(req,res){
            result.create_date_format = reply.create_date_format;
            result.author_name = req.session.user.name;
            result.avatar_url = req.session.user.avatar_url;
-           result.author_url = req.session.user.url?req.session.user.url:req.session.user._id;
+           result.author_url = req.session.user.url;
             if(!err){
                 res.json(result);
             }
@@ -86,7 +85,7 @@ router.post('/addreply',function(req,res){
 //获取topic页面
 router.get('/:_id', function(req, res, next) {
     if(!req.session.user){
-        res.redirect('/login');
+        res.render('user/login');
     }else{
         Topic.findOneAndUpdate({_id:req.params._id},{$inc:{visit_count:1}},function(err,topic){
             if(topic){

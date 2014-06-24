@@ -1,6 +1,7 @@
 <div class="user-show">
     <h1>{{showuser.name}}</h1>
     <img src="{{showuser.avatar_url}}" id="current-avatar" />
+    <a href="/message/{{showuser.url}}/new">私信</a>
 </div>
 
 <div class="user-topics">

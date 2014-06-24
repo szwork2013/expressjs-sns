@@ -1,0 +1,9 @@
+<form action="/message/{{touser.url}}/new" method="post">
+    <p>给{{touser.name}}的私信</p>
+    <p>
+    <textarea id="new-message" name="n_message" placeholder="私信内容...."></textarea>
+    </p>
+    <p>
+    <button type="submmit">写好了,发送</button>
+    </p>
+</form>

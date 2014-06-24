@@ -9,6 +9,7 @@
         <label for="uname">昵称：</label>
         <input type="text" name = "uname" placeholder="请输入昵称" />
         <span class="tips">您输入的昵称已被占用</span>
+        <span class="tips2 tips">请输入昵称</span>
     </div>
     <div class="row">
         <label for="uphone">手机：</label>
@@ -49,27 +50,37 @@
                          data:'email='+$(e).val(),
                          beforeSend:function(){
                              $(e).after($('<i class="loading"></i>')); 
+                         },
+                        success:function(re){
+                             $(e).parent().find('.loading').remove();
+                             if(re.emailsuccess===1){
+                                $(e).nextAll('.tips2').css('display','inline-block');
+                                return false;
+                             }                         
                          }
-                    }).done(function(re){
-                         $(e).parent().find('.loading').remove();
-                         $(e).nextAll('.tips2').css('display',re.emailsuccess===0?'none':'inline-block');
-                         if(re.namesuccess===1) return false;
                     });
                     if(!RegexValidate($(e).val(),emailRegex)) return false;
                     return true;
                 },
                 name:function(e){
-                    $.ajax({
+                     $.ajax({
                          url:'user/validate',
                          type:'post',
                          data:'name='+$(e).val(),
                          beforeSend:function(){
-                             $(e).after($('<i class="loading"></i>')); 
-                         }
-                    }).done(function(re){
+                             $(e).after($('<i class="loading"></i>'));
+                         },
+                        success:function(re){
                            $(e).parent().find('.loading').remove();
-                           $(e).next('.tips').css('display',re.namesuccess===0?'none':'inline-block');
-                           if(re.emailsuccess===1) return false;
+                           if(re.namesuccess===2){
+                               $(e).nextAll('.tips2').css('display','inline-block');
+                                return false;
+                           }
+                           if(re.namesuccess===1) {
+                               $(e).next('.tips').css('display','inline-block');
+                               return false;
+                           }
+                        }
                     });
                     return true;
                 },
