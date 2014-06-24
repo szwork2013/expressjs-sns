@@ -33,7 +33,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/register', function(req, res) {
-    res.render('register', { title: '注册' });
+    res.render('user/register', { title: '注册' });
 });
 
 router.post('/register', function(req, res) {
@@ -52,7 +52,7 @@ router.post('/register', function(req, res) {
 });
 
 router.get('/login', function(req, res) {
-    res.render('login', { title: '登陆' });
+    res.render('user/login', { title: '登陆' });
 });
 
 router.post('/login', function(req, res) {
@@ -103,30 +103,6 @@ router.get('/search', function(req, res) {
             res.redirect('/error');
         }
     });
-});
-
-
-router.post('/validate', function(req, res) {
-
-    if(req.body.name){
-        User.findOne({name:req.body.name},function(err,user){
-            if(user){
-                res.json({'namesuccess':1});
-            }else{
-                res.json({'namesuccess':0});
-            }
-        });
-    }
-    if(req.body.email){
-        User.findOne({email:req.body.email},function(err,user){
-            if(user){
-                res.json({'emailsuccess':1});
-            }else{
-                res.json({'emailsuccess':0});
-            }
-        });
-    }
-
 });
 
 module.exports = router;

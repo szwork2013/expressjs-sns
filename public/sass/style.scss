@@ -10,6 +10,7 @@
         margin:0 auto;
         width:1000px;
         padding:1%;
+        color:#666;
         footer{
             margin-top:20px;
             padding-top:20px;
@@ -42,7 +43,13 @@
         border-bottom:1px solid #e8e8e8;
         position:relative;
         width:100%;
-        padding:30px 0px;
+        padding:1% 0px;
+        h2
+        {
+            a{
+                color:#111; 
+            }
+        }
     }
 }
 //detail
@@ -204,5 +211,21 @@
 }
 //loading
 .more{
+    height:32px;
+    padding:0;
+    margin:0;
     background:url(../img/loading.gif) no-repeat center center; 
+}
+.s_more{
+    height:20px;
+    padding:0;
+    margin:0;
+    background:url(../img/s_loading.gif) no-repeat center center; 
+}
+i.loading{
+    vertical-align:middle;
+    width:20px;
+    height:20px;
+    display:inline-block;
+    background:url(../img/s_loading.gif) no-repeat center center; 
 }

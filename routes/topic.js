@@ -75,6 +75,7 @@ router.post('/addreply',function(req,res){
            result.create_date_format = reply.create_date_format;
            result.author_name = req.session.user.name;
            result.avatar_url = req.session.user.avatar_url;
+           result.author_url = req.session.user.url?req.session.user.url:req.session.user._id;
             if(!err){
                 res.json(result);
             }

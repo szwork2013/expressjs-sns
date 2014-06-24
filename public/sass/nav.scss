@@ -24,6 +24,9 @@ $nav-link-color:$global-color;
     }
     a{
         color:$global-color; 
+        &:hover{
+            text-decoration:none; 
+        }
     }
     .search-form{
         width:50%;

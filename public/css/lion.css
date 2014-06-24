@@ -467,6 +467,8 @@ textarea {
       float: left; }
   .nav a {
     color: #e60000; }
+    .nav a:hover {
+      text-decoration: none; }
   .nav .search-form {
     width: 50%;
     margin-left: 2%; }
@@ -529,7 +531,8 @@ textarea {
   .main .main-wrapper {
     margin: 0 auto;
     width: 1000px;
-    padding: 1%; }
+    padding: 1%;
+    color: #666; }
     .main .main-wrapper:before, .main .main-wrapper:after {
       content: "";
       display: table; }
@@ -567,7 +570,9 @@ textarea {
     border-bottom: 1px solid #e8e8e8;
     position: relative;
     width: 100%;
-    padding: 30px 0px; }
+    padding: 1% 0px; }
+    .topic-list li h2 a {
+      color: #111; }
 
 .topic-tags {
   color: #666; }
@@ -732,7 +737,23 @@ textarea {
   display: none; }
 
 .more {
+  height: 32px;
+  padding: 0;
+  margin: 0;
   background: url(../img/loading.gif) no-repeat center center; }
+
+.s_more {
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  background: url(../img/s_loading.gif) no-repeat center center; }
+
+i.loading {
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background: url(../img/s_loading.gif) no-repeat center center; }
 
 @media screen and (min-width: 767px) and (max-width: 970px) {
   .main .main-wrapper {

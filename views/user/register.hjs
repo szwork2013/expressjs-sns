@@ -44,22 +44,30 @@
                 email:function(e){
                     $(e).nextAll('.tips1').css('display',RegexValidate($(e).val(),emailRegex)?'none':'inline-block');
                     $.ajax({
-                         url:'/validate',
+                         url:'user/validate',
                          type:'post',
                          data:'email='+$(e).val(),
+                         beforeSend:function(){
+                             $(e).after($('<i class="loading"></i>')); 
+                         }
                     }).done(function(re){
+                         $(e).parent().find('.loading').remove();
                          $(e).nextAll('.tips2').css('display',re.emailsuccess===0?'none':'inline-block');
-                           if(re.namesuccess===1) return false;
+                         if(re.namesuccess===1) return false;
                     });
                     if(!RegexValidate($(e).val(),emailRegex)) return false;
                     return true;
                 },
                 name:function(e){
                     $.ajax({
-                         url:'/validate',
+                         url:'user/validate',
                          type:'post',
                          data:'name='+$(e).val(),
+                         beforeSend:function(){
+                             $(e).after($('<i class="loading"></i>')); 
+                         }
                     }).done(function(re){
+                           $(e).parent().find('.loading').remove();
                            $(e).next('.tips').css('display',re.namesuccess===0?'none':'inline-block');
                            if(re.emailsuccess===1) return false;
                     });
@@ -90,12 +98,11 @@
             });
 
             $('.reg-form .act button').click(function(e){
-                    if(validateObj.email($('input[name="uemail"]')) && validateObj.name($('input[name="uname"]')) && validateObj.phone($('input[name="uphone"]')) && validateObj.pwd($('input[name="upwd"]'))){
-                        console.info(313);
-                        $('.reg-form').submit();
-                    }else{
-                        e.preventDefault();
-                    }
+                if(validateObj.email($('input[name="uemail"]')) && validateObj.name($('input[name="uname"]')) && validateObj.phone($('input[name="uphone"]')) && validateObj.pwd($('input[name="upwd"]'))){
+                    $('.reg-form').submit();
+                }else{
+                    e.preventDefault();
+                }
             });
 
         })()

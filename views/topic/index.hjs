@@ -44,7 +44,7 @@
                 <img class="user-avatar" src="<%= avatar_url %>" />
             </div>
             <div class="reply-main">
-                <span class="uname"><%= author_name %></span>
+                <span class="uname"><a href="/user/<%= author_url %>"><%= author_name %></a></span>
                 <span class="date"><%= create_date_format %></span>
                 <div class="reply-content">
                 <%= content %>
@@ -56,29 +56,20 @@
 
 <script>
 
-        
-        /*
-        $.ajax({
-            url:'/topic/getallreply',
-            data:'topic_id={{topic._id}}'
-        }).done(function(re){
-            $(re).each(function(k,i){
-                $('.reply-list').append(_.template($('#reply-item-temp').html())(i));
-            });
-        });
-        */
-        
-
-
     $('.reply-form button[type="submit"]').click(function(e){
         e.preventDefault();
         $.ajax({
             url:'/topic/addreply',
             method:'post',
-            data:$('.reply-form').serialize()+'&topic_id={{topic._id}}'
-        }).done(function(re){
-           $('.reply-list').append(_.template($('#reply-item-temp').html())(re));
-        });
+            data:$('.reply-form').serialize()+'&topic_id={{topic._id}}',
+            beforeSend:function(){
+                    $('<div class="more"></div>').appendTo($('.reply-list')); 
+            },
+            success:function(re){
+               $('.reply-list .more').remove();
+               $('.reply-list').append(_.template($('#reply-item-temp').html())(re));
+            }
+        })
     });
 
 </script>

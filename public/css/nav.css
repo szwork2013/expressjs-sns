@@ -22,6 +22,8 @@
       float: left; }
   .nav a {
     color: #e60000; }
+    .nav a:hover {
+      text-decoration: none; }
   .nav .search-form {
     width: 50%;
     margin-left: 2%; }

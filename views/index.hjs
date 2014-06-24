@@ -17,16 +17,16 @@
             </p>
         </li>
         {{/topics}}
-        <li class="more"></li>
     </ul>
 </div>
 
 <script>
     (function (){
-        $('.more').hide(); 
         $(window).scroll(function(e){
             if($(this).scrollTop()>$('footer').offset().top-$(window).height()+80){
-                $('.more').show(); 
+                if($('.topic-list .more').length === 0){
+                    $('<li class="more"></li>').appendTo($('.topic-list')); 
+                }
             }
         });
     })() 

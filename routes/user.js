@@ -144,4 +144,27 @@ router.post('/:url/savepwdsettings', function(req, res) {
         });
 });
 
+router.post('/validate', function(req, res) {
+
+    if(req.body.name){
+        User.findOne({name:req.body.name},function(err,user){
+            if(user){
+                res.json({'namesuccess':1});
+            }else{
+                res.json({'namesuccess':0});
+            }
+        });
+    }
+    if(req.body.email){
+        User.findOne({email:req.body.email},function(err,user){
+            if(user){
+                res.json({'emailsuccess':1});
+            }else{
+                res.json({'emailsuccess':0});
+            }
+        });
+    }
+
+});
+
 module.exports = router;
