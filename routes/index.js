@@ -103,7 +103,7 @@ router.get('/search', function(req, res) {
             });
         }else{
             res.render('error',{
-                error:'没有结果请重试'
+                error:'抱歉，没有结果请重试！'
             });
         }
     });

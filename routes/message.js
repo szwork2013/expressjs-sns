@@ -43,7 +43,7 @@ router.post('/:url/new', function(req, res) {
                 content:req.body.n_message
             }).save(function(err,message){
                 if(!err){
-                    res.redirect('back');        
+                    res.redirect('/user/'+user.url);
                 } 
             });
         } 
