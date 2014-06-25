@@ -3,7 +3,23 @@
 <ul class="collect-list">
     {{#collects}}
     <li>
-        <a href="topic/{{topic_id}}">{{topic_title}}</a>
+        <a href="topic/{{topic_id}}">{{topic_title}}</a><span class="del fr" tid="{{topic_id}}">X</span>
     </li>
     {{/collects}}
 </ul>
+<script>
+        $('.collect-list li .del').click(function(e){
+                var self = this;
+                $.ajax({
+                    url:'/collect/del',
+                    method:'post',
+                    data:'topic_id='+$(this).attr('tid'),
+                    success:function(re){
+                        if(re.s === 1){
+                            $(self).parent('li').remove();
+                            alert('删除成功') 
+                        } 
+                    }
+                })
+        });
+</script>

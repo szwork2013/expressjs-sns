@@ -56,4 +56,17 @@ router.post('/new', function(req, res) {
     })
 });
 
+router.post('/del', function(req, res) {
+    Collect.remove({
+        user_id:req.session.user._id,
+        topic_id:req.body.topic_id
+    },function(err){
+        if(!err){
+            res.json({s:1}); 
+        }else{
+            res.json({s:0});
+        }
+    })
+})
+
 module.exports = router;
