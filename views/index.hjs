@@ -8,6 +8,7 @@
         <li>
             <h2><a href="/topic/{{_id}}">{{title}}</a></h2>
             <p>
+                <img src="{{author_avatar_url}}" alt="">
                 发表自<a href="/user/{{author_url}}">{{author_name}}</a>
                 在 
                 {{create_date_format}}

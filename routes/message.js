@@ -11,12 +11,31 @@ var Topic = mongoose.model('Topic');
 var Reply = mongoose.model('Reply');
 var Message = mongoose.model('Message');
 
-router.get('/', function(req, res) {
+function GetMessageTempleteByUserId(req,res,callback){
     Message.find({to_id:req.session.user._id},function(err,msgs){
-        res.render('message/index',{
-            messages:msgs 
+        var msg_n = [];
+        async.eachSeries(msgs,function(msg,callback){
+            User.findOne({_id:msg.from_id},function(err,from_user){
+                var msg_temp = msg.toObject();
+                msg_temp.create_date_format = msg.create_date_format;
+                msg_temp.from_user_name = from_user.name;
+                msg_temp.from_user_url = from_user.url;
+                msg_temp.from_user_avatar_url = from_user.avatar_url;
+                msg_n.push(msg_temp);
+                callback();
+            })
+        },function(){
+            callback(msg_n);
         });
     });
+}
+
+router.get('/', function(req, res) {
+    GetMessageTempleteByUserId(req,res,function(msgs){
+            res.render('message/index',{
+                messages:msgs
+            });
+    })
 });
 
 //添加message页面

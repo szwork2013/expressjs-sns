@@ -1,10 +1,11 @@
-<h1>信息</h1>
-
-
-<ul>
+<h1>私信</h1>
+<ul class="message-list">
     {{#messages}}
     <li>
-    {{content}} at {{create_date_format}}
+    
+        <p><a href="/user/{{from_user_url}}">{{from_user_name}}</a>说:</p>
+        <p>{{content}}</p>
+        <p>{{create_date_format}}</p>
     </li>
     {{/messages}}
 </ul>

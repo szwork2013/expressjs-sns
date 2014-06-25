@@ -34,6 +34,7 @@
             {{#user}}
             <li><a href="/logout" class="loginout">退出</a></li>
             <li class="wel-user"><a href="/message">消息</a></li>
+            <li class="wel-user"><a href="/collect">收藏</a></li>
             <li class="wel-user"><a href="/user/settings">用户设置</a></li>
             <li class="wel-user"><a href="/user/{{user.url}}">欢迎，{{user.name}}</a></li>
             {{/user}}
@@ -45,12 +46,12 @@
 <section class="main">
     <div class="main-wrapper">
         {{{ body }}}
-        <footer>
-            &copy;2014 , all rights reserved 
-        </footer>
     </div>
 </section>
 
+<footer>
+    &copy;2014 , all rights reserved 
+</footer>
 <script>
     //alert($(window).width())
 </script>

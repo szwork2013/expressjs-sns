@@ -9,7 +9,7 @@
         <label for="uname">昵称：</label>
         <input type="text" name = "uname" placeholder="请输入昵称" />
         <span class="tips">您输入的昵称已被占用</span>
-        <span class="tips2 tips">请输入昵称</span>
+        <span class="tips3 tips">请输入昵称</span>
     </div>
     <div class="row">
         <label for="uphone">手机：</label>
@@ -44,6 +44,7 @@
             var validateObj = {
                 email:function(e){
                     $(e).nextAll('.tips1').css('display',RegexValidate($(e).val(),emailRegex)?'none':'inline-block');
+                    if(!RegexValidate($(e).val(),emailRegex)) return false;
                     $.ajax({
                          url:'user/validate',
                          type:'post',
@@ -52,15 +53,16 @@
                              $(e).after($('<i class="loading"></i>')); 
                          },
                         success:function(re){
-                             $(e).parent().find('.loading').remove();
-                             if(re.emailsuccess===1){
-                                $(e).nextAll('.tips2').css('display','inline-block');
+                            $(e).parent().find('.loading').remove();
+                            $(e).nextAll('.tips').hide();
+                            if(re.emailsuccess===1){
+                                $(e).nextAll('.tips2').show();
                                 return false;
-                             }                         
-                         }
+                            }else if(re.emailsuccess===0){
+                                return true;
+                            }
+                        }
                     });
-                    if(!RegexValidate($(e).val(),emailRegex)) return false;
-                    return true;
                 },
                 name:function(e){
                      $.ajax({
@@ -72,17 +74,18 @@
                          },
                         success:function(re){
                            $(e).parent().find('.loading').remove();
+                           $(e).nextAll('.tips').hide();
                            if(re.namesuccess===2){
-                               $(e).nextAll('.tips2').css('display','inline-block');
+                               $(e).nextAll('.tips3').show();
                                 return false;
-                           }
-                           if(re.namesuccess===1) {
-                               $(e).next('.tips').css('display','inline-block');
+                           }else if(re.namesuccess===1) {
+                               $(e).next('.tips').show();
                                return false;
+                           }else if(re.namesuccess===0){
+                                return true;
                            }
                         }
                     });
-                    return true;
                 },
                 phone:function(e){
                     $(e).next('.tips').css('display',RegexValidate($(e).val(),phoneRegex)?'none':'inline-block');

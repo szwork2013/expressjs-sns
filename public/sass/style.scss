@@ -1,6 +1,11 @@
 @import "functions.scss";
 @import "animate.scss";
 
+footer{
+    padding:20px;
+    border-top:1px solid #e5e5e5;
+}
+
 .main{
     width:100%;
     padding:20px 0;
@@ -11,11 +16,6 @@
         width:1000px;
         padding:1%;
         color:#666;
-        footer{
-            margin-top:20px;
-            padding-top:20px;
-            border-top:1px dashed #ccc;
-        }
     }
 }
 //index
@@ -43,12 +43,15 @@
         border-bottom:1px solid #e8e8e8;
         position:relative;
         width:100%;
-        padding:1% 0px;
-        h2
-        {
+        padding:10px;
+        h2{
+            margin:0;
             a{
                 color:#111; 
             }
+        }
+        p{
+
         }
     }
 }
@@ -89,23 +92,23 @@
         margin:20px 0;
         position:relative;
     }
-   .user-avatar{
-       position:absolute;
-       left:0;
-       top:0;
-       width:48px; 
-       height:48px;
-       margin-right:1%;
-       img{
+    .user-avatar{
+        position:absolute;
+        left:0;
+        top:0;
+        width:48px; 
+        height:48px;
+        margin-right:1%;
+        img{
             width:48px; 
             height:48px;
             @include border-radius(3px);
-       }
-   }
-   .reply-main{
-       padding:0 0 0 60px;
-       @include clearfix();
-       margin:10px 0; 
+        }
+    }
+    .reply-main{
+        padding:0 0 0 60px;
+        @include clearfix();
+        margin:10px 0; 
         .uname{
             font-size:16px; 
             vertical-align:middle;
@@ -115,7 +118,7 @@
             vertical-align:middle;
             color:#ccc;
         }
-   }
+    }
 }
 
 .reg-form,.login-form{
@@ -147,20 +150,20 @@
     }
     .act{
         button{
-                margin-left:52px;
-                height:50px;     
-                padding:0 30px;
-                border:none;
-                color:#fff;
-                background:$global-color;
-                @include border-radius(3px);
+            margin-left:52px;
+            height:50px;     
+            padding:0 30px;
+            border:none;
+            color:#fff;
+            background:$global-color;
+            @include border-radius(3px);
         } 
     }
 
 }
 /*
-* settings
-*/
+ * settings
+ */
 #show-avatar,#current-avatar{
     width:100px;
     height:100px;
@@ -168,13 +171,13 @@
 }
 
 /*
-* new topic
-*/
+ * new topic
+ */
 #new-topic{
     font-size:16px;
     margin-top:50px;
     h1{
-         font-size:24px; 
+        font-size:24px; 
     }
     input,textarea{
         border:1px solid #ccc;
@@ -205,9 +208,9 @@
 }
 //popup
 #popup{
-   width:50%; 
-   background:#fff;
-   display:none;
+    width:50%; 
+    background:#fff;
+    display:none;
 }
 //loading
 .more{
@@ -228,4 +231,10 @@ i.loading{
     height:20px;
     display:inline-block;
     background:url(../img/s_loading.gif) no-repeat center center; 
+}
+//message
+.message-list{
+    li{
+        padding:10px 0;
+    }
 }

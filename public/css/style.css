@@ -1,3 +1,7 @@
+footer {
+  padding: 20px;
+  border-top: 1px solid #e5e5e5; }
+
 .main {
   width: 100%;
   padding: 20px 0;
@@ -12,10 +16,6 @@
       display: table; }
     .main .main-wrapper:after {
       clear: both; }
-    .main .main-wrapper footer {
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px dashed #ccc; }
 
 .new-post-btn {
   display: inline-block;
@@ -44,9 +44,11 @@
     border-bottom: 1px solid #e8e8e8;
     position: relative;
     width: 100%;
-    padding: 1% 0px; }
-    .topic-list li h2 a {
-      color: #111; }
+    padding: 10px; }
+    .topic-list li h2 {
+      margin: 0; }
+      .topic-list li h2 a {
+        color: #111; }
 
 .topic-tags {
   color: #666; }
@@ -159,8 +161,8 @@
     border-radius: 3px; }
 
 /*
-* settings
-*/
+ * settings
+ */
 #show-avatar, #current-avatar {
   width: 100px;
   height: 100px;
@@ -171,8 +173,8 @@
   border-radius: 3px; }
 
 /*
-* new topic
-*/
+ * new topic
+ */
 #new-topic {
   font-size: 16px;
   margin-top: 50px; }
@@ -228,3 +230,6 @@ i.loading {
   height: 20px;
   display: inline-block;
   background: url(../img/s_loading.gif) no-repeat center center; }
+
+.message-list li {
+  padding: 10px 0; }

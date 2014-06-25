@@ -36,4 +36,13 @@ User.virtual('update_date_format').get(function(){
     return moment(this.update_date).format('YYYY-MM-DD HH:mm');
 });
 
+User.virtual('avatar_url_s').get(function(){
+    var str = this.avatar_url;
+    return [str.slice(0,str.lastIndexOf('.')),"_s",str.slice(str.lastIndexOf('.'))].join("");
+});
+
+User.virtual('avatar_url_l').get(function(){
+    var str = this.avatar_url;
+    return [str.slice(0,str.lastIndexOf('.')),"_l",str.slice(str.lastIndexOf('.'))].join("");
+});
 var UserModel = mongoose.model('User',User);

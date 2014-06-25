@@ -9,10 +9,12 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var partials = require('express-partials');
 var formidable = require('formidable');
+
 var routes = require('./routes/index');
 var user = require('./routes/user');
 var topic = require('./routes/topic');
 var message = require('./routes/message');
+var collect = require('./routes/collect');
 
 var app = express();
 
@@ -53,6 +55,7 @@ app.use('/', routes);
 app.use('/user', user);
 app.use('/topic', topic);
 app.use('/message', message);
+app.use('/collect', collect);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

@@ -5,6 +5,9 @@
 <p class="topic-content">
     {{topic.content}}
 </p>
+<p class="meta">
+    <a href="#" id="addcollect">收藏</a>
+</p>
 
 <h2>留言：</h2>
 <div class="reply-list">
@@ -72,4 +75,18 @@
         })
     });
 
+    $('#addcollect').click(function(){
+        $.ajax({
+            url:'/collect/new',
+            data:'topic_id={{topic._id}}',
+            method:'post',
+            success:function(re){
+                if(re.s === 1){
+                    alert('收藏成功');
+                }else if(re.s===2){
+                    alert('已经收藏');
+                }
+            }
+        });
+    });
 </script>
