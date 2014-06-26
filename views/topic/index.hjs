@@ -69,6 +69,7 @@
                     $('<div class="more"></div>').appendTo($('.reply-list')); 
             },
             success:function(re){
+               $('#replyContent').val('');
                $('.reply-list .more').remove();
                $('.reply-list').append(_.template($('#reply-item-temp').html())(re));
             }
