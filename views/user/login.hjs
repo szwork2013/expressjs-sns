@@ -1,12 +1,12 @@
 <script src="/js/validator.js"></script>
 <form action="/user/login" method="post" class="login-form" id="login-form">
     <div class="row">
-        <label for="username">账号</label>
+        <label for="username">账号：</label>
         <input type="text" name="username" id="username" placeholder="邮箱或昵称" />
         <span class="tips">请输入账号</span>
     </div>
     <div class="row">
-        <label for="userpwd">密码</label> 
+        <label for="userpwd">密码：</label> 
         <input type="password" id="userpwd" name="userpwd" placeholder="密码" />
         <span class="tips">请输入密码</span>
     </div>

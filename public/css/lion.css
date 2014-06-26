@@ -652,13 +652,13 @@ footer {
   margin: 0 20%; }
   .reg-form .row, .login-form .row {
     position: relative;
-    margin: 20px 0 0 0;
+    margin: 10px 0 0 0;
     height: 80px; }
   .reg-form input[type="text"], .reg-form input[type="password"], .login-form input[type="text"], .login-form input[type="password"] {
     position: absolute;
     left: 50px;
     width: 80%;
-    padding: 10px;
+    padding: 10px 2%;
     font-size: 16px;
     height: 20px;
     line-height: 20px;
@@ -672,6 +672,7 @@ footer {
   .reg-form label, .reg-form .tips, .login-form label, .login-form .tips {
     vertical-align: middle; }
   .reg-form label, .login-form label {
+    text-align: center;
     position: absolute;
     left: 0;
     width: 50px;
@@ -697,6 +698,10 @@ footer {
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
     border-radius: 3px; }
+  .reg-form .loading, .login-form .loading {
+    position: absolute;
+    left: 50px;
+    top: 50px; }
 
 /*
  * settings
@@ -774,10 +779,19 @@ i.loading {
 
 @media screen and (min-width: 767px) and (max-width: 970px) {
   .main .main-wrapper {
-    width: 767px; } }
+    width: 767px; }
+
+  .reg-form input[type="text"], .reg-form input[type="password"], .login-form input[type="text"], .login-form input[type="password"] {
+    width: 80%; } }
 @media screen and (min-width: 480px) and (max-width: 768px) {
   .main .main-wrapper {
-    width: 480px; } }
+    width: 480px; }
+
+  .reg-form input[type="text"], .reg-form input[type="password"], .login-form input[type="text"], .login-form input[type="password"] {
+    width: 75%; } }
 @media screen and (max-width: 479px) {
   .main .main-wrapper {
-    width: 320px; } }
+    width: 320px; }
+
+  .reg-form input[type="text"], .reg-form input[type="password"], .login-form input[type="text"], .login-form input[type="password"] {
+    width: 68%; } }

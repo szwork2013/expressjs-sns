@@ -1,9 +1,18 @@
 @media screen and (min-width: 767px) and (max-width: 970px) {
   .main .main-wrapper {
-    width: 767px; } }
+    width: 767px; }
+
+  .reg-form input[type="text"], .reg-form input[type="password"], .login-form input[type="text"], .login-form input[type="password"] {
+    width: 80%; } }
 @media screen and (min-width: 480px) and (max-width: 768px) {
   .main .main-wrapper {
-    width: 480px; } }
+    width: 480px; }
+
+  .reg-form input[type="text"], .reg-form input[type="password"], .login-form input[type="text"], .login-form input[type="password"] {
+    width: 75%; } }
 @media screen and (max-width: 479px) {
   .main .main-wrapper {
-    width: 320px; } }
+    width: 320px; }
+
+  .reg-form input[type="text"], .reg-form input[type="password"], .login-form input[type="text"], .login-form input[type="password"] {
+    width: 68%; } }

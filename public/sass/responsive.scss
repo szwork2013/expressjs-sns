@@ -5,6 +5,13 @@
             width:767px;
         }
     }
+
+    .reg-form,.login-form{
+        input[type="text"],input[type="password"]{
+            width:80%; 
+        }
+    }
+
 }
 //h pad
 @media screen and (min-width: 480px) and (max-width: 768px) {
@@ -13,12 +20,22 @@
             width:480px; 
         }
     }
+    .reg-form,.login-form{
+        input[type="text"],input[type="password"]{
+            width:75%; 
+        }
+    }
 }
 //phone
 @media screen and (max-width: 479px){
     .main{ 
         .main-wrapper{
             width:320px; 
+        }
+    }
+    .reg-form,.login-form{
+        input[type="text"],input[type="password"]{
+            width:68%; 
         }
     }
 }

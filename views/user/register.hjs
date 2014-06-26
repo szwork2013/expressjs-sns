@@ -69,7 +69,7 @@
                             emailInput.after($('<i class="loading"></i>')); 
                         },
                         success:function(re){
-                            emailInput.nextAll('.loading').hide(); 
+                            emailInput.nextAll('.loading').remove(); 
                             if(re.r===1){
                                 emailInput.nextAll('.tips1').show();
                                 return;
