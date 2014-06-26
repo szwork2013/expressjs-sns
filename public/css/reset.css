@@ -7,6 +7,11 @@ body {
   background: white;
   width: 100%;
   color: #272727; }
+  body a {
+    color: #272727; }
+    body a:hover {
+      text-decoration: none;
+      color: #999; }
 
 a {
   color: blue;

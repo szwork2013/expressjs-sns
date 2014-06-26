@@ -1,3 +1,4 @@
+<script src="/js/validator.js"></script>
 <div class="settings">
 
     <h2>修改基础信息</h2>
@@ -72,7 +73,7 @@
         //user url wysyws
         $('#uurl').keydown(function(e){
             $('#showurl').html($(this).val());
-        })
+        });
 
 
     })()

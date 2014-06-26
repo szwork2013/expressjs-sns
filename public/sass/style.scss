@@ -4,6 +4,20 @@
 footer{
     padding:20px;
     border-top:1px solid #e5e5e5;
+    height:30px;
+    line-height:30px;
+    p{
+        display:inline-block; 
+    }
+    .ft-meta{
+        margin-left:10px;
+        vertical-align:middle;
+        display:inline-block; 
+        li{
+            float:left; 
+            margin-right:10px;
+        } 
+    }
 }
 
 .main{
@@ -221,6 +235,7 @@ footer{
         color:#fff;
         border:none;
         padding:0;
+        @include border-radius(3px);
     }
 }
 //popup

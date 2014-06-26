@@ -11,6 +11,7 @@ var partials = require('express-partials');
 var formidable = require('formidable');
 
 var routes = require('./routes/index');
+var about = require('./routes/about');
 var user = require('./routes/user');
 var topic = require('./routes/topic');
 var message = require('./routes/message');
@@ -52,6 +53,7 @@ app.locals = {
 };
 
 app.use('/', routes);
+app.use('/about', about);
 app.use('/user', user);
 app.use('/topic', topic);
 app.use('/message', message);

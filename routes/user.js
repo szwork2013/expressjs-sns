@@ -31,7 +31,8 @@ function RendUserIndex(req,res,user,topics,replys){
         user:req.session.user,
         showuser:user,
         topics:topics,
-        replys:replys
+        replys:replys,
+        isme:req.session.user.email===user.email?[1]:[]
     });
 }
 

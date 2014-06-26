@@ -1,6 +1,17 @@
 footer {
   padding: 20px;
-  border-top: 1px solid #e5e5e5; }
+  border-top: 1px solid #e5e5e5;
+  height: 30px;
+  line-height: 30px; }
+  footer p {
+    display: inline-block; }
+  footer .ft-meta {
+    margin-left: 10px;
+    vertical-align: middle;
+    display: inline-block; }
+    footer .ft-meta li {
+      float: left;
+      margin-right: 10px; }
 
 .main {
   width: 100%;
@@ -222,7 +233,12 @@ footer {
     background: #e60000;
     color: #fff;
     border: none;
-    padding: 0; }
+    padding: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px; }
 
 #popup {
   width: 50%;

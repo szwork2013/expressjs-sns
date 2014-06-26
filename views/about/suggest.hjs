@@ -1,0 +1,10 @@
+<h1>意见反馈</h1>
+<form action="/about/postsuggest" method="post" id="postsuggest">
+    <div class="row">
+        <label for="意见反馈"></label>
+        <textarea id="suggestcontent" name="suggestcontent"></textarea>
+    </div>
+    <div class="row">
+        <button type="submit">提交</button>
+    </div>
+</form>

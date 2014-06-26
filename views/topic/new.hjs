@@ -1,3 +1,4 @@
+<script src="/js/validator.js"></script>
 <form id="new-topic" action="/topic/new" method="post">
     <h1>发布新讨论</h1>
 
@@ -18,13 +19,30 @@
 </div>
 
 <script>
-    $('#new-topic button[type="submit"]').click(function(e){
-        e.preventDefault(); 
-        $('#popup').spopup({
-            autoClose:2000,
-            onClose:function(){
-                 $('#new-topic').submit();
-            }
+    (function(){
+
+            var titleInput = $('input[name="title"]'),
+                contentInput = $('textarea[name="content"]');
+
+        $('#new-topic button[type="submit"]').click(function(e){
+                e.preventDefault();
+
+                $('.tips').hide();
+
+                if(validator.isNull(titleInput.val())){
+                   titleInput.focus();
+                   return;
+                }else if(validator.isNull(contentInput.val())){
+                   contentInput.focus();
+                   return;
+                }else{
+                    $('#popup').spopup({
+                        autoClose:1000,
+                        onClose:function(){
+                            $('#new-topic').submit();
+                        }
+                    });
+                }
         });
-    })
+    })()
 </script>
