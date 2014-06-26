@@ -20,7 +20,7 @@ function GetAllreplyById(id,cb){
                        reply_temp.create_date_format = reply.create_date_format;
                        reply_temp.author_name = user.name;
                        reply_temp.author_url = user.url;
-                       reply_temp.avatar_url = user.avatar_url;
+                       reply_temp.avatar_url_s = user.avatar_url_s;
                        replys_o.push(reply_temp);
                        callback();
                     });
@@ -73,8 +73,10 @@ router.post('/addreply',function(req,res){
            var result = reply.toObject();
            result.create_date_format = reply.create_date_format;
            result.author_name = req.session.user.name;
-           result.avatar_url = req.session.user.avatar_url;
            result.author_url = req.session.user.url;
+           result.avatar_url = req.session.user.avatar_url;
+           var str = req.session.user.avatar_url;
+           result.avatar_url_s = [str.slice(0,str.lastIndexOf('.')),"_s",str.slice(str.lastIndexOf('.'))].join("");
             if(!err){
                 res.json(result);
             }
