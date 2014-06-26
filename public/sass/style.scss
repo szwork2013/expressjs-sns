@@ -122,12 +122,17 @@ footer{
 }
 
 .reg-form,.login-form{
-    text-align:center;
+    width:60%;
+    margin:0 20%;
     .row{
-        margin:50px 0px; 
+        position:relative;
+        margin:20px 0 0 0; 
+        height:80px;
     }
     input[type="text"],input[type="password"]{
-        width:50%;
+        position:absolute;
+        left:50px;
+        width:80%;
         padding:10px;
         font-size:16px;
         height:20px; 
@@ -136,20 +141,29 @@ footer{
         border:1px solid #ccc;
         vertical-align:middle;
     }
-    label,span.tips{
+    label,.tips{
         vertical-align:middle;
     }
     label{
+        position:absolute;
+        left:0;
         width:50px;
+        line-height:40px;
     }
-    span.tips{
+    .tips{
         color:$global-color;
-        margin-left:10px;
         display:none;
+        position:absolute;
+        top:40px;
+        line-height:40px;
+        height:40px;
+        left:50px;
     }
     .act{
         button{
-            height:50px;     
+            position:absolute;
+            left:50px;
+            height:40px;     
             padding:0 30px;
             border:none;
             color:#fff;
@@ -157,7 +171,6 @@ footer{
             @include border-radius(3px);
         } 
     }
-
 }
 /*
  * settings

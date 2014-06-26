@@ -122,11 +122,16 @@ footer {
     color: #ccc; }
 
 .reg-form, .login-form {
-  text-align: center; }
+  width: 60%;
+  margin: 0 20%; }
   .reg-form .row, .login-form .row {
-    margin: 50px 0px; }
+    position: relative;
+    margin: 20px 0 0 0;
+    height: 80px; }
   .reg-form input[type="text"], .reg-form input[type="password"], .login-form input[type="text"], .login-form input[type="password"] {
-    width: 50%;
+    position: absolute;
+    left: 50px;
+    width: 80%;
     padding: 10px;
     font-size: 16px;
     height: 20px;
@@ -138,16 +143,25 @@ footer {
     border-radius: 3px;
     border: 1px solid #ccc;
     vertical-align: middle; }
-  .reg-form label, .reg-form span.tips, .login-form label, .login-form span.tips {
+  .reg-form label, .reg-form .tips, .login-form label, .login-form .tips {
     vertical-align: middle; }
   .reg-form label, .login-form label {
-    width: 50px; }
-  .reg-form span.tips, .login-form span.tips {
+    position: absolute;
+    left: 0;
+    width: 50px;
+    line-height: 40px; }
+  .reg-form .tips, .login-form .tips {
     color: #e60000;
-    margin-left: 10px;
-    display: none; }
+    display: none;
+    position: absolute;
+    top: 40px;
+    line-height: 40px;
+    height: 40px;
+    left: 50px; }
   .reg-form .act button, .login-form .act button {
-    height: 50px;
+    position: absolute;
+    left: 50px;
+    height: 40px;
     padding: 0 30px;
     border: none;
     color: #fff;
