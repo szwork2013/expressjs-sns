@@ -153,26 +153,59 @@ User.findOneAndUpdate({name:req.session.user.name,pwd:oldpwd},{
 });
 });
 
-router.post('/validate', function(req, res) {
-    if(req.body.name){
-        User.findOne({name:req.body.name},function(err,user){
-            if(user){
-                res.json({'namesuccess':1});
-            }else{
-                res.json({'namesuccess':0});
-            }
-        });
-    }else if(req.body.email){
+router.post('/registervalidate', function(req, res) {
+    if(req.body.email){
         User.findOne({email:req.body.email},function(err,user){
             if(user){
-                res.json({'emailsuccess':1});
+                res.json({r:1});
             }else{
-                res.json({'emailsuccess':0});
+                res.json({r:0});
             }
         });
     }else{
-        res.json({'emailsuccess':2,'namesuccess':2});
+        res.redirect('/error'); 
     }
+});
+
+router.post('/register', function(req, res) {
+       new User({
+           email:req.body.uemail,
+           name:req.body.uname,
+           pwd:req.body.upwd,
+           phone:req.body.uphone
+       }).save( function( err,user){
+           if(err){
+                res.redirect('/error');
+            }else{
+                User.findOneAndUpdate({_id:user._id},{url:user._id},function(){
+                    res.redirect('/login');
+                })
+            }
+        });
+});
+
+router.post('/login', function(req, res) {
+    var username = req.body.username;
+    var userpwd = req.body.userpwd;
+    User.findOne({$or:[{ name:username}, {email:username}]},function(err,user){
+        var error_msg = '';
+
+        if(!user || userpwd != user.pwd){
+            if(!user) {
+                error_msg = '用户不存在';
+            }else if(userpwd != user.pwd){
+                error_msg = '密码错误';
+            }
+            res.render('error',{
+                error:error_msg
+            });
+        }else{
+            //登陆成功
+            req.session.user = user;
+            req.session.save();
+            res.redirect('/');
+        }
+    });
 });
 
 router.get('/:url', function(req, res) {

@@ -1,11 +1,14 @@
-<form action="/login" method="post" class="login-form">
+<script src="/js/validator.js"></script>
+<form action="/user/login" method="post" class="login-form" id="login-form">
     <div class="row">
-        <label for="">邮箱</label> 
-        <input type="text" name="username" placeholder="邮箱或昵称" />
+        <label for="username">账号</label>
+        <input type="text" name="username" id="username" placeholder="邮箱或昵称" />
+        <span class="tips">请输入账号</span>
     </div>
     <div class="row">
-        <label for="">密码</label> 
-        <input type="password" name="userpwd" placeholder="密码" />
+        <label for="userpwd">密码</label> 
+        <input type="password" id="userpwd" name="userpwd" placeholder="密码" />
+        <span class="tips">请输入密码</span>
     </div>
     <div class="row">
         <div class="act">
@@ -13,11 +16,28 @@
         </div>
     </div>
 </form> 
-
 <script>
-    $('.login-form .act button').click(function(e){
-            $.ajax({
-                url:'/validate'    
-            });
-    });
+    (function(){
+
+            var nameInput = $('input[name="username"]'),
+                pwdInput = $('input[name="userpwd"]');
+
+        $('#login-form .act button').click(function(e){
+                e.preventDefault();
+
+                $('.tips').hide();
+
+                if(validator.isNull(nameInput.val())){
+                   nameInput.next('.tips').show();
+                   nameInput.focus();
+                   return;
+                }else if(validator.isNull(pwdInput.val())){
+                   pwdInput.next('.tips').show();
+                   pwdInput.focus();
+                   return;
+                }else{
+                    $('#login-form').submit();
+                }
+        });
+    })()
 </script>

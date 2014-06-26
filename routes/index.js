@@ -37,49 +37,8 @@ router.get('/register', function(req, res) {
     res.render('user/register', { title: '注册' });
 });
 
-router.post('/register', function(req, res) {
-       new User({
-           email:req.body.uemail,
-           name:req.body.uname,
-           pwd:req.body.upwd,
-           phone:req.body.uphone
-       }).save( function( err,user){
-           if(err){
-                res.redirect('/error');
-            }else{
-                User.findOneAndUpdate({_id:user._id},{url:user._id},function(){
-                    res.redirect('/');
-                })
-            }
-        });
-});
-
 router.get('/login', function(req, res) {
     res.render('user/login', { title: '登陆' });
-});
-
-router.post('/login', function(req, res) {
-    var username = req.body.username;
-    var userpwd = req.body.userpwd;
-    User.findOne({$or:[{ name:username }, {email:username }]},function(err,user){
-        var error_msg = '';
-
-        if(!user || userpwd != user.pwd){
-            if(!user) {
-                error_msg = '用户不存在';
-            }else if(userpwd != user.pwd){
-                error_msg = '密码错误';
-            }
-            res.render('error',{
-                error:error_msg
-            });
-        }else{
-            //登陆成功
-            req.session.user = user;
-            req.session.save();
-            res.redirect('/');
-        }
-    });
 });
 
 router.get('/logout', function(req, res) {

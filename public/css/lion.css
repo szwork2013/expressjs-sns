@@ -648,12 +648,11 @@ footer {
     color: #ccc; }
 
 .reg-form, .login-form {
-  width: 60%;
-  margin-left: 30%; }
+  text-align: center; }
   .reg-form .row, .login-form .row {
     margin: 50px 0px; }
   .reg-form input[type="text"], .reg-form input[type="password"], .login-form input[type="text"], .login-form input[type="password"] {
-    width: 200px;
+    width: 50%;
     padding: 10px;
     font-size: 16px;
     height: 20px;
@@ -674,7 +673,6 @@ footer {
     margin-left: 10px;
     display: none; }
   .reg-form .act button, .login-form .act button {
-    margin-left: 52px;
     height: 50px;
     padding: 0 30px;
     border: none;

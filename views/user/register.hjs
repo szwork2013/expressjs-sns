@@ -1,15 +1,15 @@
-<form action="/register" method="post" class="reg-form">
+<script src="/js/validator.js"></script>
+<form action="/user/register" method="post" class="reg-form" id="reg-form">
     <div class="row">
         <label for="uemail">邮箱：</label>
         <input type="text" name="uemail" placeholder="请输入邮箱" />
-        <span class="tips1 tips">请输入正确的邮箱</span>
-        <span class="tips2 tips">邮箱已经重复注册</span>
+        <span class="tips">请输入正确的邮箱</span>
+        <span class="tips1 tips">邮箱已经重复注册</span>
     </div>
     <div class="row">
         <label for="uname">昵称：</label>
         <input type="text" name = "uname" placeholder="请输入昵称" />
-        <span class="tips">您输入的昵称已被占用</span>
-        <span class="tips3 tips">请输入昵称</span>
+        <span class="tips">请输入昵称</span>
     </div>
     <div class="row">
         <label for="uphone">手机：</label>
@@ -28,97 +28,56 @@
     </div>
 </form>
 <script>
+    (function(){
 
-        (function(){
+            var nameInput = $('input[name="uname"]'),
+                emailInput = $('input[name="uemail"]'),
+                phoneInput = $('input[name="uphone"]'),
+                pwdInput = $('input[name="upwd"]');
 
-            var form_validate = true;
+            var phoneRegex = /^0?(13[0-9]|15[012356789]|18[0-9]|14[57])[0-9]{8}$/;
 
-            var emailRegex = /^[a-zA-Z0-9.!#$%&amp;'*+\-\/=?\^_`{|}~\-]+@[a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]+)*$/,
-                pwdRegex = /^[A-Za-z0-9]+$/,
-                phoneRegex = /^0?(13[0-9]|15[012356789]|18[0-9]|14[57])[0-9]{8}$/;
 
-            function RegexValidate(v,regex){
-                return regex.test(v);
-            }
+            $('#reg-form .act button').click(function(e){
+                    e.preventDefault();
 
-            var validateObj = {
-                email:function(e){
-                    $(e).nextAll('.tips1').css('display',RegexValidate($(e).val(),emailRegex)?'none':'inline-block');
-                    if(!RegexValidate($(e).val(),emailRegex)) return false;
+                    $('.tips').hide();
+
+                    if(!validator.isEmail(emailInput.val())){
+                           emailInput.next('.tips').show();
+                           emailInput.focus();
+                           return;
+                    }else if(validator.isNull(nameInput.val())){
+                           nameInput.next('.tips').show();
+                           nameInput.focus();
+                           return;
+                    }else if(validator.isNull(phoneInput.val()) || !validator.matches(phoneInput.val(),phoneRegex)){
+                           phoneInput.next('.tips').show();
+                           phoneInput.focus();
+                           return;
+                    }else if(validator.isNull(pwdInput.val()) || !validator.isAlphanumeric(pwdInput.val())){
+                           pwdInput.next('.tips').show();
+                           pwdInput.focus();
+                           return;
+                    }
+
                     $.ajax({
-                         url:'user/validate',
-                         type:'post',
-                         data:'email='+$(e).val(),
-                         beforeSend:function(){
-                             $(e).after($('<i class="loading"></i>')); 
-                         },
+                        url:'user/registervalidate',
+                        type:'post',
+                        data:'email='+emailInput.val(),
+                        beforeSend:function(){
+                            emailInput.after($('<i class="loading"></i>')); 
+                        },
                         success:function(re){
-                            $(e).parent().find('.loading').remove();
-                            $(e).nextAll('.tips').hide();
-                            if(re.emailsuccess===1){
-                                $(e).nextAll('.tips2').show();
-                                return false;
-                            }else if(re.emailsuccess===0){
-                                return true;
+                            emailInput.nextAll('.loading').hide(); 
+                            if(re.r===1){
+                                emailInput.nextAll('.tips1').show();
+                                return;
+                            }else if(re.r===0){
+                                $('#reg-form').submit();
                             }
                         }
                     });
-                },
-                name:function(e){
-                     $.ajax({
-                         url:'user/validate',
-                         type:'post',
-                         data:'name='+$(e).val(),
-                         beforeSend:function(){
-                             $(e).after($('<i class="loading"></i>'));
-                         },
-                        success:function(re){
-                           $(e).parent().find('.loading').remove();
-                           $(e).nextAll('.tips').hide();
-                           if(re.namesuccess===2){
-                               $(e).nextAll('.tips3').show();
-                                return false;
-                           }else if(re.namesuccess===1) {
-                               $(e).next('.tips').show();
-                               return false;
-                           }else if(re.namesuccess===0){
-                                return true;
-                           }
-                        }
-                    });
-                },
-                phone:function(e){
-                    $(e).next('.tips').css('display',RegexValidate($(e).val(),phoneRegex)?'none':'inline-block');
-                    if(!RegexValidate($(e).val(),phoneRegex)) return false;
-                    return true;
-                },
-                pwd:function(e){
-                    $(e).next('.tips').css('display',RegexValidate($(e).val(),pwdRegex)?'none':'inline-block');
-                    if(!RegexValidate($(e).val(),pwdRegex)) return false;
-                    return true;
-                }
-            };
-
-            $('.reg-form input').blur(function(){
-                 if($(this).attr('name') === 'uemail'){
-                    validateObj.email($(this));
-                 }else if($(this).attr('name') === 'uname'){
-                    validateObj.name($(this));
-                 }else if($(this).attr('name') === 'uphone'){
-                    validateObj.phone($(this));
-                 }else if($(this).attr('name') === 'upwd'){
-                    validateObj.pwd($(this));
-                 }
             });
-
-            $('.reg-form .act button').click(function(e){
-                if(validateObj.email($('input[name="uemail"]')) && validateObj.name($('input[name="uname"]')) && validateObj.phone($('input[name="uphone"]')) && validateObj.pwd($('input[name="upwd"]'))){
-                    $('.reg-form').submit();
-                }else{
-                    e.preventDefault();
-                }
-            });
-
-        })()
-
+    })()
 </script>
