@@ -27,11 +27,11 @@
 
                 $('.tips').hide();
 
-                if(validator.isNull(nameInput.val())){
+                if(validator.isNull(validator.trim(nameInput.val()))){
                    nameInput.next('.tips').show();
                    nameInput.focus();
                    return;
-                }else if(validator.isNull(pwdInput.val())){
+                }else if(validator.isNull(validator.trim(pwdInput.val()))){
                    pwdInput.next('.tips').show();
                    pwdInput.focus();
                    return;

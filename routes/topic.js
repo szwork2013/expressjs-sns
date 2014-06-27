@@ -75,8 +75,12 @@ router.post('/addreply',function(req,res){
            result.author_name = req.session.user.name;
            result.author_url = req.session.user.url;
            result.avatar_url = req.session.user.avatar_url;
-           var str = req.session.user.avatar_url;
-           result.avatar_url_s = [str.slice(0,str.lastIndexOf('.')),"_s",str.slice(str.lastIndexOf('.'))].join("");
+           if(req.session.user.avatar_url_s){
+               result.avatar_url_s = req.session.user.avatar_url_s;
+           }else{
+               var str = req.session.user.avatar_url;
+               result.avatar_url_s = [str.slice(0,str.lastIndexOf('.')),"_s",str.slice(str.lastIndexOf('.'))].join("");
+           }
             if(!err){
                 res.json(result);
             }

@@ -47,15 +47,15 @@
                            emailInput.next('.tips').show();
                            emailInput.focus();
                            return;
-                    }else if(validator.isNull(nameInput.val())){
+                    }else if(validator.isNull(validator.trim(nameInput.val()))){
                            nameInput.next('.tips').show();
                            nameInput.focus();
                            return;
-                    }else if(validator.isNull(phoneInput.val()) || !validator.matches(phoneInput.val(),phoneRegex)){
+                    }else if(validator.isNull(validator.trim(phoneInput.val())) || !validator.matches(phoneInput.val(),phoneRegex)){
                            phoneInput.next('.tips').show();
                            phoneInput.focus();
                            return;
-                    }else if(validator.isNull(pwdInput.val()) || !validator.isAlphanumeric(pwdInput.val())){
+                    }else if(validator.isNull(validator.trim(pwdInput.val())) || !validator.isAlphanumeric(pwdInput.val())){
                            pwdInput.next('.tips').show();
                            pwdInput.focus();
                            return;

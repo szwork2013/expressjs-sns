@@ -29,10 +29,10 @@
 
                 $('.tips').hide();
 
-                if(validator.isNull(titleInput.val())){
+                if(validator.isNull(validator.trim(titleInput.val()))){
                    titleInput.focus();
                    return;
-                }else if(validator.isNull(contentInput.val())){
+                }else if(validator.isNull(validator.trim(contentInput.val()))){
                    contentInput.focus();
                    return;
                 }else{

@@ -58,16 +58,16 @@ router.post('/saveimgsettings', function(req, res) {
             /*
              *  check floder  
              */
-            var target_floder = process.cwd()+'/public/uploads/'+req.session.user._id;
+            var target_floder = process.cwd()+'/public/assets/'+req.session.user._id;
             if(!fs.existsSync(target_floder)){
                 fs.mkdirSync(target_floder);
             }
             /*
              *  upload avatar
              */
-            var target_url_l =  process.cwd()+'/public/uploads/'+req.session.user._id+'/u'+req.session.user._id+'_l'+path.extname(files.avatar.name);
-            var target_url_s =  process.cwd()+'/public/uploads/'+req.session.user._id+'/u'+req.session.user._id+'_s'+path.extname(files.avatar.name);
-            var save_url =  '/uploads/'+req.session.user._id+'/u'+req.session.user._id+path.extname(files.avatar.name);
+            var save_url_l = '/assets/'+req.session.user._id+'/u'+req.session.user._id+'_l'+path.extname(files.avatar.name);
+            var save_url_s = '/assets/'+req.session.user._id+'/u'+req.session.user._id+'_s'+path.extname(files.avatar.name);
+            var save_url = '/assets/'+req.session.user._id+'/u'+req.session.user._id+path.extname(files.avatar.name);
 
             /*
                fs.rename(files.avatar.path,target_url,function(err){
@@ -90,12 +90,12 @@ router.post('/saveimgsettings', function(req, res) {
                     })
                 },
                 function(callback){
-                    gm(files.avatar.path).resize(100,100,'!').write(target_url_l,function(){
+                    gm(files.avatar.path).resize(100,100,'!').write(process.cwd()+'/public'+save_url_l,function(){
                         callback();
                     })
                 },
                 function(callback){
-                    gm(files.avatar.path).resize(48,48,'!').write(target_url_s,function(){
+                    gm(files.avatar.path).resize(48,48,'!').write(process.cwd()+'/public'+save_url_s,function(){
                         callback();    
                     })
                 }
@@ -103,24 +103,12 @@ router.post('/saveimgsettings', function(req, res) {
                 User.findOneAndUpdate({name:req.session.user.name},{avatar_url:save_url},function(err,user){
                     if(!err){
                         req.session.user.avatar_url = save_url;
+                        req.session.user.avatar_url_s = save_url_s;
+                        req.session.user.avatar_url_l = save_url_l;
                         res.redirect('/user/'+user.url);
                     }
                 });
             });
-
-
-            /*
-            gm(files.avatar.path).resize(100,100,'!').write(target_url_l,function(){
-                gm(files.avatar.path).resize(48,48,'!').write(target_url_s,function(){
-                    User.findOneAndUpdate({name:req.session.user.name},{avatar_url:save_url},function(err,user){
-                        if(!err){
-                            req.session.user.avatar_url = save_url;
-                            res.redirect('/user/'+user.url);
-                        }
-                    });
-                })
-            })
-            */
         }
     });
 });
@@ -148,7 +136,7 @@ User.findOneAndUpdate({name:req.session.user.name,pwd:oldpwd},{
     if(!user || err){
         res.redirect('/error')
     }else{
-        req.session.user.pwd = newpwd; 
+        req.session.user.pwd = newpwd;
         res.redirect('/user/'+user._id);
     }
 });
