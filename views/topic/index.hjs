@@ -3,7 +3,7 @@
     发布日期：{{topic.create_date_format}}
 </div>
 <p class="topic-content">
-    {{topic.content}}
+    {{{topic.content}}}
 </p>
 <p class="meta">
     <a href="#" id="addcollect">收藏</a>

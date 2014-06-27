@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/css/editor/quill.snow.css">
+<script src="/js/quill.min.js"></script>
 <script src="/js/validator.js"></script>
 <form id="new-topic" action="/topic/new" method="post">
     <h1>发布新讨论</h1>
@@ -6,7 +8,15 @@
         <input type="text" name="title" id="new-topic-title" placeholder="标题字数10字以上"/>
     </div>
     <div class="row">
-        <textarea id="new-topic-content" name="content" placeholder="正文"></textarea>
+        <div id="toolbar" class="toolbar ql-toolbar-container">
+            <a href="javascript:void(0);" class="ql-format-button ql-bold"></a>
+            <a href="javascript:void(0);" class="ql-format-button ql-italic"></a>
+            <a href="javascript:void(0);" class="ql-format-button ql-list"></a>
+            <a href="javascript:void(0);" class="ql-format-button ql-bullet"></a>
+            <!--<a href="javascript:void(0);" title="Image" class="ql-format-button ql-image"></a>-->
+        </div>
+        <div id="new-topic-content"></div>
+        <textarea id="hiddeninput" name="content" class="hide"></textarea>
     </div>
 
     <div class="row">
@@ -14,35 +24,40 @@
     </div>
 </form>
 
-<div id="popup">
-    发布成功！
-</div>
+<div id="popup"></div>
 
 <script>
-    (function(){
+(function(){
 
-            var titleInput = $('input[name="title"]'),
-                contentInput = $('textarea[name="content"]');
+        var editor = new Quill('#new-topic-content');
+        editor.addModule('toolbar', { container: '#toolbar'});
+
+        var titleInput = $('input[name="title"]');
 
         $('#new-topic button[type="submit"]').click(function(e){
-                e.preventDefault();
 
-                $('.tips').hide();
+        e.preventDefault();
 
-                if(validator.isNull(validator.trim(titleInput.val()))){
-                   titleInput.focus();
-                   return;
-                }else if(validator.isNull(validator.trim(contentInput.val()))){
-                   contentInput.focus();
-                   return;
-                }else{
-                    $('#popup').spopup({
-                        autoClose:1000,
-                        onClose:function(){
-                            $('#new-topic').submit();
-                        }
-                    });
-                }
+        //$('.tips').hide();
+        $('#hiddeninput').html(editor.getHTML());
+
+        if(validator.isNull(validator.trim(titleInput.val()))){
+            titleInput.focus();
+            return;
+        }else if(validator.isNull(validator.trim(editor.getText()))){
+           $('#popup').html('请输入内容').spopup({
+               autoClose:1000
+           });
+            return;
+        }else{
+           $('#popup').html('发布成功').spopup({
+               autoClose:1000,
+               onClose:function(){
+                   $('#new-topic').submit();
+               }
+           });
+        }
+
         });
-    })()
+})()
 </script>
