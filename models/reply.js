@@ -12,8 +12,7 @@ var Reply = new Schema({
 	create_date: { type: Date, default: Date.now },
 	update_date: { type: Date, default: Date.now },
 	content_is_html: { type: Boolean },
-    up:{ type: Number,default: 0},
-    down:{ type: Number,default: 0}
+    up:{ type: Number,default: 0}
 });
 
 Reply.virtual('create_date_format').get(function(){

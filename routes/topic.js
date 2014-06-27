@@ -88,6 +88,15 @@ router.post('/addreply',function(req,res){
    }); 
 });
 
+//up reply
+router.post('/upreply',function(req,res){
+    Reply.findOneAndUpdate({_id:req.body.reply_id},{$inc:{up:req.body.num}},function(err,reply){
+        if(!err){
+           res.json({r:1,reply_obj:reply});
+        } 
+    }); 
+});
+
 //获取topic页面
 router.get('/:_id', function(req, res, next) {
     if(!req.session.user){

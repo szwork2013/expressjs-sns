@@ -12,7 +12,7 @@
 <h2>留言：</h2>
 <div class="reply-list">
     {{#replys}}
-    <div class="reply-item">
+    <div class="reply-item" rid="{{_id}}">
         <div class="reply-wrapper">
             <div class="user-avatar">
                 <img class="user-avatar" src="{{avatar_url_s}}" />
@@ -23,6 +23,11 @@
                 <div class="reply-content">
                 {{content}}
                 </div>
+            </div>
+            <div class="reply-meta">
+                <span class="reply-up">{{up}}</span>
+                <a class="up" href="javascript:void(0);">up</a>
+                <a class="down" href="javascript:void(0);">down</a>
             </div>
         </div>
     </div>
@@ -41,7 +46,7 @@
 
 <script src="/js/underscore.js"></script>
 <script type="text/template" id="reply-item-temp">
-<div class="reply-item">
+<div class="reply-item" rid="{{_id}}">
         <div class="reply-wrapper">
             <div class="user-avatar">
                 <img class="user-avatar" src="<%= avatar_url_s %>" />
@@ -53,10 +58,14 @@
                 <%= content %>
                 </div>
             </div>
+            <div class="reply-meta">
+                <span class="reply-up"><%= up %></span>
+                <a class="up" href="javascript:void(0);">up</a>
+                <a class="down" href="javascript:void(0);">down</a>
+            </div>
         </div>
     </div>
 </script>
-
 <script>
 
     $('.reply-form button[type="submit"]').click(function(e){
@@ -89,5 +98,18 @@
                 }
             }
         });
+    });
+
+    $('.up,.down').click(function(){
+        var self = this;
+        var num = $(this).hasClass('up')?1:-1;
+        $.ajax({
+            url:'/topic/upreply',
+            data:'reply_id='+$(this).parents('.reply-item').attr('rid')+'&num='+num,
+            method:'post',
+            success:function(re){
+                $(self).prevAll('.reply-up').html(re.reply_obj.up);
+            }
+        })
     });
 </script>
