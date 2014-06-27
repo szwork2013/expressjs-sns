@@ -3,7 +3,7 @@
 <ul class="collect-list">
     {{#collects}}
     <li>
-        <a href="topic/{{topic_id}}">{{topic_title}}</a><span class="del fr" tid="{{topic_id}}">X</span>
+        <a href="topic/{{topic_id}}">{{topic_title}}</a><a href="javascript:void(0);" class="del fr" tid="{{topic_id}}">X</a>
     </li>
     {{/collects}}
 </ul>
