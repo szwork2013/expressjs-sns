@@ -10,7 +10,7 @@
     <a href="#" id="addcollect">收藏</a>
 </p>
 
-<h2>留言：</h2>
+<h2>评论：</h2>
 <div class="reply-list">
     {{#replys}}
     <div class="reply-item" rid="{{_id}}">
@@ -26,6 +26,7 @@
                 </div>
             </div>
             <div class="reply-meta">
+                <a href="javascript:void(0);" class="reply-reply">回复</a>
                 <span class="reply-up">{{up}}</span>
                 <a class="up" href="javascript:void(0);">up</a>
                 <a class="down" href="javascript:void(0);">down</a>
@@ -60,6 +61,7 @@
                 </div>
             </div>
             <div class="reply-meta">
+                <a href="javascript:void(0);" class="reply-reply">回复</a>
                 <span class="reply-up"><%= up %></span>
                 <a class="up" href="javascript:void(0);">up</a>
                 <a class="down" href="javascript:void(0);">down</a>
@@ -68,6 +70,8 @@
     </div>
 </script>
 <script>
+
+        var contentInput = $('#replyContent');
 
         function UpReplyBind(els){
             els.click(function(){
@@ -84,7 +88,14 @@
             });
         }
 
-        var contentInput = $('#replyContent');
+
+        function Replytoreply(els){
+            els.click(function(){
+                contentInput.focus();
+                contentInput.val('@'+$(this).parents('.reply-item').find('.uname a').html()+'，');
+            }); 
+        }
+
 
         $('.reply-form button[type="submit"]').click(function(e){
 
@@ -109,8 +120,8 @@
                $('.reply-list .more').remove();
                var reply_dom = _.template($('#reply-item-temp').html())(re);
                $('.reply-list').append(reply_dom);
-               console.info($('.reply-list .reply-item').last());
                UpReplyBind($('.reply-list .reply-item').last().find('.up,.down'));
+               Replytoreply($('.reply-list .reply-item').last().find('.reply-reply'));
             }
         })
     });
@@ -131,4 +142,8 @@
     });
 
     UpReplyBind($('.reply-item .up,.reply-item .down'));
+
+    Replytoreply($('.reply-item .reply-reply'));
+
+    
 </script>
