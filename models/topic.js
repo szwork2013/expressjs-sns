@@ -1,14 +1,17 @@
 var mongoose = require('mongoose');
 var moment =  require('moment');
 
-var Topic = new mongoose.Schema({
+var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
+
+var Topic = new Schema({
     title:{type:String,required:true},
     content:{type:String,required:true},
-    author_id:{type:mongoose.Schema.Types.ObjectId},
+    author_id:{type:ObjectId},
+    last_reply: { type:ObjectId},
     reply_count: { type: Number, default: 0 },
     visit_count: { type: Number, default: 0 },
-    fav_count: { type: Number, default: 0 },
-    last_reply: { type:mongoose.Schema.Types.ObjectId},
+    fav_count: { type: Number, default:0 },
     content_is_html: { type: Boolean },
     last_reply_date: { type: Date, default: Date.now },
     top: { type: Boolean, default: false },

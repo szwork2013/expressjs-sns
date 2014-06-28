@@ -11,7 +11,6 @@ var Reply = new Schema({
 	author_id: { type: ObjectId },
 	create_date: { type: Date, default: Date.now },
 	update_date: { type: Date, default: Date.now },
-	content_is_html: { type: Boolean },
     up:{ type: Number,default: 0}
 });
 

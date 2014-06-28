@@ -3,9 +3,9 @@
 <div class="topic-tags">
     发布日期：{{topic.create_date_format}}
 </div>
-<p class="topic-content">
-    {{{topic.content}}}
-</p>
+<div class="topic-content">
+{{{topic.content}}}
+</div>
 <p class="meta">
     <a href="#" id="addcollect">收藏</a>
 </p>
