@@ -90,10 +90,19 @@ router.post('/addreply',function(req,res){
 
 //up reply
 router.post('/upreply',function(req,res){
-    Reply.findOneAndUpdate({_id:req.body.reply_id},{$inc:{up:req.body.num}},function(err,reply){
-        if(!err){
-           res.json({r:1,reply_obj:reply});
-        } 
+    Reply.findOne({_id:req.body.reply_id},function(err,reply){
+
+        var isup = reply.uper.some(function (uper) { return uper.uper_id.equals(req.session.user._id);});
+
+        if(!isup){
+            Reply.findOneAndUpdate({_id:reply._id},{$inc:{up:req.body.num},$push:{uper:{uper_id:req.session.user._id}}},function(err,reply_updated){
+                if(!err){
+                   res.json({r:1,reply:reply_updated});
+                } 
+            })
+        }else{
+           res.json({r:0});
+        }
     }); 
 });
 

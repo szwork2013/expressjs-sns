@@ -11,7 +11,8 @@ var Reply = new Schema({
 	author_id: { type: ObjectId },
 	create_date: { type: Date, default: Date.now },
 	update_date: { type: Date, default: Date.now },
-    up:{ type: Number,default: 0}
+    up:{ type: Number,default: 0},
+    uper:[{_id:false,uper_id:ObjectId}]
 });
 
 Reply.virtual('create_date_format').get(function(){

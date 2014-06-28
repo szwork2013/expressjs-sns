@@ -82,7 +82,7 @@
                     data:'reply_id='+$(this).parents('.reply-item').attr('rid')+'&num='+num,
                     method:'post',
                     success:function(re){
-                        $(self).prevAll('.reply-up').html(re.reply_obj.up);
+                        if(re.r===1) $(self).prevAll('.reply-up').html(re.reply.up);
                     }
                 })
             });
