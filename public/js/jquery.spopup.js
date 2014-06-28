@@ -33,8 +33,8 @@
                 'top':o.position[1],
                 'z-index':o.zindex
             });
-            recenter();
             render();
+            recenter();
             resize();
             $spopup.find('.'+o.closeClass).click(function(){
                 close();
@@ -51,7 +51,7 @@
         function recenter(){
             $spopup.css({
                 'left':$(window).width()/2-$spopup.width()/2,
-                'top':o.mtop
+                'top':$(window).scrollTop()+$(window).height()/2-$spopup.height()/2
             })
         }
 
@@ -87,7 +87,6 @@
     }
 
     $.fn.spopup.defaults = {
-        mtop:'30%',
         width:'50%',
         appendTo:'body',
 		speed:250,

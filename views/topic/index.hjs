@@ -1,3 +1,4 @@
+<script src="/js/validator.js"></script>
 <h1>{{topic.title}}</h1>
 <div class="topic-tags">
     发布日期：{{topic.create_date_format}}
@@ -46,7 +47,7 @@
 
 <script src="/js/underscore.js"></script>
 <script type="text/template" id="reply-item-temp">
-<div class="reply-item" rid="{{_id}}">
+<div class="reply-item" rid="<%=_id%>">
         <div class="reply-wrapper">
             <div class="user-avatar">
                 <img class="user-avatar" src="<%= avatar_url_s %>" />
@@ -68,8 +69,34 @@
 </script>
 <script>
 
-    $('.reply-form button[type="submit"]').click(function(e){
+        function UpReplyBind(els){
+            els.click(function(){
+                var self = this;
+                var num = $(this).hasClass('up')?1:-1;
+                $.ajax({
+                    url:'/topic/upreply',
+                    data:'reply_id='+$(this).parents('.reply-item').attr('rid')+'&num='+num,
+                    method:'post',
+                    success:function(re){
+                        $(self).prevAll('.reply-up').html(re.reply_obj.up);
+                    }
+                })
+            });
+        }
+
+        var contentInput = $('#replyContent');
+
+        $('.reply-form button[type="submit"]').click(function(e){
+
         e.preventDefault();
+
+        if(validator.isNull(validator.trim(contentInput.val()))){
+            $('<div id="popup"></div>').html('请填写内容').spopup({
+                autoClose:'1000'
+            });
+            return;
+        }
+
         $.ajax({
             url:'/topic/addreply',
             method:'post',
@@ -80,7 +107,10 @@
             success:function(re){
                $('#replyContent').val('');
                $('.reply-list .more').remove();
-               $('.reply-list').append(_.template($('#reply-item-temp').html())(re));
+               var reply_dom = _.template($('#reply-item-temp').html())(re);
+               $('.reply-list').append(reply_dom);
+               console.info($('.reply-list .reply-item').last());
+               UpReplyBind($('.reply-list .reply-item').last().find('.up,.down'));
             }
         })
     });
@@ -100,16 +130,5 @@
         });
     });
 
-    $('.up,.down').click(function(){
-        var self = this;
-        var num = $(this).hasClass('up')?1:-1;
-        $.ajax({
-            url:'/topic/upreply',
-            data:'reply_id='+$(this).parents('.reply-item').attr('rid')+'&num='+num,
-            method:'post',
-            success:function(re){
-                $(self).prevAll('.reply-up').html(re.reply_obj.up);
-            }
-        })
-    });
+    UpReplyBind($('.reply-item .up,.reply-item .down'));
 </script>
