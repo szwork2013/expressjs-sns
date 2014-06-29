@@ -11,6 +11,7 @@ var partials = require('express-partials');
 var formidable = require('formidable');
 
 var routes = require('./routes/index');
+var channel = require('./routes/channel');
 var about = require('./routes/about');
 var user = require('./routes/user');
 var topic = require('./routes/topic');
@@ -53,6 +54,7 @@ app.locals = {
 };
 
 app.use('/', routes);
+app.use('/channel', channel);
 app.use('/about', about);
 app.use('/user', user);
 app.use('/topic', topic);

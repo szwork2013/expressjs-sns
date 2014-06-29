@@ -8,6 +8,7 @@ var Topic = new Schema({
     title:{type:String,required:true},
     content:{type:String,required:true},
     author_id:{type:ObjectId},
+    channel_id:{type:ObjectId},
     last_reply: { type:ObjectId},
     reply_count: { type: Number, default: 0 },
     visit_count: { type: Number, default: 0 },

@@ -9,13 +9,17 @@
     </div>
     <div class="row">
         <div id="toolbar" class="toolbar ql-toolbar-container">
-            <a href="javascript:void(0);" class="ql-format-button ql-bold"></a>
-            <a href="javascript:void(0);" class="ql-format-button ql-italic"></a>
-            <a href="javascript:void(0);" class="ql-format-button ql-list"></a>
-            <a href="javascript:void(0);" class="ql-format-button ql-bullet"></a>
-            <!--<a href="javascript:void(0);" title="Image" class="ql-format-button ql-image"></a>-->
+            <span title="加粗" class="ql-format-button ql-bold"></span>
+            <span title="斜体" class="ql-format-button ql-italic"></span>
+            <span class="ql-format-separator"></span>
+            <span title="普通列表" class="ql-format-button ql-bullet"></span>
+            <span title="数字列表" class="ql-format-button ql-list"></span>
+            <span class="ql-format-separator"></span>
+            <span title="链接" class="ql-format-button ql-link"></span>
+            <span title="插入图片" class="ql-format-button ql-image"></span>
         </div>
         <div id="new-topic-content"></div>
+        <input type="file" class="hide" id="uploadimg" name="uploadimg" multiple="multiple" />
         <textarea id="hiddeninput" name="content" class="hide"></textarea>
     </div>
 
@@ -29,8 +33,13 @@
 <script>
 (function(){
 
-        var editor = new Quill('#new-topic-content');
-        editor.addModule('toolbar', { container: '#toolbar'});
+        var editor = new Quill('#new-topic-content',{
+            modules: {
+              'toolbar': { container: '#toolbar' },
+              'image-tooltip': true,
+              'link-tooltip': true
+            }
+        });
 
         var titleInput = $('input[name="title"]');
 
@@ -45,9 +54,7 @@
             titleInput.focus();
             return;
         }else if(validator.isNull(validator.trim(editor.getText()))){
-           $('#popup').html('请输入内容').spopup({
-               autoClose:1000
-           });
+            editor.focus();
             return;
         }else{
            $('#popup').html('发布成功').spopup({

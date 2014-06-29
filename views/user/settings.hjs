@@ -2,7 +2,7 @@
 <div class="settings">
 
     <h2>修改基础信息</h2>
-    <form action="/user/savebasesettings" method="post">
+    <form action="/user/savebasesettings" method="post" id="base-form">
         <div class="row">
             <label for="uname">昵称</label>
             <input type="text" name="uname" id="uname" value="{{user.name}}">
@@ -26,7 +26,7 @@
     </form>
 
     <h2>修改密码</h2>
-    <form action="/user/savepwdsettings" method="post">
+    <form action="/user/savepwdsettings" method="post" id="changepwd-form">
         <div class="row">
             <label for="oldupwd">旧密码</label>
             <input type="password" name="oldupwd" id="oldupwd" value="">
@@ -41,10 +41,11 @@
     </form>
 
     <h2>修改头像</h2>
-    <form action="/user/saveimgsettings" enctype="multipart/form-data" method="post">
+    <form action="/user/saveimgsettings" enctype="multipart/form-data" method="post" id="uploadimg-form">
         <div class="row">
-            <label>上传头像</label>
-            <input name="avatar" type="file" accept="image/*" id="take-avatar"></input>
+            <button type="button" class="up-trigger">修改头像</button>
+            <input name="avatar" type="file" accept="image/*" id="take-avatar" class="hide"></input>
+            <img id="show-avatar" src="{{user.avatar_url_l}}" alt="" />
         </div>
         <div class="row">
             <button type="submit">提交</button>
@@ -56,6 +57,11 @@
 <script>
     (function(){
 
+        $('#uploadimg-form .up-trigger').click(function(){
+            $('#take-avatar').click()
+        });
+        
+
         //upload avatar 
         $('#take-avatar').change(function(e){
             var files = e.target.files;
@@ -63,8 +69,8 @@
                 file = files[0];
                 var fileReader = new FileReader();
                 fileReader.onload = function (event) {
-                    
-                $('#take-avatar').after($('<img id="show-avatar">').attr('src',event.target.result));
+                console.info(event.target.result);
+                    $('#show-avatar').attr('src',event.target.result);
                 };
                 fileReader.readAsDataURL(file);
             }
