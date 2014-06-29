@@ -1,5 +1,5 @@
 <div class="row clearfix">
-    <a href="/topic/new" class="new-post-btn">发布新话题</a>
+    <a href="{{channel_url}}/new" class="new-post-btn">发布新话题</a>
 </div>
 
 <div class="row">

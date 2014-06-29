@@ -42,6 +42,7 @@ router.get('/new', function(req, res) {
 });
 
 //提交添加topic
+/*
 router.post('/new', function(req, res) {
    new Topic({
        title:req.body.title,
@@ -53,6 +54,7 @@ router.post('/new', function(req, res) {
         }
    }); 
 });
+*/
 
 //获取topic留言
 router.get('/getallreply',function(req,res){

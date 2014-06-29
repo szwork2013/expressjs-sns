@@ -1,0 +1,7 @@
+<ul>
+{{#channels}}
+    <li>
+        <a href="/channel/{{url}}">{{name}}</a> 
+    </li>
+{{/channels}}
+</ul>

@@ -35,7 +35,6 @@ router.get('/add', function(req, res){
 });
 
 router.post('/add', function(req, res){
-    console.info(req.body.cname,req.body.crul);
     new Channel({
         name:req.body.cname, 
         url:req.body.curl
@@ -62,10 +61,33 @@ router.get('/:url', function(req, res) {
              });
          },function(err){
             res.render('list', {
-                topics:n_topics
+                topics:n_topics,
+                channel_url:req.params.url
             });
          });
     });
 });
+
+router.get('/:url/new', function(req, res) {
+    res.render('topic/new',{
+        channel_url:req.params.url 
+    });
+});
+
+router.post('/:url/new', function(req, res) {
+    Channel.findOne({url:req.params.url},function(err,channel){
+       new Topic({
+           title:req.body.title,
+           content:req.body.content,
+           author_id:req.session.user._id,
+           channel_id:channel._id
+       }).save(function(err){
+            if(!err){
+                res.redirect('/channel/'+channel.url);
+            }
+       }); 
+    })
+});
+
 
 module.exports = router;
