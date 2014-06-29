@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 var moment =  require('moment');
 
+var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
+
 var User = new mongoose.Schema({
 
     name : {type:String,required:true},
@@ -14,18 +17,14 @@ var User = new mongoose.Schema({
     actived:Boolean,
 
     score:{type:Number,default:0},
-    level:{type:Number,default:1},
 
-    topic_count:{type:Number,default:0},
-    reply_count:{type:Number,default:0},
-
-    follower_count:{type:Number,default:0},
-    following_count:{type:Number,default:0},
+    follower:[{_id:false,user_id:ObjectId}],
+    following:[{_id:false,user_id:ObjectId}],
 
     create_date: { type: Date, default: Date.now },
     update_date: { type: Date, default: Date.now },
 
-    avatar_url: { type: String,default: '/img/1.jpg'}
+    avatar_url: { type: String,default: '/img/avatar_default.jpg'}
 
 });
 

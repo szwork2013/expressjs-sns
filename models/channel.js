@@ -6,6 +6,8 @@ var ObjectId = Schema.ObjectId;
 
 var ChannelSchema = new Schema({
     name: {type:String,required:true},
+    url: {type:String,required:true},
+    desc:{type:String},
     parent_id:{type:ObjectId},
     create_date: { type: Date, default: Date.now }
 });

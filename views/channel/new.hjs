@@ -1,0 +1,16 @@
+<form action="/channel/add" method="post">
+
+    <div class="row">
+        <label for="channel-name">名称</label>
+        <input type="text" name="cname" id="channel-name" />
+    </div>
+
+    <div class="row">
+        <label for="channel-url">url</label>
+        <input type="text" name="curl" id="channel-url" />
+    </div>
+
+    <div class="row">
+        <button type="submit">提交</button>
+    </div>
+</form>
