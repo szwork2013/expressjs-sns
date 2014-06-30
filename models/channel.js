@@ -8,6 +8,7 @@ var ChannelSchema = new Schema({
     name: {type:String,required:true},
     url: {type:String,required:true},
     desc:{type:String},
+    topic_count:{type:Number},
     parent_id:{type:ObjectId},
     create_date: { type: Date, default: Date.now }
 });

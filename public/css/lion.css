@@ -7,7 +7,7 @@
  * @Author sp
  */
 html {
-  font: 12px/1.5 "Microsoft Yahei"; }
+  font: 12px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 body {
   margin: 0;
@@ -802,6 +802,10 @@ footer {
   background: #fff;
   display: none; }
 
+.more-trigger {
+  text-align: center;
+  cursor: pointer; }
+
 .more {
   height: 32px;
   padding: 0;
@@ -820,6 +824,12 @@ i.loading {
   height: 20px;
   display: inline-block;
   background: url(../img/s_loading.gif) no-repeat center center; }
+
+.pager {
+  text-align: center; }
+  .pager .pager-wrapper li {
+    float: left;
+    margin-right: 10px; }
 
 .message-list li {
   padding: 10px 0; }

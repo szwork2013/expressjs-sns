@@ -12,8 +12,8 @@ var User = new mongoose.Schema({
     pwd : {type:String,required:true},
     phone:{type:String,required:true},
 
-    img_url:String,
     signature : String,
+    desc : String,
     actived:Boolean,
 
     score:{type:Number,default:0},

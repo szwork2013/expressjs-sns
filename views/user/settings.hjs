@@ -20,6 +20,10 @@
         </div>
 
         <div class="row">
+            <label for="usign">签名</label>
+            <input type="text" name="usign" id="usign" value="{{user.signature}}">
+        </div>
+        <div class="row">
             <button type="submit">提交</button>
         </div>
 

@@ -266,6 +266,10 @@ footer{
     display:none;
 }
 //loading
+.more-trigger{
+    text-align:center;
+    cursor:pointer;
+}
 .more{
     height:32px;
     padding:0;
@@ -285,6 +289,21 @@ i.loading{
     display:inline-block;
     background:url(../img/s_loading.gif) no-repeat center center; 
 }
+
+//pager
+
+.pager{
+    text-align:center;
+    .pager-wrapper{
+        li{
+            float:left; 
+            margin-right:10px;
+        }    
+    }
+}
+
+
+
 //message
 .message-list{
     li{

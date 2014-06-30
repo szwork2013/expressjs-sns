@@ -117,11 +117,13 @@ router.post('/savebasesettings', function(req, res) {
     var newname = req.body.uname,
     newemail = req.body.uemail,
     newurl = req.body.uurl;
-User.findOneAndUpdate({name:req.session.user.name},{name:newname,email:newemail,url:newurl},function(err,user){
+    newsign = req.body.usign;
+User.findOneAndUpdate({name:req.session.user.name},{name:newname,email:newemail,url:newurl,signature:newsign},function(err,user){
     if(!err){
         req.session.user.name = newname; 
         req.session.user.email = newemail; 
-        req.session.user.url = newurl; 
+        req.session.user.url = newurl;
+        req.session.user.signature = newsign;
         res.redirect('/user/'+newurl);
     }
 });

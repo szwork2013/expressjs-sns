@@ -1,34 +1,51 @@
+<h1>{{channel.name}}</h1>
 <div class="row clearfix">
-    <a href="{{channel_url}}/new" class="new-post-btn">发布新话题</a>
+    <a href="{{channel.url}}/new" class="new-post-btn">发布新话题</a>
 </div>
 
 <div class="row">
     <ul class="topic-list">
         {{#topics}}
         <li>
-            <h2><a href="/topic/{{_id}}">{{title}}</a></h2>
-            <p>
-                <img src="{{author_avatar_url}}" alt="">
-                发表自<a href="/user/{{author_url}}">{{author_name}}</a>
-                在 
-                {{create_date_format}}
-            </p>
-            <p>
-            {{reply_count}}/{{visit_count}}
-            </p>
+        <h2><a href="/topic/{{_id}}">{{title}}</a></h2>
+        <p>
+        <img src="{{author_avatar_url}}" alt="">
+        发表自<a href="/user/{{author_url}}">{{author_name}}</a>
+        在 
+        {{create_date_format}}
+        </p>
+        <p>
+        {{reply_count}}/{{visit_count}}
+        </p>
         </li>
         {{/topics}}
+        <li class="more-trigger">加载更多</li>
+        <li class="more" style="display:none;"></li>
+    </ul>
+</div>
+
+<div class="pager row">
+    <ul class="pager-wrapper">
+        <li><a href="/channel/{{channel.url}}/{{page_num}}/prev">&laquo;</a></li>
+        <li><a href="/channel/{{channel.url}}/1">1</a></li>
+        <li><a href="/channel/{{channel.url}}/2">2</a></li>
+        <li><a href="/channel/{{channel.url}}/3">3</a></li>
+        <li><a href="/channel/{{channel.url}}/4">4</a></li>
+        <li><a href="/channel/{{channel.url}}/5">5</a></li>
+        <li><a href="/channel/{{channel.url}}/{{page_num}}/next">&raquo;</a></li>
     </ul>
 </div>
 
 <script>
-    (function (){
-        $(window).scroll(function(e){
-            if($(this).scrollTop()>$('footer').offset().top-$(window).height()+80){
-                if($('.topic-list .more').length === 0){
-                    $('<li class="more"></li>').appendTo($('.topic-list')); 
-                }
+(function (){
+     $('.more-trigger').click(function(){
+        $('.more').show();
+        $.ajax({
+            url:'{channel.url}}/2/',
+            success:function(re){
+                $('.more').hide();
             }
         });
-    })() 
+    });
+ })() 
 </script>

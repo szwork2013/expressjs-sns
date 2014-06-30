@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/css/editor/quill.snow.css">
 <script src="/js/quill.min.js"></script>
 <script src="/js/validator.js"></script>
+<script src="/js/xss.js"></script>
 <form id="new-topic" action="/channel/{{channel_url}}/new" method="post">
     <h1>发布新讨论</h1>
 
@@ -47,8 +48,7 @@
 
         e.preventDefault();
 
-        //$('.tips').hide();
-        $('#hiddeninput').html(editor.getHTML());
+        $('#hiddeninput').text(filterXSS(editor.getHTML()));
 
         if(validator.isNull(validator.trim(titleInput.val()))){
             titleInput.focus();
