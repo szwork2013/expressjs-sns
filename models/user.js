@@ -44,4 +44,7 @@ User.virtual('avatar_url_l').get(function(){
     var str = this.avatar_url;
     return [str.slice(0,str.lastIndexOf('.')),"_l",str.slice(str.lastIndexOf('.'))].join("");
 });
+
+User.index({email: 1}, {unique: true});
+
 var UserModel = mongoose.model('User',User);

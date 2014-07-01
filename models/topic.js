@@ -27,4 +27,7 @@ Topic.virtual('update_date_format').get(function(){
     return moment(this.update_date).format('YYYY-MM-DD HH:mm');
 });
 
+
+Topic.index({create_date:-1});
+
 var TopicModel = mongoose.model('Topic',Topic);
