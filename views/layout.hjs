@@ -9,6 +9,7 @@
 {{/title}}
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <link rel="stylesheet" href="/css/lion.css" />
+<link href="/css/font-awesome.min.css" rel="stylesheet">
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.spopup.js"></script>
 </head>
@@ -22,6 +23,7 @@
 
         <form action="/search" class="fl search-form">
             <input type="text" id-"q" name="q" class="search" placeholder="避震" />
+            <i class="fa fa-search"></i>
             <button type="submit">搜索</button>
         </form>
 

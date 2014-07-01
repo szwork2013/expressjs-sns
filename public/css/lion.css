@@ -475,8 +475,14 @@ textarea {
     .nav a:hover {
       text-decoration: none; }
   .nav .search-form {
+    position: relative;
     width: 50%;
     margin-left: 2%; }
+    .nav .search-form .fa-search {
+      position: absolute;
+      right: 40%;
+      color: #000;
+      top: 20px; }
     .nav .search-form .search {
       display: inline-block;
       width: 60%;

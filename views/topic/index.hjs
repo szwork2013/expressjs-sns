@@ -99,51 +99,51 @@
 
         $('.reply-form button[type="submit"]').click(function(e){
 
-        e.preventDefault();
+            e.preventDefault();
 
-        if(validator.isNull(validator.trim(contentInput.val()))){
-            $('<div id="popup"></div>').html('请填写内容').spopup({
-                autoClose:'1000'
-            });
-            return;
-        }
-
-        $.ajax({
-            url:'/topic/addreply',
-            method:'post',
-            data:$('.reply-form').serialize()+'&topic_id={{topic._id}}',
-            beforeSend:function(){
-                    $('<div class="more"></div>').appendTo($('.reply-list')); 
-            },
-            success:function(re){
-               $('#replyContent').val('');
-               $('.reply-list .more').remove();
-               var reply_dom = _.template($('#reply-item-temp').html())(re);
-               $('.reply-list').append(reply_dom);
-               UpReplyBind($('.reply-list .reply-item').last().find('.up,.down'));
-               Replytoreply($('.reply-list .reply-item').last().find('.reply-reply'));
+            if(validator.isNull(validator.trim(contentInput.val()))){
+                $('<div id="popup"></div>').html('请填写内容').spopup({
+                    autoClose:'1000'
+                });
+                return;
             }
-        })
-    });
 
-    $('#addcollect').click(function(){
-        $.ajax({
-            url:'/collect/new',
-            data:'topic_id={{topic._id}}',
-            method:'post',
-            success:function(re){
-                if(re.s === 1){
-                    alert('收藏成功');
-                }else if(re.s===2){
-                    alert('已经收藏');
+            $.ajax({
+                url:'/topic/addreply',
+                method:'post',
+                data:$('.reply-form').serialize()+'&topic_id={{topic._id}}',
+                beforeSend:function(){
+                        $('<div class="more"></div>').appendTo($('.reply-list')); 
+                },
+                success:function(re){
+                   $('#replyContent').val('');
+                   $('.reply-list .more').remove();
+                   var reply_dom = _.template($('#reply-item-temp').html())(re);
+                   $('.reply-list').append(reply_dom);
+                   UpReplyBind($('.reply-list .reply-item').last().find('.up,.down'));
+                   Replytoreply($('.reply-list .reply-item').last().find('.reply-reply'));
                 }
-            }
+            })
         });
-    });
 
-    UpReplyBind($('.reply-item .up,.reply-item .down'));
+        $('#addcollect').click(function(){
+            $.ajax({
+                url:'/collect/new',
+                data:'topic_id={{topic._id}}',
+                method:'post',
+                success:function(re){
+                    if(re.s === 1){
+                        alert('收藏成功');
+                    }else if(re.s===2){
+                        alert('已经收藏');
+                    }
+                }
+            });
+        });
 
-    Replytoreply($('.reply-item .reply-reply'));
+        UpReplyBind($('.reply-item .up,.reply-item .down'));
+
+        Replytoreply($('.reply-item .reply-reply'));
 
     
 </script>

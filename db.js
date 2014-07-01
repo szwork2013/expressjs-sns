@@ -7,3 +7,4 @@ require('./models/reply');
 require('./models/message');
 require('./models/collect');
 require('./models/channel');
+require('./models/relation');

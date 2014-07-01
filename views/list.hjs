@@ -1,6 +1,6 @@
 <h1>{{channel.name}}</h1>
 <div class="row clearfix">
-    <a href="{{channel.url}}/new" class="new-post-btn">发布新话题</a>
+    <a href="/channel/{{channel.url}}/new" class="new-post-btn">发布新话题</a>
 </div>
 
 <div class="row">
@@ -24,17 +24,21 @@
     </ul>
 </div>
 
+{{#pager}}
 <div class="pager row">
     <ul class="pager-wrapper">
-        <li><a href="/channel/{{channel.url}}/{{page_num}}/prev">&laquo;</a></li>
-        <li><a href="/channel/{{channel.url}}/1">1</a></li>
-        <li><a href="/channel/{{channel.url}}/2">2</a></li>
-        <li><a href="/channel/{{channel.url}}/3">3</a></li>
-        <li><a href="/channel/{{channel.url}}/4">4</a></li>
-        <li><a href="/channel/{{channel.url}}/5">5</a></li>
-        <li><a href="/channel/{{channel.url}}/{{page_num}}/next">&raquo;</a></li>
+        {{#prev}}
+            <li><a href="/channel/{{channel.url}}/{{prev}}">&laquo;</a></li>
+        {{/prev}}
+        {{#pager.pagenums}}
+        <li><a href="/channel/{{channel.url}}/{{num}}">{{num}}</a></li> 
+        {{/pager.pagenums}}
+        {{#next}}
+        <li><a href="/channel/{{channel.url}}/{{next}}">&raquo;</a></li>
+        {{/next}}
     </ul>
 </div>
+{{/pager}}
 
 <script>
 (function (){

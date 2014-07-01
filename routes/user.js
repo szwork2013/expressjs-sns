@@ -100,7 +100,7 @@ router.post('/saveimgsettings', function(req, res) {
                     })
                 }
             ],function(){
-                User.findOneAndUpdate({name:req.session.user.name},{avatar_url:save_url},function(err,user){
+                User.findOneAndUpdate({_id:req.session.user._id},{avatar_url:save_url},function(err,user){
                     if(!err){
                         req.session.user.avatar_url = save_url;
                         req.session.user.avatar_url_s = save_url_s;
@@ -118,7 +118,7 @@ router.post('/savebasesettings', function(req, res) {
     newemail = req.body.uemail,
     newurl = req.body.uurl;
     newsign = req.body.usign;
-User.findOneAndUpdate({name:req.session.user.name},{name:newname,email:newemail,url:newurl,signature:newsign},function(err,user){
+User.findOneAndUpdate({_id:req.session.user._id},{name:newname,email:newemail,url:newurl,signature:newsign},function(err,user){
     if(!err){
         req.session.user.name = newname; 
         req.session.user.email = newemail; 
@@ -132,14 +132,13 @@ User.findOneAndUpdate({name:req.session.user.name},{name:newname,email:newemail,
 router.post('/savepwdsettings', function(req, res) {
     var newpwd = req.body.newupwd,
     oldpwd = req.body.oldupwd;
-User.findOneAndUpdate({name:req.session.user.name,pwd:oldpwd},{
-    pwd:newpwd
+User.findOneAndUpdate({_id:req.session.user._id,pwd:oldpwd},{
 },function(err,user){
     if(!user || err){
         res.redirect('/error')
     }else{
         req.session.user.pwd = newpwd;
-        res.redirect('/user/'+user._id);
+        res.redirect('/user/'+user.url);
     }
 });
 });
@@ -200,6 +199,7 @@ router.post('/login', function(req, res) {
 });
 
 router.get('/:url', function(req, res) {
+    console.info(req.session.user);
     if(req.session.user){
         User.findOne({url:req.params.url},function(err,user){
             if(!user){

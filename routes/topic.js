@@ -30,32 +30,6 @@ function GetAllreplyById(id,cb){
         });
 }
 
-//获取添加topic页面
-router.get('/new', function(req, res) {
-    if(!req.session.user){
-        res.redirect('/login');
-    }else{
-        res.render('topic/new', { 
-            title: '新话题'
-        });
-    }
-});
-
-//提交添加topic
-/*
-router.post('/new', function(req, res) {
-   new Topic({
-       title:req.body.title,
-       content:req.body.content,
-       author_id:req.session.user._id
-   }).save(function(err){
-        if(!err){
-            res.redirect('/');
-        }
-   }); 
-});
-*/
-
 //获取topic留言
 router.get('/getallreply',function(req,res){
     GetAllreplyById(req.query.topic_id,function(replys){
@@ -71,21 +45,23 @@ router.post('/addreply',function(req,res){
        topic_id:req.body.topic_id,
        author_id:req.session.user._id
    }).save(function(err,reply){
-       Topic.findOneAndUpdate({_id:req.body.topic_id},{$inc:{reply_count:1}},function(err,topic){
-           var result = reply.toObject();
-           result.create_date_format = reply.create_date_format;
-           result.author_name = req.session.user.name;
-           result.author_url = req.session.user.url;
-           result.avatar_url = req.session.user.avatar_url;
-           if(req.session.user.avatar_url_s){
-               result.avatar_url_s = req.session.user.avatar_url_s;
-           }else{
-               var str = req.session.user.avatar_url;
-               result.avatar_url_s = [str.slice(0,str.lastIndexOf('.')),"_s",str.slice(str.lastIndexOf('.'))].join("");
-           }
-            if(!err){
-                res.json(result);
-            }
+        User.findOneAndUpdate({_id:req.session.user._id},{$inc:{score:1}},function(){
+           Topic.findOneAndUpdate({_id:req.body.topic_id},{$inc:{reply_count:1}},function(err,topic){
+               var result = reply.toObject();
+               result.create_date_format = reply.create_date_format;
+               result.author_name = req.session.user.name;
+               result.author_url = req.session.user.url;
+               result.avatar_url = req.session.user.avatar_url;
+               if(req.session.user.avatar_url_s){
+                   result.avatar_url_s = req.session.user.avatar_url_s;
+               }else{
+                   var str = req.session.user.avatar_url;
+                   result.avatar_url_s = [str.slice(0,str.lastIndexOf('.')),"_s",str.slice(str.lastIndexOf('.'))].join("");
+               }
+                if(!err){
+                    res.json(result);
+                }
+           })
        })
    }); 
 });
@@ -118,7 +94,6 @@ router.get('/:_id', function(req, res, next) {
             if(topic){
                 GetAllreplyById(topic.id,function(replys){
                     res.render('topic/index',{
-                        title:topic.title,
                         topic:topic,
                         replys:replys
                     })

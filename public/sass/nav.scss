@@ -29,6 +29,13 @@ $nav-link-color:$global-color;
         }
     }
     .search-form{
+        position:relative;
+        .fa-search{
+            position:absolute; 
+            right:40%;
+            color:#000;
+            top:20px;
+        }
         width:50%;
         margin-left:2%;
         .search{
