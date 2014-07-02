@@ -1,4 +1,3 @@
-<script src="/js/validator.js"></script>
 <div class="settings">
 
     <h2>修改基础信息</h2>
@@ -87,4 +86,21 @@
 
 
     })()
+
+
+    $script('/js/validator.js',function(){
+
+            $('#base-form button[type=submit]').click(function(e){
+                e.preventDefault();
+            });
+
+            $('#changepwd-form button[type=submit]').click(function(e){
+                e.preventDefault();
+            });
+
+            $('#uploadimg-form button[type=submit]').click(function(e){
+                e.preventDefault();
+            });
+    });
+
 </script>

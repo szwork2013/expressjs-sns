@@ -1,44 +1,61 @@
-<h1>{{channel.name}}</h1>
-<div class="row clearfix">
-    <a href="/channel/{{channel.url}}/new" class="new-post-btn">发布新话题</a>
+<div class="content">
+    <h1>{{channel.name}}</h1>
+    <div class="row clearfix">
+        <a href="/channel/{{channel.url}}/new" class="new-post-btn">发布新话题</a>
+    </div>
+
+    <div class="row">
+        <ul class="topic-list">
+            {{#topics}}
+            <li>
+            <span>
+                <img src="{{author_avatar_url}}" alt="">
+            </span>
+            <span>
+                <h2><a href="/topic/{{_id}}">{{title}}</a></h2>
+            </span>
+            <span>
+                发表自<a href="/user/{{author_url}}">{{author_name}}</a>于{{create_date_format}}
+            </span>
+            <span class="fr">
+            {{reply_count}}/{{visit_count}}
+            </span>
+            </li>
+            {{/topics}}
+            <li class="more-trigger">加载更多</li>
+            <li class="more" style="display:none;"><i class="fa fa-refresh fa-spin"></i></li>
+        </ul>
+    </div>
+
+    {{#pager}}
+    <div class="pager row">
+        <ul class="pager-wrapper">
+            {{#prev}}
+                <li><a href="/channel/{{channel.url}}/{{prev}}">&laquo;</a></li>
+            {{/prev}}
+            {{#pager.pagenums}}
+            <li><a href="/channel/{{channel.url}}/{{num}}">{{num}}</a></li> 
+            {{/pager.pagenums}}
+            {{#next}}
+            <li><a href="/channel/{{channel.url}}/{{next}}">&raquo;</a></li>
+            {{/next}}
+        </ul>
+    </div>
+    {{/pager}}
 </div>
 
-<div class="row">
-    <ul class="topic-list">
-        {{#topics}}
-        <li>
-        <h2><a href="/topic/{{_id}}">{{title}}</a></h2>
-        <p>
-        <img src="{{author_avatar_url}}" alt="">
-        发表自<a href="/user/{{author_url}}">{{author_name}}</a>
-        在 
-        {{create_date_format}}
-        </p>
-        <p>
-        {{reply_count}}/{{visit_count}}
-        </p>
-        </li>
-        {{/topics}}
-        <li class="more-trigger">加载更多</li>
-        <li class="more" style="display:none;"><i class="fa fa-refresh fa-spin"></i></li>
-    </ul>
-</div>
+<div class="sidebar">
+    <div class="mod ad">
+        <a href="/about/contact"><img src="http://cdn.ifanr.cn/wp-content/uploads/2014/06/IXDCifanr-02.jpg" alt=""></a>
+    </div>
 
-{{#pager}}
-<div class="pager row">
-    <ul class="pager-wrapper">
-        {{#prev}}
-            <li><a href="/channel/{{channel.url}}/{{prev}}">&laquo;</a></li>
-        {{/prev}}
-        {{#pager.pagenums}}
-        <li><a href="/channel/{{channel.url}}/{{num}}">{{num}}</a></li> 
-        {{/pager.pagenums}}
-        {{#next}}
-        <li><a href="/channel/{{channel.url}}/{{next}}">&raquo;</a></li>
-        {{/next}}
-    </ul>
+
+    <div class="mod histroy">
+        <ul>
+            <li>213213</li>
+        </ul>
+    </div>
 </div>
-{{/pager}}
 
 <script>
 (function (){

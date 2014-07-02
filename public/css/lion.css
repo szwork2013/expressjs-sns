@@ -569,6 +569,22 @@ footer {
     .main .main-wrapper:after {
       clear: both; }
 
+.content {
+  float: left;
+  width: 680px;
+  padding: 10px; }
+
+.sidebar {
+  width: 280px;
+  padding: 10px;
+  float: left; }
+  .sidebar .mod {
+    margin: 20px 0; }
+  .sidebar .ad {
+    width: 100%; }
+    .sidebar .ad img {
+      max-width: 100%; }
+
 .new-post-btn {
   display: inline-block;
   height: 40px;
@@ -595,7 +611,6 @@ footer {
   .topic-list li {
     border-bottom: 1px solid #e8e8e8;
     position: relative;
-    width: 100%;
     padding: 10px; }
     .topic-list li h2 {
       margin: 0; }

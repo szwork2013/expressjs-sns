@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/css/lion.css" />
 <link href="/css/font-awesome.min.css" rel="stylesheet">
 <script src="/js/jquery.min.js"></script>
-<script src="/js/jquery.spopup.js"></script>
+<script src="/js/script.js"></script>
 </head>
 <body>
 <header class="nav">
@@ -24,7 +24,7 @@
         <form action="/search" class="fl search-form">
             <input type="text" id-"q" name="q" class="search" placeholder="避震" />
             <i class="fa fa-search"></i>
-            <button type="submit">搜索</button>
+            <!--<button type="submit">搜索</button>-->
         </form>
 
         <ul class="menu">
@@ -61,7 +61,7 @@
     </ul>
 </footer>
 <script>
-    //alert($(window).width())
+    $script('/js/jquery.spopup.js');
 </script>
 </body>
 </html>

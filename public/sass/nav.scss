@@ -87,3 +87,29 @@ $nav-link-color:$global-color;
         }
     }
 }
+
+footer{
+    color:#999;
+    a{
+        color:#999;
+        &:hover{
+            color:#666; 
+        }
+    }
+    padding:20px;
+    border-top:1px solid #e5e5e5;
+    height:30px;
+    line-height:30px;
+    p{
+        display:inline-block; 
+    }
+    .ft-meta{
+        margin-left:10px;
+        vertical-align:middle;
+        display:inline-block; 
+        li{
+            float:left; 
+            margin-right:10px;
+        } 
+    }
+}

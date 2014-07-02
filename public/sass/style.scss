@@ -1,32 +1,6 @@
 @import "functions.scss";
 @import "animate.scss";
 
-footer{
-    color:#999;
-    a{
-        color:#999;
-        &:hover{
-            color:#666; 
-        }
-    }
-    padding:20px;
-    border-top:1px solid #e5e5e5;
-    height:30px;
-    line-height:30px;
-    p{
-        display:inline-block; 
-    }
-    .ft-meta{
-        margin-left:10px;
-        vertical-align:middle;
-        display:inline-block; 
-        li{
-            float:left; 
-            margin-right:10px;
-        } 
-    }
-}
-
 .main{
     width:100%;
     padding:20px 0;
@@ -39,6 +13,28 @@ footer{
         color:#666;
     }
 }
+
+.content{
+    float:left;
+    width:680px;
+    padding:10px;
+}
+.sidebar{
+    width:280px;
+    padding:10px;
+    float:left;
+    .mod{
+        margin:20px 0; 
+    }
+    .ad{
+        width:100%; 
+        img{
+            max-width:100%; 
+        }
+    }
+}
+
+
 //index
 .new-post-btn{
     display:inline-block;
@@ -63,7 +59,6 @@ footer{
     li{
         border-bottom:1px solid #e8e8e8;
         position:relative;
-        width:100%;
         padding:10px;
         h2{
             margin:0;

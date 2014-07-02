@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/css/editor/quill.snow.css">
-<script src="/js/quill.min.js"></script>
+<!--<script src="/js/quill.min.js"></script>
 <script src="/js/validator.js"></script>
-<script src="/js/xss.js"></script>
+<script src="/js/xss.js"></script>-->
 <form id="new-topic" action="/channel/{{channel_url}}/new" method="post">
     <h1>发布新讨论</h1>
 
@@ -20,19 +20,19 @@
             <span title="插入图片" class="ql-format-button ql-image"></span>
         </div>
         <div id="new-topic-content"></div>
-        <input type="file" class="hide" id="uploadimg" name="uploadimg" multiple="multiple" />
         <textarea id="hiddeninput" name="content" class="hide"></textarea>
     </div>
 
     <div class="row">
         <button type="submit">提交</button>
+        <span id="auto-save" style="display:none;"><i class="fa fa-refresh fa-spin" style="margin-right:5px;"></i>自动保存中...</span>
     </div>
 </form>
 
 <div id="popup"></div>
 
 <script>
-(function(){
+$script(['/js/quill.min.js','/js/validator.js','/js/xss.js'],function(){
 
         var editor = new Quill('#new-topic-content',{
             modules: {
@@ -47,11 +47,14 @@
         //timer for save
         if(window.localStorage){
             var timersave = setInterval(function(){
+                localStorage.setItem('temptitle',titleInput.val());
                 localStorage.setItem('tempcontent',editor.getHTML());
-            },3000);
+                $('#auto-save').fadeIn().delay(2000).fadeOut();
+            },6000);
         }
 
-        if(localStorage.getItem('tempcontent')){
+        if(localStorage.getItem('temptitle') || localStorage.getItem('tempcontent')){
+            titleInput.val(localStorage.getItem('temptitle'));
             editor.setHTML(localStorage.getItem('tempcontent'));
         } 
 
@@ -71,11 +74,15 @@
                $('#popup').html('发布成功').spopup({
                    autoClose:1000,
                    onClose:function(){
+                       if(localStorage.getItem('temptitle') || localStorage.getItem('tempcontent')){
+                           localStorage.setItem('temptitle','');
+                           localStorage.setItem('tempcontent','');
+                       }
                        $('#new-topic').submit();
                    }
                });
             }
 
         });
-})()
+});
 </script>
