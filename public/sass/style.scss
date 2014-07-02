@@ -2,6 +2,13 @@
 @import "animate.scss";
 
 footer{
+    color:#999;
+    a{
+        color:#999;
+        &:hover{
+            color:#666; 
+        }
+    }
     padding:20px;
     border-top:1px solid #e5e5e5;
     height:30px;
@@ -154,6 +161,7 @@ footer{
 }
 
 .reg-form,.login-form{
+    font-size:14px;
     width:60%;
     margin:0 20%;
     .row{
@@ -271,25 +279,9 @@ footer{
     cursor:pointer;
 }
 .more{
-    height:32px;
-    padding:0;
-    margin:0;
-    background:url(../img/loading.gif) no-repeat center center; 
+    text-align:center;
+    font-size:16px;
 }
-.s_more{
-    height:20px;
-    padding:0;
-    margin:0;
-    background:url(../img/s_loading.gif) no-repeat center center; 
-}
-i.loading{
-    vertical-align:middle;
-    width:20px;
-    height:20px;
-    display:inline-block;
-    background:url(../img/s_loading.gif) no-repeat center center; 
-}
-
 //pager
 
 .pager{

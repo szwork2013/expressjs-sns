@@ -6,19 +6,12 @@ body {
   padding: 0;
   background: white;
   width: 100%;
-  color: #272727; }
+  color: #999999; }
   body a {
-    color: #272727; }
+    text-decoration: none;
+    color: #4083aa; }
     body a:hover {
-      text-decoration: none;
-      color: #999; }
-
-a {
-  color: blue;
-  text-decoration: none; }
-  a:hover, a:focus {
-    color: red;
-    text-decoration: underline; }
+      color: #205f7e; }
 
 img {
   vertical-align: middle;

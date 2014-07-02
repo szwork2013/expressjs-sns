@@ -44,26 +44,37 @@
 
         var titleInput = $('input[name="title"]');
 
+        //timer for save
+        if(window.localStorage){
+            var timersave = setInterval(function(){
+                localStorage.setItem('tempcontent',editor.getHTML());
+            },3000);
+        }
+
+        if(localStorage.getItem('tempcontent')){
+            editor.setHTML(localStorage.getItem('tempcontent'));
+        } 
+
         $('#new-topic button[type="submit"]').click(function(e){
 
-        e.preventDefault();
+            e.preventDefault();
 
-        $('#hiddeninput').text(filterXSS(editor.getHTML()));
+            $('#hiddeninput').text(filterXSS(editor.getHTML()));
 
-        if(validator.isNull(validator.trim(titleInput.val()))){
-            titleInput.focus();
-            return;
-        }else if(validator.isNull(validator.trim(editor.getText()))){
-            editor.focus();
-            return;
-        }else{
-           $('#popup').html('发布成功').spopup({
-               autoClose:1000,
-               onClose:function(){
-                   $('#new-topic').submit();
-               }
-           });
-        }
+            if(validator.isNull(validator.trim(titleInput.val()))){
+                titleInput.focus();
+                return;
+            }else if(validator.isNull(validator.trim(editor.getText()))){
+                editor.focus();
+                return;
+            }else{
+               $('#popup').html('发布成功').spopup({
+                   autoClose:1000,
+                   onClose:function(){
+                       $('#new-topic').submit();
+                   }
+               });
+            }
 
         });
 })()

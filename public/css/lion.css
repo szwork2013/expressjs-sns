@@ -14,19 +14,12 @@ body {
   padding: 0;
   background: white;
   width: 100%;
-  color: #272727; }
+  color: #999999; }
   body a {
-    color: #272727; }
+    text-decoration: none;
+    color: #4083aa; }
     body a:hover {
-      text-decoration: none;
-      color: #999; }
-
-a {
-  color: blue;
-  text-decoration: none; }
-  a:hover, a:focus {
-    color: red;
-    text-decoration: underline; }
+      color: #205f7e; }
 
 img {
   vertical-align: middle;
@@ -482,7 +475,8 @@ textarea {
       position: absolute;
       right: 40%;
       color: #000;
-      top: 20px; }
+      top: 18px;
+      font-size: 14px; }
     .nav .search-form .search {
       display: inline-block;
       width: 60%;
@@ -541,10 +535,15 @@ textarea {
           color: #ddd; }
 
 footer {
+  color: #999;
   padding: 20px;
   border-top: 1px solid #e5e5e5;
   height: 30px;
   line-height: 30px; }
+  footer a {
+    color: #999; }
+    footer a:hover {
+      color: #666; }
   footer p {
     display: inline-block; }
   footer .ft-meta {
@@ -689,6 +688,7 @@ footer {
     color: #ccc; }
 
 .reg-form, .login-form {
+  font-size: 14px;
   width: 60%;
   margin: 0 20%; }
   .reg-form .row, .login-form .row {
@@ -813,23 +813,8 @@ footer {
   cursor: pointer; }
 
 .more {
-  height: 32px;
-  padding: 0;
-  margin: 0;
-  background: url(../img/loading.gif) no-repeat center center; }
-
-.s_more {
-  height: 20px;
-  padding: 0;
-  margin: 0;
-  background: url(../img/s_loading.gif) no-repeat center center; }
-
-i.loading {
-  vertical-align: middle;
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  background: url(../img/s_loading.gif) no-repeat center center; }
+  text-align: center;
+  font-size: 16px; }
 
 .pager {
   text-align: center; }

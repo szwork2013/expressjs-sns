@@ -14,23 +14,11 @@ body{
     width:100%;
     color:$font-color;
     a{
-        color:$font-color;
+        text-decoration:none;
+        color:$link-color;
         &:hover{
-            text-decoration:none;
-            color:#999; 
+            color:$link-hover-color; 
         }
-    }
-
-}
-
-//Links
-a{
-    color:$link-color;
-    text-decoration:none;
-    &:hover,
-    &:focus {
-        color: $link-hover-color;
-        text-decoration: underline;
     }
 }
 

@@ -20,7 +20,7 @@
         </li>
         {{/topics}}
         <li class="more-trigger">加载更多</li>
-        <li class="more" style="display:none;"></li>
+        <li class="more" style="display:none;"><i class="fa fa-refresh fa-spin"></i></li>
     </ul>
 </div>
 
