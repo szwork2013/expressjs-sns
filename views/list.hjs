@@ -31,13 +31,13 @@
     <div class="pager row">
         <ul class="pager-wrapper">
             {{#prev}}
-                <li><a href="/channel/{{channel.url}}/{{prev}}">&laquo;</a></li>
+                <li><a href="/channel/{{channel.url}}?p={{prev}}">&laquo;</a></li>
             {{/prev}}
             {{#pager.pagenums}}
-            <li><a href="/channel/{{channel.url}}/{{num}}">{{num}}</a></li> 
+            <li><a href="/channel/{{channel.url}}?p={{num}}">{{num}}</a></li> 
             {{/pager.pagenums}}
             {{#next}}
-            <li><a href="/channel/{{channel.url}}/{{next}}">&raquo;</a></li>
+            <li><a href="/channel/{{channel.url}}?p={{next}}">&raquo;</a></li>
             {{/next}}
         </ul>
     </div>
