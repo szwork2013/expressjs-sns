@@ -44,7 +44,6 @@ router.get('/logout', function(req, res) {
     });
 });
 
-
 router.get('/search', function(req, res) {
     Topic.find({title: new RegExp(req.query.q, 'i')},function(err,topics){
         if(topics.length>0){

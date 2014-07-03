@@ -46,7 +46,7 @@ router.post('/addreply',function(req,res){
        author_id:req.session.user._id
    }).save(function(err,reply){
         User.findOneAndUpdate({_id:req.session.user._id},{$inc:{score:1}},function(){
-           Topic.findOneAndUpdate({_id:req.body.topic_id},{$inc:{reply_count:1}},function(err,topic){
+           Topic.findOneAndUpdate({_id:req.body.topic_id},{$inc:{reply_count:1},last_reply_date:new Date()},function(err,topic){
                var result = reply.toObject();
                result.create_date_format = reply.create_date_format;
                result.author_name = req.session.user.name;

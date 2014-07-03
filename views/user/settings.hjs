@@ -80,27 +80,60 @@
         })
 
         //user url wysyws
-        $('#uurl').keydown(function(e){
+        $('#uurl').keyup(function(e){
             $('#showurl').html($(this).val());
         });
 
-
     })()
 
+    var url_reg = /^(?!(?:settings|collect|message|about|search|channel|topic|user|login|register)$)/;
 
     $script('/js/validator.js',function(){
 
-            $('#base-form button[type=submit]').click(function(e){
-                e.preventDefault();
-            });
+        $('#base-form button[type=submit]').click(function(e){
+            e.preventDefault();
+            var nameInput = $('input[name="uname"]'),
+                emailInput = $('input[name="uemail"]'),
+                urlInput = $('input[name="uurl"]'),
+                signInput = $('input[name="usign"]');
 
-            $('#changepwd-form button[type=submit]').click(function(e){
-                e.preventDefault();
-            });
+            if(!validator.isEmail(emailInput.val())){
+                   emailInput.focus();
+                   return;
+            }else if(validator.isNull(validator.trim(nameInput.val()))){
+                   nameInput.focus();
+                   return;
+            }else if(validator.isNull(validator.trim(urlInput.val())) || !validator.matches(urlInput.val(),url_reg)){
+                   urlInput.focus();
+                   return;
+            }else if(validator.isNull(validator.trim(signInput.val()))){
+                   signInput.focus();
+                   return;
+            }else{
+                $('#base-form').submit();
+            }
+        });
 
-            $('#uploadimg-form button[type=submit]').click(function(e){
-                e.preventDefault();
-            });
+        $('#changepwd-form button[type=submit]').click(function(e){
+            e.preventDefault();
+            var oldpwdInput = $('input[name="oldupwd"]');
+                newpwdInput = $('input[name="newupwd"]');
+            if(validator.isNull(validator.trim(oldpwdInput.val())) || !validator.isAlphanumeric(oldpwdInput.val())){
+                   oldpwdInput.focus();
+                   return;
+            }else if(validator.isNull(validator.trim(newpwdInput.val())) || !validator.isAlphanumeric(newpwdInput.val())){
+                   newpwdInput.focus();
+                   return;
+            }else{
+                $('#changepwd-form').submit();
+            }
+        });
+
+        /*
+        $('#uploadimg-form button[type=submit]').click(function(e){
+            e.preventDefault();
+        });
+        */
     });
 
 </script>

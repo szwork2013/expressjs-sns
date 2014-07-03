@@ -55,7 +55,7 @@ router.post('/saveimgsettings', function(req, res) {
                         req.session.user.avatar_url = save_url;
                         req.session.user.avatar_url_s = save_url_s;
                         req.session.user.avatar_url_l = save_url_l;
-                        res.redirect('/user/'+user.url);
+                        res.redirect('/'+user.url);
                     }
                 });
             });
@@ -74,7 +74,7 @@ User.findOneAndUpdate({_id:req.session.user._id},{name:newname,email:newemail,ur
         req.session.user.email = newemail; 
         req.session.user.url = newurl;
         req.session.user.signature = newsign;
-        res.redirect('/user/'+newurl);
+        res.redirect('/'+newurl);
     }
 });
 });
@@ -88,7 +88,7 @@ User.findOneAndUpdate({_id:req.session.user._id,pwd:oldpwd},{
         res.redirect('/error')
     }else{
         req.session.user.pwd = newpwd;
-        res.redirect('/user/'+user.url);
+        res.redirect('/'+user.url);
     }
 });
 });
