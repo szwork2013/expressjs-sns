@@ -8,14 +8,23 @@ var async =  require('async');
 var mongoose = require( 'mongoose' );
 var User = mongoose.model('User');
 var Topic = mongoose.model('Topic');
+var Reply = mongoose.model('Reply');
 var Channel = mongoose.model('Channel');
+
+function GetTopicAndReplyByUser(user,callback){
+    Topic.find({author_id:user._id},null,{sort:{create_date:-1}},function(err,topics){
+        Reply.find({author_id:user._id},'content',{sort:{create_date:-1}},function(err,replys){
+            callback(topics,replys);
+        })
+    })
+}
 
 //获取标题列表
 router.get('/', function(req, res) {
     Channel.find({},function(err,chs){
         res.render('index',{
             channels:chs
-        }); 
+        });
     });
 });
 
@@ -30,12 +39,8 @@ router.get('/login', function(req, res) {
 router.get('/logout', function(req, res) {
     req.session.destroy(function(err){
         res.locals.user = null;
-        if(err){
-            res.redirect('/error');
-        }else{
-            //清除session,退出
-            res.redirect('/');
-        }
+        //清除session,退出
+        res.redirect('/');
     });
 });
 
@@ -53,6 +58,42 @@ router.get('/search', function(req, res) {
             });
         }
     });
+});
+
+router.get('/settings', function(req, res,next) {
+    if(req.session.user){
+        User.findOne({_id:req.session.user._id},function(err,user){
+            res.render('./user/settings', { 
+                title: '账户设置',
+                user:user
+            });
+        });
+    }else{
+        next();
+    }
+});
+
+router.get('/:url', function(req, res,next) {
+    if(req.session.user){
+        User.findOne({url:req.params.url},function(err,user){
+            if(!user){
+                next();
+            }else{
+                GetTopicAndReplyByUser(user,function(topics,replys){
+                    res.render('./user/index', { 
+                        title: user.name,
+                        user:req.session.user,
+                        showuser:user,
+                        topics:topics,
+                        replys:replys,
+                        isme:user._id.equals(req.session.user._id)?[1]:null
+                    });
+                });
+            }
+        });
+    }else{
+        res.render('user/login');
+    }
 });
 
 module.exports = router;

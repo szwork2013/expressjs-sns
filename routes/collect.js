@@ -11,7 +11,6 @@ var Topic = mongoose.model('Topic');
 var Reply = mongoose.model('Reply');
 var Collect= mongoose.model('Collect');
 
-
 function GetCollectTempleteByUserId(res,req,callback){
     Collect.find({user_id:req.session.user._id},function(err,cols){
         var cols_n = [];
@@ -32,7 +31,7 @@ router.get('/', function(req, res) {
     GetCollectTempleteByUserId(res,req,function(cols){
         res.render('collect/index',{
             collects:cols
-        }) 
+        });
     });
             
 });

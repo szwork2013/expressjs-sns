@@ -22,16 +22,16 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
     }
 });
 
-router.post('/postsuggest', function(req, res) {
+router.post('/postsuggest', function(req, res,next) {
     smtpTransport.sendMail({
         to: 'spirityy109@gmail.com',
         subject: "Suggest by " + req.session.user.email, 
         text: req.body.suggestcontent
-    }, function(error, response){
-        if(error){
-            res.redirect('/error')
+    }, function(err, response){
+        if(err){
+            next(err);
         }else{
-            res.redirect('/')
+            res.redirect('/');
         }
     });
 })

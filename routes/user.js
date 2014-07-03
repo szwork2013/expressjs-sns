@@ -14,41 +14,6 @@ var Reply = mongoose.model('Reply');
 var formidable = require('formidable');
 var fs = require('fs');
 
-function GetUserIndexByUser(req,res,user,callback){
-    Topic.find({author_id:user._id},null,{sort:{create_date:-1}},function(err,topics){
-        Reply.find({author_id:user._id},'content',{sort:{create_date:-1}},function(err,replys){
-            callback(topics,replys);
-        })
-    })
-}
-
-function RendUserIndex(req,res,user,topics,replys){
-    replys.forEach(function(reply){
-        reply.set('content',reply.content.substr(0,10)+'...');
-    });
-    res.render('./user/index', { 
-        title: user.name,
-        user:req.session.user,
-        showuser:user,
-        topics:topics,
-        replys:replys,
-        isme:req.session.user.email===user.email?[1]:[]
-    });
-}
-
-router.get('/settings', function(req, res) {
-    if(req.session.user){
-        User.findOne({_id:req.session.user._id},function(err,user){
-            res.render('./user/settings', { 
-                title: '账户设置',
-                user:user
-            });
-        });
-    }else{
-        res.redirect('/error');
-    }
-});
-
 router.post('/saveimgsettings', function(req, res) {
     new formidable.IncomingForm().parse(req,function(err,fields,files){
 
@@ -68,21 +33,6 @@ router.post('/saveimgsettings', function(req, res) {
             var save_url_l = '/assets/'+req.session.user._id+'/u'+req.session.user._id+'_l'+path.extname(files.avatar.name);
             var save_url_s = '/assets/'+req.session.user._id+'/u'+req.session.user._id+'_s'+path.extname(files.avatar.name);
             var save_url = '/assets/'+req.session.user._id+'/u'+req.session.user._id+path.extname(files.avatar.name);
-
-            /*
-               fs.rename(files.avatar.path,target_url,function(err){
-               if(err) res.redirect('/error');
-               fs.unlink(files.avatar.path, function() {
-               User.findOneAndUpdate({name:req.session.user.name},{avatar_url:save_url},function(err,user){
-               if(!err){
-               req.session.user.avatar_url = save_url; 
-               res.redirect('/user/'+user._id);
-               }
-               });
-               });
-               });
-               */
-
             async.parallel([
                 function(callback){
                     gm(files.avatar.path).write(process.cwd()+'/public'+save_url,function(){
@@ -196,23 +146,6 @@ router.post('/login', function(req, res) {
             res.redirect('/');
         }
     });
-});
-
-router.get('/:url', function(req, res) {
-    console.info(req.session.user);
-    if(req.session.user){
-        User.findOne({url:req.params.url},function(err,user){
-            if(!user){
-                res.redirect('/error');
-            }else{
-                GetUserIndexByUser(req,res,user,function(topics,replys){
-                    RendUserIndex(req,res,user,topics,replys);
-                });
-            }
-        });
-    }else{
-        res.render('user/login');
-    }
 });
 
 module.exports = router;
