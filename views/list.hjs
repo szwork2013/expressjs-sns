@@ -45,8 +45,8 @@
 </div>
 
 <div class="sidebar">
-    <div class="mod ad">
-        <a href="/about/contact"><img src="http://cdn.ifanr.cn/wp-content/uploads/2014/06/IXDCifanr-02.jpg" alt=""></a>
+    <div class="mod ad1">
+        <a href="/about/contact"></a>
     </div>
 
 
@@ -68,5 +68,12 @@
             }
         });
     });
+
+    $script('/js/loadimg.js',function(){
+        loadimg('http://cdn.ifanr.cn/wp-content/uploads/2014/06/IXDCifanr-02.jpg',function(img){
+           $(img).appendTo($('.ad1 a')); 
+        })
+    })
+
  })() 
 </script>
