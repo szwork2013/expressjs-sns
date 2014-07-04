@@ -3,7 +3,7 @@
     {{#messages}}
     <li>
     
-        <p><a href="/user/{{from_user_url}}">{{from_user_name}}</a>说:</p>
+        <p><a href="/{{from_user_url}}">{{from_user_name}}</a>说:</p>
         <p>{{content}}</p>
         <p>{{create_date_format}}</p>
     </li>

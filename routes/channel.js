@@ -59,7 +59,7 @@ router.post('/add', function(req, res){
 
 router.get('/:url', function(req, res) {
     Channel.findOne({url:req.params.url},function(err,channel){
-        var s_option={sort:{create_date:-1}};
+        var s_option={};
         //pager
         if(req.query.p){
             s_option.limit = pager_num;
@@ -69,6 +69,14 @@ router.get('/:url', function(req, res) {
             s_option.skip = 0;
         }
         //fliter
+        //default
+        s_option.sort = {create_date:-1};
+
+        if(req.query.f){
+            if(req.query.f==='r'){
+                s_option.sort = {last_reply_date:-1};
+            }
+        }
 
         Topic.find({channel_id:channel._id},null,s_option,function(err,topics){
             GetTopicTemplete(topics,function(n_topics){
