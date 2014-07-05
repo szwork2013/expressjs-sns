@@ -2,6 +2,7 @@
     <h1>{{channel.name}}</h1>
     <div class="row clearfix">
         <a href="/channel/{{channel.url}}/new" class="new-post-btn">发布新话题</a>
+        <a href="/channel/{{channel.url}}/chat" class="fr">去聊天室</a>
     </div>
 
     <div class="row">

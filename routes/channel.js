@@ -97,6 +97,12 @@ router.get('/:url/new', function(req, res) {
     });
 });
 
+router.get('/:url/chat', function(req, res) {
+    res.render('chat/index',{
+        channel_url:req.params.url 
+    });
+});
+
 router.post('/:url/new', function(req, res) {
     Channel.findOneAndUpdate({url:req.params.url},{$inc:{topic_count:1}},function(err,channel){
         new Topic({

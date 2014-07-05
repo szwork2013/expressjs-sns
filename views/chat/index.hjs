@@ -1,0 +1,22 @@
+<h2>在线</h2>
+<ul class="msgs">
+    
+</ul>
+<form action="" id="chat-form">
+    <textarea id="newmessage" name="newmessage"></textarea>
+    <button type="submit">发表</button>
+</form>
+
+<script>
+    $script('/socket.io/socket.io.js',function(){
+      var socket = io();
+      $('#chat-form').submit(function(){
+        socket.emit('chat message', $('#newmessage').val());
+        $('#newmessage').val('');
+        return false;
+      });
+      socket.on('chat message', function(msg){
+        $('.msgs').append($('<li>').text(msg));
+      });
+    });
+</script>
