@@ -1,7 +1,12 @@
-<h2>在线</h2>
+<h1>在线聊天室</h1>
 <ul class="msgs">
     
 </ul>
+
+<ul class="users fr">
+
+</ul>
+
 <form action="" id="chat-form">
     <textarea id="newmessage" name="newmessage"></textarea>
     <button type="submit">发表</button>
@@ -10,13 +15,17 @@
 <script>
     $script('/socket.io/socket.io.js',function(){
       var socket = io();
+      socket.emit('users','{{username}}');
       $('#chat-form').submit(function(){
-        socket.emit('chat message', $('#newmessage').val());
+        socket.emit('chat message','{{username}}说：'+$('#newmessage').val());
         $('#newmessage').val('');
         return false;
       });
       socket.on('chat message', function(msg){
         $('.msgs').append($('<li>').text(msg));
+      });
+      socket.on('users', function(user){
+        $('.users').append($('<li>').text(user));
       });
     });
 </script>

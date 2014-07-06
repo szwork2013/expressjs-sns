@@ -1,6 +1,6 @@
 <div class="settings">
 
-    <h2>修改基础信息</h2>
+    <h1>修改基础信息</h1>
     <form action="/user/savebasesettings" method="post" id="base-form">
         <div class="row">
             <label for="uname">昵称</label>
