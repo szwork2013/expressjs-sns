@@ -56,8 +56,13 @@
     border-bottom: 1px solid #e8e8e8;
     position: relative;
     padding: 10px; }
+    .topic-list li:before, .topic-list li:after {
+      content: "";
+      display: table; }
+    .topic-list li:after {
+      clear: both; }
     .topic-list li h2 {
-      margin: 0; }
+      margin: 0 0 0 10px; }
       .topic-list li h2 a {
         color: #111; }
 

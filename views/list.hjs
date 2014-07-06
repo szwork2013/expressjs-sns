@@ -9,17 +9,15 @@
         <ul class="topic-list">
             {{#topics}}
             <li>
-            <span>
+            <span class="fl">
                 <img src="{{author_avatar_url}}" alt="">
             </span>
-            <span>
+            <span class="fl">
                 <h2><a href="/topic/{{_id}}">{{title}}</a></h2>
             </span>
-            <span>
-                发表自<a href="/user/{{author_url}}">{{author_name}}</a>于{{create_date_format}}
-            </span>
             <span class="fr">
-            {{reply_count}}/{{visit_count}}
+            回复：{{reply_count}}
+            浏览：{{visit_count}}
             </span>
             </li>
             {{/topics}}
