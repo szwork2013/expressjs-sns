@@ -117,7 +117,7 @@ router.post('/:url/new', function(req, res) {
 router.get('/:url/chat', function(req, res) {
     res.render('chat/index',{
         channel_url:req.params.url,
-        username:req.session.user.name
+        user:req.session.user
     });
 });
 

@@ -46,6 +46,7 @@
     <h2>修改头像</h2>
     <form action="/user/saveimgsettings" enctype="multipart/form-data" method="post" id="uploadimg-form">
         <div class="row">
+            <i class="fa fa-file-image-o"></i> 
             <button type="button" class="up-trigger">修改头像</button>
             <input name="avatar" type="file" accept="image/*" id="take-avatar" class="hide"></input>
             <img id="show-avatar" src="{{user.avatar_url_l}}" alt="" />

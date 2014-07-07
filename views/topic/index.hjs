@@ -1,20 +1,38 @@
 <script src="/js/validator.js"></script>
-<h1>{{topic.title}}</h1>
-<div class="topic-tags">
-    发布日期：{{topic.create_date_format}}
+<div class="content">
+<div class="topic-main">
+    <h1>{{topic.title}}</h1>
+    <p class="topic-date">
+        <i class="fa fa-calendar"></i>
+        <span>{{topic.create_date_format}}</span>
+    </p>
+    <div class="topic-content">
+    {{{topic.content}}}
+    </div>
+    <ul class="topic-meta">
+        <li>
+            <i class="fa fa-star-o"></i>
+            <span id="addcollect">收藏</span>
+
+        </li>
+    </ul>
 </div>
-<div class="topic-content">
-{{{topic.content}}}
+
+<h2>热门评论：</h2>
+<div class="hot-reply-list">
+
 </div>
-<p class="meta">
-    <a href="#" id="addcollect">收藏</a>
-</p>
 
 <h2>评论：</h2>
 <div class="reply-list">
     {{#replys}}
     <div class="reply-item" rid="{{_id}}">
         <div class="reply-wrapper">
+            <div class="vote">
+                <i class="fa fa-chevron-up up"></i>
+                <b class="vote-num">{{up}}</b>
+                <i class="fa fa-chevron-down down"></i>
+            </div>
             <div class="user-avatar">
                 <img class="user-avatar" src="{{avatar_url_s}}" />
             </div>
@@ -26,16 +44,17 @@
                 </div>
             </div>
             <div class="reply-meta">
-                <a href="javascript:void(0);" class="reply-reply">回复</a>
-                <span class="reply-up">{{up}}</span>
-                <a class="up" href="javascript:void(0);">up</a>
-                <a class="down" href="javascript:void(0);">down</a>
+                <ul>
+                    <li>
+                        <i class="fa fa-comments-o"></i>
+                        <a href="javascript:void(0);" class="reply-reply">回复</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
     {{/replys}}
 </div>
-
 
 <form action="/topic/addreply" method="post" class="reply-form" id="reply-form">
         <div class="row">
@@ -45,11 +64,19 @@
             <button type="submit">提交</button> 
         </div>
 </form>
-
+</div>
+<div class="sidebar">
+    边栏
+</div>
 <script src="/js/underscore.js"></script>
 <script type="text/template" id="reply-item-temp">
 <div class="reply-item" rid="<%=_id%>">
         <div class="reply-wrapper">
+            <div class="vote">
+                <i class="fa fa-chevron-up up"></i>
+                <b class="vote-num"><%= up %></b>
+                <i class="fa fa-chevron-down down"></i>
+            </div>
             <div class="user-avatar">
                 <img class="user-avatar" src="<%= avatar_url_s %>" />
             </div>
@@ -61,16 +88,17 @@
                 </div>
             </div>
             <div class="reply-meta">
-                <a href="javascript:void(0);" class="reply-reply">回复</a>
-                <span class="reply-up"><%= up %></span>
-                <a class="up" href="javascript:void(0);">up</a>
-                <a class="down" href="javascript:void(0);">down</a>
+                <ul>
+                    <li>
+                        <i class="fa fa-comments-o"></i>
+                        <a href="javascript:void(0);" class="reply-reply">回复</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 </script>
 <script>
-
         var contentInput = $('#replyContent');
 
         function UpReplyBind(els){
@@ -82,12 +110,11 @@
                     data:'reply_id='+$(this).parents('.reply-item').attr('rid')+'&num='+num,
                     method:'post',
                     success:function(re){
-                        if(re.r===1) $(self).prevAll('.reply-up').html(re.reply.up);
+                        if(re.r===1) $(self).parent('.vote').find('.vote-num').html(re.reply.up);
                     }
                 })
             });
         }
-
 
         function Replytoreply(els){
             els.click(function(){
@@ -113,7 +140,7 @@
                 method:'post',
                 data:$('.reply-form').serialize()+'&topic_id={{topic._id}}',
                 beforeSend:function(){
-                        $('<div class="more"></div>').appendTo($('.reply-list')); 
+                   $('<div class="more"></div>').appendTo($('.reply-list')); 
                 },
                 success:function(re){
                    $('#replyContent').val('');
@@ -144,6 +171,4 @@
         UpReplyBind($('.reply-item .up,.reply-item .down'));
 
         Replytoreply($('.reply-item .reply-reply'));
-
-    
 </script>

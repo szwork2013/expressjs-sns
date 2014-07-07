@@ -73,29 +73,46 @@
     }
 }
 //detail
-.topic-tags{
-    color:#666;
-}
-.topic-content{
-    margin:20px 0;
-    font-size:14px;
-    ul { 
-        list-style-type: disc;
-        list-style-position: inside; 
+.topic-main{
+    .topic-date{
+        font-size:12px;
+        color:#333;
+        i{
+            font-size:14px;
+        }
+        span{
+            vertical-align:middle;
+            margin-left:5px; 
+        }
     }
-    ol { 
-       list-style-type: decimal; 
-       list-style-position: inside; 
+    .topic-content{
+        margin:20px 0;
+        font-size:14px;
+        ul { 
+            list-style-type: disc;
+            list-style-position: inside; 
+        }
+        ol { 
+           list-style-type: decimal; 
+           list-style-position: inside; 
+        }
+        ul ul, ol ul { 
+           list-style-type: circle; 
+           list-style-position: inside; 
+           margin-left: 15px; 
+        }
+        ol ol, ul ol { 
+           list-style-type: lower-latin; 
+           list-style-position: inside; 
+           margin-left: 15px; 
+        }
     }
-    ul ul, ol ul { 
-       list-style-type: circle; 
-       list-style-position: inside; 
-       margin-left: 15px; 
-    }
-    ol ol, ul ol { 
-       list-style-type: lower-latin; 
-       list-style-position: inside; 
-       margin-left: 15px; 
+    .topic-meta{
+        span{
+            margin-left:2px;
+            color:$action-green; 
+            cursor:pointer;
+        }
     }
 }
 #replyContent{
@@ -118,6 +135,9 @@
         @include border-radius(3px);
     }
 }
+.reply-list,.hot-reply-list{
+    border-top:1px solid $border-color;
+}
 .reply-list{
     .reply-item{
         width:100%;
@@ -127,23 +147,34 @@
         margin:20px 0;
         position:relative;
     }
-    .user-avatar{
+    .vote{
+        float:left; 
+        font-size:16px;
+        i{
+            cursor:pointer;
+            display:block; 
+        }
+        i.disable{
+            color:#ccc; 
+        }
+        b{
+            width:16px;
+            text-align:center;
+            display:block;
+        }
+    }
+    .user-avatar img{
         position:absolute;
-        left:0;
+        left:30px;
         top:0;
         width:48px; 
         height:48px;
         margin-right:1%;
-        img{
-            width:48px; 
-            height:48px;
-            @include border-radius(3px);
-        }
+        @include border-radius(3px);
     }
     .reply-main{
-        padding:0 0 0 60px;
+        padding:0 0 0 90px;
         @include clearfix();
-        margin:10px 0; 
         .uname{
             font-size:16px; 
             vertical-align:middle;
@@ -153,6 +184,9 @@
             vertical-align:middle;
             color:#ccc;
         }
+    }
+    .reply-meta{
+        margin-left:90px;
     }
 }
 
@@ -279,7 +313,6 @@
     font-size:16px;
 }
 //pager
-
 .pager{
     text-align:center;
     .pager-wrapper{
@@ -289,12 +322,60 @@
         }    
     }
 }
-
-
-
 //message
 .message-list{
     li{
         padding:10px 0;
+    }
+}
+//chat
+.chat-wrapper{
+    position:relative;
+    width:80%;
+    padding:0 0 40px 0;
+    margin:0 auto;
+    #newmessage{
+        position:absolute;
+        bottom:0;
+        right:0;
+        left:0;
+        width:100%;
+        height:20px;
+        line-height:20px;
+        font-size:16px;
+        border:10px solid #999;
+        padding:5px;
+    }
+    ul.msgs{
+        padding:5px;
+        overflow-y:scroll;
+        height:100px;
+        min-height:200px;
+        li{
+            margin:10px 0;
+            height:20px;
+            line-height:20px;
+            font-size:16px;
+            .author{
+                color:#999; 
+            }
+            .message{
+                margin-left:10px;
+                color:#666; 
+            }
+        }
+    }
+    ul.users{
+        border:1px solid #ccc;
+        padding:10px;
+        position:absolute;
+        right:-20%;
+        width:20%;
+        top:0;
+        li{
+            height:20px; 
+            line-height:20px;
+            font-size:16px;
+        }
     }
 }

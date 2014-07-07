@@ -14,7 +14,7 @@ io.on('connection', function(socket){
     socket.on('chat message', function(msg){
         io.emit('chat message', msg);
     });
-    socket.on('users', function(user){
-        io.emit('users', user);
+    socket.on('username', function(username){
+        io.emit('username', username);
     });
 });

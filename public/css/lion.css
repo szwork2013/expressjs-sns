@@ -464,7 +464,7 @@ textarea {
     .nav .nav-container .logo {
       float: left; }
   .nav a {
-    color: #e60000; }
+    color: #be1931; }
     .nav a:hover {
       text-decoration: none; }
   .nav .search-form {
@@ -500,7 +500,7 @@ textarea {
       padding: 0 10px;
       color: #fff;
       border: none;
-      background: #e60000;
+      background: #be1931;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       -ms-border-radius: 3px;
@@ -589,7 +589,7 @@ footer {
   display: inline-block;
   height: 40px;
   line-height: 40px;
-  background: #e60000;
+  background: #be1931;
   color: #fff;
   padding: 0 15px;
   border: none;
@@ -601,7 +601,7 @@ footer {
   border-radius: 3px; }
   .new-post-btn:hover {
     text-decoration: none;
-    background: #e60000;
+    background: #be1931;
     color: #fff;
     border: none; }
 
@@ -622,26 +622,35 @@ footer {
       .topic-list li h2 a {
         color: #111; }
 
-.topic-tags {
-  color: #666; }
-
-.topic-content {
+.topic-main .topic-date {
+  font-size: 12px;
+  color: #333; }
+  .topic-main .topic-date i {
+    font-size: 14px; }
+  .topic-main .topic-date span {
+    vertical-align: middle;
+    margin-left: 5px; }
+.topic-main .topic-content {
   margin: 20px 0;
   font-size: 14px; }
-  .topic-content ul {
+  .topic-main .topic-content ul {
     list-style-type: disc;
     list-style-position: inside; }
-  .topic-content ol {
+  .topic-main .topic-content ol {
     list-style-type: decimal;
     list-style-position: inside; }
-  .topic-content ul ul, .topic-content ol ul {
+  .topic-main .topic-content ul ul, .topic-main .topic-content ol ul {
     list-style-type: circle;
     list-style-position: inside;
     margin-left: 15px; }
-  .topic-content ol ol, .topic-content ul ol {
+  .topic-main .topic-content ol ol, .topic-main .topic-content ul ol {
     list-style-type: lower-latin;
     list-style-position: inside;
     margin-left: 15px; }
+.topic-main .topic-meta span {
+  margin-left: 2px;
+  color: #57ad69;
+  cursor: pointer; }
 
 #replyContent {
   width: 97%;
@@ -657,7 +666,7 @@ footer {
     width: 100px;
     height: 40px;
     margin-top: 20px;
-    background: #e60000;
+    background: #be1931;
     color: #fff;
     border: none;
     -webkit-border-radius: 3px;
@@ -665,6 +674,9 @@ footer {
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
     border-radius: 3px; }
+
+.reply-list, .hot-reply-list {
+  border-top: 1px solid #f0f0f0; }
 
 .reply-list .reply-item {
   width: 100%; }
@@ -676,24 +688,32 @@ footer {
 .reply-list .reply-wrapper {
   margin: 20px 0;
   position: relative; }
-.reply-list .user-avatar {
+.reply-list .vote {
+  float: left;
+  font-size: 16px; }
+  .reply-list .vote i {
+    cursor: pointer;
+    display: block; }
+  .reply-list .vote i.disable {
+    color: #ccc; }
+  .reply-list .vote b {
+    width: 16px;
+    text-align: center;
+    display: block; }
+.reply-list .user-avatar img {
   position: absolute;
-  left: 0;
+  left: 30px;
   top: 0;
   width: 48px;
   height: 48px;
-  margin-right: 1%; }
-  .reply-list .user-avatar img {
-    width: 48px;
-    height: 48px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-    border-radius: 3px; }
+  margin-right: 1%;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
 .reply-list .reply-main {
-  padding: 0 0 0 60px;
-  margin: 10px 0; }
+  padding: 0 0 0 90px; }
   .reply-list .reply-main:before, .reply-list .reply-main:after {
     content: "";
     display: table; }
@@ -706,6 +726,8 @@ footer {
     margin-left: 2%;
     vertical-align: middle;
     color: #ccc; }
+.reply-list .reply-meta {
+  margin-left: 90px; }
 
 .reg-form, .login-form {
   font-size: 14px;
@@ -739,7 +761,7 @@ footer {
     width: 50px;
     line-height: 40px; }
   .reg-form .tips, .login-form .tips {
-    color: #e60000;
+    color: #be1931;
     display: none;
     position: absolute;
     top: 40px;
@@ -753,7 +775,7 @@ footer {
     padding: 0 30px;
     border: none;
     color: #fff;
-    background: #e60000;
+    background: #be1931;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -813,7 +835,7 @@ footer {
     width: 100px;
     height: 40px;
     line-height: 40px;
-    background: #e60000;
+    background: #be1931;
     color: #fff;
     border: none;
     padding: 0;
@@ -844,6 +866,49 @@ footer {
 
 .message-list li {
   padding: 10px 0; }
+
+.chat-wrapper {
+  position: relative;
+  width: 80%;
+  padding: 0 0 40px 0;
+  margin: 0 auto; }
+  .chat-wrapper #newmessage {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    font-size: 16px;
+    border: 10px solid #999;
+    padding: 5px; }
+  .chat-wrapper ul.msgs {
+    padding: 5px;
+    overflow-y: scroll;
+    height: 100px;
+    min-height: 200px; }
+    .chat-wrapper ul.msgs li {
+      margin: 10px 0;
+      height: 20px;
+      line-height: 20px;
+      font-size: 16px; }
+      .chat-wrapper ul.msgs li .author {
+        color: #999; }
+      .chat-wrapper ul.msgs li .message {
+        margin-left: 10px;
+        color: #666; }
+  .chat-wrapper ul.users {
+    border: 1px solid #ccc;
+    padding: 10px;
+    position: absolute;
+    right: -20%;
+    width: 20%;
+    top: 0; }
+    .chat-wrapper ul.users li {
+      height: 20px;
+      line-height: 20px;
+      font-size: 16px; }
 
 @media screen and (min-width: 767px) and (max-width: 970px) {
   .main .main-wrapper {

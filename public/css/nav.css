@@ -21,7 +21,7 @@
     .nav .nav-container .logo {
       float: left; }
   .nav a {
-    color: #e60000; }
+    color: #be1931; }
     .nav a:hover {
       text-decoration: none; }
   .nav .search-form {
@@ -57,7 +57,7 @@
       padding: 0 10px;
       color: #fff;
       border: none;
-      background: #e60000;
+      background: #be1931;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       -ms-border-radius: 3px;
