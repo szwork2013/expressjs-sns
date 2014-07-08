@@ -115,7 +115,11 @@
                             $(self).parent('.vote').find('.vote-num').html(re.reply.up);
                         }else if(re.r ===0){
                             $script('/js/tip.js',function(){
-                                Tip('无法重复提交');
+                                Tip('不能重复提交');
+                            });
+                        }else if(re.r === 2){
+                            $script('/js/tip.js',function(){
+                                Tip('不能自己顶自己');
                             });
                         }
                     }

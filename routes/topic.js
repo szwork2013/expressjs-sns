@@ -69,18 +69,18 @@ router.post('/addreply',function(req,res){
 //up reply
 router.post('/upreply',function(req,res){
     Reply.findOne({_id:req.body.reply_id},function(err,reply){
-
         var isup = reply.uper.some(function (uper) { return uper.uper_id.equals(req.session.user._id);});
         var isself = reply.author_id.equals(req.session.user._id)?true:false;
-
-        if(!isup && !isself){
+        if(isself){
+           res.json({r:2});
+        }else if(isup){
+           res.json({r:0});
+        }else{
             Reply.findOneAndUpdate({_id:reply._id},{$inc:{up:req.body.num},$push:{uper:{uper_id:req.session.user._id}}},function(err,reply_updated){
                 if(!err){
                    res.json({r:1,reply:reply_updated});
                 } 
             })
-        }else{
-           res.json({r:0});
         }
     }); 
 });
