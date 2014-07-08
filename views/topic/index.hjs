@@ -11,9 +11,13 @@
     </div>
     <ul class="topic-meta">
         <li>
+            {{#iscollect}}
+            <i class="fa fa-star"></i>
+            {{/iscollect}}
+            {{^iscollect}}
             <i class="fa fa-star-o"></i>
+            {{/iscollect}}
             <span id="addcollect">收藏</span>
-
         </li>
     </ul>
 </div>
@@ -84,7 +88,7 @@
                 <span class="uname"><a href="/user/<%= author_url %>"><%= author_name %></a></span>
                 <span class="date"><%= create_date_format %></span>
                 <div class="reply-content">
-                <%= content %>
+                    <%= content %>
                 </div>
             </div>
             <div class="reply-meta">
@@ -164,6 +168,7 @@
         });
 
         $('#addcollect').click(function(){
+            var self = this;
             $.ajax({
                 url:'/collect/new',
                 data:'topic_id={{topic._id}}',
@@ -171,6 +176,7 @@
                 success:function(re){
                     $script('/js/tip.js',function(){
                         if(re.s === 1){
+                            $(self).prev('.fa').removeClass('fa-star-o').addClass('fa-star');
                             Tip('收藏成功');
                         }else if(re.s===2){
                             Tip('已经收藏');

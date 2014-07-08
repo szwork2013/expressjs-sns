@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Topic = mongoose.model('Topic');
 var Reply = mongoose.model('Reply');
+var Collect = mongoose.model('Collect');
 var formidable = require('formidable');
 
 function GetAllreplyById(id,cb){
@@ -93,10 +94,13 @@ router.get('/:_id', function(req, res, next) {
         Topic.findOneAndUpdate({_id:req.params._id},{$inc:{visit_count:1}},function(err,topic){
             if(topic){
                 GetAllreplyById(topic.id,function(replys){
-                    res.render('topic/index',{
-                        topic:topic,
-                        replys:replys
-                    })
+                    Collect.find({$and:[{user_id:req.session.user._id},{topic_id:topic.id}]},function(err,collect){
+                        res.render('topic/index',{
+                            topic:topic,
+                            replys:replys,
+                            iscollect:collect.length>0?true:false
+                        })
+                    });
                 });
             }else{
                 next(); 
