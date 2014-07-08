@@ -99,6 +99,7 @@
     </div>
 </script>
 <script>
+(function(){
         var contentInput = $('#replyContent');
 
         function UpReplyBind(els){
@@ -110,7 +111,13 @@
                     data:'reply_id='+$(this).parents('.reply-item').attr('rid')+'&num='+num,
                     method:'post',
                     success:function(re){
-                        if(re.r===1) $(self).parent('.vote').find('.vote-num').html(re.reply.up);
+                        if(re.r===1){
+                            $(self).parent('.vote').find('.vote-num').html(re.reply.up);
+                        }else if(re.r ===0){
+                            $script('/js/tip.js',function(){
+                                Tip('无法重复提交');
+                            });
+                        }
                     }
                 })
             });
@@ -123,14 +130,13 @@
             }); 
         }
 
-
         $('.reply-form button[type="submit"]').click(function(e){
 
             e.preventDefault();
 
             if(validator.isNull(validator.trim(contentInput.val()))){
-                $('<div id="popup"></div>').html('请填写内容').spopup({
-                    autoClose:'1000'
+                $script('/js/tip.js',function(){
+                    Tip('请填写内容');
                 });
                 return;
             }
@@ -159,11 +165,13 @@
                 data:'topic_id={{topic._id}}',
                 method:'post',
                 success:function(re){
-                    if(re.s === 1){
-                        alert('收藏成功');
-                    }else if(re.s===2){
-                        alert('已经收藏');
-                    }
+                    $script('/js/tip.js',function(){
+                        if(re.s === 1){
+                            Tip('收藏成功');
+                        }else if(re.s===2){
+                            Tip('已经收藏');
+                        }
+                    });
                 }
             });
         });
@@ -171,4 +179,5 @@
         UpReplyBind($('.reply-item .up,.reply-item .down'));
 
         Replytoreply($('.reply-item .reply-reply'));
+})()
 </script>

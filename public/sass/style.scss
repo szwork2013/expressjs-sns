@@ -357,7 +357,7 @@
             line-height:20px;
             font-size:16px;
             .author{
-                color:#999; 
+                color:#999;
             }
             .message{
                 margin-left:10px;
@@ -378,4 +378,16 @@
             font-size:16px;
         }
     }
+}
+//tip
+.g-tip{
+    @include border-radius(3px);
+    position:fixed; 
+    top:60px;
+    width:20%;
+    left:40%;
+    line-height:40px;
+    text-align:center;
+    background:#333;
+    color:#fff;
 }

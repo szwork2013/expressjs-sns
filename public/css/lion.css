@@ -910,6 +910,21 @@ footer {
       line-height: 20px;
       font-size: 16px; }
 
+.g-tip {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  position: fixed;
+  top: 60px;
+  width: 20%;
+  left: 40%;
+  line-height: 40px;
+  text-align: center;
+  background: #333;
+  color: #fff; }
+
 @media screen and (min-width: 767px) and (max-width: 970px) {
   .main .main-wrapper {
     width: 767px; }

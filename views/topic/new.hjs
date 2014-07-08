@@ -59,29 +59,29 @@ $script(['/js/quill.min.js','/js/validator.js','/js/xss.js'],function(){
         } 
 
         $('#new-topic button[type="submit"]').click(function(e){
-
             e.preventDefault();
+            $script('/js/tip.js',function(){
 
-            $('#hiddeninput').text(filterXSS(editor.getHTML()));
+                $('#hiddeninput').text(filterXSS(editor.getHTML()));
 
-            if(validator.isNull(validator.trim(titleInput.val()))){
-                titleInput.focus();
-                return;
-            }else if(validator.isNull(validator.trim(editor.getText()))){
-                editor.focus();
-                return;
-            }else{
-               $('#popup').html('发布成功').spopup({
-                   autoClose:1000,
-                   onClose:function(){
+                if(validator.isNull(validator.trim(titleInput.val()))){
+                    Tip('请填写标题！');
+                    titleInput.focus();
+                    return;
+                }else if(validator.isNull(validator.trim(editor.getText()))){
+                    Tip('请填写内容！');
+                    editor.focus();
+                    return;
+                }else{
+                    Tip('发布成功！',function(){
                        if(localStorage.getItem('temptitle') || localStorage.getItem('tempcontent')){
                            localStorage.setItem('temptitle','');
                            localStorage.setItem('tempcontent','');
                        }
                        $('#new-topic').submit();
-                   }
-               });
-            }
+                    });
+                }
+            })
 
         });
 });
