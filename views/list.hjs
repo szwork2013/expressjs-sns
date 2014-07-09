@@ -21,7 +21,6 @@
             </span>
             </li>
             {{/topics}}
-            <li class="more-trigger">加载更多</li>
             <li class="more" style="display:none;"><i class="fa fa-refresh fa-spin"></i></li>
         </ul>
     </div>
@@ -33,7 +32,12 @@
                 <li><a href="/channel/{{channel.url}}?p={{prev}}"><i class="fa fa-chevron-circle-left"></i></a></li>
             {{/prev}}
             {{#pager.pagenums}}
-            <li><a href="/channel/{{channel.url}}?p={{num}}">{{num}}</a></li>
+                {{#curnum}}
+                <li><a class="cur" href="/channel/{{channel.url}}?p={{curnum}}">{{curnum}}</a></li>
+                {{/curnum}}
+                {{^curnum}}
+                <li><a class="nums" href="/channel/{{channel.url}}?p={{num}}">{{num}}</a></li>
+                {{/curnum}}
             {{/pager.pagenums}}
             {{#next}}
             <li><a href="/channel/{{channel.url}}?p={{next}}"><i class="fa fa-chevron-circle-right"></i></a></li>

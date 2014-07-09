@@ -9,17 +9,39 @@ var Reply = mongoose.model('Reply');
 var Channel = mongoose.model('Channel');
 
 //pager num
-var pager_num = 5;
+var pager_num = 8;
 
 function BuildPager(cur,total){
-        var pager = {};
+        var pager = {},pagernums_length = 6,pagenum_start=0;
         if(total<=pager_num) return null;
         var pagertotalnum = Math.ceil(total/pager_num);
         pager.cur = parseInt(cur);
         pager.prev = parseInt(cur)-1===0?null:parseInt(cur)-1;
         pager.next = parseInt(cur)+1>pagertotalnum?null:parseInt(cur)+1;
         pager.pagenums=[];
-        for(var i=0;i<pagertotalnum;i++){
+
+        //初始化
+        var pagenum_start = 0;
+        var pagenum_stop = Math.min(pagernums_length,pagertotalnum);
+
+        //计算第一页偏移量
+        if(pagernums_length<pagertotalnum && parseInt(cur)>pagernums_length/2){
+            var startoffset = parseInt(cur)-pagernums_length/2;
+            pagenum_start+=startoffset;
+            pagenum_stop+=startoffset;
+        }
+        //计算是否接近最后一页,并向前推移
+        if(pagernums_length<pagertotalnum && parseInt(cur)+pagernums_length/2>pagertotalnum) {
+            var lastoffset = parseInt(cur)+pagernums_length/2-pagertotalnum;
+            console.info(lastoffset);
+            pagenum_start-=lastoffset;
+            pagenum_stop-=lastoffset;
+        }
+        for(var i=pagenum_start;i<pagenum_stop;i++){
+            if(parseInt(cur)===i+1){
+                pager.pagenums.push({curnum:i+1});
+                continue;
+            }
             pager.pagenums.push({num:i+1});
         }
         return pager;

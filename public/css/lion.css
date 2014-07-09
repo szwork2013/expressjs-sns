@@ -859,10 +859,22 @@ footer {
   font-size: 16px; }
 
 .pager {
-  text-align: center; }
+  margin: 20px 0; }
+  .pager .pager-wrapper:before, .pager .pager-wrapper:after {
+    content: "";
+    display: table; }
+  .pager .pager-wrapper:after {
+    clear: both; }
   .pager .pager-wrapper li {
+    line-height: 40px;
+    height: 40px;
     float: left;
     margin-right: 10px; }
+    .pager .pager-wrapper li a {
+      color: #111;
+      font-size: 40px; }
+      .pager .pager-wrapper li a.cur {
+        color: red; }
 
 .message-list li {
   padding: 10px 0; }
