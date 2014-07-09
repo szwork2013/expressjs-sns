@@ -107,8 +107,13 @@
     .topic-meta{
         @include clearfix();
         li{
+            color:#999;
             margin-right:20px;
             float:left; 
+            i{
+                font-size:14px;
+                margin-right:5px;
+            }
         }
     }
 }
@@ -342,12 +347,12 @@
             margin-right:10px;
             a{
                 color:#ccc;
-                font-size:40px; 
+                font-size:32px; 
                 &.cur{
                     color:#a1a1a1; 
                 }
                 &.nums{
-                    font-size:32px;
+                    font-size:24px;
                 }
                 &:hover{
                     color:#a1a1a1; 

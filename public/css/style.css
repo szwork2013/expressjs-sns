@@ -97,8 +97,12 @@
 .topic-main .topic-meta:after {
   clear: both; }
 .topic-main .topic-meta li {
+  color: #999;
   margin-right: 20px;
   float: left; }
+  .topic-main .topic-meta li i {
+    font-size: 14px;
+    margin-right: 5px; }
 
 .topic-collect {
   font-size: 20px; }
@@ -342,11 +346,11 @@
       margin-right: 10px; }
       .pager .pager-wrapper li a {
         color: #ccc;
-        font-size: 40px; }
+        font-size: 32px; }
         .pager .pager-wrapper li a.cur {
           color: #a1a1a1; }
         .pager .pager-wrapper li a.nums {
-          font-size: 32px; }
+          font-size: 24px; }
         .pager .pager-wrapper li a:hover {
           color: #a1a1a1; }
 

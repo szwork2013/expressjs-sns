@@ -16,9 +16,13 @@
                     data:'topic_id='+$(this).attr('tid'),
                     success:function(re){
                         if(re.s === 1){
-                            $(self).parent('li').remove();
-                            alert('删除成功') 
-                        } 
+                            $(self).parent('li').fadeOut(200,function(){
+                                $script('/js/tip.js',function(){
+                                    Tip('删除成功');
+                                });
+                                this.remove();
+                            })
+                        }
                     }
                 })
         });

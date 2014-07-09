@@ -7,11 +7,11 @@
     </div>
     <ul class="topic-meta">
         <li>
-            <i class="fa fa-calendar"></i>
+            <i class="fa fa-clock-o"></i>
             <span>{{topic.create_date_format}}</span>
         </li>
         <li>
-            <i></i>
+            <i class="fa fa-tags"></i>
             <span>djksajdj</span>
         </li>
     </ul>
@@ -19,9 +19,36 @@
 
 <h2>热门评论：</h2>
 <div class="hot-reply-list">
-
+   {{#hotreplys}}
+    <div class="reply-item" rid="{{_id}}">
+        <div class="reply-wrapper">
+            <div class="vote">
+                <i class="fa fa-chevron-up up"></i>
+                <b class="vote-num">{{up}}</b>
+                <i class="fa fa-chevron-down down"></i>
+            </div>
+            <div class="user-avatar">
+                <img class="user-avatar" src="{{avatar_url_s}}" />
+            </div>
+            <div class="reply-main">
+                <span class="uname"><a href="/user/{{author_url}}">{{author_name}}</a></span>
+                <span class="date">{{create_date_format}}</span>
+                <div class="reply-content">
+                {{content}}
+                </div>
+            </div>
+            <div class="reply-meta">
+                <ul>
+                    <li>
+                        <i class="fa fa-comments-o"></i>
+                        <a href="javascript:void(0);" class="reply-reply">回复</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {{/hotreplys}}
 </div>
-
 <h2>评论：</h2>
 <div class="reply-list">
     {{#replys}}
@@ -181,7 +208,7 @@
                 success:function(re){
                     $script('/js/tip.js',function(){
                         if(re.s === 1){
-                            $(self).prev('.fa').removeClass('fa-star-o').addClass('fa-star');
+                            $(self).find('.fa').removeClass('fa-star-o').addClass('fa-star');
                             Tip('收藏成功');
                         }else if(re.s===2){
                             Tip('已经收藏');
