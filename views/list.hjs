@@ -16,8 +16,7 @@
                 <h2><a href="/topic/{{_id}}">{{title}}</a></h2>
             </span>
             <span class="fr">
-            回复：{{reply_count}}
-            浏览：{{visit_count}}
+                {{reply_count}}/{{visit_count}}
             </span>
             </li>
             {{/topics}}
@@ -51,8 +50,6 @@
     <div class="mod ad1">
         <a href="/about/contact"></a>
     </div>
-
-
     <div class="mod histroy">
         <ul>
             <li>213213</li>

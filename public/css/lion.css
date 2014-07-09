@@ -647,10 +647,33 @@ footer {
     list-style-type: lower-latin;
     list-style-position: inside;
     margin-left: 15px; }
-.topic-main .topic-meta span {
-  margin-left: 2px;
-  color: #57ad69;
-  cursor: pointer; }
+.topic-main .topic-meta:before, .topic-main .topic-meta:after {
+  content: "";
+  display: table; }
+.topic-main .topic-meta:after {
+  clear: both; }
+.topic-main .topic-meta li {
+  margin-right: 20px;
+  float: left; }
+
+.topic-collect {
+  font-size: 20px; }
+  .topic-collect button {
+    margin-left: 10%;
+    -webkit-border-radius: 999em;
+    -moz-border-radius: 999em;
+    -ms-border-radius: 999em;
+    -o-border-radius: 999em;
+    border-radius: 999em;
+    background: none;
+    border: 1px solid #a9d8b2;
+    padding: 10px 20px;
+    color: #57ad68;
+    outline: 0; }
+    .topic-collect button:hover {
+      border: 1px solid #57ad68; }
+    .topic-collect button span {
+      font-size: 20px; }
 
 #replyContent {
   width: 97%;
@@ -860,21 +883,28 @@ footer {
 
 .pager {
   margin: 20px 0; }
-  .pager .pager-wrapper:before, .pager .pager-wrapper:after {
-    content: "";
-    display: table; }
-  .pager .pager-wrapper:after {
-    clear: both; }
-  .pager .pager-wrapper li {
-    line-height: 40px;
-    height: 40px;
-    float: left;
-    margin-right: 10px; }
-    .pager .pager-wrapper li a {
-      color: #111;
-      font-size: 40px; }
-      .pager .pager-wrapper li a.cur {
-        color: red; }
+  .pager .pager-wrapper {
+    text-align: center;
+    margin: 0 auto; }
+    .pager .pager-wrapper:before, .pager .pager-wrapper:after {
+      content: "";
+      display: table; }
+    .pager .pager-wrapper:after {
+      clear: both; }
+    .pager .pager-wrapper li {
+      line-height: 40px;
+      height: 40px;
+      float: left;
+      margin-right: 10px; }
+      .pager .pager-wrapper li a {
+        color: #ccc;
+        font-size: 40px; }
+        .pager .pager-wrapper li a.cur {
+          color: #a1a1a1; }
+        .pager .pager-wrapper li a.nums {
+          font-size: 32px; }
+        .pager .pager-wrapper li a:hover {
+          color: #a1a1a1; }
 
 .message-list li {
   padding: 10px 0; }

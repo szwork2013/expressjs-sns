@@ -105,10 +105,29 @@
         }
     }
     .topic-meta{
+        @include clearfix();
+        li{
+            margin-right:20px;
+            float:left; 
+        }
+    }
+}
+//sidebar
+.topic-collect{
+    font-size:20px;
+    button{
+        margin-left:10%;
+        @include border-radius(999em);
+        background:none;
+        border:1px solid #a9d8b2;  
+        padding:10px 20px;
+        color:#57ad68;
+        outline:0;
+        &:hover{
+            border:1px solid #57ad68; 
+        }
         span{
-            margin-left:2px;
-            color:$action-green; 
-            cursor:pointer;
+            font-size:20px;
         }
     }
 }
@@ -313,6 +332,8 @@
 .pager{
     margin:20px 0;
     .pager-wrapper{
+        text-align:center;
+        margin:0 auto;
         @include clearfix();
         li{
             line-height:40px;
@@ -320,12 +341,16 @@
             float:left;
             margin-right:10px;
             a{
-                color:#111;
+                color:#ccc;
                 font-size:40px; 
                 &.cur{
-                    color:red; 
+                    color:#a1a1a1; 
                 }
                 &.nums{
+                    font-size:32px;
+                }
+                &:hover{
+                    color:#a1a1a1; 
                 }
             }
         }    
