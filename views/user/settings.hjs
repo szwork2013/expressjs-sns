@@ -1,140 +1,154 @@
 <div class="settings">
 
-    <h1>修改基础信息</h1>
-    <form action="/user/savebasesettings" method="post" id="base-form">
-        <div class="row">
-            <label for="uname">昵称</label>
-            <input type="text" name="uname" id="uname" value="{{user.name}}">
-        </div>
+    <ul class="switch-triggers">
+        <li class="cur"><a href="javascript:void(0);">修改基本资料</a></li>
+        <li><a href="javascript:void(0);">修改密码</a></li>
+        <li><a href="javascript:void(0);">修改头像</a></li>
+    </ul>
+    <div class="switch-contents">
+        <div class="switch-content">
+            <form action="/user/savebasesettings" method="post" id="base-form">
+                <div class="row">
+                    <label for="uname">昵称</label>
+                    <input type="text" name="uname" id="uname" value="{{user.name}}">
+                </div>
 
-        <div class="row">
-            <label for="uemail">个性网址</label>
-            <input type="text" name="uurl" id="uurl" value="{{user.url}}">
-            <p>http://www.com/<span id="showurl">{{user.url}}</span></p>
-        </div>
+                <div class="row">
+                    <label for="uemail">个性网址</label>
+                    <input type="text" name="uurl" id="uurl" value="{{user.url}}">
+                    <p class="wyurl"><label></label>http://www.com/<span id="showurl">{{user.url}}</span></p>
+                </div>
 
-        <div class="row">
-            <label for="uemail">邮箱</label>
-            <input type="text" name="uemail" id="uemail" value="{{user.email}}">
-        </div>
+                <div class="row">
+                    <label for="uemail">邮箱</label>
+                    <input type="text" name="uemail" id="uemail" value="{{user.email}}">
+                </div>
 
-        <div class="row">
-            <label for="usign">签名</label>
-            <input type="text" name="usign" id="usign" value="{{user.signature}}">
+                <div class="row">
+                    <label for="usign">签名</label>
+                    <input type="text" name="usign" id="usign" value="{{user.signature}}">
+                </div>
+                <div class="row">
+                    <button type="submit">提交</button>
+                </div>
+            </form>
         </div>
-        <div class="row">
-            <button type="submit">提交</button>
+        <div class="switch-content" style="display:none;">
+            <form action="/user/savepwdsettings" method="post" id="changepwd-form">
+                <div class="row">
+                    <label for="oldupwd">旧密码</label>
+                    <input type="password" name="oldupwd" id="oldupwd" value="">
+                </div>
+                <div class="row">
+                    <label for="newupwd">新密码</label>
+                    <input type="password" name="newupwd" id="newupwd" value="">
+                </div>
+                <div class="row">
+                    <button type="submit">提交</button>
+                </div>
+            </form>
         </div>
-
-    </form>
-
-    <h2>修改密码</h2>
-    <form action="/user/savepwdsettings" method="post" id="changepwd-form">
-        <div class="row">
-            <label for="oldupwd">旧密码</label>
-            <input type="password" name="oldupwd" id="oldupwd" value="">
+        <div class="switch-content" style="display:none;">
+            <form action="/user/saveimgsettings" enctype="multipart/form-data" method="post" id="uploadimg-form">
+                <div class="row">
+                    <button type="button" class="up-trigger">修改头像</button>
+                    <input name="avatar" type="file" accept="image/*" id="take-avatar" class="hide"></input>
+                    <img id="show-avatar" src="{{user.avatar_url_l}}" alt="" />
+                </div>
+                <div class="row">
+                    <button type="submit">提交</button>
+                </div>
+            </form>
         </div>
-        <div class="row">
-            <label for="newupwd">新密码</label>
-            <input type="password" name="newupwd" id="newupwd" value="">
-        </div>
-        <div class="row">
-            <button type="submit">提交</button>
-        </div>
-    </form>
-
-    <h2>修改头像</h2>
-    <form action="/user/saveimgsettings" enctype="multipart/form-data" method="post" id="uploadimg-form">
-        <div class="row">
-            <i class="fa fa-file-image-o"></i> 
-            <button type="button" class="up-trigger">修改头像</button>
-            <input name="avatar" type="file" accept="image/*" id="take-avatar" class="hide"></input>
-            <img id="show-avatar" src="{{user.avatar_url_l}}" alt="" />
-        </div>
-        <div class="row">
-            <button type="submit">提交</button>
-        </div>
-    </form>
-
+    </div>
 </div>
 
 <script>
-    (function(){
+(function(){
 
-        $('#uploadimg-form .up-trigger').click(function(){
-            $('#take-avatar').click()
-        });
-        
+$('.switch-triggers li a').click(function(){
+    var index  = $('.switch-triggers li a').index(this);
+    $('.switch-triggers li').removeClass('cur');
+    $(this).parent().addClass('cur');
+    $('.switch-contents .switch-content').hide();
+    $($('.switch-contents .switch-content')[index]).fadeIn(100);
+});
 
-        //upload avatar 
-        $('#take-avatar').change(function(e){
-            var files = e.target.files;
-            if (files && files.length > 0) {
-                file = files[0];
-                var fileReader = new FileReader();
-                fileReader.onload = function (event) {
-                console.info(event.target.result);
-                    $('#show-avatar').attr('src',event.target.result);
-                };
-                fileReader.readAsDataURL(file);
-            }
-        })
 
-        //user url wysyws
-        $('#uurl').keyup(function(e){
-            $('#showurl').html($(this).val());
-        });
+$('#uploadimg-form .up-trigger').click(function(){
+    $('#take-avatar').click()
+});
 
-    })()
 
-    var url_reg = /^(?!(?:settings|collect|message|about|search|channel|topic|user|login|register)$)/;
+ //upload avatar 
+ $('#take-avatar').change(function(e){
+     var files = e.target.files;
+     if (files && files.length > 0) {
+     file = files[0];
+     var fileReader = new FileReader();
+     fileReader.onload = function (event) {
+     console.info(event.target.result);
+     $('#show-avatar').attr('src',event.target.result);
+     };
+     fileReader.readAsDataURL(file);
+     }
+     })
 
-    $script('/js/validator.js',function(){
+ //user url wysyws
+ $('#uurl').keyup(function(e){
+         $('#showurl').html($(this).val());
+         });
+
+})()
+
+var url_reg = /^(?!(?:settings|collect|message|about|search|channel|topic|user|login|register)$)/;
+
+$script('/js/validator.js',function(){
 
         $('#base-form button[type=submit]').click(function(e){
             e.preventDefault();
             var nameInput = $('input[name="uname"]'),
-                emailInput = $('input[name="uemail"]'),
-                urlInput = $('input[name="uurl"]'),
-                signInput = $('input[name="usign"]');
+            emailInput = $('input[name="uemail"]'),
+            urlInput = $('input[name="uurl"]'),
+            signInput = $('input[name="usign"]');
 
             if(!validator.isEmail(emailInput.val())){
-                   emailInput.focus();
-                   return;
+            emailInput.focus();
+            return;
             }else if(validator.isNull(validator.trim(nameInput.val()))){
-                   nameInput.focus();
-                   return;
+            nameInput.focus();
+            return;
             }else if(validator.isNull(validator.trim(urlInput.val())) || !validator.matches(urlInput.val(),url_reg)){
-                   urlInput.focus();
-                   return;
+            urlInput.focus();
+            return;
             }else if(validator.isNull(validator.trim(signInput.val()))){
-                   signInput.focus();
-                   return;
+            signInput.focus();
+            return;
             }else{
-                $('#base-form').submit();
+            $('#base-form').submit();
             }
         });
 
         $('#changepwd-form button[type=submit]').click(function(e){
             e.preventDefault();
             var oldpwdInput = $('input[name="oldupwd"]');
-                newpwdInput = $('input[name="newupwd"]');
+            newpwdInput = $('input[name="newupwd"]');
             if(validator.isNull(validator.trim(oldpwdInput.val())) || !validator.isAlphanumeric(oldpwdInput.val())){
-                   oldpwdInput.focus();
-                   return;
+            oldpwdInput.focus();
+            return;
             }else if(validator.isNull(validator.trim(newpwdInput.val())) || !validator.isAlphanumeric(newpwdInput.val())){
-                   newpwdInput.focus();
-                   return;
+            newpwdInput.focus();
+            return;
             }else{
-                $('#changepwd-form').submit();
+            $('#changepwd-form').submit();
             }
         });
 
         /*
-        $('#uploadimg-form button[type=submit]').click(function(e){
-            e.preventDefault();
-        });
-        */
-    });
+           $('#uploadimg-form button[type=submit]').click(function(e){
+           e.preventDefault();
+           });
+         */
+});
 
 </script>

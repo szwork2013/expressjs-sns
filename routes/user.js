@@ -40,7 +40,7 @@ router.post('/saveimgsettings', function(req, res) {
                     })
                 },
                 function(callback){
-                    gm(files.avatar.path).resize(100,100,'!').write(process.cwd()+'/public'+save_url_l,function(){
+                    gm(files.avatar.path).resize(128,128,'!').write(process.cwd()+'/public'+save_url_l,function(){
                         callback();
                     })
                 },
