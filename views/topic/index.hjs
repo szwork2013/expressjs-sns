@@ -14,6 +14,11 @@
             <i class="fa fa-tags"></i>
             <span>djksajdj</span>
         </li>
+        <li>
+            <span>分享到：</span>
+            <a href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=appkey',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','','{{topic.title}}','http://dev:8080/topic/{{topic._id}}','utf-8'));"><i class="fa fa-weibo"></i></a> 
+            <a href="javascript:void(0);" onclick="window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?summary={{topic.title}}&url=http://127.0.0.1:8080/topic/{{topic._id}}')" title="分享到QQ空间"><i class="fa fa-qq"></i></a>
+        </li>
     </ul>
 </div>
 
