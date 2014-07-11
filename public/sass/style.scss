@@ -180,9 +180,13 @@
     .reply-main{
         padding:0 0 0 90px;
         @include clearfix();
-        .uname{
+        .uname,.usignature{
             font-size:16px; 
             vertical-align:middle;
+        }
+        .usignature{
+            font-size:14px; 
+            color:#000; 
         }
         .date{
             margin-left:2%;

@@ -180,9 +180,12 @@
     display: table; }
   .reply-list .reply-main:after {
     clear: both; }
-  .reply-list .reply-main .uname {
+  .reply-list .reply-main .uname, .reply-list .reply-main .usignature {
     font-size: 16px;
     vertical-align: middle; }
+  .reply-list .reply-main .usignature {
+    font-size: 14px;
+    color: #000; }
   .reply-list .reply-main .date {
     margin-left: 2%;
     vertical-align: middle;

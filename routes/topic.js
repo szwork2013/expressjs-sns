@@ -12,17 +12,23 @@ var Reply = mongoose.model('Reply');
 var Collect = mongoose.model('Collect');
 var formidable = require('formidable');
 
+function BuildReplyItem(origin,user){
+    var temp = {};
+    temp = origin.toObject();
+    temp.create_date_format = origin.create_date_format;
+    temp.author_name = user.name;
+    temp.author_signature = user.signature;
+    temp.author_url = user.url;
+    temp.avatar_url_s = user.avatar_url_s;
+    return temp;
+}
+
 function GetAllreplyById(id,cb){
         Reply.find({topic_id:id},null,{sort:{create_date:1}},function(err,replys){
                 var replys_o = [];
                 async.eachSeries(replys, function(reply, callback) {
-                    User.findOne({_id:reply.author_id },'name url avatar_url', function(error, user) {
-                       var reply_temp = reply.toObject();
-                       reply_temp.create_date_format = reply.create_date_format;
-                       reply_temp.author_name = user.name;
-                       reply_temp.author_url = user.url;
-                       reply_temp.avatar_url_s = user.avatar_url_s;
-                       replys_o.push(reply_temp);
+                    User.findOne({_id:reply.author_id },'name url signature avatar_url', function(error, user) {
+                       replys_o.push(BuildReplyItem(reply,user));
                        callback();
                     });
                 }, function (err) {
@@ -48,17 +54,13 @@ router.post('/addreply',function(req,res){
    }).save(function(err,reply){
         User.findOneAndUpdate({_id:req.session.user._id},{$inc:{score:1}},function(){
            Topic.findOneAndUpdate({_id:req.body.topic_id},{$inc:{reply_count:1},last_reply_date:new Date()},function(err,topic){
-               var result = reply.toObject();
-               result.create_date_format = reply.create_date_format;
-               result.author_name = req.session.user.name;
-               result.author_url = req.session.user.url;
-               result.avatar_url = req.session.user.avatar_url;
-               if(req.session.user.avatar_url_s){
+                var result = BuildReplyItem(reply,req.session.user);
+                if(req.session.user.avatar_url_s){
                    result.avatar_url_s = req.session.user.avatar_url_s;
-               }else{
+                }else{
                    var str = req.session.user.avatar_url;
                    result.avatar_url_s = [str.slice(0,str.lastIndexOf('.')),"_s",str.slice(str.lastIndexOf('.'))].join("");
-               }
+                }
                 if(!err){
                     res.json(result);
                 }

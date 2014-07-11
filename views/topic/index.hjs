@@ -70,6 +70,7 @@
             </div>
             <div class="reply-main">
                 <span class="uname"><a href="/{{author_url}}">{{author_name}}</a></span>
+                <span class="usignature">{{author_signature}}</span>
                 <span class="date">{{create_date_format}}</span>
                 <div class="reply-content">
                 {{content}}
@@ -124,6 +125,7 @@
             </div>
             <div class="reply-main">
                 <span class="uname"><a href="/<%= author_url %>"><%= author_name %></a></span>
+                <span class="usignature"><%=author_signature %></span>
                 <span class="date"><%= create_date_format %></span>
                 <div class="reply-content">
                     <%= content %>

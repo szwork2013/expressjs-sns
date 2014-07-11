@@ -32,8 +32,9 @@ var User = new mongoose.Schema({
 User.virtual('create_date_format').get(function(){
     return moment(this.create_date).format('YYYY-MM-DD HH:mm');
 });
+
 User.virtual('update_date_format').get(function(){
-    return moment(this.update_date).format('YYYY-MM-DD HH:mm');
+    return moment(this.update_date).lang('zh-cn').fromNow();
 });
 
 User.virtual('avatar_url_s').get(function(){
