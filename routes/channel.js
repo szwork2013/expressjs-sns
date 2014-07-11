@@ -114,6 +114,7 @@ router.get('/:url', function(req, res) {
 
 
 router.get('/:url/new', function(req, res) {
+    if(!req.session.user) res.redirect('/login');
     res.render('topic/new',{
         channel_url:req.params.url 
     });

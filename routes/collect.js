@@ -37,7 +37,8 @@ router.get('/', function(req, res) {
 });
 
 router.post('/new', function(req, res) {
-    Collect.findOne({topic_id:req.body.topic_id},function(err,col){
+    if(!req.session.user) res.redirect('/login');
+    Collect.findOne({$and:[{topic_id:req.body.topic_id},{user_id:req.session.user._id}]},function(err,col){
         if(col){
             res.json({s:2});
         }else{

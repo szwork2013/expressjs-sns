@@ -106,7 +106,9 @@ router.post('/registervalidate', function(req, res) {
 });
 
 router.post('/validateurl', function(req, res) {
-    if(req.body.url){
+    if(req.session.user && req.body.url === req.session.user.url){
+        res.json({r:0});
+    }else if(req.body.url){
         User.findOne({url:req.body.url},function(err,user){
             if(user){
                 res.json({r:1});
