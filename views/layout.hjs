@@ -60,8 +60,5 @@
         <li><a href="/about/suggest">意见反馈</a></li>
     </ul>
 </footer>
-<script>
-    $script('/js/jquery.spopup.js');
-</script>
 </body>
 </html>

@@ -105,6 +105,7 @@ var url_reg = /^(?!(?:settings|collect|message|about|search|channel|topic|user|l
 
 $script('/js/validator.js',function(){
 
+
         $('#base-form button[type=submit]').click(function(e){
             e.preventDefault();
             var nameInput = $('input[name="uname"]'),
@@ -125,7 +126,19 @@ $script('/js/validator.js',function(){
             signInput.focus();
             return;
             }else{
-            $('#base-form').submit();
+                $.ajax({
+                    url:'user/validateurl',
+                    method:'post',
+                    data:'url='+urlInput.val(),
+                    success:function(re){
+                    if(re.r===1){
+                        $script('/js/tip.js',function(){
+                            Tip('改域名已经存在'); 
+                        })
+                    }else if(re.r===0)
+                        $('#base-form').submit();
+                    }
+                })
             }
         });
 

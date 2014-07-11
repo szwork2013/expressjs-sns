@@ -1,31 +1,33 @@
 <div class="chat-wrapper">
-    <h1>在线聊天室</h1>
-    <ul class="msgs">
-        
-    </ul>
-    <ul class="users">
-        <li>在线用户：</li>
-    </ul>
+    <div class="msg-wrapper">
+        <ul class="msgs">
+        </ul>
+    </div>
+    <div class="users-wrapper">
+        <ul class="users">
+            <li>在线用户：</li>
+        </ul>
+    </div>
     <input type="text" id="newmessage" name="newmessage" placeholder="输入内容....">
 </div>
 
 <script>
-    $script('/js/socket.io.js',function(){
-      var socket = io();
-      socket.emit('username','{{user.name}}');
-      $('#newmessage').keyup(function(e){
-          if(e.keyCode == 13){
-                socket.emit('chat message','<span class="author">{{user.name}}：</span><span class="message">'+$('#newmessage').val()+'</span>');
-                $('#newmessage').val('');
-                return false;
-          }
-      });
-      socket.on('chat message', function(msg){
-        $('.msgs').append($('<li>').html(msg));
-        $('.msgs').scrollTop($('.msgs')[0].scrollHeight);
-      });
-      socket.on('username', function(username){
-          $('.users').append($('<li id="{{user._id}}">').text(username));
-      });
-    });
+$script('/js/socket.io.js',function(){
+        var socket = io();
+        socket.emit('username','{{user.name}}');
+        $('#newmessage').keyup(function(e){
+            if(e.keyCode == 13){
+            socket.emit('chat message','<span class="author">{{user.name}}：</span><span class="message">'+$('#newmessage').val()+'</span>');
+            $('#newmessage').val('');
+            return false;
+            }
+            });
+        socket.on('chat message', function(msg){
+            $('.msgs').append($('<li>').html(msg));
+            $('.msgs').scrollTop($('.msgs')[0].scrollHeight);
+            });
+        socket.on('username', function(username){
+            $('.users').append($('<li id="{{user._id}}">').text(username));
+            });
+        });
 </script>

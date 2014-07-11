@@ -88,25 +88,30 @@ router.post('/upreply',function(req,res){
 
 //获取topic页面
 router.get('/:_id', function(req, res, next) {
-    if(!req.session.user){
-        res.render('user/login');
-    }else{
+        var islogin  = req.session.user?true:false;
         Topic.findOneAndUpdate({_id:req.params._id},{$inc:{visit_count:1}},function(err,topic){
             if(topic){
                 GetAllreplyById(topic.id,function(replys){
-                    Collect.find({$and:[{user_id:req.session.user._id},{topic_id:topic.id}]},function(err,collect){
-                        res.render('topic/index',{
-                            topic:topic,
-                            replys:replys,
-                            iscollect:collect.length>0?true:false
-                        })
-                    });
+                    if(islogin){
+                        Collect.find({$and:[{user_id:req.session.user._id},{topic_id:topic.id}]},function(err,collect){
+                            res.render('topic/index',{
+                                topic:topic,
+                                replys:replys,
+                                iscollect:collect.length>0?true:false
+                            })
+                        });
+                    }else{
+                            res.render('topic/index',{
+                                topic:topic,
+                                replys:replys,
+                                iscollect:false
+                            })
+                    }
                 });
             }else{
                 next(); 
             }
         });
-    }
 });
 
 module.exports = router;

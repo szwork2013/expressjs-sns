@@ -32,7 +32,7 @@
             {{/prev}}
             {{#pager.pagenums}}
                 {{#curnum}}
-                <li><a class="cur" href="/channel/{{channel.url}}?p={{curnum}}">{{curnum}}</a></li>
+                <li><a class="nums cur" href="/channel/{{channel.url}}?p={{curnum}}">{{curnum}}</a></li>
                 {{/curnum}}
                 {{^curnum}}
                 <li><a class="nums" href="/channel/{{channel.url}}?p={{num}}">{{num}}</a></li>

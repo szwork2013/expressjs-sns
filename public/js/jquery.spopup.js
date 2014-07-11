@@ -28,6 +28,7 @@
             if(o.onOpen) o.onOpen.call($spopup);
             $spopup.css({
                 'width':o.width,
+                'height':o.height,
                 'position':o.positionStyle,
                 'left':o.position[0],
                 'top':o.position[1],
@@ -51,7 +52,8 @@
         function recenter(){
             $spopup.css({
                 'left':$(window).width()/2-$spopup.width()/2,
-                'top':$(window).scrollTop()+$(window).height()/2-$spopup.height()/2
+                'top':$(window).scrollTop()+$(window).height()/2-$spopup.height()/2,
+                'background':o.bgcolor || '#fff'
             })
         }
 
@@ -88,6 +90,7 @@
 
     $.fn.spopup.defaults = {
         width:'50%',
+        height:'auto',
         appendTo:'body',
 		speed:250,
         autoClose:false,
@@ -96,6 +99,7 @@
         position:['auto', 'auto'],
         ismasking:true,
         maskcolor:'#000',
+        bgcolor:'#fff',
         maskopacity:'0.7',
         zindex:9999,
         onClose:function(){},

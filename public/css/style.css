@@ -109,6 +109,7 @@
   .topic-main .topic-meta li a {
     color: #999; }
   .topic-main .topic-meta li i {
+    cursor: pointer;
     font-size: 14px;
     margin-right: 5px; }
 
@@ -414,8 +415,9 @@
       float: left;
       margin-right: 10px; }
       .pager .pager-wrapper li a {
+        vertical-align: middle;
         color: #ccc;
-        font-size: 32px; }
+        font-size: 28px; }
         .pager .pager-wrapper li a.cur {
           color: #a1a1a1; }
         .pager .pager-wrapper li a.nums {
@@ -428,10 +430,21 @@
 
 .chat-wrapper {
   position: relative;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  position: relative;
   width: 80%;
+  overflow: hidden;
   padding: 0 0 40px 0;
   margin: 0 auto; }
   .chat-wrapper #newmessage {
+    height: 16px;
+    line-height: 16px;
+    outline: 0;
     position: absolute;
     bottom: 0;
     right: 0;
@@ -440,10 +453,10 @@
     height: 20px;
     line-height: 20px;
     font-size: 16px;
-    border: 10px solid #999;
+    border: none;
     padding: 5px; }
   .chat-wrapper ul.msgs {
-    padding: 5px;
+    width: 80%;
     overflow-y: scroll;
     height: 100px;
     min-height: 200px; }
@@ -458,10 +471,9 @@
         margin-left: 10px;
         color: #666; }
   .chat-wrapper ul.users {
-    border: 1px solid #ccc;
-    padding: 10px;
+    border-left: 1px solid #ccc;
     position: absolute;
-    right: -20%;
+    right: 0;
     width: 20%;
     top: 0; }
     .chat-wrapper ul.users li {

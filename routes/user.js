@@ -102,8 +102,18 @@ router.post('/registervalidate', function(req, res) {
                 res.json({r:0});
             }
         });
-    }else{
-        res.redirect('/error'); 
+    }
+});
+
+router.post('/validateurl', function(req, res) {
+    if(req.body.url){
+        User.findOne({url:req.body.url},function(err,user){
+            if(user){
+                res.json({r:1});
+            }else{
+                res.json({r:0});
+            }
+        });
     }
 });
 

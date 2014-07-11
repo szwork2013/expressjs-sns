@@ -113,6 +113,7 @@
                 color:#999;
             }
             i{
+                cursor:pointer;
                 font-size:14px;
                 margin-right:5px;
             }
@@ -415,8 +416,9 @@
             float:left;
             margin-right:10px;
             a{
+                vertical-align:middle;
                 color:#ccc;
-                font-size:32px; 
+                font-size:28px; 
                 &.cur{
                     color:#a1a1a1; 
                 }
@@ -439,10 +441,17 @@
 //chat
 .chat-wrapper{
     position:relative;
+    border:1px solid #ddd;
+    @include border-radius(5px);
+    position:relative;
     width:80%;
+    overflow:hidden;
     padding:0 0 40px 0;
     margin:0 auto;
     #newmessage{
+        height:16px;
+        line-height:16px;
+        outline:0;
         position:absolute;
         bottom:0;
         right:0;
@@ -451,11 +460,11 @@
         height:20px;
         line-height:20px;
         font-size:16px;
-        border:10px solid #999;
+        border:none;
         padding:5px;
     }
     ul.msgs{
-        padding:5px;
+        width:80%;
         overflow-y:scroll;
         height:100px;
         min-height:200px;
@@ -474,10 +483,9 @@
         }
     }
     ul.users{
-        border:1px solid #ccc;
-        padding:10px;
+        border-left:1px solid #ccc;
         position:absolute;
-        right:-20%;
+        right:0;
         width:20%;
         top:0;
         li{
