@@ -9,10 +9,11 @@ var Reply = mongoose.model('Reply');
 var Channel = mongoose.model('Channel');
 
 //pager num
-var pager_num = 8;
+var pager_num = 10;
 
 function BuildPager(cur,total){
         var pager = {},pagernums_length = 6,pagenum_start=0;
+        pager.total=total;
         if(total<=pager_num) return null;
         var pagertotalnum = Math.ceil(total/pager_num);
         pager.cur = parseInt(cur);
@@ -51,11 +52,13 @@ function GetTopicTemplete(topics,callback){
         var n_topics = [];
         async.eachSeries(topics,function(topic,cb){
             User.findOne({_id:topic.author_id},function(err,user){
+                if(!user) return;
                 var temp_topic = topic.toObject();
                 temp_topic.author_name = user.name;
                 temp_topic.author_url = user.url;
                 temp_topic.author_avatar_url = user.avatar_url_s;
                 temp_topic.create_date_format = topic.create_date_format;
+                temp_topic.last_reply_date_format = topic.last_reply_date_format;
                 n_topics.push(temp_topic);
                 cb();
             });
@@ -115,9 +118,12 @@ router.get('/:url', function(req, res) {
 
 router.get('/:url/new', function(req, res) {
     if(!req.session.user) res.redirect('/login');
-    res.render('topic/new',{
-        channel_url:req.params.url 
-    });
+
+    Channel.findOne({url:req.params.url},function(err,channel){
+        res.render('topic/new',{
+            channel:channel 
+        });
+    })
 });
 
 router.post('/:url/new', function(req, res) {
@@ -135,13 +141,6 @@ router.post('/:url/new', function(req, res) {
             }
         }); 
     })
-});
-
-router.get('/:url/chat', function(req, res) {
-    res.render('chat/index',{
-        channel_url:req.params.url,
-        user:req.session.user
-    });
 });
 
 module.exports = router;

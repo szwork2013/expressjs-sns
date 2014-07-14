@@ -53,17 +53,17 @@ app.locals = {
     gtitle:'sns'
 };
 
-app.use('/', routes);
 app.use('/channel', channel);
 app.use('/about', about);
 app.use('/user', user);
 app.use('/topic', topic);
 app.use('/message', message);
 app.use('/collect', collect);
+app.use('/', routes);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
+    var err = new Error('404,未找到页面!');
     err.status = 404;
     next(err);
 });

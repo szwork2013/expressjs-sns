@@ -37,6 +37,20 @@ function GetAllreplyById(id,cb){
     });
 }
 
+function GetHotreplyById(id,cb){
+    Reply.find({topic_id:id,up:{$gt:0}},null,{limit:3,sort:{up:0}},function(err,replys){
+            var replys_o = [];
+            async.eachSeries(replys, function(reply, callback) {
+                User.findOne({_id:reply.author_id },'name url signature avatar_url', function(error, user) {
+                   replys_o.push(BuildReplyItem(reply,user));
+                   callback();
+                });
+            }, function (err) {
+                cb(replys_o);
+            });
+    });
+}
+
 //获取topic留言
 router.get('/getallreply',function(req,res){
     GetAllreplyById(req.query.topic_id,function(replys){
@@ -46,6 +60,12 @@ router.get('/getallreply',function(req,res){
 
 //添加留言api
 router.post('/addreply',function(req,res){
+
+        if(!req.session.user){
+            res.json({r:3}); 
+            return;
+        }
+        
         new Reply({
            content:req.body.replyContent,
            topic_id:req.body.topic_id,
@@ -65,11 +85,15 @@ router.post('/addreply',function(req,res){
                     }
                })
            })
-        }); 
+        });
 });
 
 //up reply
 router.post('/upreply',function(req,res){
+    if(!req.session.user){
+        res.json({r:3}); 
+        return;
+    }
     Reply.findOne({_id:req.body.reply_id},function(err,reply){
         var isup = reply.uper.some(function (uper) { return uper.uper_id.equals(req.session.user._id);});
         var isself = reply.author_id.equals(req.session.user._id)?true:false;
@@ -93,21 +117,25 @@ router.get('/:_id', function(req, res, next) {
     Topic.findOneAndUpdate({_id:req.params._id},{$inc:{visit_count:1}},function(err,topic){
         if(topic){
             GetAllreplyById(topic.id,function(replys){
-                if(islogin){
-                    Collect.find({$and:[{user_id:req.session.user._id},{topic_id:topic.id}]},function(err,collect){
-                        res.render('topic/index',{
-                            topic:topic,
-                            replys:replys,
-                            iscollect:collect.length>0?true:false
-                        })
-                    });
-                }else{
-                        res.render('topic/index',{
-                            topic:topic,
-                            replys:replys,
-                            iscollect:false
-                        })
-                }
+                GetHotreplyById(topic.id,function(hotreplys){
+                    if(islogin){
+                        Collect.find({$and:[{user_id:req.session.user._id},{topic_id:topic.id}]},function(err,collect){
+                            res.render('topic/index',{
+                                topic:topic,
+                                replys:replys,
+                                hotreplys:hotreplys,
+                                iscollect:collect.length>0?true:false
+                            })
+                        });
+                    }else{
+                            res.render('topic/index',{
+                                topic:topic,
+                                replys:replys,
+                                hotreplys:hotreplys,
+                                iscollect:false
+                            })
+                    }
+                })
             });
         }else{
             next(); 

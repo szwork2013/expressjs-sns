@@ -73,26 +73,22 @@ router.get('/settings', function(req, res,next) {
 });
 
 router.get('/:url', function(req, res,next) {
-    if(req.session.user){
-        User.findOne({url:req.params.url},function(err,user){
-            if(!user){
-                next();
-            }else{
-                GetTopicAndReplyByUser(user,function(topics,replys){
-                    res.render('./user/index', { 
-                        title: user.name,
-                        user:req.session.user,
-                        showuser:user,
-                        topics:topics,
-                        replys:replys,
-                        isme:user._id.equals(req.session.user._id)?[1]:null
-                    });
+    User.findOne({url:req.params.url},function(err,user){
+        if(!user){
+            next();
+        }else{
+            GetTopicAndReplyByUser(user,function(topics,replys){
+                res.render('./user/index', { 
+                    title: user.name,
+                    user:req.session.user,
+                    showuser:user,
+                    topics:topics,
+                    replys:replys,
+                    isme:req.session.user && user._id.equals(req.session.user._id)?[1]:null
                 });
-            }
-        });
-    }else{
-        res.render('user/login');
-    }
+            });
+        }
+    });
 });
 
 module.exports = router;

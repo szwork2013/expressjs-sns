@@ -1,49 +1,54 @@
 <div class="content">
-    <h1>{{channel.name}}</h1>
-    <div class="row clearfix">
-        <a href="/channel/{{channel.url}}/new" class="new-post-btn">发布新话题</a>
-        <a href="/channel/{{channel.url}}/chat" class="fr">去聊天室</a>
-    </div>
+    <div class="list-wrapper">
+        <div class="row clearfix">
+            <h1 class="fl">{{channel.name}}</h1>
+            <a href="/channel/{{channel.url}}/new" class="new-post-btn fr"><i class="fa fa-plus"></i>发布新话题</a>
+        </div>
 
-    <div class="row">
-        <ul class="topic-list">
-            {{#topics}}
-            <li>
-            <span class="fl">
-                <img src="{{author_avatar_url}}" alt="">
-            </span>
-            <span class="fl">
-                <h2><a href="/topic/{{_id}}">{{title}}</a></h2>
-            </span>
-            <span class="fr">
-                {{reply_count}}/{{visit_count}}
-            </span>
-            </li>
-            {{/topics}}
-            <li class="more" style="display:none;"><i class="fa fa-refresh fa-spin"></i></li>
-        </ul>
-    </div>
+        <div class="row">
+            <ul class="topic-list">
+                {{#topics}}
+                <li>
+                <span class="fl author-avatar">
+                    <img src="{{author_avatar_url}}" alt="">
+                </span>
+                <span class="fl topic-title">
+                    <h2><a href="/topic/{{_id}}">{{title}}</a></h2>
+                </span>
+                <span class="fl topic-detail">
+                    {{reply_count}}/{{visit_count}}
+                </span>
+                <span class="fl topic-last-reply">
+                    最后回复：{{last_reply_date_format}}
+                </span>
+                </li>
+                {{/topics}}
+                <li class="more" style="display:none;"><i class="fa fa-refresh fa-spin"></i></li>
+            </ul>
+        </div>
 
-    {{#pager}}
-    <div class="pager row">
-        <ul class="pager-wrapper">
-            {{#prev}}
+        {{#pager}}
+        <div class="pager row">
+            总共:{{total}}篇帖子
+            <ul class="pager-wrapper">
+                {{#prev}}
                 <li><a href="/channel/{{channel.url}}?p={{prev}}"><i class="fa fa-chevron-circle-left"></i></a></li>
-            {{/prev}}
-            {{#pager.pagenums}}
+                {{/prev}}
+                {{#pager.pagenums}}
                 {{#curnum}}
                 <li><a class="nums cur" href="/channel/{{channel.url}}?p={{curnum}}">{{curnum}}</a></li>
                 {{/curnum}}
                 {{^curnum}}
                 <li><a class="nums" href="/channel/{{channel.url}}?p={{num}}">{{num}}</a></li>
                 {{/curnum}}
-            {{/pager.pagenums}}
-            {{#next}}
-            <li><a href="/channel/{{channel.url}}?p={{next}}"><i class="fa fa-chevron-circle-right"></i></a></li>
-            {{/next}}
-        </ul>
+                {{/pager.pagenums}}
+                {{#next}}
+                <li><a href="/channel/{{channel.url}}?p={{next}}"><i class="fa fa-chevron-circle-right"></i></a></li>
+                {{/next}}
+            </ul>
+        </div>
+        {{/pager}}
     </div>
-    {{/pager}}
 </div>
 
 <div class="sidebar">
@@ -59,23 +64,22 @@
 
 <script>
 (function (){
-     /*
-     $('.more-trigger').click(function(){
-        $('.more').show();
-        $.ajax({
-            url:'{channel.url}}/2/',
-            success:function(re){
-                $('.more').hide();
-            }
-        });
-    });
-    */
 
-    $script('/js/loadimg.js',function(){
-        loadimg('http://cdn.ifanr.cn/wp-content/uploads/2014/06/IXDCifanr-02.jpg',function(img){
-           $(img).appendTo($('.ad1 a')); 
-        })
-    })
+ $script('/js/loadimg.js',function(){
+     loadimg('http://cdn.ifanr.cn/wp-content/uploads/2014/06/IXDCifanr-02.jpg',function(img){
+         $(img).appendTo($('.ad1 a')); 
+         })
+     })
+
+ $('.topic-list li').bind({
+     'mouseover':function(){
+     $(this).css('background','#fbfbfb');
+     },
+     'mouseout':function(){
+     $(this).css('background','#fff');
+     }
+     });
+
 
  })() 
 </script>

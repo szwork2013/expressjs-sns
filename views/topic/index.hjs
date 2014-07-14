@@ -1,101 +1,103 @@
 <div class="content">
-<div class="topic-main">
-    <h1>{{topic.title}}</h1>
-    <div class="topic-content">
-    {{{topic.content}}}
-    </div>
-    <ul class="topic-meta">
-        <li>
+    <div class="topic-main">
+        <h1>{{topic.title}}</h1>
+        <div class="topic-content">
+            {{{topic.content}}}
+        </div>
+        <ul class="topic-meta">
+            <li>
             <i class="fa fa-clock-o"></i>
             <span>{{topic.create_date_format}}</span>
-        </li>
-        <li>
+            </li>
+            <!--<li>
             <i class="fa fa-tags"></i>
             <span>djksajdj</span>
-        </li>
-        <li class="share">
+        </li>-->
+            <li class="share">
             <span>分享到：</span>
             <a title="分享到微博" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=appkey',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','','{{topic.title}}','http://dev:8080/topic/{{topic._id}}','utf-8'));"><i class="fa fa-weibo"></i></a> 
             <a title="分享到qq空间" href="javascript:void(0);" onclick="window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?summary={{topic.title}}&url=http://127.0.0.1:8080/topic/{{topic._id}}')" title="分享到QQ空间"><i class="fa fa-qq"></i></a>
             <i title="分享到微信" class="fa fa-weixin"></i>
-        </li>
-    </ul>
-</div>
+            </li>
+        </ul>
+    </div>
 
-<h2>热门评论：</h2>
-<div class="hot-reply-list">
-   {{#hotreplys}}
-    <div class="reply-item" rid="{{_id}}">
-        <div class="reply-wrapper">
-            <div class="vote">
-                <i class="fa fa-chevron-up up"></i>
-                <b class="vote-num">{{up}}</b>
-                <i class="fa fa-chevron-down down"></i>
-            </div>
-            <div class="user-avatar">
-                <img class="user-avatar" src="{{avatar_url_s}}" />
-            </div>
-            <div class="reply-main">
-                <span class="uname"><a href="/user/{{author_url}}">{{author_name}}</a></span>
-                <span class="date">{{create_date_format}}</span>
-                <div class="reply-content">
-                {{content}}
+    {{#hotreplys}}
+    <h2>热门评论：</h2>
+    <div class="hot-reply-list">
+        {{#hotreplys}}
+        <div class="reply-item" rid="{{_id}}">
+            <div class="reply-wrapper">
+                <div class="vote">
+                    <i class="fa fa-chevron-up up"></i>
+                    <b class="vote-num">{{up}}</b>
+                    <i class="fa fa-chevron-down down"></i>
                 </div>
-            </div>
-            <div class="reply-meta">
-                <ul>
-                    <li>
+                <div class="user-avatar">
+                    <img class="user-avatar" src="{{avatar_url_s}}" />
+                </div>
+                <div class="reply-main">
+                    <span class="uname"><a href="/user/{{author_url}}">{{author_name}}</a></span>
+                    <span class="date">{{create_date_format}}</span>
+                    <div class="reply-content">
+                        {{content}}
+                    </div>
+                </div>
+                <div class="reply-meta">
+                    <ul>
+                        <li>
                         <i class="fa fa-reply"></i>
                         <a href="javascript:void(0);" class="reply-reply">回复</a>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
+        {{/hotreplys}}
     </div>
     {{/hotreplys}}
-</div>
-<h2>评论：</h2>
-<div class="reply-list">
-    {{#replys}}
-    <div class="reply-item" rid="{{_id}}">
-        <div class="reply-wrapper">
-            <div class="vote">
-                <i class="fa fa-chevron-up up"></i>
-                <b class="vote-num">{{up}}</b>
-                <i class="fa fa-chevron-down down"></i>
-            </div>
-            <div class="user-avatar">
-                <img class="user-avatar" src="{{avatar_url_s}}" />
-            </div>
-            <div class="reply-main">
-                <span class="uname"><a href="/{{author_url}}">{{author_name}}</a></span>
-                <span class="usignature">{{author_signature}}</span>
-                <span class="date">{{create_date_format}}</span>
-                <div class="reply-content">
-                {{content}}
+    <h2>评论：</h2>
+    <div class="reply-list">
+        {{#replys}}
+        <div class="reply-item" rid="{{_id}}">
+            <div class="reply-wrapper">
+                <div class="vote">
+                    <i class="fa fa-chevron-up up"></i>
+                    <b class="vote-num">{{up}}</b>
+                    <i class="fa fa-chevron-down down"></i>
                 </div>
-            </div>
-            <div class="reply-meta">
-                <ul>
-                    <li>
+                <div class="user-avatar">
+                    <img class="user-avatar" src="{{avatar_url_s}}" />
+                </div>
+                <div class="reply-main">
+                    <span class="uname"><a href="/{{author_url}}">{{author_name}}</a></span>
+                    <span class="usignature">{{author_signature}}</span>
+                    <span class="date">{{create_date_format}}</span>
+                    <div class="reply-content">
+                        {{content}}
+                    </div>
+                </div>
+                <div class="reply-meta">
+                    <ul>
+                        <li>
                         <i class="fa fa-reply"></i>
                         <a href="javascript:void(0);" class="reply-reply">回复</a>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
+        {{/replys}}
     </div>
-    {{/replys}}
-</div>
 
-<form action="/topic/addreply" method="post" class="reply-form" id="reply-form">
+    <form action="/topic/addreply" method="post" class="reply-form" id="reply-form">
         <div class="row">
             <textarea id="replyContent" name="replyContent" placeholder="回复内容...."></textarea>
         </div>
         <div class="row act">
             <button type="submit">提交</button> 
         </div>
-</form>
+    </form>
 </div>
 <div class="sidebar">
     <div class="mod topic-collect">
@@ -142,103 +144,114 @@
 </script>
 <script>
 (function(){
-     $script(['/js/validator.js','/js/ejs.js'],function(){
-        var contentInput = $('#replyContent');
+ $script(['/js/validator.js','/js/ejs.js'],function(){
+     var contentInput = $('#replyContent');
 
-        function UpReplyBind(els){
-            els.click(function(){
-                var self = this;
-                var num = $(this).hasClass('up')?1:-1;
-                $.ajax({
-                    url:'/topic/upreply',
-                    data:'reply_id='+$(this).parents('.reply-item').attr('rid')+'&num='+num,
-                    method:'post',
-                    success:function(re){
-                        if(re.r===1){
-                            $(self).parent('.vote').find('.vote-num').html(re.reply.up);
-                        }else if(re.r ===0){
-                            $script('/js/tip.js',function(){
-                                Tip('不能重复提交');
-                            });
-                        }else if(re.r === 2){
-                            $script('/js/tip.js',function(){
-                                Tip('不能自己顶自己');
-                            });
-                        }
-                    }
-                })
-            });
-        }
-
-        function Replytoreply(els){
-            els.click(function(){
-                contentInput.focus();
-                contentInput.val('@'+$(this).parents('.reply-item').find('.uname a').html()+'，');
-            }); 
-        }
-
-        $('.reply-form button[type="submit"]').click(function(e){
-
-            e.preventDefault();
-
-            if(validator.isNull(validator.trim(contentInput.val()))){
+     function UpReplyBind(els){
+     els.click(function(){
+        var self = this;
+        var num = $(this).hasClass('up')?1:-1;
+        $.ajax({
+            url:'/topic/upreply',
+            data:'reply_id='+$(this).parents('.reply-item').attr('rid')+'&num='+num,
+            method:'post',
+            success:function(re){
                 $script('/js/tip.js',function(){
-                    Tip('请填写内容');
+                if(re.r===1){
+                $(self).parent('.vote').find('.vote-num').html(re.reply.up);
+                }else if(re.r ===0){
+                    Tip('不能重复提交');
+                }else if(re.r === 2){
+                    Tip('不能自己顶自己');
+                }else if(re.r===3){
+                    Tip('未登录，请登录');
+                }
                 });
-                return;
             }
+        })
+    });
+}
 
-            $.ajax({
-                url:'/topic/addreply',
-                method:'post',
-                data:$('.reply-form').serialize()+'&topic_id={{topic._id}}',
-                beforeSend:function(){
-                   $('<div class="more"></div>').appendTo($('.reply-list')); 
-                },
-                success:function(re){
-                   $('#replyContent').val('');
-                   $('.reply-list .more').remove();
-                   var reply_dom = new EJS({text:$('#reply-item-temp').html()}).render(re);
-                   $('.reply-list').append(reply_dom);
-                   UpReplyBind($('.reply-list .reply-item').last().find('.up,.down'));
-                   Replytoreply($('.reply-list .reply-item').last().find('.reply-reply'));
-                }
-            })
+function Replytoreply(els){
+    els.click(function(){
+            contentInput.focus();
+            contentInput.val('@'+$(this).parents('.reply-item').find('.uname a').html()+'，');
+            }); 
+}
+
+$('.reply-form button[type="submit"]').click(function(e){
+
+        e.preventDefault();
+
+        if(validator.isNull(validator.trim(contentInput.val()))){
+        $script('/js/tip.js',function(){
+            Tip('请填写内容');
+            });
+        return;
+        }
+
+        $.ajax({
+        url:'/topic/addreply',
+        method:'post',
+        data:$('.reply-form').serialize()+'&topic_id={{topic._id}}',
+        beforeSend:function(){
+        $('<div class="more"></div>').appendTo($('.reply-list')); 
+        },
+        success:function(re){
+
+        if(re.r === 3){
+            $script('/js/tip.js',function(){
+            Tip('未登录，请登录');
+            });
+            return;
+        }
+
+
+        $('#replyContent').val('');
+        $('.reply-list .more').remove();
+        var reply_dom = new EJS({text:$('#reply-item-temp').html()}).render(re);
+        $('.reply-list').append(reply_dom);
+        UpReplyBind($('.reply-list .reply-item').last().find('.up,.down'));
+        Replytoreply($('.reply-list .reply-item').last().find('.reply-reply'));
+        }
+        })
         });
 
-        $('#addcollect').click(function(){
-            var self = this;
-            $.ajax({
-                url:'/collect/new',
-                data:'topic_id={{topic._id}}',
-                method:'post',
-                success:function(re){
-                    $script('/js/tip.js',function(){
-                        if(re.s === 1){
-                            $(self).find('.fa').removeClass('fa-star-o').addClass('fa-star');
-                            Tip('收藏成功');
-                        }else if(re.s===2){
-                            Tip('已经收藏');
-                        }
-                    });
-                }
+$('#addcollect').click(function(){
+        var self = this;
+        $.ajax({
+        url:'/collect/new',
+        data:'topic_id={{topic._id}}',
+        method:'post',
+        success:function(re){
+        $script('/js/tip.js',function(){
+            if(re.s === 1){
+            $(self).find('.fa').removeClass('fa-star-o').addClass('fa-star');
+            Tip('收藏成功');
+            }else if(re.s===2){
+            Tip('已经收藏');
+            }else if(re.s===3){
+            Tip('未登录，请登录');
+            }
+            });
+        }
+        });
+});
+
+UpReplyBind($('.reply-item .up,.reply-item .down'));
+
+Replytoreply($('.reply-item .reply-reply'));
+
+$('.fa-weixin').click(function(){
+        $script('/js/spopup.js',function(){
+            $('<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&choe=UTF-8&chld=L|2&chl=http://127.0.0.1:8080/topic/{{topic._id}}" width="200" height="200"/></img></div>').spopup({
+width:'200px',
+height:'200px'
+});
             });
         });
 
-        UpReplyBind($('.reply-item .up,.reply-item .down'));
+});
 
-        Replytoreply($('.reply-item .reply-reply'));
-
-        $('.fa-weixin').click(function(){
-            $script('/js/spopup.js',function(){
-                $('<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&choe=UTF-8&chld=L|2&chl=http://127.0.0.1:8080/topic/{{topic._id}}" width="200" height="200"/></img></div>').spopup({
-                    width:'200px',
-                    height:'200px'
-                });
-            });
-        });
-     
-     });
-
- })()
+})()
 </script>

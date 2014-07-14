@@ -26,7 +26,7 @@ Topic.virtual('update_date_format').get(function(){
     return moment(this.update_date).format('YYYY-MM-DD HH:mm');
 });
 Topic.virtual('last_reply_date_format').get(function(){
-    return moment(this.last_reply_date).format('YYYY-MM-DD HH:mm');
+    return moment(this.last_reply_date).lang('zh-cn').fromNow();
 });
 
 Topic.index({create_date:-1});
