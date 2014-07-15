@@ -13,4 +13,4 @@ RelationSchema.virtual('create_date_format').get(function(){
     return moment(this.create_date).format('YYYY-MM-DD HH:mm');
 });
 
-var RelationModel = mongoose.model('Relation', RelationSchema);
+var Relation = mongoose.model('Relation', RelationSchema);

@@ -149,7 +149,7 @@ router.post('/login', function(req, res) {
                 error_msg = '密码错误';
             }
             res.render('error',{
-                error:error_msg
+                message:error_msg
             });
         }else{
             //登陆成功

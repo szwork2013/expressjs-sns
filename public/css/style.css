@@ -1,20 +1,16 @@
 .main {
-  width: 100%;
-  background: #f9f9f9;
-  padding: 40px 0; }
+  width: 100%; }
   .main .main-wrapper {
     background: #fff;
-    margin: 0 auto;
+    margin: 0px auto;
     width: 1000px;
-    padding: 2%;
+    padding: 70px 0;
     color: #666; }
     .main .main-wrapper:before, .main .main-wrapper:after {
       content: "";
       display: table; }
     .main .main-wrapper:after {
       clear: both; }
-    .main .main-wrapper h1, .main .main-wrapper h2, .main .main-wrapper h3, .main .main-wrapper h4, .main .main-wrapper h5, .main .main-wrapper h6 {
-      font-size: 18px; }
 
 .content {
   float: left;
@@ -40,7 +36,7 @@
   display: inline-block;
   height: 40px;
   line-height: 40px;
-  background: #00911b;
+  background: #0084ff;
   color: #fff;
   padding: 0 15px;
   border: none;
@@ -52,7 +48,7 @@
   border-radius: 3px; }
   .new-post-btn:hover {
     text-decoration: none;
-    background: #00911b;
+    background: #007aeb;
     color: #fff;
     border: none; }
 
@@ -132,6 +128,8 @@
     cursor: pointer;
     font-size: 14px;
     margin-right: 5px; }
+.topic-main .topic-meta .fa-clock-o {
+  font-size: 16px; }
 
 #replyContent {
   width: 97%;
@@ -147,7 +145,7 @@
     width: 100px;
     height: 40px;
     margin-top: 20px;
-    background: #00911b;
+    background: #0084ff;
     color: #fff;
     border: none;
     -webkit-border-radius: 3px;
@@ -155,6 +153,8 @@
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
     border-radius: 3px; }
+    .reply-form button[type=submit]:hover {
+      background: #007aeb; }
 
 .reply-list, .hot-reply-list {
   border-top: 1px solid #f0f0f0; }
@@ -264,7 +264,7 @@
     width: 50px;
     line-height: 40px; }
   .reg-form .tips, .login-form .tips {
-    color: #00911b;
+    color: #f14f3d;
     display: none;
     position: absolute;
     top: 40px;
@@ -278,12 +278,14 @@
     padding: 0 30px;
     border: none;
     color: #fff;
-    background: #00911b;
+    background: #0084ff;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
     border-radius: 3px; }
+    .reg-form .act button:hover, .login-form .act button:hover {
+      background: #007aeb; }
   .reg-form .loading, .login-form .loading {
     position: absolute;
     left: 50px;
@@ -292,15 +294,6 @@
 /*
  * settings
  */
-#show-avatar, #current-avatar {
-  width: 100px;
-  height: 100px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px; }
-
 .settings .switch-triggers:before, .settings .switch-triggers:after {
   content: "";
   display: table; }
@@ -352,13 +345,15 @@
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
-  background: #00911b;
+  background: #0084ff;
   color: #fff;
   text-align: center; }
+.settings form button[type=submit]:hover {
+  background: #007aeb; }
 .settings form .up-trigger {
   padding: 0px;
   background: none;
-  color: #00911b;
+  color: #3bc676;
   outline: 0;
   display: block; }
 .settings #showurl {
@@ -398,7 +393,7 @@
     width: 100px;
     height: 40px;
     line-height: 40px;
-    background: #00911b;
+    background: #0084ff;
     color: #fff;
     border: none;
     padding: 0;
@@ -407,6 +402,8 @@
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
     border-radius: 3px; }
+    #new-topic button[type=submit]:hover {
+      background: #007aeb; }
 
 #popup {
   width: 50%;
@@ -520,3 +517,36 @@
   background: #000;
   opacity: .8;
   color: #fff; }
+
+.user-wrapper {
+  margin: -20px; }
+  .user-wrapper .user-hd {
+    width: 100%;
+    height: 420px; }
+    .user-wrapper .user-hd .userbg {
+      z-index: 1;
+      height: 420px;
+      overflow: hidden;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50px;
+      margin: auto 0; }
+      .user-wrapper .user-hd .userbg img {
+        width: 100%; }
+  .user-wrapper #show-avatar, .user-wrapper #current-avatar {
+    width: 128px;
+    height: 128px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px; }
+  .user-wrapper .user-detail {
+    position: relative;
+    z-index: 99;
+    text-align: center; }
+    .user-wrapper .user-detail img.user-avatar {
+      background: #fff;
+      padding: 5px;
+      margin-top: -64px; }

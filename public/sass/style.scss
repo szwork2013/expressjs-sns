@@ -3,18 +3,13 @@
 
 .main{
     width:100%;
-    background:#f9f9f9;
-    padding:40px 0;
     .main-wrapper{
         @include clearfix();
         background:#fff;
-        margin:0 auto;
+        margin:0px auto;
         width:1000px;
-        padding:2%;
+        padding:70px 0;
         color:#666;
-        h1,h2,h3,h4,h5,h6{
-            font-size:18px; 
-        }
     }
 }
 .content{
@@ -48,7 +43,7 @@
     display:inline-block;
     height:40px;
     line-height:40px;
-    background: $global-color;
+    background:$action-blue;
     color:#fff;
     padding:0 15px;
     border:none;
@@ -56,7 +51,7 @@
     @include border-radius(3px);
     &:hover{
         text-decoration:none;
-        background:$global-color;
+        background:$action-blue-hover;
         color:#fff;
         border:none;
     }
@@ -120,18 +115,18 @@
             list-style-position: inside; 
         }
         ol { 
-           list-style-type: decimal; 
-           list-style-position: inside; 
+            list-style-type: decimal; 
+            list-style-position: inside; 
         }
         ul ul, ol ul { 
-           list-style-type: circle; 
-           list-style-position: inside; 
-           margin-left: 15px; 
+            list-style-type: circle; 
+            list-style-position: inside; 
+            margin-left: 15px; 
         }
         ol ol, ul ol { 
-           list-style-type: lower-latin; 
-           list-style-position: inside; 
-           margin-left: 15px; 
+            list-style-type: lower-latin; 
+            list-style-position: inside; 
+            margin-left: 15px; 
         }
     }
     .topic-meta{
@@ -150,6 +145,9 @@
                 margin-right:5px;
             }
         }
+        .fa-clock-o{
+            font-size:16px;
+        }
     }
 }
 #replyContent{
@@ -166,10 +164,14 @@
         width:100px; 
         height:40px;
         margin-top:20px;
-        background:$global-color;
+        background:$action-blue;
         color:#fff;
         border:none;
         @include border-radius(3px);
+        &:hover{
+            background:$action-blue-hover;
+
+        }
     }
 }
 .reply-list,.hot-reply-list{
@@ -282,7 +284,7 @@
         line-height:40px;
     }
     .tips{
-        color:$global-color;
+        color:$red-error;
         display:none;
         position:absolute;
         top:40px;
@@ -298,8 +300,11 @@
             padding:0 30px;
             border:none;
             color:#fff;
-            background:$global-color;
+            background:$action-blue;
             @include border-radius(3px);
+            &:hover{
+                background:$action-blue-hover;
+            }
         }
     }
     .loading{
@@ -311,11 +316,6 @@
 /*
  * settings
  */
-#show-avatar,#current-avatar{
-    width:100px;
-    height:100px;
-    @include border-radius(5px);
-}
 .settings{
     .switch-triggers{
         @include clearfix();
@@ -370,9 +370,12 @@
             padding:10px 20px;
             border:none;
             @include border-radius(3px);
-            background:$action-green;
+            background:$action-blue;
             color:#fff;
             text-align:center;
+        }
+        button[type=submit]:hover{
+            background:$action-blue-hover;
         }
         .up-trigger{
             padding:0px;
@@ -415,11 +418,14 @@
         width:100px; 
         height:40px;
         line-height:40px;
-        background:$global-color;
+        background:$action-blue;
         color:#fff;
         border:none;
         padding:0;
         @include border-radius(3px);
+        &:hover{
+            background:$action-blue-hover;
+        }
     }
 }
 //popup
@@ -543,4 +549,40 @@
     background:#000;
     opacity:.8;
     color:#fff;
+}
+//user index
+.user-wrapper{
+    margin:-20px;
+    .user-hd{
+        width:100%;
+        height:420px;
+        .userbg{
+            z-index:1;
+            height:420px;
+            overflow:hidden;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50px;
+            margin:auto 0;
+            img{
+                width:100%;
+            }
+        }
+    }
+    #show-avatar,#current-avatar{
+        width:128px;
+        height:128px;
+        @include border-radius(5px);
+    }
+    .user-detail{
+        position:relative;
+        z-index:99;
+        text-align:center;
+        img.user-avatar{
+            background:#fff;
+            padding:5px;
+            margin-top:-64px;
+        }
+    }
 }

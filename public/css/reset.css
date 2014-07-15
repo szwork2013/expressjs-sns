@@ -6,13 +6,15 @@ body {
   padding: 0;
   background: white;
   width: 100%;
-  color: #999999;
+  color: #8c8c8c;
   word-wrap: break-word; }
   body a {
     text-decoration: none;
     color: #4083aa; }
     body a:hover {
       color: #205f7e; }
+  body h1, body h2, body h3, body h4, body h5, body h6 {
+    font-size: 18px; }
 
 img {
   vertical-align: middle;
@@ -27,3 +29,6 @@ ul, ol {
 
 .list-inline > li {
   display: inline-block; }
+
+.fa {
+  margin-right: 5px; }

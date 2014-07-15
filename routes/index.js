@@ -10,6 +10,7 @@ var User = mongoose.model('User');
 var Topic = mongoose.model('Topic');
 var Reply = mongoose.model('Reply');
 var Channel = mongoose.model('Channel');
+var Relation = mongoose.model('Relation');
 
 function GetTopicAndReplyByUser(user,callback){
     Topic.find({author_id:user._id},null,{sort:{create_date:-1}},function(err,topics){

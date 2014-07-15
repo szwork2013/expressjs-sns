@@ -21,6 +21,9 @@ body{
             color:$link-hover-color; 
         }
     }
+    h1,h2,h3,h4,h5,h6{
+        font-size:18px; 
+    }
 }
 
 //Images
@@ -37,9 +40,11 @@ ul,ol{
    padding-left:0; 
    list-style:none;
 }
-
 .list-inline{
     >li{
         display:inline-block; 
     }
+}
+.fa{
+    margin-right:5px;
 }
