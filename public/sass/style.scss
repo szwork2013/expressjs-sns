@@ -8,7 +8,7 @@
         background:#fff;
         margin:0px auto;
         width:1000px;
-        padding:70px 0;
+        padding:100px 0 50px 0;
         color:#666;
     }
 }
@@ -36,6 +36,11 @@
         img{
             max-width:100%; 
         }
+    }
+    .back-action{
+        a{
+            font-size:16px; 
+        } 
     }
 }
 //list

@@ -1,18 +1,27 @@
 <div class="content">
     <div class="topic-main">
         <h1>{{topic.title}}</h1>
+        <ul class="topic-meta">
+            <li>
+                <i class="fa fa-clock-o"></i><span>{{topic.create_date_format}}</span>
+            </li>
+        </ul>
         <div class="topic-content">
             {{{topic.content}}}
         </div>
         <ul class="topic-meta">
-            <li>
-            <i class="fa fa-clock-o"></i>
-            <span>{{topic.create_date_format}}</span>
-            </li>
             <!--<li>
             <i class="fa fa-tags"></i>
             <span>djksajdj</span>
             </li>-->
+            <li>
+                {{#iscollect}}
+                <a href=""><i class="fa fa-star"></i>已收藏</a>
+                {{/iscollect}}
+                {{^iscollect}}
+                <a href=""><i class="fa fa-star-o"></i>收藏</a>
+                {{/iscollect}}
+            </li>
             <li class="share">
             <span>分享到：</span>
             <a title="分享到微博" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=appkey',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','','{{topic.title}}','http://dev:8080/topic/{{topic._id}}','utf-8'));"><i class="fa fa-weibo"></i></a> 
@@ -102,20 +111,11 @@
 <div class="sidebar">
 
     <div class="back-action">
-        <a href="/channel/{{channel_url}}">返回</a>
+        {{#board}}
+            <a href="/b/{{url}}"><i class="fa fa-arrow-left"></i>返回{{name}}</a>
+        {{/board}}
     </div>
 
-    <div class="mod topic-collect">
-        <button type="button" id="addcollect">
-            {{#iscollect}}
-            <i class="fa fa-star"></i>
-            {{/iscollect}}
-            {{^iscollect}}
-            <i class="fa fa-star-o"></i>
-            {{/iscollect}}
-            <span>收藏</span>
-        </button>
-    </div>
 </div>
 <script type="text/template" id="reply-item-temp">
 <div class="reply-item" rid="<%=_id%>">
@@ -257,6 +257,5 @@ height:'200px'
         });
 
 });
-
 })()
 </script>
