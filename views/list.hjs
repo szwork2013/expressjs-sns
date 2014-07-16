@@ -1,8 +1,8 @@
 <div class="content">
     <div class="list-wrapper">
         <div class="row clearfix">
-            <h1 class="fl">{{channel.name}}</h1>
-            <a href="/channel/{{channel.url}}/new" class="new-post-btn fr"><i class="fa fa-plus"></i>发布新话题</a>
+            <h1 class="fl">{{board.name}}</h1>
+            <a href="/b/{{board.url}}/new" class="new-post-btn fr"><i class="fa fa-plus"></i>发布新话题</a>
         </div>
 
         <div class="row">
@@ -10,7 +10,9 @@
                 {{#topics}}
                 <li>
                 <span class="fl author-avatar">
-                    <img src="{{author_avatar_url}}" alt="">
+                    <a href="/{{author_url}}">
+                        <img src="{{author_avatar_url}}" alt="">
+                    </a>
                 </span>
                 <span class="fl topic-title">
                     <h2><a href="/topic/{{_id}}">{{title}}</a></h2>
@@ -32,18 +34,18 @@
             总共:{{total}}篇帖子
             <ul class="pager-wrapper">
                 {{#prev}}
-                <li><a href="/channel/{{channel.url}}?p={{prev}}"><i class="fa fa-chevron-circle-left"></i></a></li>
+                <li><a href="/b/{{board.url}}?p={{prev}}"><i class="fa fa-chevron-circle-left"></i></a></li>
                 {{/prev}}
                 {{#pager.pagenums}}
                 {{#curnum}}
-                <li><a class="nums cur" href="/channel/{{channel.url}}?p={{curnum}}">{{curnum}}</a></li>
+                <li><a class="nums cur" href="/b/{{board.url}}?p={{curnum}}">{{curnum}}</a></li>
                 {{/curnum}}
                 {{^curnum}}
-                <li><a class="nums" href="/channel/{{channel.url}}?p={{num}}">{{num}}</a></li>
+                <li><a class="nums" href="/b/{{board.url}}?p={{num}}">{{num}}</a></li>
                 {{/curnum}}
                 {{/pager.pagenums}}
                 {{#next}}
-                <li><a href="/channel/{{channel.url}}?p={{next}}"><i class="fa fa-chevron-circle-right"></i></a></li>
+                <li><a href="/b/{{board.url}}?p={{next}}"><i class="fa fa-chevron-circle-right"></i></a></li>
                 {{/next}}
             </ul>
         </div>

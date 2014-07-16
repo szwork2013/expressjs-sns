@@ -1,0 +1,16 @@
+<form action="/b/add" method="post">
+
+    <div class="row">
+        <label for="bname">名称</label>
+        <input type="text" name="bname" id="bname" />
+    </div>
+
+    <div class="row">
+        <label for="burl">url</label>
+        <input type="text" name="burl" id="burl" />
+    </div>
+
+    <div class="row">
+        <button type="submit">提交</button>
+    </div>
+</form>

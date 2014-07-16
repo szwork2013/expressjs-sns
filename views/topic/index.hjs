@@ -100,6 +100,11 @@
     </form>
 </div>
 <div class="sidebar">
+
+    <div class="back-action">
+        <a href="/channel/{{channel_url}}">返回</a>
+    </div>
+
     <div class="mod topic-collect">
         <button type="button" id="addcollect">
             {{#iscollect}}

@@ -6,5 +6,5 @@ require('./models/topic');
 require('./models/reply');
 require('./models/message');
 require('./models/collect');
-require('./models/channel');
+require('./models/board');
 require('./models/relation');

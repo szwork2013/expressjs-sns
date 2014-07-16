@@ -2,8 +2,8 @@
 <!--<script src="/js/quill.min.js"></script>
 <script src="/js/validator.js"></script>
 <script src="/js/xss.js"></script>-->
-<form id="new-topic" action="/channel/{{channel.url}}/new" method="post">
-    <h1>发布新讨论({{channel.name}})</h1>
+<form id="new-topic" action="/b/{{board.url}}/new" method="post">
+    <h1>发布新讨论({{board.name}})</h1>
     <div class="row">
         <input type="text" name="title" id="new-topic-title" placeholder="标题字数10字以上"/>
     </div>

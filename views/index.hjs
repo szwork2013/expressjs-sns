@@ -1,7 +1,7 @@
 <ul>
-{{#channels}}
+{{#boards}}
     <li>
-        <a href="/channel/{{url}}">{{name}}</a> 
+        <a href="b/{{url}}">{{name}}</a> 
     </li>
-{{/channels}}
+{{/boards}}
 </ul>

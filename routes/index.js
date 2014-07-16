@@ -9,7 +9,7 @@ var mongoose = require( 'mongoose' );
 var User = mongoose.model('User');
 var Topic = mongoose.model('Topic');
 var Reply = mongoose.model('Reply');
-var Channel = mongoose.model('Channel');
+var Board = mongoose.model('Board');
 var Relation = mongoose.model('Relation');
 
 function GetTopicAndReplyByUser(user,callback){
@@ -22,9 +22,9 @@ function GetTopicAndReplyByUser(user,callback){
 
 //获取标题列表
 router.get('/', function(req, res) {
-    Channel.find({},function(err,chs){
+    Board.find({},function(err,bs){
         res.render('index',{
-            channels:chs
+            boards:bs
         });
     });
 });

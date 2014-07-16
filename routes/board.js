@@ -6,7 +6,7 @@ var mongoose = require( 'mongoose' );
 var User = mongoose.model('User');
 var Topic = mongoose.model('Topic');
 var Reply = mongoose.model('Reply');
-var Channel = mongoose.model('Channel');
+var Board = mongoose.model('Board');
 
 //pager num
 var pager_num = 10;
@@ -34,7 +34,6 @@ function BuildPager(cur,total){
         //计算是否接近最后一页,并向前推移
         if(pagernums_length<pagertotalnum && parseInt(cur)+pagernums_length/2>pagertotalnum) {
             var lastoffset = parseInt(cur)+pagernums_length/2-pagertotalnum;
-            console.info(lastoffset);
             pagenum_start-=lastoffset;
             pagenum_stop-=lastoffset;
         }
@@ -68,28 +67,28 @@ function GetTopicTemplete(topics,callback){
 }
 
 router.get('/add', function(req, res){
-    res.render('channel/new');
+    res.render('board/new');
 });
 
 router.post('/add', function(req, res){
-    new Channel({
-        name:req.body.cname, 
-        url:req.body.curl
-    }).save(function(err,channel){
+    new Board({
+        name:req.body.bname, 
+        url:req.body.burl
+    }).save(function(err,board){
         if(!err){
-            res.redirect('/channel/'+channel.url); 
+            res.redirect('/b/'+board.url); 
         } 
-    })
+    });
 });
 
 router.get('/:url', function(req, res) {
-    Channel.findOne({url:req.params.url},function(err,channel){
+    Board.findOne({url:req.params.url},function(err,board){
         var s_option={};
         //pager
         if(req.query.p){
             s_option.limit = pager_num;
             s_option.skip = (req.query.p-1)*pager_num;
-        }else if(channel.topic_count>pager_num){
+        }else if(board.topic_count>pager_num){
             s_option.limit = pager_num;
             s_option.skip = 0;
         }
@@ -103,12 +102,13 @@ router.get('/:url', function(req, res) {
             }
         }
 
-        Topic.find({channel_id:channel._id},null,s_option,function(err,topics){
+        Topic.find({board_id:board._id},null,s_option,function(err,topics){
             GetTopicTemplete(topics,function(n_topics){
+                var pager = BuildPager(req.query.p?req.query.p:1,board.topic_count);
                 res.render('list', {
                     topics:n_topics,
-                    channel:channel,
-                    pager:BuildPager(req.query.p?req.query.p:1,channel.topic_count)
+                    board:board,
+                    pager:pager===null?null:pager
                 });
             });
         });
@@ -119,24 +119,24 @@ router.get('/:url', function(req, res) {
 router.get('/:url/new', function(req, res) {
     if(!req.session.user) res.redirect('/login');
 
-    Channel.findOne({url:req.params.url},function(err,channel){
+    Board.findOne({url:req.params.url},function(err,board){
         res.render('topic/new',{
-            channel:channel 
+            board:board 
         });
     })
 });
 
 router.post('/:url/new', function(req, res) {
-    Channel.findOneAndUpdate({url:req.params.url},{$inc:{topic_count:1}},function(err,channel){
+    Board.findOneAndUpdate({url:req.params.url},{$inc:{topic_count:1}},function(err,board){
         new Topic({
             title:req.body.title,
             content:req.body.content,
             author_id:req.session.user._id,
-            channel_id:channel._id
+            board_id:board._id
         }).save(function(err){
             if(!err){
                 User.findOneAndUpdate({_id:req.session.user._id},{$inc:{score:5}},function(){
-                    res.redirect('/channel/'+channel.url);
+                    res.redirect('/b/'+board.url);
                 });
             }
         }); 

@@ -7,7 +7,7 @@ var ObjectId = Schema.ObjectId;
 var Topic = new Schema({
     title:{type:String,required:true},
     content:{type:String,required:true},
-    channel_id:{type:ObjectId},
+    board_id:{type:ObjectId},
     author_id:{type:ObjectId},
     last_reply: { type:ObjectId},
     reply_count: { type: Number, default: 0 },
