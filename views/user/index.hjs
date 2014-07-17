@@ -8,8 +8,12 @@
         <img src="{{showuser.avatar_url_l}}" id="current-avatar" class="user-avatar" />
         <h1>{{showuser.name}}</h1>
         {{^isme}}
-        <a href="/message/{{showuser.url}}/new">私信</a>
-        <a href="/relation/{{showuser.url}}/new">关注</a>
+        <a href="/relation/{{showuser.url}}/new">
+            <i class="fa fa-plus-circle"></i>关注
+        </a>
+        <a href="/message/{{showuser.url}}/new">
+            <i class="fa fa-pencil-square-o"></i>私信
+        </a>
         {{/isme}}
     </div>
     <div class="user-topics">

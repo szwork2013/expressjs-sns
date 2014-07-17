@@ -16,10 +16,10 @@
             </li>-->
             <li>
                 {{#iscollect}}
-                <a href=""><i class="fa fa-star"></i>已收藏</a>
+                <a href="javascript:void(0);" id="addcollect"><i class="fa fa-star"></i>已收藏</a>
                 {{/iscollect}}
                 {{^iscollect}}
-                <a href=""><i class="fa fa-star-o"></i>收藏</a>
+                <a href="javascript:void(0);" id="addcollect"><i class="fa fa-star-o"></i>收藏</a>
                 {{/iscollect}}
             </li>
             <li class="share">
@@ -232,6 +232,7 @@ $('#addcollect').click(function(){
         $script('/js/tip.js',function(){
             if(re.s === 1){
             $(self).find('.fa').removeClass('fa-star-o').addClass('fa-star');
+            $(self).html('<i class="fa fa-star"></i>已收藏');
             Tip('收藏成功');
             }else if(re.s===2){
             Tip('已经收藏');

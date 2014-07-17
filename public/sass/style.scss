@@ -581,6 +581,9 @@
         @include border-radius(5px);
     }
     .user-detail{
+        border-bottom:1px solid #ddd;
+        padding-bottom:20px;
+        margin-bottom:20px;
         position:relative;
         z-index:99;
         text-align:center;

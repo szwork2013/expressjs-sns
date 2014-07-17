@@ -545,6 +545,9 @@
     -o-border-radius: 5px;
     border-radius: 5px; }
   .user-wrapper .user-detail {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
     position: relative;
     z-index: 99;
     text-align: center; }
