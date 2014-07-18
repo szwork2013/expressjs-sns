@@ -22,9 +22,7 @@
         </div>
 
         <form action="/search" class="fl search-form">
-            <input type="text" id-"q" name="q" class="search" placeholder="避震" />
-            <i class="fa fa-search"></i>
-            <!--<button type="submit">搜索</button>-->
+            <input type="text" id-"q" name="q" class="search" placeholder="避震" /><i class="fa fa-search"></i>
         </form>
 
         <ul class="menu">

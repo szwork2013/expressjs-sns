@@ -24,7 +24,7 @@
 
     <div class="row">
         <button type="submit">提交</button>
-        <span id="auto-save" style="display:none;"><i class="fa fa-refresh fa-spin" style="margin-right:5px;"></i>自动保存中...</span>
+        <span id="auto-save"><i class="fa fa-refresh fa-spin"></i>自动保存中...</span>
     </div>
 </form>
 

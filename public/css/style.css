@@ -158,62 +158,64 @@
     .reply-form button[type=submit]:hover {
       background: #007aeb; }
 
-.reply-list, .hot-reply-list {
-  border-top: 1px solid #f0f0f0; }
+.reply-list h2, .hot-reply-list h2 {
+  border-bottom: 1px solid #f0f0f0; }
 
-.reply-list .reply-item, .hot-reply-list .reply-item {
-  width: 100%; }
-  .reply-list .reply-item:before, .reply-list .reply-item:after, .hot-reply-list .reply-item:before, .hot-reply-list .reply-item:after {
-    content: "";
-    display: table; }
-  .reply-list .reply-item:after, .hot-reply-list .reply-item:after {
-    clear: both; }
-.reply-list .reply-wrapper, .hot-reply-list .reply-wrapper {
-  margin: 20px 0;
-  position: relative; }
-.reply-list .vote, .hot-reply-list .vote {
-  float: left;
-  font-size: 16px; }
-  .reply-list .vote i, .hot-reply-list .vote i {
-    cursor: pointer;
-    display: block; }
-  .reply-list .vote i.disable, .hot-reply-list .vote i.disable {
-    color: #ccc; }
-  .reply-list .vote b, .hot-reply-list .vote b {
-    width: 16px;
-    text-align: center;
-    display: block; }
-.reply-list .user-avatar img, .hot-reply-list .user-avatar img {
-  position: absolute;
-  left: 30px;
-  top: 0;
-  width: 48px;
-  height: 48px;
-  margin-right: 1%;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px; }
-.reply-list .reply-main, .hot-reply-list .reply-main {
-  padding: 0 0 0 90px; }
-  .reply-list .reply-main:before, .reply-list .reply-main:after, .hot-reply-list .reply-main:before, .hot-reply-list .reply-main:after {
-    content: "";
-    display: table; }
-  .reply-list .reply-main:after, .hot-reply-list .reply-main:after {
-    clear: both; }
-  .reply-list .reply-main .uname, .reply-list .reply-main .usignature, .hot-reply-list .reply-main .uname, .hot-reply-list .reply-main .usignature {
-    font-size: 16px;
-    vertical-align: middle; }
-  .reply-list .reply-main .usignature, .hot-reply-list .reply-main .usignature {
-    font-size: 14px;
-    color: #000; }
-  .reply-list .reply-main .date, .hot-reply-list .reply-main .date {
-    margin-left: 2%;
-    vertical-align: middle;
-    color: #ccc; }
-.reply-list .reply-meta, .hot-reply-list .reply-meta {
-  margin-left: 90px; }
+.reply-list, .hot-reply-list {
+  margin-top: 20px; }
+  .reply-list .reply-item, .hot-reply-list .reply-item {
+    width: 100%; }
+    .reply-list .reply-item:before, .reply-list .reply-item:after, .hot-reply-list .reply-item:before, .hot-reply-list .reply-item:after {
+      content: "";
+      display: table; }
+    .reply-list .reply-item:after, .hot-reply-list .reply-item:after {
+      clear: both; }
+  .reply-list .reply-wrapper, .hot-reply-list .reply-wrapper {
+    margin: 20px 0;
+    position: relative; }
+  .reply-list .vote, .hot-reply-list .vote {
+    float: left;
+    font-size: 16px; }
+    .reply-list .vote i, .hot-reply-list .vote i {
+      cursor: pointer;
+      display: block; }
+    .reply-list .vote i.disable, .hot-reply-list .vote i.disable {
+      color: #ccc; }
+    .reply-list .vote b, .hot-reply-list .vote b {
+      width: 16px;
+      text-align: center;
+      display: block; }
+  .reply-list .user-avatar img, .hot-reply-list .user-avatar img {
+    position: absolute;
+    left: 30px;
+    top: 0;
+    width: 48px;
+    height: 48px;
+    margin-right: 1%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px; }
+  .reply-list .reply-main, .hot-reply-list .reply-main {
+    padding: 0 0 0 90px; }
+    .reply-list .reply-main:before, .reply-list .reply-main:after, .hot-reply-list .reply-main:before, .hot-reply-list .reply-main:after {
+      content: "";
+      display: table; }
+    .reply-list .reply-main:after, .hot-reply-list .reply-main:after {
+      clear: both; }
+    .reply-list .reply-main .uname, .reply-list .reply-main .usignature, .hot-reply-list .reply-main .uname, .hot-reply-list .reply-main .usignature {
+      font-size: 16px;
+      vertical-align: middle; }
+    .reply-list .reply-main .usignature, .hot-reply-list .reply-main .usignature {
+      font-size: 14px;
+      color: #000; }
+    .reply-list .reply-main .date, .hot-reply-list .reply-main .date {
+      margin-left: 2%;
+      vertical-align: middle;
+      color: #ccc; }
+  .reply-list .reply-meta, .hot-reply-list .reply-meta {
+    margin-left: 90px; }
 
 .topic-collect {
   font-size: 20px; }
@@ -378,7 +380,8 @@
     width: 95%;
     height: 40px;
     padding: 0 2%;
-    font-weight: bold; }
+    font-weight: bold;
+    font-size: 16px; }
   #new-topic #new-topic-content {
     margin: 10px 0;
     border: 1px solid #ccc;
@@ -406,6 +409,11 @@
     border-radius: 3px; }
     #new-topic button[type=submit]:hover {
       background: #007aeb; }
+  #new-topic #auto-save {
+    display: none;
+    margin-left: 15px; }
+    #new-topic #auto-save .fa {
+      margin-right: 5px; }
 
 #popup {
   width: 50%;
@@ -450,59 +458,6 @@
 
 .message-list li {
   padding: 10px 0; }
-
-.chat-wrapper {
-  position: relative;
-  border: 1px solid #ddd;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px;
-  position: relative;
-  width: 80%;
-  overflow: hidden;
-  padding: 0 0 40px 0;
-  margin: 0 auto; }
-  .chat-wrapper #newmessage {
-    height: 16px;
-    line-height: 16px;
-    outline: 0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    width: 100%;
-    height: 20px;
-    line-height: 20px;
-    font-size: 16px;
-    border: none;
-    padding: 5px; }
-  .chat-wrapper ul.msgs {
-    width: 80%;
-    overflow-y: scroll;
-    height: 100px;
-    min-height: 200px; }
-    .chat-wrapper ul.msgs li {
-      margin: 10px 0;
-      height: 20px;
-      line-height: 20px;
-      font-size: 16px; }
-      .chat-wrapper ul.msgs li .author {
-        color: #999; }
-      .chat-wrapper ul.msgs li .message {
-        margin-left: 10px;
-        color: #666; }
-  .chat-wrapper ul.users {
-    border-left: 1px solid #ccc;
-    position: absolute;
-    right: 0;
-    width: 20%;
-    top: 0; }
-    .chat-wrapper ul.users li {
-      height: 20px;
-      line-height: 20px;
-      font-size: 16px; }
 
 .g-tip {
   -webkit-border-radius: 3px;

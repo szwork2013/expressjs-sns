@@ -62,7 +62,6 @@ audio:not([controls]) {
 //
 
 html {
-  font-family: sans-serif; // 1
   -webkit-text-size-adjust: 100%; // 2
   -ms-text-size-adjust: 100%; // 2
 }
@@ -103,15 +102,6 @@ a:hover {
 //
 // Address variable `h1` font-size and margin within `section` and `article`
 // contexts in Firefox 4+, Safari 5, and Chrome.
-//
-
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
-
-//
-// Address styling not present in IE 8/9, Safari 5, and Chrome.
 //
 
 abbr[title] {
@@ -276,7 +266,6 @@ button,
 input,
 select,
 textarea {
-  font-family: inherit; // 1
   font-size: 100%; // 2
   margin: 0; // 3
 }
@@ -378,7 +367,6 @@ input::-moz-focus-inner {
 //
 
 textarea {
-  overflow: auto; // 1
   vertical-align: top; // 2
 }
 

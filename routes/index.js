@@ -12,6 +12,7 @@ var Reply = mongoose.model('Reply');
 var Board = mongoose.model('Board');
 var Relation = mongoose.model('Relation');
 
+
 function GetTopicAndReplyByUser(user,callback){
     Topic.find({author_id:user._id},null,{sort:{create_date:-1}},function(err,topics){
         Reply.find({author_id:user._id},'content',{sort:{create_date:-1}},function(err,replys){
@@ -19,6 +20,8 @@ function GetTopicAndReplyByUser(user,callback){
         })
     })
 }
+
+var GetTopicTemplete = require('../routes/board').GetTopicTemplete;
 
 //获取标题列表
 router.get('/', function(req, res) {
@@ -48,10 +51,12 @@ router.get('/logout', function(req, res) {
 router.get('/search', function(req, res) {
     Topic.find({title: new RegExp(req.query.q, 'i')},function(err,topics){
         if(topics.length>0){
-            res.render('list', { 
-                title: '搜索结果',
-                topics:topics
-            });
+            GetTopicTemplete(topics,function(rtopics){
+                res.render('list', { 
+                    title: '搜索结果',
+                    topics:rtopics
+                });
+            })
         }else{
             res.render('error',{
                 error:'抱歉，没有结果请重试！'

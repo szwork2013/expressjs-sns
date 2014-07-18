@@ -3,7 +3,7 @@
         <h1>{{topic.title}}</h1>
         <ul class="topic-meta">
             <li>
-                <i class="fa fa-clock-o"></i><span>{{topic.create_date_format}}</span>
+            <i class="fa fa-clock-o"></i><span>{{topic.create_date_format}}</span>
             </li>
         </ul>
         <div class="topic-content">
@@ -15,12 +15,12 @@
             <span>djksajdj</span>
             </li>-->
             <li>
-                {{#iscollect}}
-                <a href="javascript:void(0);" id="addcollect"><i class="fa fa-star"></i>已收藏</a>
-                {{/iscollect}}
-                {{^iscollect}}
-                <a href="javascript:void(0);" id="addcollect"><i class="fa fa-star-o"></i>收藏</a>
-                {{/iscollect}}
+            {{#iscollect}}
+            <a href="javascript:void(0);" id="addcollect"><i class="fa fa-star"></i>已收藏</a>
+            {{/iscollect}}
+            {{^iscollect}}
+            <a href="javascript:void(0);" id="addcollect"><i class="fa fa-star-o"></i>收藏</a>
+            {{/iscollect}}
             </li>
             <li class="share">
             <span>分享到：</span>
@@ -32,8 +32,8 @@
     </div>
 
     {{#hotreplys}}
-    <h2>最佳评论：</h2>
     <div class="hot-reply-list">
+        <h2>最佳评论：</h2>
         {{#hotreplys}}
         <div class="reply-item" rid="{{_id}}">
             <div class="reply-wrapper">
@@ -65,10 +65,10 @@
         {{/hotreplys}}
     </div>
     {{/hotreplys}}
-    <h2>评论：</h2>
     <div class="reply-list">
-        {{#replys}}
-        <div class="reply-item" rid="{{_id}}">
+    {{#topic.reply_count}}
+        <h2>评论：</h2>
+        <!--<div class="reply-item" rid="{{_id}}">
             <div class="reply-wrapper">
                 <div class="vote">
                     <i class="fa fa-chevron-up up"></i>
@@ -95,8 +95,8 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        {{/replys}}
+        </div>-->
+    {{/topic.reply_count}}
     </div>
 
     <form action="/topic/addreply" method="post" class="reply-form" id="reply-form">
@@ -112,7 +112,7 @@
 
     <div class="back-action">
         {{#board}}
-            <a href="/b/{{url}}"><i class="fa fa-arrow-left"></i>返回{{name}}</a>
+        <a href="/b/{{url}}"><i class="fa fa-arrow-left"></i>返回{{name}}</a>
         {{/board}}
     </div>
 
@@ -149,114 +149,130 @@
 </script>
 <script>
 (function(){
- $script(['/js/validator.js','/js/ejs.js'],function(){
-     var contentInput = $('#replyContent');
+    $script(['/js/validator.js','/js/ejs.js'],function(){
 
-     function UpReplyBind(els){
-     els.click(function(){
-        var self = this;
-        var num = $(this).hasClass('up')?1:-1;
+        //加载留言
         $.ajax({
-            url:'/topic/upreply',
-            data:'reply_id='+$(this).parents('.reply-item').attr('rid')+'&num='+num,
-            method:'post',
-            success:function(re){
-                $script('/js/tip.js',function(){
-                if(re.r===1){
-                $(self).parent('.vote').find('.vote-num').html(re.reply.up);
-                }else if(re.r ===0){
-                    Tip('不能重复提交');
-                }else if(re.r === 2){
-                    Tip('不能自己顶自己');
-                }else if(re.r===3){
-                    Tip('未登录，请登录');
-                }
-                });
-            }
-        })
-    });
-}
-
-function Replytoreply(els){
-    els.click(function(){
-            contentInput.focus();
-            contentInput.val('@'+$(this).parents('.reply-item').find('.uname a').html()+'，');
-            }); 
-}
-
-$('.reply-form button[type="submit"]').click(function(e){
-
-        e.preventDefault();
-
-        if(validator.isNull(validator.trim(contentInput.val()))){
-        $script('/js/tip.js',function(){
-            Tip('请填写内容');
-            });
-        return;
-        }
-
-        $.ajax({
-        url:'/topic/addreply',
-        method:'post',
-        data:$('.reply-form').serialize()+'&topic_id={{topic._id}}',
+            url:'/topic/getreplys',
+        data:'id={{topic._id}}',
         beforeSend:function(){
-        $('<div class="more"></div>').appendTo($('.reply-list')); 
+            $('<div class="more"></div>').appendTo($('.reply-list')); 
         },
         success:function(re){
-
-        if(re.r === 3){
-            $script('/js/tip.js',function(){
-            Tip('未登录，请登录');
-            });
-            return;
-        }
-
-
-        $('#replyContent').val('');
-        $('.reply-list .more').remove();
-        var reply_dom = new EJS({text:$('#reply-item-temp').html()}).render(re);
-        $('.reply-list').append(reply_dom);
-        UpReplyBind($('.reply-list .reply-item').last().find('.up,.down'));
-        Replytoreply($('.reply-list .reply-item').last().find('.reply-reply'));
-        }
-        })
-        });
-
-$('#addcollect').click(function(){
-        var self = this;
-        $.ajax({
-        url:'/collect/new',
-        data:'topic_id={{topic._id}}',
-        method:'post',
-        success:function(re){
-        $script('/js/tip.js',function(){
-            if(re.s === 1){
-            $(self).find('.fa').removeClass('fa-star-o').addClass('fa-star');
-            $(self).html('<i class="fa fa-star"></i>已收藏');
-            Tip('收藏成功');
-            }else if(re.s===2){
-            Tip('已经收藏');
-            }else if(re.s===3){
-            Tip('未登录，请登录');
+            $('.reply-list .more').remove();
+            if(re.replys && re.replys.length>0){
+                $(re.replys).each(function(k,v){
+                    $('.reply-list').append(new EJS({text:$('#reply-item-temp').html()}).render(v));
+                    UpReplyBind($('.reply-list .reply-item').find('.up,.down'));
+                    Replytoreply($('.reply-list .reply-item').find('.reply-reply'));
+                });
             }
-            });
         }
         });
-});
 
-UpReplyBind($('.reply-item .up,.reply-item .down'));
+        function UpReplyBind(els){
+            els.click(function(){
+                var self = this;
+                var num = $(this).hasClass('up')?1:-1;
+                $.ajax({
+                    url:'/topic/upreply',
+                    data:'reply_id='+$(this).parents('.reply-item').attr('rid')+'&num='+num,
+                    method:'post',
+                    success:function(re){
+                        $script('/js/tip.js',function(){
+                            if(re.r===1){
+                                $(self).parent('.vote').find('.vote-num').html(re.reply.up);
+                            }else if(re.r ===0){
+                                Tip('不能重复提交');
+                            }else if(re.r === 2){
+                                Tip('不能自己顶自己');
+                            }else if(re.r===3){
+                                Tip('未登录，请登录');
+                            }
+                        });
+                    }
+                })
+            });
+        }
+        var contentInput = $('#replyContent');
 
-Replytoreply($('.reply-item .reply-reply'));
+        function Replytoreply(els){
+            els.click(function(){
+                contentInput.focus();
+                contentInput.val('@'+$(this).parents('.reply-item').find('.uname a').html()+'，');
+            }); 
+        }
 
-$('.fa-weixin').click(function(){
-        $script('/js/spopup.js',function(){
-            $('<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&choe=UTF-8&chld=L|2&chl=http://127.0.0.1:8080/topic/{{topic._id}}" width="200" height="200"/></img></div>').spopup({
-width:'200px',
-height:'200px'
-});
+        $('.reply-form button[type="submit"]').click(function(e){
+
+            e.preventDefault();
+
+            if(validator.isNull(validator.trim(contentInput.val()))){
+                $script('/js/tip.js',function(){
+                    Tip('请填写内容');
+                });
+                return;
+            }
+
+            $.ajax({
+                url:'/topic/addreply',
+                method:'post',
+                data:$('.reply-form').serialize()+'&topic_id={{topic._id}}',
+                beforeSend:function(){
+                    $('<div class="more"></div>').appendTo($('.reply-list')); 
+                },
+                success:function(re){
+                    if(re.r === 3){
+                        $script('/js/tip.js',function(){
+                            Tip('未登录，请登录');
+                        });
+                        return;
+                    }
+                    $('#replyContent').val('');
+                    $('.reply-list .more').remove();
+                    if(!$('.reply-list h2').length) $('.reply-list').append($('<h2>评论</h2>'));
+                    $('.reply-list').append(new EJS({text:$('#reply-item-temp').html()}).render(re));
+                    UpReplyBind($('.reply-list .reply-item').last().find('.up,.down'));
+                    Replytoreply($('.reply-list .reply-item').last().find('.reply-reply'));
+                }
+            })
+        });
+
+        $('#addcollect').click(function(){
+            var self = this;
+            $.ajax({
+                url:'/collect/new',
+                data:'topic_id={{topic._id}}',
+                method:'post',
+                success:function(re){
+                    $script('/js/tip.js',function(){
+                        if(re.s === 1){
+                            $(self).find('.fa').removeClass('fa-star-o').addClass('fa-star');
+                            $(self).html('<i class="fa fa-star"></i>已收藏');
+                            Tip('收藏成功');
+                        }else if(re.s===2){
+                            Tip('已经收藏');
+                        }else if(re.s===3){
+                            Tip('未登录，请登录');
+                        }
+                    });
+                }
             });
         });
 
-});
+        UpReplyBind($('.reply-item .up,.reply-item .down'));
+
+        Replytoreply($('.reply-item .reply-reply'));
+
+        $('.fa-weixin').click(function(){
+            $script('/js/spopup.js',function(){
+                $('<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&choe=UTF-8&chld=L|2&chl=http://127.0.0.1:8080/topic/{{topic._id}}" width="200" height="200"/></img></div>').spopup({
+                    width:'200px',
+                    height:'200px'
+                });
+            });
+        });
+
+    });
 })()
 </script>

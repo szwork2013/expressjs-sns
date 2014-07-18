@@ -97,7 +97,7 @@ router.post('/addreply',function(req,res){
     });
 });
 
-//up reply
+//upreply
 router.post('/upreply',function(req,res){
     if(!req.session.user){
         res.json({r:3}); 
@@ -120,40 +120,40 @@ router.post('/upreply',function(req,res){
     }); 
 });
 
+//ajax fetch replys
+router.get('/getreplys',function(req,res,next){
+    if(!req.query.id){
+        res.json({replys:null})
+        return;
+    }
+    GetAllreplyById(req.query.id,function(replys){
+        res.json({replys:replys}) 
+    });
+});
+
 //获取topic页面
 router.get('/:_id', function(req, res, next) {
     var islogin  = req.session.user?true:false;
+    var queryuser = islogin?{user_id:req.session.user._id}:{};
     Topic.findOneAndUpdate({_id:req.params._id},{$inc:{visit_count:1}},function(err,topic){
         Board.find({_id:topic.board_id},function(err,board){
             if(topic){
-                GetAllreplyById(topic.id,function(replys){
+                //GetAllreplyById(topic.id,function(replys){
                     GetHotreplyById(topic.id,function(hotreplys){
-                        if(islogin){
-                            Collect.find({$and:[{user_id:req.session.user._id},{topic_id:topic.id}]},function(err,collect){
-                                res.render('topic/index',{
-                                    topic:topic,
-                                    board:board,
-                                    replys:replys,
-                                    hotreplys:hotreplys,
-                                    iscollect:collect.length>0?true:false
-                                })
-                            });
-                        }else{
+                        Collect.find({$and:[queryuser,{topic_id:topic.id}]},function(err,collect){
                             res.render('topic/index',{
                                 topic:topic,
                                 board:board,
-                                replys:replys,
                                 hotreplys:hotreplys,
-                                iscollect:false
+                                iscollect:islogin && collect.length>0?true:false
                             })
-                        }
+                        });
                     })
-                });
+                //});
             }else{
                 next(); 
             }
         });
-
     });
 });
 
