@@ -27,28 +27,36 @@ function BuildReplyItem(origin,user){
 function GetAllreplyById(id,cb){
     Reply.find({topic_id:id},null,{sort:{create_date:1}},function(err,replys){
         var replys_o = [];
-        async.eachSeries(replys, function(reply, callback) {
-            User.findOne({_id:reply.author_id },'name url signature avatar_url', function(error, user) {
-                replys_o.push(BuildReplyItem(reply,user));
-                callback();
+        if(replys && replys.length>0){ 
+            async.eachSeries(replys, function(reply, callback) {
+                User.findOne({_id:reply.author_id },'name url signature avatar_url', function(error, user) {
+                    replys_o.push(BuildReplyItem(reply,user));
+                    callback();
+                });
+            }, function (err) {
+                cb(replys_o);
             });
-        }, function (err) {
-            cb(replys_o);
-        });
+        }else{
+            cb(replys_o); 
+        }
     });
 }
 
 function GetHotreplyById(id,cb){
-    Reply.find({topic_id:id,up:{$gt:0}},null,{limit:3,sort:{up:0}},function(err,replys){
+    Reply.find({topic_id:id,up:{$gt:0}},null,{limit:3,sort:{up:0}},function(err,hreplys){
         var replys_o = [];
-        async.eachSeries(replys, function(reply, callback) {
-            User.findOne({_id:reply.author_id },'name url signature avatar_url', function(error, user) {
-                replys_o.push(BuildReplyItem(reply,user));
-                callback();
+        if(hreplys && hreplys.length>0){
+            async.eachSeries(hreplys, function(reply, callback) {
+                User.findOne({_id:reply.author_id },'name url signature avatar_url', function(error, user) {
+                    replys_o.push(BuildReplyItem(reply,user));
+                    callback();
+                });
+            }, function (err) {
+                cb(replys_o);
             });
-        }, function (err) {
-            cb(replys_o);
-        });
+        }else{
+            cb(replys_o); 
+        }
     });
 }
 
