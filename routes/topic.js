@@ -1,10 +1,6 @@
-require( '../db' );
-
 var express = require('express');
 var router = express.Router();
 var async =  require('async');
-
-//data
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Topic = mongoose.model('Topic');
