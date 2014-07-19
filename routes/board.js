@@ -101,13 +101,18 @@ router.get('/:url', function(req, res) {
             }
         }
 
-        Topic.find({board_id:board._id},null,s_option,function(err,topics){
-            GetTopicTemplete(topics,function(n_topics){
-                var pager = BuildPager(req.query.p?req.query.p:1,board.topic_count);
-                res.render('list', {
-                    topics:n_topics,
-                    board:board,
-                    pager:pager===null?null:pager
+        Topic.find({$and:[{board_id:board._id},{top:true}]},null,function(err,t_topics){
+            GetTopicTemplete(t_topics,function(t_topics){
+                Topic.find({$and:[{board_id:board._id},{top:false}]},null,s_option,function(err,n_topics){
+                    GetTopicTemplete(n_topics,function(n_topics){
+                        var pager = BuildPager(req.query.p?req.query.p:1,board.topic_count);
+                        res.render('list', {
+                            topics:n_topics,
+                            toptopics:t_topics,
+                            board:board,
+                            pager:pager===null?null:pager
+                        });
+                    });
                 });
             });
         });
@@ -121,6 +126,16 @@ router.get('/:url/new', function(req, res) {
     Board.findOne({url:req.params.url},function(err,board){
         res.render('topic/new',{
             board:board 
+        });
+    })
+});
+
+router.get('/:url/newvote', function(req, res) {
+    if(!req.session.user) res.redirect('/login');
+
+    Board.findOne({url:req.params.url},function(err,board){
+        res.render('topic/newvote',{
+            board:board
         });
     })
 });

@@ -7,6 +7,7 @@ var ObjectId = Schema.ObjectId;
 var BoardSchema = new Schema({
     name: {type:String,required:true},
     url: {type:String,required:true},
+    img_url: {type:String},
     desc:{type:String},
     topic_count:{type:Number,default:0},
     parent_id:{type:ObjectId},

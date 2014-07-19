@@ -10,12 +10,12 @@ var session = require('express-session');
 var partials = require('express-partials');
 var formidable = require('formidable');
 
-var board = require('./routes/board');
-var about = require('./routes/about');
 var user = require('./routes/user');
+var board = require('./routes/board');
 var topic = require('./routes/topic');
 var message = require('./routes/message');
 var collect = require('./routes/collect');
+var about = require('./routes/about');
 var relation = require('./routes/relation');
 var routes = require('./routes/index');
 
@@ -54,12 +54,12 @@ app.locals = {
     gtitle:'sns'
 };
 
-app.use('/b', board);
-app.use('/about', about);
 app.use('/user', user);
+app.use('/b', board);
 app.use('/topic', topic);
 app.use('/message', message);
 app.use('/collect', collect);
+app.use('/about', about);
 app.use('/relation', relation);
 app.use('/', routes);
 

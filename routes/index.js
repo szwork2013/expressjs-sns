@@ -13,7 +13,8 @@ var Relation = mongoose.model('Relation');
 
 function GetTopicAndReplyByUser(user,callback){
     Topic.find({author_id:user._id},null,{sort:{create_date:-1}},function(err,topics){
-        Reply.find({author_id:user._id},'content',{sort:{create_date:-1}},function(err,replys){
+        Reply.find({author_id:user._id},null,{sort:{create_date:-1}},function(err,replys){
+            console.info(replys);
             callback(topics,replys);
         })
     })

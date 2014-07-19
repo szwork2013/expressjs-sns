@@ -39,7 +39,7 @@ function GetAllreplyById(id,cb){
 }
 
 function GetHotreplyById(id,cb){
-    Reply.find({topic_id:id,up:{$gt:0}},null,{limit:3,sort:{up:0}},function(err,hreplys){
+    Reply.find({topic_id:id,up:{$gt:0}},null,{limit:3,sort:{up:-1}},function(err,hreplys){
         var replys_o = [];
         if(hreplys && hreplys.length>0){
             async.eachSeries(hreplys, function(reply, callback) {

@@ -1,0 +1,17 @@
+<form id="new-topic" action="/b/{{board.url}}/new" method="post">
+    <h1>
+        发布新投票({{board.name}})
+        <a class="fr" href="/b/{{board.url}}/new"><i class="fa fa-arrow-left"></i>返回发布新帖</a>
+    </h1>
+    <div class="row">
+        <input type="text" name="title" id="new-topic-title" placeholder="标题字数10字以上"/>
+    </div>
+    <div class="row">
+        <a href="javascript:void(0);">添加选项</a>
+    </div>
+    <div class="row">
+        <button type="submit">提交</button>
+    </div>
+</form>
+
+<script></script>

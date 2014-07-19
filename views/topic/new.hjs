@@ -3,7 +3,10 @@
 <script src="/js/validator.js"></script>
 <script src="/js/xss.js"></script>-->
 <form id="new-topic" action="/b/{{board.url}}/new" method="post">
-    <h1>发布新讨论({{board.name}})</h1>
+    <h1>
+        发布新讨论({{board.name}})
+        <a class="fr" href="/b/{{board.url}}/newvote"><i class="fa fa-arrow-right"></i>我要发布投票</a>
+    </h1>
     <div class="row">
         <input type="text" name="title" id="new-topic-title" placeholder="标题字数10字以上"/>
     </div>
@@ -17,6 +20,8 @@
             <span class="ql-format-separator"></span>
             <span title="链接" class="ql-format-button ql-link"></span>
             <span title="插入图片" class="ql-format-button ql-image"></span>
+            <span class="ql-format-separator"></span>
+            <span title="上传图片" class="ql-format-button ql-uploadimg">上传</span>
         </div>
         <div id="new-topic-content"></div>
         <textarea id="hiddeninput" name="content" class="hide"></textarea>
@@ -24,14 +29,13 @@
 
     <div class="row">
         <button type="submit">提交</button>
+        <input type="checkbox" id="auto-save-trigger">自动保存
         <span id="auto-save"><i class="fa fa-refresh fa-spin"></i>自动保存中...</span>
     </div>
 </form>
 
-<div id="popup"></div>
-
 <script>
-$script(['/js/quill.min.js','/js/validator.js','/js/xss.js'],function(){
+$script(['/js/quill.js','/js/validator.js','/js/xss.js'],function(){
 
         var editor = new Quill('#new-topic-content',{
             modules: {
@@ -44,13 +48,18 @@ $script(['/js/quill.min.js','/js/validator.js','/js/xss.js'],function(){
         var titleInput = $('input[name="title"]');
 
         //timer for save
-        if(window.localStorage){
-            var timersave = setInterval(function(){
-                localStorage.setItem('temptitle',titleInput.val());
-                localStorage.setItem('tempcontent',editor.getHTML());
-                $('#auto-save').fadeIn().delay(2000).fadeOut();
-            },6000);
-        }
+        $('#auto-save-trigger').click(function(){
+            clearInterval(window.timersave);
+            if(this.checked && window.localStorage){
+                window.timersave = setInterval(function(){
+                    localStorage.setItem('temptitle',titleInput.val());
+                    localStorage.setItem('tempcontent',editor.getHTML());
+                    $('#auto-save').fadeIn().delay(2000).fadeOut();
+                },10000);
+            }    
+        });
+
+        
 
         if(localStorage.getItem('temptitle') || localStorage.getItem('tempcontent')){
             titleInput.val(localStorage.getItem('temptitle'));

@@ -73,6 +73,12 @@
                 'top':0,
                 'opacity':o.maskopacity
             }).appendTo('body');
+
+            if(o.clickClose){
+                $mask.click(function(){
+                    close(); 
+                })
+            }
         }
 
         function resize(){
@@ -82,8 +88,8 @@
         }
 
         function close(){
-            $spopup.hide();
-            $mask.hide();
+            $spopup.hide().remove();
+            $mask.hide().remove();
             if(o.onClose) o.onClose.call($spopup);
         }
     }
@@ -94,6 +100,7 @@
         appendTo:'body',
 		speed:250,
         autoClose:false,
+        clickClose:true,
         closeClass:'p-close',
         positionStyle:'absolute',
         position:['auto', 'auto'],
@@ -101,7 +108,7 @@
         maskcolor:'#000',
         bgcolor:'#fff',
         maskopacity:'0.7',
-        zindex:9999,
+        zindex:10001,
         onClose:function(){},
         onOpen:function(){},
         onComplete:function(){}

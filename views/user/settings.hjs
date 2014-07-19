@@ -71,7 +71,7 @@ $('.switch-triggers li a').click(function(){
     $('.switch-triggers li').removeClass('cur');
     $(this).parent().addClass('cur');
     $('.switch-contents .switch-content').hide();
-    $($('.switch-contents .switch-content')[index]).fadeIn(100);
+    $($('.switch-contents .switch-content')[index]).show();
 });
 
 

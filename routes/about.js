@@ -14,6 +14,10 @@ router.get('/suggest', function(req, res) {
     res.render('about/suggest', { title: '意见反馈' });
 });
 
+router.get('/disclaimer', function(req, res) {
+    res.render('about/disclaimer', { title: '免责声明' });
+});
+
 var smtpTransport = nodemailer.createTransport("SMTP",{
     service: "Gmail",
     auth: {
@@ -23,10 +27,11 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
 });
 
 router.post('/postsuggest', function(req, res,next) {
+    var uemail=req.session.user?req.session.user.email:req.body.uemail;
     smtpTransport.sendMail({
         to: 'spirityy109@gmail.com',
-        subject: "Suggest by " + req.session.user.email, 
-        text: req.body.suggestcontent
+        subject: "Suggest by" + uemail,
+        text: req.body.uname+':'+req.body.suggestcontent
     }, function(err, response){
         if(err){
             next(err);

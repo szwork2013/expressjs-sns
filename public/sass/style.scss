@@ -71,28 +71,38 @@
         position:relative;
         padding:10px;
         h2{
-            margin:0 0 0 10px;
+            margin:0;
+            .fa{
+                vertical-align:middle;
+                font-size:14px; 
+            }
             a{
                 color:#111; 
+                vertical-align:middle;
             }
-        }
-        span{
-            margin:0 5px; 
         }
         .author-avatar{
+            width:10%;
+            float:left;
             img{
+                width:48px;
+                height:48px;
                 @include border-radius(5px); 
             }
-            width:60px;
         }
         .topic-title{
+            float:left;
             overflow:hidden;
-            width:50%;
+            width:58%;
+            padding:0 1%;
         }
         .topic-detail{
-            width:50px;
+            float:left;
+            width:10%;
         }
         .topic-last-reply{
+            width:20%;
+            float:left;
         }
     }
 }
@@ -137,12 +147,14 @@
     .topic-meta{
         @include clearfix();
         li{
-            font-size:12px;
-            color:#999;
+            color:#ccc;
             margin-right:20px;
             float:left; 
             a{
-                color:#999;
+                color:#ccc;
+                &:hover{
+                    color:#999;
+                }
             }
             &.share i{
                 cursor:pointer;
@@ -235,6 +247,13 @@
         }
     }
     .reply-meta{
+        a{
+            color:#666; 
+            &:hover{
+                color:$link-color; 
+                text-decoration:underline;
+            }
+        }
         margin-left:90px;
     }
 }
@@ -405,6 +424,10 @@
         @include border-radius(3px); 
         margin:10px 0;
     }
+    h1 a{
+        font-size:14px;
+        line-height:30px;
+    }
     #new-topic-title{
         width:95%;
         height:40px;
@@ -417,7 +440,7 @@
         border:1px solid #ccc;
         @include border-radius(3px); 
         width:99%;
-        height:300px;
+        height:450px;
         resize:vertical;
         background:#fff;
     }
