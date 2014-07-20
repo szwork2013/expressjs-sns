@@ -22,6 +22,11 @@ var Topic = new Schema({
 Topic.virtual('create_date_format').get(function(){
     return moment(this.create_date).format('YYYY-MM-DD HH:mm');
 });
+
+Topic.virtual('create_date_fromnow').get(function(){
+    return moment(this.create_date).lang('zh-cn').fromNow();
+});
+
 Topic.virtual('update_date_format').get(function(){
     return moment(this.update_date).format('YYYY-MM-DD HH:mm');
 });

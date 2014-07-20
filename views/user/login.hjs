@@ -12,6 +12,9 @@
     </div>
     <div class="row">
         <div class="act">
+            <div class="rememberme">
+                <input type="checkbox" id="rememberme" name="rememberme" />30天免登陆
+            </div>
             <button type="submit">登录</button>
         </div>
     </div>

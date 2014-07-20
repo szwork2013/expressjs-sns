@@ -50,15 +50,19 @@ function GetTopicTemplete(topics,callback){
         var n_topics = [];
         async.eachSeries(topics,function(topic,cb){
             User.findOne({_id:topic.author_id},function(err,user){
-                if(!user) return;
-                var temp_topic = topic.toObject();
-                temp_topic.author_name = user.name;
-                temp_topic.author_url = user.url;
-                temp_topic.author_avatar_url = user.avatar_url_s;
-                temp_topic.create_date_format = topic.create_date_format;
-                temp_topic.last_reply_date_format = topic.last_reply_date_format;
-                n_topics.push(temp_topic);
-                cb();
+                User.findOne({_id:topic.last_reply},function(err,replyuser){
+                    if(!user) return;
+                    var temp_topic = topic.toObject();
+                    temp_topic.author_name = user.name;
+                    temp_topic.author_url = user.url;
+                    temp_topic.author_avatar_url = user.avatar_url_s;
+                    temp_topic.last_reply_name = replyuser?replyuser.name:'';
+                    temp_topic.create_date_format = topic.create_date_format;
+                    temp_topic.create_date_fromnow = topic.create_date_fromnow;
+                    temp_topic.last_reply_date_format = topic.last_reply_date_format;
+                    n_topics.push(temp_topic);
+                    cb();
+                });
             });
         },function(err){
             callback(n_topics);

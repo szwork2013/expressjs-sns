@@ -139,7 +139,6 @@ router.post('/login', function(req, res) {
     var userpwd = req.body.userpwd;
     User.findOne({$or:[{ name:username}, {email:username}]},function(err,user){
         var error_msg = '';
-
         if(!user || userpwd != user.pwd){
             if(!user) {
                 error_msg = '用户不存在';
@@ -150,9 +149,11 @@ router.post('/login', function(req, res) {
                 message:error_msg
             });
         }else{
-            //登陆成功
             req.session.user = user;
-            req.session.save();
+            if(req.body.rememberme){
+                req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000;
+            }
+            //登陆成功
             res.redirect('/');
         }
     });

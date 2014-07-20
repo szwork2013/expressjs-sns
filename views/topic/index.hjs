@@ -32,7 +32,7 @@
         </ul>
     </div>
 
-    {{#hotreplys}}
+    {{#hotreplys.length}}
     <div class="hot-reply-list">
         <h2>最佳评论：</h2>
         {{#hotreplys}}
@@ -64,7 +64,7 @@
         </div>
         {{/hotreplys}}
     </div>
-    {{/hotreplys}}
+    {{/hotreplys.length}}
     <div class="reply-list">
     {{#topic.reply_count}}
         <h2>评论：</h2>

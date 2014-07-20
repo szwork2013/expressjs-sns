@@ -9,7 +9,7 @@
                 {{#toptopics}}
                 <li>
                 <span class="author-avatar">
-                    <a href="/{{author_url}}">
+                    <a href="/{{author_url}}" title="{{author_name}}">
                         <img src="{{author_avatar_url}}" alt="">
                     </a>
                 </span>
@@ -20,14 +20,19 @@
                     {{reply_count}}/{{visit_count}}
                 </span>
                 <span class="topic-last-reply">
-                    最后回复：{{last_reply_date_format}}
+                    {{#last_reply_name}}
+                        {{last_reply_name}}：{{last_reply_date_format}}
+                    {{/last_reply_name}}
+                    {{^last_reply_name}}
+                        {{create_date_fromnow}}
+                    {{/last_reply_name}}
                 </span>
                 </li>
                 {{/toptopics}}
                 {{#topics}}
                 <li>
                 <span class="author-avatar">
-                    <a href="/{{author_url}}">
+                    <a href="/{{author_url}}" title="{{author_name}}">
                         <img src="{{author_avatar_url}}" alt="">
                     </a>
                 </span>
@@ -38,7 +43,12 @@
                     {{reply_count}}/{{visit_count}}
                 </span>
                 <span class="topic-last-reply">
-                    最后回复：{{last_reply_date_format}}
+                    {{#last_reply_name}}
+                        {{last_reply_name}}：{{last_reply_date_format}}
+                    {{/last_reply_name}}
+                    {{^last_reply_name}}
+                        {{create_date_fromnow}}
+                    {{/last_reply_name}}
                 </span>
                 </li>
                 {{/topics}}
@@ -48,7 +58,7 @@
 
         {{#pager}}
         <div class="pager row">
-            总共:{{total}}篇帖子
+            {{total}}篇帖子
             <ul class="pager-wrapper">
                 {{#prev}}
                 <li><a href="/b/{{board.url}}?p={{prev}}"><i class="fa fa-chevron-circle-left"></i></a></li>
@@ -84,21 +94,20 @@
 <script>
 (function (){
 
- $script('/js/loadimg.js',function(){
-     loadimg('http://cdn.ifanr.cn/wp-content/uploads/2014/06/IXDCifanr-02.jpg',function(img){
-         $(img).appendTo($('.ad1 a')); 
+     $script('/js/loadimg.js',function(){
+         loadimg('http://cdn.ifanr.cn/wp-content/uploads/2014/06/IXDCifanr-02.jpg',function(img){
+             $(img).appendTo($('.ad1 a')); 
          })
      })
 
- $('.topic-list li').bind({
-     'mouseover':function(){
-         $(this).css('background','#fbfbfb');
-     },
-     'mouseout':function(){
-         $(this).css('background','');
-     }
+     $('.topic-list li').bind({
+         'mouseover':function(){
+             $(this).css('background','#fbfbfb');
+         },
+         'mouseout':function(){
+             $(this).css('background','');
+         }
      });
-
 
  })() 
 </script>

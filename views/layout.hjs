@@ -32,14 +32,13 @@
             {{/user}}
             {{#user}}
             <li><a href="/logout" class="loginout">退出</a></li>
-            <li><a href="/message">消息</a></li>
+            <li><a href="/message">私信</a></li>
             <li><a href="/collect">收藏</a></li>
             <li><a href="/settings">用户设置</a></li>
             <li><a href="/{{user.url}}">欢迎，{{user.name}}</a></li>
             {{/user}}
         </ul>
     </div>
-    
 </header>
 
 <section class="main">

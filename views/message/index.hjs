@@ -1,23 +1,19 @@
 <h1>私信</h1>
 <div>
-    <h2>我发送的</h2>
     <ul class="message-list">
-        {{#fmsgs}}
-        <li>
-        <p>我对<a href="/{{to_user_url}}">{{to_user_url}}</a>说:</p>
-        <p>{{content}} {{create_date_fromnow}}</p>
-        </li>
-        {{/fmsgs}}
-    </ul>
-</div>
-<div>
-    <h2>发给我的</h2>
-    <ul class="message-list">
-        {{#tmsgs}}
-        <li>
-            <p><a href="/{{from_user_url}}">{{from_user_name}}</a>对我说:</p>
-            <p>{{content}} {{create_date_fromnow}}</p>
-        </li>
-        {{/tmsgs}}
+        {{#msgs}}
+            {{#isowner}}
+                <li>
+                <p>我对<a href="/{{to_user_url}}">{{to_user_name}}</a>说:({{create_date_fromnow}})</p>
+                <p>{{content}}</p>
+                </li>
+            {{/isowner}}
+            {{^isowner}}
+                <li>
+                <p><a href="/{{from_user_url}}">{{from_user_name}}</a>对我说:({{create_date_fromnow}})</p>
+                <p>{{content}}</p>
+                </li>
+            {{/isowner}}
+        {{/msgs}}
     </ul>
 </div>
