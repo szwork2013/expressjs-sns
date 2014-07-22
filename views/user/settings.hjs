@@ -87,7 +87,6 @@ $('#uploadimg-form .up-trigger').click(function(){
      file = files[0];
      var fileReader = new FileReader();
      fileReader.onload = function (event) {
-     console.info(event.target.result);
      $('#show-avatar').attr('src',event.target.result);
      };
      fileReader.readAsDataURL(file);

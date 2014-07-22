@@ -1,7 +1,4 @@
 <link rel="stylesheet" href="/css/editor/quill.snow.css">
-<!--<script src="/js/quill.min.js"></script>
-<script src="/js/validator.js"></script>
-<script src="/js/xss.js"></script>-->
 <form id="new-topic" action="/b/{{board.url}}/new" method="post">
     <h1>
         发布新讨论({{board.name}})
@@ -21,7 +18,8 @@
             <span title="链接" class="ql-format-button ql-link"></span>
             <span title="插入图片" class="ql-format-button ql-image"></span>
             <span class="ql-format-separator"></span>
-            <span title="上传图片" class="ql-format-button ql-uploadimg">上传</span>
+            <input type="file" name="uploadimg" id="uploadimg" class="hide">
+            <span title="上传图片" class="ql-format-button ql-uploadimg"><i class="fa fa-file-image-o"></i></span>
         </div>
         <div id="new-topic-content"></div>
         <textarea id="hiddeninput" name="content" class="hide"></textarea>
@@ -44,6 +42,24 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js'],function(){
               'link-tooltip': true
             }
         });
+
+        $('.ql-uploadimg').click(function(){
+           $('#uploadimg').click(); 
+        });
+
+        $('#uploadimg').change(function(e){
+            var files = e.target.files;
+            if (files && files.length > 0) {
+            file = files[0];
+            var fileReader = new FileReader();
+            fileReader.onload = function (event) {
+                editor.insertEmbed(editor.getLength(), 'image', event.target.result);
+            };
+            fileReader.readAsDataURL(file);
+            }
+        })
+
+
 
         var titleInput = $('input[name="title"]');
 

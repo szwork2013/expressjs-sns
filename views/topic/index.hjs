@@ -155,7 +155,7 @@
             url:'/topic/getreplys',
         data:'id={{topic._id}}',
         beforeSend:function(){
-            $('<div class="more"></div>').appendTo($('.reply-list')); 
+            $('<div class="more"><i class="fa fa-refresh fa-spin"></i></div>').appendTo($('.reply-list')); 
         },
         success:function(re){
             $('.reply-list .more').remove();

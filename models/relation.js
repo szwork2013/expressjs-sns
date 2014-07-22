@@ -13,4 +13,8 @@ RelationSchema.virtual('create_date_format').get(function(){
     return moment(this.create_date).format('YYYY-MM-DD HH:mm');
 });
 
+RelationSchema.virtual('create_date_fromnow').get(function(){
+    return moment(this.create_date).lang('zh-cn').fromNow();
+});
+
 var Relation = mongoose.model('Relation', RelationSchema);
