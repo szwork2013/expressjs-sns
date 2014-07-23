@@ -8,6 +8,7 @@
         background:#fff;
         margin:0px auto;
         width:1000px;
+        min-height:700px;
         padding:100px 0 50px 0;
         color:#666;
     }
@@ -123,6 +124,9 @@
         }
     }
     .topic-content{
+        img{
+            max-width:100%; 
+        }
         margin:20px 0;
         font-size:14px;
         ul { 

@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
-
 /*
  * type
  * 1.帖子回复
@@ -10,8 +9,6 @@ var ObjectId = Schema.ObjectId;
  * 3.私信
  * 4.关注
  */
-
-
 var TipSchema = new Schema({
     type:{ type: String },
     user_id: { type: ObjectId },
@@ -24,6 +21,10 @@ var TipSchema = new Schema({
 
 TipSchema.virtual('create_date_format').get(function(){
     return moment(this.create_date).format('YYYY-MM-DD HH:mm');
+});
+
+TipSchema.virtual('create_date_fromnow').get(function(){
+    return moment(this.create_date).lang('zh-cn').fromNow();
 });
 
 var TipModel = mongoose.model('Tip', TipSchema);

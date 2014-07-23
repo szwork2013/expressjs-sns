@@ -8,6 +8,7 @@ var Board = mongoose.model('Board');
 var Reply = mongoose.model('Reply');
 var Collect = mongoose.model('Collect');
 var formidable = require('formidable');
+var gm = require( 'gm' );
 
 function BuildReplyItem(origin,user){
     var temp = {};
@@ -149,6 +150,16 @@ router.get('/:_id', function(req, res, next) {
             }else{
                 next(); 
             }
+        });
+    });
+});
+
+router.post('/uploadimg', function(req, res, next) {
+    new formidable.IncomingForm().parse(req,function(err,fields,files){
+        var img = files.uploadimg;
+        var url = process.cwd()+'/public/assets/'+img.name+path.extname(img.name);
+        gm(img.path).write(url,function(){
+            res.json({r:1});
         });
     });
 });

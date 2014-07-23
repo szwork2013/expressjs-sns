@@ -548,6 +548,7 @@ footer {
     background: #fff;
     margin: 0px auto;
     width: 1000px;
+    min-height: 700px;
     padding: 100px 0 50px 0;
     color: #666; }
     .main .main-wrapper:before, .main .main-wrapper:after {
@@ -655,6 +656,8 @@ footer {
 .topic-main .topic-content {
   margin: 20px 0;
   font-size: 14px; }
+  .topic-main .topic-content img {
+    max-width: 100%; }
   .topic-main .topic-content ul {
     list-style-type: disc;
     list-style-position: inside; }
