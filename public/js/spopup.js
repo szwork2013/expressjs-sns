@@ -88,8 +88,12 @@
         }
 
         function close(){
-            $spopup.hide().remove();
-            $mask.hide().remove();
+            $spopup.hide();
+            $mask.hide();
+            if(o.isRemove){
+                $spopup.remove();
+                $mask.remove();
+            }
             if(o.onClose) o.onClose.call($spopup);
         }
     }
@@ -102,6 +106,7 @@
         autoClose:false,
         clickClose:true,
         closeClass:'p-close',
+        isRemove:true,
         positionStyle:'absolute',
         position:['auto', 'auto'],
         ismasking:true,
