@@ -19,10 +19,6 @@
         var $spopup = this;
         var $mask = $('<div class="spopup-mask"></div>');
 
-        return $spopup.each(function(){
-            if($(this).data('exist')) return;
-            init();
-        })
 
         function init(){
             if(o.onOpen) o.onOpen.call($spopup);
@@ -34,12 +30,19 @@
                 'top':o.position[1],
                 'z-index':o.zindex
             });
+
             render();
-            recenter();
-            resize();
+
+            if(o.iscenter) recenter();
+
+            $(window).on('scroll resize',function(){
+                recenter(); 
+            });
+
             $spopup.find('.'+o.closeClass).click(function(){
                 close();
-            })
+            });
+
             if(o.autoClose) {
                 setTimeout(function(){
                     close(); 
@@ -47,12 +50,13 @@
             }
             if(o.onComplete) o.onComplete.call($spopup);
             if(callback) callback.call($spopup);
+
         }
 
         function recenter(){
             $spopup.css({
-                'left':$(window).width()/2-$spopup.width()/2,
-                'top':$(window).scrollTop()+$(window).height()/2-$spopup.height()/2,
+                'left':$(window).width()/2-$spopup.outerWidth()/2,
+                'top':$(window).scrollTop()+o.mt,//$(window).height()/2-$spopup.outerHeight()/2,
                 'background':o.bgcolor || '#fff'
             })
         }
@@ -81,12 +85,6 @@
             }
         }
 
-        function resize(){
-            $(window).resize(function(){
-                recenter();        
-            });
-        }
-
         function close(){
             $spopup.hide();
             $mask.hide();
@@ -96,11 +94,21 @@
             }
             if(o.onClose) o.onClose.call($spopup);
         }
+
+        //public method
+         $spopup.close = function(){
+                close();
+         }
+
+        return $spopup.each(function(){
+            init();
+        })
     }
 
     $.fn.spopup.defaults = {
         width:'50%',
         height:'auto',
+        mt:200,
         appendTo:'body',
 		speed:250,
         autoClose:false,
@@ -109,10 +117,11 @@
         isRemove:true,
         positionStyle:'absolute',
         position:['auto', 'auto'],
+        iscenter:true,
         ismasking:true,
         maskcolor:'#000',
         bgcolor:'#fff',
-        maskopacity:'0.7',
+        maskopacity:'0.3',
         zindex:10001,
         onClose:function(){},
         onOpen:function(){},

@@ -2,7 +2,6 @@
 
 //reset
 //------------------------------------------
-
 html{
     font:$font;
 }
@@ -25,6 +24,13 @@ body{
         font-size:18px; 
         margin:0;
     }
+}
+
+::selection {
+  background:#a8d1ff;
+}
+::-moz-selection {
+  background:#a8d1ff;
 }
 
 //Images

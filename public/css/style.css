@@ -381,7 +381,7 @@
 .settings form .up-trigger {
   padding: 0px;
   background: none;
-  color: #3bc676;
+  color: #30c880;
   outline: 0;
   display: block; }
 .settings #showurl {
@@ -436,16 +436,13 @@
     border-radius: 3px; }
     #new-topic button[type=submit]:hover {
       background: #007aeb; }
+  #new-topic #auto-save-trigger, #new-topic #clear-save {
+    margin-left: 20px; }
   #new-topic #auto-save {
     display: none;
     margin-left: 15px; }
     #new-topic #auto-save .fa {
       margin-right: 5px; }
-
-#popup {
-  width: 50%;
-  background: #fff;
-  display: none; }
 
 .more-trigger {
   text-align: center;
@@ -500,7 +497,8 @@
   text-align: center;
   background: #000;
   opacity: .8;
-  color: #fff; }
+  color: #fff;
+  z-index: 10002; }
 
 .user-wrapper {
   margin: -20px; }
@@ -537,3 +535,33 @@
       background: #fff;
       padding: 5px;
       margin-top: -64px; }
+
+.popup {
+  width: 50%;
+  padding: 10px;
+  background: #fff;
+  display: none;
+  -webkit-box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3); }
+  .popup .popup-wrapper {
+    position: relative;
+    padding-top: 16px; }
+  .popup:before, .popup:after {
+    content: "";
+    display: table; }
+  .popup:after {
+    clear: both; }
+  .popup .p-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #e9655b;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    cursor: pointer;
+    display: block;
+    width: 16px;
+    height: 16px; }

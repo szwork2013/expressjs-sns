@@ -17,38 +17,49 @@
             <span class="ql-format-separator"></span>
             <span title="链接" class="ql-format-button ql-link"></span>
             <span title="插入图片" class="ql-format-button ql-image"></span>
+            <span title="插入视频" class="ql-format-button ql-vedio"><i class="fa fa-youtube-play"></i></span>
         </div>
-        <div id="new-topic-content"></div>
+        <div id="new-topic-content" placeholder="标题字数10字以上"></div>
         <textarea id="hiddeninput" name="content" class="hide"></textarea>
     </div>
 
     <div class="row">
         <button type="submit">提交</button>
+        <a id="clear-save" href="javascript:void(0);">清空保存</a>
         <input type="checkbox" id="auto-save-trigger">自动保存
         <span id="auto-save"><i class="fa fa-refresh fa-spin"></i>自动保存中...</span>
     </div>
 </form>
 
-<div class="addlink-popup" style="display:none;">
-    <div class="row">
-        <label for="linktext">链接文字</label>
-        <input type="text" name="linktext">
-    </div>
-    <div class="row">
-        <label for="linkurl">链接地址</label>
-        <input type="text" name="linkurl">
+<div class="addlink-popup popup" style="display:none;">
+    <div class="popup-wrapper">
+        <i class="p-close"></i>
+        <div class="row">
+            <label for="linktext">链接文字</label>
+            <input type="text" name="linktext" class="linktext">
+        </div>
+        <div class="row">
+            <label for="linkurl">链接地址</label>
+            <input type="text" name="linkurl" class="linkurl">
+        </div>
+        <div class="row">
+            <button id="addlink-btn">确定</button>
+        </div>
     </div>
 </div>
 
-<div class="uploadimg-popup" style="display:none;">
-    <form action="/topic/uploadimg" method="post" id="uploadimg-form" enctype="multipart/form-data">
-        <input type="file" name="uploadimg" id="uploadimg" class="hide">
-        <button id="upimg-trigger" type="button">上传图片</button>
-    </form>
+<div class="uploadimg-popup popup" style="display:none;">
+    <div class="popup-wrapper">
+        <i class="p-close"></i>
+        <form action="/topic/uploadimg" method="post" id="uploadimg-form" enctype="multipart/form-data">
+            <input type="file" name="uploadimg" id="uploadimg" class="hide">
+            <button id="upimg-trigger" type="button">上传图片</button>
+        </form>
+    </div>
 </div>
 
 <script>
-$script(['/js/quill.js','/js/validator.js','/js/xss.js'],function(){
+$script(['/js/quill.js','/js/validator.js','/js/xss.js','/js/tip.js'],function(){
 
         var editor = new Quill('#new-topic-content',{
             modules: {
@@ -59,18 +70,38 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js'],function(){
         $('.ql-image').click(function(){
            //$('#uploadimg').click(); 
            $script('/js/spopup.js',function(){
-               $('.uploadimg-popup').clone().spopup(function(){
+               $('.uploadimg-popup').clone().spopup({
+                    width:'40%'
+               },function(){
                    $(this).find('#upimg-trigger').click(function(){
                         $('#uploadimg').click();    
-                   });    
+                   });
                });     
            });
         });
 
         $('.ql-link').click(function(){
             $script('/js/spopup.js',function(){
-                $('.addlink-popup').clone().spopup();     
-            })
+               var addlinkpopup = $('.addlink-popup').clone().spopup({
+                   width:'30%' 
+               },function(){
+                   var self = this;
+                   $(this).find('#addlink-btn').click(function(){
+                       var text = $(self).find('.linktext').val();
+                       var url = $(self).find('.linkurl').val();
+
+                       if(!validator.isURL(url,{require_protocol: true})){
+                           if(!validator.isURL(url)){
+                               Tip('请输入正确的链接地址！');
+                               return;
+                           }
+                           url='http://'+url;
+                       }
+                       editor.setHTML(editor.getText()+'<a target="_blank" href="'+url+'">'+text+'</a>');
+                       addlinkpopup.close();
+                   });
+               })
+            });
         });
 
 
@@ -80,14 +111,11 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js'],function(){
 
 
         $('#uploadimg').change(function(e){
-
-
             var files = e.target.files;
             if (files && files.length > 0) {
             file = files[0];
             var fileReader = new FileReader();
             fileReader.onload = function (event) {
-                console.info(321);
                 editor.setHTML(editor.getHTML()+'<img src="'+event.target.result+'">');
             };
             fileReader.readAsDataURL(file);
@@ -109,6 +137,14 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js'],function(){
             }    
         });
         $('#auto-save-trigger').click();
+
+
+
+        $('#clear-save').click(function(){
+            editor.setHTML('');
+            localStorage.setItem('temptitle','');
+            localStorage.setItem('tempcontent','');
+        });
         
 
         if(localStorage.getItem('temptitle') || localStorage.getItem('tempcontent')){
@@ -118,29 +154,24 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js'],function(){
 
         $('#new-topic button[type="submit"]').click(function(e){
             e.preventDefault();
-            $script('/js/tip.js',function(){
-
-                $('#hiddeninput').text(filterXSS(editor.getHTML()));
-
-                if(validator.isNull(validator.trim(titleInput.val()))){
-                    Tip('请填写标题！');
-                    titleInput.focus();
-                    return;
-                }else if(validator.isNull(validator.trim(editor.getText()))){
-                    Tip('请填写内容！');
-                    editor.focus();
-                    return;
-                }else{
-                    Tip('发布成功！',function(){
-                       if(localStorage.getItem('temptitle') || localStorage.getItem('tempcontent')){
-                           localStorage.setItem('temptitle','');
-                           localStorage.setItem('tempcontent','');
-                       }
-                       $('#new-topic').submit();
-                    });
-                }
-            })
-
+            $('#hiddeninput').text(filterXSS(editor.getHTML()));
+            if(validator.isNull(validator.trim(titleInput.val()))){
+                Tip('请填写标题！');
+                titleInput.focus();
+                return;
+            }else if(validator.isNull(validator.trim(editor.getText()))){
+                Tip('请填写内容！');
+                editor.focus();
+                return;
+            }else{
+                Tip('发布成功！',function(){
+                   if(localStorage.getItem('temptitle') || localStorage.getItem('tempcontent')){
+                       localStorage.setItem('temptitle','');
+                       localStorage.setItem('tempcontent','');
+                   }
+                   $('#new-topic').submit();
+                });
+            }
         });
 });
 </script>
