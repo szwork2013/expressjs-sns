@@ -33,7 +33,7 @@
 
 <div class="addlink-popup popup" style="display:none;">
     <div class="popup-wrapper">
-        <i class="p-close"></i>
+        <i class="fa fa-times p-close"></i>
         <div class="row">
             <label for="linktext">链接文字</label>
             <input type="text" name="linktext" class="linktext">
@@ -50,7 +50,7 @@
 
 <div class="uploadimg-popup popup" style="display:none;">
     <div class="popup-wrapper">
-        <i class="p-close"></i>
+        <i class="fa fa-times p-close"></i>
         <form action="/topic/uploadimg" method="post" id="uploadimg-form" enctype="multipart/form-data">
             <input type="file" name="uploadimg" id="uploadimg" class="hide">
             <button id="upimg-trigger" type="button">上传图片</button>
@@ -116,7 +116,18 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js','/js/tip.js'],function()
             file = files[0];
             var fileReader = new FileReader();
             fileReader.onload = function (event) {
-                editor.setHTML(editor.getHTML()+'<img src="'+event.target.result+'">');
+                var data = new FormData();
+                data.append('img',$('#uploadimg')[0].files[0]);
+                $.ajax({
+                    url:'/topic/uploadimg',
+                    method:'post',
+                    contentType: false,
+                    processData: false,
+                    data:data,
+                    success:function(re){
+                        editor.setHTML(editor.getHTML()+'<img src="'+re.url+'">');
+                    }
+                });
             };
             fileReader.readAsDataURL(file);
             }

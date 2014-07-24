@@ -9,6 +9,8 @@ var Reply = mongoose.model('Reply');
 var Collect = mongoose.model('Collect');
 var formidable = require('formidable');
 var gm = require( 'gm' );
+var path = require( 'path' );
+var fs = require( 'fs' );
 
 function BuildReplyItem(origin,user){
     var temp = {};
@@ -156,10 +158,10 @@ router.get('/:_id', function(req, res, next) {
 
 router.post('/uploadimg', function(req, res, next) {
     new formidable.IncomingForm().parse(req,function(err,fields,files){
-        var img = files.uploadimg;
-        var url = process.cwd()+'/public/assets/'+img.name+path.extname(img.name);
-        gm(img.path).write(url,function(){
-            res.json({r:1});
+        var img = files.img;
+        var url = '/assets/'+img.name;
+        gm(img.path).write(process.cwd()+'/public'+url,function(){
+            res.json({r:1,url:url});
         });
     });
 });

@@ -23,7 +23,7 @@ $menu-width:30px;
             float:left; 
         }
         height:$nav-container-height;
-        padding:0 2%;
+        padding:0 30px;
         position:relative;
     }
     a{
@@ -55,7 +55,7 @@ $menu-width:30px;
     .menu{
         position:absolute;
         text-align:right;
-        right:0;
+        right:30px;
         width:40%;
         height:50px;
         >li{
@@ -78,7 +78,6 @@ $menu-width:30px;
 }
 
 footer{
-    text-align:center;
     color:#999;
     a{
         color:#999;
@@ -86,15 +85,15 @@ footer{
             color:#666; 
         }
     }
-    padding:20px;
+    padding:20px 30px;
     border-top:1px solid #e5e5e5;
     height:30px;
     line-height:30px;
     p{
         display:inline-block; 
+        margin-right:20px;
     }
     .ft-meta{
-        margin-left:10px;
         vertical-align:middle;
         display:inline-block; 
         li{

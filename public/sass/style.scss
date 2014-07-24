@@ -592,11 +592,9 @@
         position:absolute;
         right:0;
         top:0;
-        background:#e9655b;
-        @include border-radius(50%);
         cursor:pointer;
         display:block;
-        width:16px;
-        height:16px;
+        font-size:16px;
+        margin:0;
     }
 }

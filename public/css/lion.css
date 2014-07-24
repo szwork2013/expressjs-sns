@@ -464,7 +464,7 @@ textarea {
     margin-left: auto;
     margin-right: auto;
     height: 50px;
-    padding: 0 2%;
+    padding: 0 30px;
     position: relative; }
     .nav .nav-container:before, .nav .nav-container:after {
       content: "";
@@ -502,7 +502,7 @@ textarea {
   .nav .menu {
     position: absolute;
     text-align: right;
-    right: 0;
+    right: 30px;
     width: 40%;
     height: 50px; }
     .nav .menu > li {
@@ -528,9 +528,8 @@ textarea {
           color: #ddd; }
 
 footer {
-  text-align: center;
   color: #999;
-  padding: 20px;
+  padding: 20px 30px;
   border-top: 1px solid #e5e5e5;
   height: 30px;
   line-height: 30px; }
@@ -539,9 +538,9 @@ footer {
     footer a:hover {
       color: #666; }
   footer p {
-    display: inline-block; }
+    display: inline-block;
+    margin-right: 20px; }
   footer .ft-meta {
-    margin-left: 10px;
     vertical-align: middle;
     display: inline-block; }
     footer .ft-meta li {
@@ -1105,16 +1104,10 @@ footer {
     position: absolute;
     right: 0;
     top: 0;
-    background: #e9655b;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
     cursor: pointer;
     display: block;
-    width: 16px;
-    height: 16px; }
+    font-size: 16px;
+    margin: 0; }
 
 @media screen and (min-width: 767px) and (max-width: 970px) {
   .main .main-wrapper {

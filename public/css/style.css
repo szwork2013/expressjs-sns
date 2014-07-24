@@ -555,13 +555,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    background: #e9655b;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
     cursor: pointer;
     display: block;
-    width: 16px;
-    height: 16px; }
+    font-size: 16px;
+    margin: 0; }
