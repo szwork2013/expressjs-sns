@@ -11,6 +11,7 @@ var formidable = require('formidable');
 var gm = require( 'gm' );
 var path = require( 'path' );
 var fs = require( 'fs' );
+var moment =  require('moment');
 
 function BuildReplyItem(origin,user){
     var temp = {};
@@ -156,12 +157,27 @@ router.get('/:_id', function(req, res, next) {
     });
 });
 
+//new topic upload img
 router.post('/uploadimg', function(req, res, next) {
     new formidable.IncomingForm().parse(req,function(err,fields,files){
         var img = files.img;
-        var url = '/assets/'+img.name;
-        gm(img.path).write(process.cwd()+'/public'+url,function(){
-            res.json({r:1,url:url});
+        var y_floder = process.cwd()+'/public/assets/'+moment(Date.now()).format('YYYY');
+        var m_floder = y_floder+'/'+moment(Date.now()).format('MM');
+        var d_floder = m_floder+'/'+moment(Date.now()).format('DD');
+        var showurl = '/assets/'+moment(Date.now()).format('YYYY')+'/'+moment(Date.now()).format('MM')+'/'+moment(Date.now()).format('DD')+'/'+Date.now()+path.extname(img.name);
+
+        if(!fs.existsSync(d_floder)){
+            if(!fs.existsSync(m_floder)){
+                if(!fs.existsSync(y_floder)){
+                    fs.mkdirSync(y_floder);
+                }
+                fs.mkdirSync(m_floder);
+            }
+            fs.mkdirSync(d_floder);
+        }
+        var writeurl = d_floder+'/'+Date.now()+path.extname(img.name);
+        gm(img.path).write(writeurl,function(){
+            res.json({r:1,writeurl:writeurl,url:showurl});
         });
     });
 });
