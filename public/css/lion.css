@@ -1102,11 +1102,16 @@ footer {
     clear: both; }
   .popup .p-close {
     position: absolute;
+    text-align: center;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 14px;
     right: 0;
     top: 0;
     cursor: pointer;
     display: block;
-    font-size: 16px;
+    color: #333;
     margin: 0; }
 
 @media screen and (min-width: 767px) and (max-width: 970px) {

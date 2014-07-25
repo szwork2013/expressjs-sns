@@ -21,16 +21,19 @@ router.post('/saveimgsettings', function(req, res) {
             /*
              *  check floder  
              */
-            var target_floder = process.cwd()+'/public/assets/'+req.session.user._id;
+            var target_floder = process.cwd()+'/public/assets/avatar/'+req.session.user._id;
             if(!fs.existsSync(target_floder)){
+                if(!fs.existsSync(process.cwd()+'/public/assets/avatar')){
+                    fs.mkdirSync(process.cwd()+'/public/assets/avatar');
+                }
                 fs.mkdirSync(target_floder);
             }
             /*
              *  upload avatar
              */
-            var save_url_l = '/assets/'+req.session.user._id+'/u'+req.session.user._id+'_l'+path.extname(files.avatar.name);
-            var save_url_s = '/assets/'+req.session.user._id+'/u'+req.session.user._id+'_s'+path.extname(files.avatar.name);
-            var save_url = '/assets/'+req.session.user._id+'/u'+req.session.user._id+path.extname(files.avatar.name);
+            var save_url_l = '/assets/avatar/'+req.session.user._id+'/u'+req.session.user._id+'_l'+path.extname(files.avatar.name);
+            var save_url_s = '/assets/avatar/'+req.session.user._id+'/u'+req.session.user._id+'_s'+path.extname(files.avatar.name);
+            var save_url = '/assets/avatar/'+req.session.user._id+'/u'+req.session.user._id+path.extname(files.avatar.name);
             async.parallel([
                 function(callback){
                     gm(files.avatar.path).write(process.cwd()+'/public'+save_url,function(){

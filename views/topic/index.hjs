@@ -148,6 +148,7 @@
 </script>
 <script>
 (function(){
+    /*
     $('.topic-content img').each(function(k,v){
             $(v).attr('datasrc',$(v).attr('src'));  
             $script('/js/loadimg.js',function(){
@@ -155,6 +156,7 @@
             });
     });
     $('.topic-content img').attr('src','/img/blank.png');
+    */
     $script(['/js/validator.js','/js/ejs.js'],function(){
 
         //加载留言

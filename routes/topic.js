@@ -164,8 +164,8 @@ router.post('/uploadimg', function(req, res, next) {
         var y_floder = process.cwd()+'/public/assets/'+moment(Date.now()).format('YYYY');
         var m_floder = y_floder+'/'+moment(Date.now()).format('MM');
         var d_floder = m_floder+'/'+moment(Date.now()).format('DD');
-        var showurl = '/assets/'+moment(Date.now()).format('YYYY')+'/'+moment(Date.now()).format('MM')+'/'+moment(Date.now()).format('DD')+'/'+Date.now()+path.extname(img.name);
-
+        var imgname = Date.now()+path.extname(img.name);
+        var showurl = '/assets/'+moment(Date.now()).format('YYYY')+'/'+moment(Date.now()).format('MM')+'/'+moment(Date.now()).format('DD')+'/'+imgname;
         if(!fs.existsSync(d_floder)){
             if(!fs.existsSync(m_floder)){
                 if(!fs.existsSync(y_floder)){
@@ -175,7 +175,7 @@ router.post('/uploadimg', function(req, res, next) {
             }
             fs.mkdirSync(d_floder);
         }
-        var writeurl = d_floder+'/'+Date.now()+path.extname(img.name);
+        var writeurl = d_floder+'/'+imgname;
         gm(img.path).write(writeurl,function(){
             res.json({r:1,writeurl:writeurl,url:showurl});
         });

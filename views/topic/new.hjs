@@ -17,7 +17,7 @@
             <span class="ql-format-separator"></span>
             <span title="链接" class="ql-format-button ql-link"></span>
             <span title="插入图片" class="ql-format-button ql-image"></span>
-            <span title="插入视频" class="ql-format-button ql-vedio"><i class="fa fa-youtube-play"></i></span>
+            <!--<span title="插入视频" class="ql-format-button ql-vedio"><i class="fa fa-youtube-play"></i></span>-->
         </div>
         <div id="new-topic-content" placeholder="标题字数10字以上"></div>
         <textarea id="hiddeninput" name="content" class="hide"></textarea>
@@ -68,7 +68,6 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js','/js/tip.js'],function()
         });
 
         $('.ql-image').click(function(){
-           //$('#uploadimg').click(); 
            $script('/js/spopup.js',function(){
                var uploadimgpopup=$('.uploadimg-popup').clone().spopup({
                     width:'40%'
