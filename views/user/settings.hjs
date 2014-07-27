@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="row">
-                    <label for="uemail">个性网址</label>
+                    <label for="uurl">个性网址</label>
                     <input type="text" name="uurl" id="uurl" value="{{user.url}}">
                     <p class="wyurl"><label></label>http://www.com/<span id="showurl">{{user.url}}</span></p>
                 </div>
@@ -118,7 +118,7 @@ $script('/js/validator.js',function(){
             }else if(validator.isNull(validator.trim(nameInput.val()))){
             nameInput.focus();
             return;
-            }else if(validator.isNull(validator.trim(urlInput.val())) || !validator.matches(urlInput.val(),url_reg)){
+            }else if(validator.isNull(validator.trim(urlInput.val())) || !validator.matches(urlInput.val(),url_reg) || !validator.isAlphanumeric(urlInput.val())){
             urlInput.focus();
             return;
             }else if(validator.isNull(validator.trim(signInput.val()))){

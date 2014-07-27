@@ -110,12 +110,17 @@
 </div>
 <div class="sidebar">
 
-    <div class="back-action">
+    <div class="back-action side-mod">
         {{#board}}
         <a href="/b/{{url}}"><i class="fa fa-arrow-left"></i>返回{{name}}</a>
         {{/board}}
     </div>
 
+    <div class="side-mod">
+        <h3>最近浏览</h3>
+        <ul class="history-list">
+        </ul>
+    </div>
 </div>
 <script type="text/template" id="reply-item-temp">
 <div class="reply-item" rid="<%=_id%>">
@@ -146,8 +151,77 @@
         </div>
     </div>
 </script>
+<script type="text/template" id="reply-pager">
+    <div class="pager row">
+        <ul class="pager-wrapper">
+            <%if (prev) { %>
+            <li><a href="javascript:void(0);" p="<%= prev %>"><i class="fa fa-chevron-circle-left"></i></a></li>
+            <% } %>
+            <% for(var i=0; i<pagenums.length; i++) {%>
+                <%if (pagenums[i].curnum) { %>
+                    <li><a class="nums cur" href="javascript:void(0);"><%= pagenums[i].curnum %></a></li>
+                <% }else{ %>
+                    <li><a class="nums" href="javascript:void(0);" p="<%= pagenums[i].num %>"><%= pagenums[i].num %></a></li>
+                <% } %>
+            <% } %>
+            <%if (next) { %>
+            <li><a href="javascript:void(0);" p="<%= next %>"><i class="fa fa-chevron-circle-right"></i></a></li>
+            <% } %>
+        </ul>
+    </div>
+</script>
+<script type="text/template" id="history-item">
+    <li><a href="<%= url %>"><%= title %></a></li>
+</script>
 <script>
 (function(){
+    //图片缩放
+     $script('/js/spopup.js',function(){
+         $('.topic-content img').each(function(k,v){
+            var image = new Image();
+            image.src = $(this).attr("src");
+            if(image.naturalWidth>$(this).width()){
+                $(v).addClass('canzoom');
+                $(v).click(function(e){
+                    var self = this;
+                    var zoomwidth =image.naturalWidth>$(window).width()?'90%':image.naturalWidth;
+                    var popup_html = '<div class="popup"><div class="popup-wrapper">'+this.outerHTML+'</div></div>';
+                    //视觉差50
+                    $(popup_html).spopup({
+                       width:zoomwidth
+                    });
+                 })
+            }
+         })
+     });
+
+    $script(['/js/validator.js','/js/ejs.js'],function(){
+
+    //最近浏览
+    if(window.localStorage){
+        //获得最近浏览并渲染
+        var viewd = localStorage.getItem('viewhistory')?JSON.parse(localStorage.getItem('viewhistory')):[];
+        if(viewd.length>0){
+            $(viewd).each(function(k,v){
+                $('.history-list').append(new EJS({text:$('#history-item').html()}).render(v));
+            })
+        }
+        //最近浏览重组
+        var cur = {title:'{{topic.title}}',url:'/topic/{{topic._id}}'};
+        viewd = $.grep(viewd, function(v) {
+            if(typeof(cur) === 'object'){
+              return v.title != cur.title;
+            }else{
+              return v != cur;
+            }
+        });
+        viewd.unshift(cur)
+
+        //浏览记录长度限制
+        if(viewd.length>10) viewd.splice(9,viewd.length);
+        localStorage.setItem('viewhistory',JSON.stringify(viewd));
+    }
+
     /*
     $('.topic-content img').each(function(k,v){
             $(v).attr('datasrc',$(v).attr('src'));  
@@ -157,26 +231,54 @@
     });
     $('.topic-content img').attr('src','/img/blank.png');
     */
-    $script(['/js/validator.js','/js/ejs.js'],function(){
-
         //加载留言
         $.ajax({
-            url:'/topic/getreplys',
+        url:'/topic/getreplys',
         data:'id={{topic._id}}',
         beforeSend:function(){
             $('<div class="more"><i class="fa fa-refresh fa-spin"></i></div>').appendTo($('.reply-list')); 
         },
         success:function(re){
             $('.reply-list .more').remove();
-            if(re.replys && re.replys.length>0){
-                $(re.replys).each(function(k,v){
+            RenderReplyList(re.replys);
+            if(re.pager){
+                $('.reply-list').append(new EJS({text:$('#reply-pager').html()}).render(re.pager));
+                AddReplyPagerEvent($('.reply-list .pager'));
+            }
+        }
+        });
+
+        function RenderReplyList(replys){
+            if(replys && replys.length>0){
+                $(replys).each(function(k,v){
                     $('.reply-list').append(new EJS({text:$('#reply-item-temp').html()}).render(v));
                     UpReplyBind($('.reply-list .reply-item').find('.up,.down'));
                     Replytoreply($('.reply-list .reply-item').find('.reply-reply'));
                 });
             }
         }
-        });
+
+        function AddReplyPagerEvent(el){
+            $(el).find('a').click(function(){
+                $.ajax({
+                url:'/topic/getreplys',
+                data:'id={{topic._id}}&p='+$(this).attr('p'),
+                beforeSend:function(){
+                    $('<div class="more"><i class="fa fa-refresh fa-spin"></i></div>').appendTo($('.reply-list')); 
+                },
+                success:function(re){
+                    $('.reply-list .reply-item,.reply-list .pager').remove();
+                    $('.reply-list .more').remove();
+                    $('html,body').animate({ scrollTop: $('.reply-list').offset().top - $('.nav').height() });
+                    RenderReplyList(re.replys);
+                    if(re.pager){
+                        $('.reply-list').append(new EJS({text:$('#reply-pager').html()}).render(re.pager));
+                        AddReplyPagerEvent($('.reply-list .pager'));
+                    }
+                }
+                });
+            });
+        }
 
         function UpReplyBind(els){
             els.click(function(){
@@ -208,7 +310,7 @@
             els.click(function(){
                 contentInput.focus();
                 contentInput.val('@'+$(this).parents('.reply-item').find('.uname a').html()+'，');
-            }); 
+            });
         }
 
         $('.reply-form button[type="submit"]').click(function(e){
@@ -238,7 +340,7 @@
                     }
                     $('#replyContent').val('');
                     $('.reply-list .more').remove();
-                    if(!$('.reply-list h2').length) $('.reply-list').append($('<h2>评论</h2>'));
+                    if(!$('.reply-list h2').length) $('.reply-list').append($('<h2>评论：</h2>'));
                     $('.reply-list').append(new EJS({text:$('#reply-item-temp').html()}).render(re));
                     UpReplyBind($('.reply-list .reply-item').last().find('.up,.down'));
                     Replytoreply($('.reply-list .reply-item').last().find('.reply-reply'));

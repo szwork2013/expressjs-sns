@@ -65,7 +65,7 @@
                 {{/prev}}
                 {{#pager.pagenums}}
                 {{#curnum}}
-                <li><a class="nums cur" href="/b/{{board.url}}?p={{curnum}}">{{curnum}}</a></li>
+                <li><a class="nums cur" href="javascript:void(0);">{{curnum}}</a></li>
                 {{/curnum}}
                 {{^curnum}}
                 <li><a class="nums" href="/b/{{board.url}}?p={{num}}">{{num}}</a></li>

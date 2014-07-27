@@ -7,8 +7,6 @@ var Topic = mongoose.model('Topic');
 var Reply = mongoose.model('Reply');
 var Board = mongoose.model('Board');
 
-//pager num
-var pager_num = 10;
 
 function BuildPager(cur,total){
         var pager = {},pagernums_length = 6,pagenum_start=0;
@@ -84,15 +82,16 @@ router.post('/add', function(req, res){
     });
 });
 
+//pager num
+var pager_num = 10;
 router.get('/:url', function(req, res) {
     Board.findOne({url:req.params.url},function(err,board){
         var s_option={};
+        s_option.limit = pager_num;
         //pager
         if(req.query.p){
-            s_option.limit = pager_num;
             s_option.skip = (req.query.p-1)*pager_num;
         }else if(board.topic_count>pager_num){
-            s_option.limit = pager_num;
             s_option.skip = 0;
         }
         //fliter
@@ -163,3 +162,4 @@ router.post('/:url/new', function(req, res) {
 
 module.exports = router;
 module.exports.GetTopicTemplete = GetTopicTemplete;
+module.exports.BuildPager = BuildPager;

@@ -26,7 +26,7 @@
   width: 280px;
   padding: 10px;
   float: left; }
-  .sidebar .mod {
+  .sidebar .side-mod {
     margin-bottom: 20px; }
   .sidebar .ad {
     width: 100%; }
@@ -114,6 +114,8 @@
   font-size: 14px; }
   .topic-main .topic-content img {
     max-width: 100%; }
+    .topic-main .topic-content img.canzoom {
+      cursor: zoom-in; }
   .topic-main .topic-content ul {
     list-style-type: disc;
     list-style-position: inside; }
@@ -147,6 +149,11 @@
     margin-right: 5px; }
 .topic-main .topic-meta .fa-clock-o {
   font-size: 16px; }
+
+.history-list li {
+  padding: 5px 0; }
+  .history-list li a:hover {
+    text-decoration: underline; }
 
 #replyContent {
   width: 97%;
@@ -444,6 +451,37 @@
     #new-topic #auto-save .fa {
       margin-right: 5px; }
 
+.addlink-popup .row, .uploadimg-popup .row {
+  margin-top: 15px; }
+.addlink-popup label, .uploadimg-popup label {
+  text-align: center;
+  width: 80px; }
+.addlink-popup input[type="text"], .uploadimg-popup input[type="text"] {
+  width: 200px;
+  height: 30px;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  padding: 0 5px; }
+.addlink-popup button, .uploadimg-popup button {
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  background: #30c880;
+  color: #fff;
+  border: none;
+  padding: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
+  .addlink-popup button:hover, .uploadimg-popup button:hover {
+    background: #30c880; }
+
 .more-trigger {
   text-align: center;
   cursor: pointer; }
@@ -451,6 +489,9 @@
 .more {
   text-align: center;
   font-size: 16px; }
+
+.reply-list .pager {
+  margin: 0; }
 
 .pager {
   margin: 20px 0;
@@ -541,11 +582,18 @@
   padding: 10px;
   background: #fff;
   display: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
   -webkit-box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3); }
+  .popup img {
+    max-height: 100%;
+    max-width: 100%; }
   .popup .popup-wrapper {
-    position: relative;
-    padding-top: 16px; }
+    position: relative; }
   .popup:before, .popup:after {
     content: "";
     display: table; }
@@ -558,8 +606,8 @@
     height: 16px;
     line-height: 16px;
     font-size: 14px;
-    right: 0;
-    top: 0;
+    right: 5px;
+    top: 5px;
     cursor: pointer;
     display: block;
     color: #333;

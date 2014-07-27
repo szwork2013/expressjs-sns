@@ -32,28 +32,32 @@
 </form>
 
 <div class="addlink-popup popup" style="display:none;">
+    <i class="fa fa-times p-close"></i>
     <div class="popup-wrapper">
-        <i class="fa fa-times p-close"></i>
         <div class="row">
-            <label for="linktext">链接文字</label>
+            <label for="linktext">链接文字：</label>
             <input type="text" name="linktext" class="linktext">
         </div>
         <div class="row">
-            <label for="linkurl">链接地址</label>
+            <label for="linkurl">链接地址：</label>
             <input type="text" name="linkurl" class="linkurl">
         </div>
         <div class="row">
+            <label></label>
             <button id="addlink-btn">确定</button>
         </div>
     </div>
 </div>
 
 <div class="uploadimg-popup popup" style="display:none;">
+    <i class="fa fa-times p-close"></i>
     <div class="popup-wrapper">
-        <i class="fa fa-times p-close"></i>
+        <div class="row">
+            <p>上传本地图片,图片size &lt; 10m</p>
+        </div>
         <form action="/topic/uploadimg" method="post" id="uploadimg-form" enctype="multipart/form-data">
             <input type="file" name="uploadimg" id="uploadimg" class="hide">
-            <button id="upimg-trigger" type="button">上传图片</button>
+            <button id="upimg-trigger" type="button">选择图片</button>
         </form>
     </div>
 </div>
@@ -70,7 +74,7 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js','/js/tip.js'],function()
         $('.ql-image').click(function(){
            $script('/js/spopup.js',function(){
                var uploadimgpopup=$('.uploadimg-popup').clone().spopup({
-                    width:'40%'
+                    width:'200px'
                },function(){
                     $(this).find('#upimg-trigger').click(function(){
                         $('#uploadimg').click();    
@@ -105,7 +109,7 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js','/js/tip.js'],function()
         $('.ql-link').click(function(){
             $script('/js/spopup.js',function(){
                var addlinkpopup = $('.addlink-popup').clone().spopup({
-                   width:'30%' 
+                   width:'300px' 
                },function(){
                    var self = this;
                    $(this).find('#addlink-btn').click(function(){

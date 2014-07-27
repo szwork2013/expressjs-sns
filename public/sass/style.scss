@@ -29,7 +29,7 @@
     width:280px;
     padding:10px;
     float:left;
-    .mod{
+    .side-mod{
         margin-bottom:20px;
     }
     .ad{
@@ -41,7 +41,7 @@
     .back-action{
         a{
             font-size:16px; 
-        } 
+        }
     }
 }
 //list
@@ -126,6 +126,9 @@
     .topic-content{
         img{
             max-width:100%; 
+            &.canzoom{
+                cursor:zoom-in; 
+            }
         }
         margin:20px 0;
         font-size:14px;
@@ -168,6 +171,14 @@
         }
         .fa-clock-o{
             font-size:16px;
+        }
+    }
+}
+.history-list{
+    li{
+        padding:5px 0;
+        a:hover{
+            text-decoration:underline; 
         }
     }
 }
@@ -260,7 +271,6 @@
         margin-left:90px;
     }
 }
-//sidebar
 .topic-collect{
     font-size:20px;
     button{
@@ -477,6 +487,35 @@
         }
     }
 }
+.addlink-popup,.uploadimg-popup{
+    .row{
+        margin-top:15px; 
+    }
+    label {
+        text-align:center;
+        width:80px;    
+    }
+    input[type="text"]{
+        width:200px;
+        height:30px;
+        border:1px solid #ddd;
+        @include border-radius(3px);
+        padding:0 5px;
+    }
+    button{
+        width:100px; 
+        height:40px;
+        line-height:40px;
+        background:$action-green;
+        color:#fff;
+        border:none;
+        padding:0;
+        @include border-radius(3px);
+        &:hover{
+            background:$action-green-hover;
+        }
+    }
+}
 //loading
 .more-trigger{
     text-align:center;
@@ -487,6 +526,9 @@
     font-size:16px;
 }
 //pager
+.reply-list .pager{
+    margin:0;
+}
 .pager{
     margin:20px 0;
     line-height:40px;
@@ -578,15 +620,19 @@
 }
 //popup
 .popup{
+    img{
+        max-height:100%; 
+        max-width:100%; 
+    }
     .popup-wrapper{
         position:relative; 
-        padding-top:16px;
     }
     @include clearfix();
     width:50%;
     padding:10px;
     background:#fff;
     display:none;
+    @include border-radius(5px);
     @include box-shadow(0 1px 20px rgba(0, 0, 0, 0.3));
     .p-close{
         //@include border-radius(50%);
@@ -597,8 +643,8 @@
         height:16px;
         line-height:16px;
         font-size:14px;
-        right:0;
-        top:0;
+        right:5px;
+        top:5px;
         cursor:pointer;
         display:block;
         color:#333;

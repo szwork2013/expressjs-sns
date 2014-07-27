@@ -24,21 +24,33 @@ function BuildReplyItem(origin,user){
     return temp;
 }
 
-function GetAllreplyById(id,cb){
-    Reply.find({topic_id:id},null,{sort:{create_date:1}},function(err,replys){
-        var replys_o = [];
-        if(replys && replys.length>0){ 
-            async.eachSeries(replys, function(reply, callback) {
-                User.findOne({_id:reply.author_id },'name url signature avatar_url', function(error, user) {
-                    replys_o.push(BuildReplyItem(reply,user));
-                    callback();
-                });
-            }, function (err) {
-                cb(replys_o);
-            });
-        }else{
-            cb(replys_o); 
+var replys_pager_num = 10;
+var BuildPager = require('../routes/board').BuildPager;
+
+function GetReplyById(id,p,cb){
+    Topic.findOne({_id:id},function(err,topic){
+
+        q_option ={};
+        q_option.limit = replys_pager_num; 
+        if(topic.reply_count>replys_pager_num){
+            q_option.skip = (p-1)*replys_pager_num; 
         }
+        q_option.sort={create_date:1};
+        Reply.find({topic_id:id},null,q_option,function(err,replys){
+            var replys_o = [];
+            if(replys && replys.length>0){ 
+                async.eachSeries(replys, function(reply, callback) {
+                    User.findOne({_id:reply.author_id },'name url signature avatar_url', function(error, user) {
+                        replys_o.push(BuildReplyItem(reply,user));
+                        callback();
+                    });
+                }, function (err) {
+                    cb(replys_o,BuildPager(p,topic.reply_count));
+                });
+            }else{
+                cb(replys_o,BuildPager(p,topic.reply_count)); 
+            }
+        });
     });
 }
 
@@ -60,28 +72,19 @@ function GetHotreplyById(id,cb){
     });
 }
 
-//获取topic留言
-router.get('/getallreply',function(req,res){
-    GetAllreplyById(req.query.topic_id,function(replys){
-        res.json(replys);
-    });
-});
-
 //添加留言api
 router.post('/addreply',function(req,res){
-
     if(!req.session.user){
         res.json({r:3}); 
         return;
     }
-
     new Reply({
         content:req.body.replyContent,
         topic_id:req.body.topic_id,
         author_id:req.session.user._id
     }).save(function(err,reply){
         User.findOneAndUpdate({_id:req.session.user._id},{$inc:{score:1}},function(){
-            Topic.findOneAndUpdate({_id:req.body.topic_id},{$inc:{reply_count:1},last_reply_date:new Date(),last_reply:req.session.user._id},function(err,topic){
+            Topic.findOneAndUpdate({_id:req.body.topic_id},{$inc:{reply_count:1},last_reply_date:Date.now(),last_reply:req.session.user._id},function(err,topic){
                 var result = BuildReplyItem(reply,req.session.user);
                 if(req.session.user.avatar_url_s){
                     result.avatar_url_s = req.session.user.avatar_url_s;
@@ -126,8 +129,8 @@ router.get('/getreplys',function(req,res,next){
         res.json({replys:null})
         return;
     }
-    GetAllreplyById(req.query.id,function(replys){
-        res.json({replys:replys}) 
+    GetReplyById(req.query.id,req.query.p?req.query.p:1,function(replys,pager){
+        res.json({replys:replys,pager:pager}) 
     });
 });
 
@@ -138,18 +141,16 @@ router.get('/:_id', function(req, res, next) {
     Topic.findOneAndUpdate({_id:req.params._id},{$inc:{visit_count:1}},function(err,topic){
         Board.find({_id:topic.board_id},function(err,board){
             if(topic){
-                //GetAllreplyById(topic.id,function(replys){
-                    GetHotreplyById(topic.id,function(hotreplys){
-                        Collect.find({$and:[queryuser,{topic_id:topic.id}]},function(err,collect){
-                            res.render('topic/index',{
-                                topic:topic,
-                                board:board,
-                                hotreplys:hotreplys,
-                                iscollect:islogin && collect.length>0?true:false
-                            })
-                        });
-                    })
-                //});
+                GetHotreplyById(topic.id,function(hotreplys){
+                    Collect.find({$and:[queryuser,{topic_id:topic.id}]},function(err,collect){
+                        res.render('topic/index',{
+                            topic:topic,
+                            board:board,
+                            hotreplys:hotreplys,
+                            iscollect:islogin && collect.length>0?true:false
+                        })
+                    });
+                })
             }else{
                 next(); 
             }
