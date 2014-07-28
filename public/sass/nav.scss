@@ -13,7 +13,7 @@ $menu-width:30px;
     border-bottom:1px solid rgba(0,0,0,0.1);
     line-height:$nav-height;
     color:#fff;
-    background:#333;
+    background:rgba(0,0,0,.8);
     @include clearfix();
     .nav-container{
         @include center-block();

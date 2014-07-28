@@ -81,12 +81,13 @@
 </div>
 
 <div class="sidebar">
-    <div class="mod ad1">
+    <div class="side-mod ad1">
         <a href="/about/contact"></a>
     </div>
-    <div class="mod histroy">
+    <div class="side-mod last-reply-list">
+        <h3>最近回复</h3>
         <ul>
-            <li>213213</li>
+            <li>213213:dsjaldjksald</li>
         </ul>
     </div>
 </div>
@@ -102,7 +103,7 @@
 
      $('.topic-list li').bind({
          'mouseover':function(){
-             $(this).css('background','#fbfbfb');
+             $(this).css('background','#fcfcfc');
          },
          'mouseout':function(){
              $(this).css('background','');

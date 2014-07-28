@@ -10,16 +10,12 @@ var Reply = new Schema({
 	reply_id : { type: ObjectId },
 	author_id: { type: ObjectId },
 	create_date: { type: Date, default: Date.now },
-	update_date: { type: Date, default: Date.now },
     up:{ type: Number,default: 0},
     uper:[{_id:false,uper_id:ObjectId}]
 });
 
 Reply.virtual('create_date_format').get(function(){
     return moment(this.create_date).lang('zh-cn').fromNow();
-});
-Reply.virtual('update_date_format').get(function(){
-    return moment(this.update_date).format('YYYY-MM-DD HH:mm');
 });
 
 mongoose.model('Reply', Reply);

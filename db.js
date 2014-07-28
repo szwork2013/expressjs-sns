@@ -9,3 +9,4 @@ require('./models/collect');
 require('./models/board');
 require('./models/relation');
 require('./models/tips');
+require('./models/car');

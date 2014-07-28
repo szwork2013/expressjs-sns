@@ -12,9 +12,11 @@ function GetCollectTempleteByUserId(res,req,callback){
         var cols_n = [];
         async.eachSeries(cols, function(col, callback){
             Topic.findOne({_id:col.topic_id},function(err,topic){
-                var col_temp = col.toObject();
-                col_temp.topic_title = topic.title;
-                cols_n.push(col_temp);
+                if(topic){
+                    var col_temp = col.toObject();
+                    col_temp.topic_title = topic.title;
+                    cols_n.push(col_temp);
+                }
                 callback();
             })
         },function(){

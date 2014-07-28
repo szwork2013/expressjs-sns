@@ -175,23 +175,21 @@
 </script>
 <script>
 (function(){
+
     //图片缩放
      $script('/js/spopup.js',function(){
          $('.topic-content img').each(function(k,v){
             var image = new Image();
             image.src = $(this).attr("src");
-            if(image.naturalWidth>$(this).width()){
-                $(v).addClass('canzoom');
-                $(v).click(function(e){
-                    var self = this;
-                    var zoomwidth =image.naturalWidth>$(window).width()?'90%':image.naturalWidth;
-                    var popup_html = '<div class="popup"><div class="popup-wrapper">'+this.outerHTML+'</div></div>';
-                    //视觉差50
-                    $(popup_html).spopup({
-                       width:zoomwidth
-                    });
-                 })
-            }
+            $(v).addClass('canzoom');
+            $(v).click(function(e){
+                var zoomwidth =image.naturalWidth>$(window).width()?'90%':image.naturalWidth;
+                ;
+                var popup_html = '<div class="popup"><div class="popup-wrapper">'+$('<div>').append($(e.target).clone()).html()+'</div></div>';
+                $(popup_html).spopup({
+                   width:zoomwidth
+                });
+             })
          })
      });
 
@@ -232,21 +230,30 @@
     $('.topic-content img').attr('src','/img/blank.png');
     */
         //加载留言
-        $.ajax({
-        url:'/topic/getreplys',
-        data:'id={{topic._id}}',
-        beforeSend:function(){
-            $('<div class="more"><i class="fa fa-refresh fa-spin"></i></div>').appendTo($('.reply-list')); 
-        },
-        success:function(re){
-            $('.reply-list .more').remove();
-            RenderReplyList(re.replys);
-            if(re.pager){
-                $('.reply-list').append(new EJS({text:$('#reply-pager').html()}).render(re.pager));
-                AddReplyPagerEvent($('.reply-list .pager'));
+        function fetchreplys(){
+            if($(window).scrollTop()+$(window).height()>$('.reply-list').offset().top || $('.reply-list').offset().top < $(window).height()){
+                $(window).off('scroll');
+                $.ajax({
+                    url:'/topic/getreplys',
+                    data:'id={{topic._id}}',
+                    beforeSend:function(){
+                        $('<div class="more"><i class="fa fa-refresh fa-spin"></i></div>').appendTo($('.reply-list')); 
+                    },
+                    success:function(re){
+                        $('.reply-list .more').remove();
+                        RenderReplyList(re.replys);
+                        if(re.pager){
+                            $('.reply-list').append(new EJS({text:$('#reply-pager').html()}).render(re.pager));
+                            AddReplyPagerEvent($('.reply-list .pager'));
+                        }
+                    }
+                });
             }
         }
-        });
+        {{#topic.reply_count}}
+            $(window).on('scroll',fetchreplys);
+            $(document).ready(fetchreplys);
+        {{/topic.reply_count}}
 
         function RenderReplyList(replys){
             if(replys && replys.length>0){

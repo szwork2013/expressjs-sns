@@ -127,6 +127,8 @@
         img{
             max-width:100%; 
             &.canzoom{
+                cursor:-webkit-zoom-in;
+                cursor:-moz-zoom-in; 
                 cursor:zoom-in; 
             }
         }
@@ -580,6 +582,11 @@
     z-index:10002;
 }
 //user index
+#show-avatar,#current-avatar{
+    width:128px;
+    height:128px;
+    @include border-radius(5px);
+}
 .user-wrapper{
     margin:-20px;
     .user-hd{
@@ -599,11 +606,6 @@
             }
         }
     }
-    #show-avatar,#current-avatar{
-        width:128px;
-        height:128px;
-        @include border-radius(5px);
-    }
     .user-detail{
         border-bottom:1px solid #ddd;
         padding-bottom:20px;
@@ -621,7 +623,6 @@
 //popup
 .popup{
     img{
-        max-height:100%; 
         max-width:100%; 
     }
     .popup-wrapper{

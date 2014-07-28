@@ -9,11 +9,11 @@ var CarSchema = new Schema({
     name:{type:String},
     owner:{type:ObjectId},
     changeitem:[{_id:false,type:String,name:String}],
-    create_date:{type: Date, default: Date.now}
+    buy_date:{type: Date}
 });
 
-CarSchema.virtual('create_date_format').get(function(){
-    return moment(this.create_date).format('YYYY-MM-DD HH:mm');
+CarSchema.virtual('buy_date_format').get(function(){
+    return moment(this.buy_date).lang('zh-cn').fromNow();
 });
 
-var CarModel = mongoose.model('Car', BoardSchema);
+var CarModel = mongoose.model('Car', CarSchema);
