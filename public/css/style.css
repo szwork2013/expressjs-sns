@@ -153,7 +153,14 @@
   font-size: 16px; }
 
 .history-list li {
-  padding: 5px 0; }
+  position: relative;
+  padding: 2px 0 2px 14px; }
+  .history-list li .fa {
+    font-size: 14px;
+    position: absolute;
+    left: 0;
+    top: 6px;
+    vertical-align: middle; }
   .history-list li a:hover {
     text-decoration: underline; }
 
@@ -453,8 +460,10 @@
     #new-topic #auto-save .fa {
       margin-right: 5px; }
 
-.addlink-popup .row, .uploadimg-popup .row {
-  margin-top: 15px; }
+.addlink-popup .popup-wrapper, .uploadimg-popup .popup-wrapper {
+  margin-top: 20px; }
+.addlink-popup .row, .addlink-popup p, .uploadimg-popup .row, .uploadimg-popup p {
+  margin: 10px 0; }
 .addlink-popup label, .uploadimg-popup label {
   text-align: center;
   width: 80px; }
@@ -484,11 +493,8 @@
   .addlink-popup button:hover, .uploadimg-popup button:hover {
     background: #30c880; }
 
-.more-trigger {
-  text-align: center;
-  cursor: pointer; }
-
 .more {
+  margin-top: 20px;
   text-align: center;
   font-size: 16px; }
 

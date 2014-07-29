@@ -178,7 +178,15 @@
 }
 .history-list{
     li{
-        padding:5px 0;
+        position:relative;
+        .fa{
+            font-size:14px;
+            position:absolute;
+            left:0;
+            top:6px;
+            vertical-align:middle;
+        }
+        padding:2px 0 2px 14px;
         a:hover{
             text-decoration:underline; 
         }
@@ -490,8 +498,11 @@
     }
 }
 .addlink-popup,.uploadimg-popup{
-    .row{
-        margin-top:15px; 
+    .popup-wrapper{
+        margin-top:20px;
+    }
+    .row,p{
+        margin:10px 0; 
     }
     label {
         text-align:center;
@@ -519,11 +530,8 @@
     }
 }
 //loading
-.more-trigger{
-    text-align:center;
-    cursor:pointer;
-}
 .more{
+    margin-top:20px;
     text-align:center;
     font-size:16px;
 }

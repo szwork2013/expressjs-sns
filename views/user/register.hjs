@@ -66,10 +66,10 @@
                         type:'post',
                         data:'email='+emailInput.val(),
                         beforeSend:function(){
-                            emailInput.after($('<i class="fa fa-refresh  fa-spin" style="position: absolute; left: 99%; top: 12px;"></i>'));
+                            emailInput.after($('<i class="fa fa-circle-o-notch  fa-spin" style="position: absolute; left: 99%; top: 12px;"></i>'));
                         },
                         success:function(re){
-                            emailInput.nextAll('.fa-refresh').remove(); 
+                            emailInput.nextAll('.fa-circle-o-notch').remove(); 
                             if(re.r===1){
                                 emailInput.nextAll('.tips1').show();
                                 return;

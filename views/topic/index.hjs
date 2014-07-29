@@ -135,7 +135,7 @@
             </div>
             <div class="reply-main">
                 <span class="uname"><a href="/<%= author_url %>"><%= author_name %></a></span>
-                <% if (author_signature) { %><span class="usignature"><%=author_signature %></span><% } %>
+                <% if (author_signature) { %><span class="usignature">，<%=author_signature %></span><% } %>
                 <span class="date"><%= create_date_format %></span>
                 <div class="reply-content">
                     <%= content %>
@@ -171,7 +171,7 @@
     </div>
 </script>
 <script type="text/template" id="history-item">
-    <li><a href="<%= url %>"><%= title %></a></li>
+    <li><i class="fa fa-caret-right"></i><a href="<%= url %>"><%= title %></a></li>
 </script>
 <script>
 (function(){
@@ -237,7 +237,7 @@
                     url:'/topic/getreplys',
                     data:'id={{topic._id}}',
                     beforeSend:function(){
-                        $('<div class="more"><i class="fa fa-refresh fa-spin"></i></div>').appendTo($('.reply-list')); 
+                        $('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>').appendTo($('.reply-list')); 
                     },
                     success:function(re){
                         $('.reply-list .more').remove();
@@ -271,17 +271,18 @@
                 url:'/topic/getreplys',
                 data:'id={{topic._id}}&p='+$(this).attr('p'),
                 beforeSend:function(){
-                    $('<div class="more"><i class="fa fa-refresh fa-spin"></i></div>').appendTo($('.reply-list')); 
+                    $('.reply-list .reply-item,.reply-list .pager').hide();
+                    $('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>').appendTo($('.reply-list')); 
                 },
                 success:function(re){
                     $('.reply-list .reply-item,.reply-list .pager').remove();
                     $('.reply-list .more').remove();
-                    $('html,body').animate({ scrollTop: $('.reply-list').offset().top - $('.nav').height() });
                     RenderReplyList(re.replys);
                     if(re.pager){
                         $('.reply-list').append(new EJS({text:$('#reply-pager').html()}).render(re.pager));
                         AddReplyPagerEvent($('.reply-list .pager'));
                     }
+                    $('html,body').scrollTop($('.reply-list').offset().top - $('.nav').height());
                 }
                 });
             });
