@@ -631,6 +631,11 @@
 //popup
 .popup{
     img{
+        &.canzoomout{
+            cursor:-webkit-zoom-out;
+            cursor:-moz-zoom-out; 
+            cursor:zoom-out; 
+        }
         max-width:100%; 
     }
     .popup-wrapper{

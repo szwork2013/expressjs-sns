@@ -600,6 +600,10 @@
   box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3); }
   .popup img {
     max-width: 100%; }
+    .popup img.canzoomout {
+      cursor: -webkit-zoom-out;
+      cursor: -moz-zoom-out;
+      cursor: zoom-out; }
   .popup .popup-wrapper {
     position: relative; }
   .popup:before, .popup:after {

@@ -7,6 +7,7 @@ var ObjectId = Schema.ObjectId;
 //type:
 //1.品牌
 //2.单品
+//3.大众讨论
 
 var BoardSchema = new Schema({
     type:{type:Number,require:true,default:1},
@@ -16,7 +17,7 @@ var BoardSchema = new Schema({
     desc:{type:String},
     topic_count:{type:Number,default:0},
     last_reply:{type: Date, default: Date.now},
-    create_date: { type: Date, default: Date.now }
+    create_date: { type: Date, default: Date.now}
 });
 
 BoardSchema.virtual('create_date_format').get(function(){

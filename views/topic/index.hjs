@@ -185,9 +185,12 @@
             $(v).click(function(e){
                 var zoomwidth =image.naturalWidth>$(window).width()?'90%':image.naturalWidth;
                 ;
-                var popup_html = '<div class="popup"><div class="popup-wrapper">'+$('<div>').append($(e.target).clone()).html()+'</div></div>';
-                $(popup_html).spopup({
-                   width:zoomwidth
+                var popup_html = '<div class="popup"><div class="popup-wrapper">'+$('<div>').append($(e.target).clone().removeClass('canzoom').addClass('canzoomout')).html()+'</div></div>';
+                var popup_img = $(popup_html).spopup({
+                    width:zoomwidth
+                });
+                popup_img.find('img').click(function(){
+                    popup_img.close();   
                 });
              })
          })

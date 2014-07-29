@@ -100,7 +100,7 @@ $('#uploadimg-form .up-trigger').click(function(){
 
 })()
 
-var url_reg = /^(?!(?:settings|collect|message|about|search|channel|topic|user|login|register)$)/;
+var url_reg = /^(?!(?:settings|collect|message|about|search|channel|topic|user|login|register|car)$)/;
 
 $script('/js/validator.js',function(){
 
@@ -132,7 +132,7 @@ $script('/js/validator.js',function(){
                     success:function(re){
                     if(re.r===1){
                         $script('/js/tip.js',function(){
-                            Tip('改域名已经存在'); 
+                            Tip('该域名已经存在'); 
                         })
                     }else if(re.r===0)
                         $('#base-form').submit();
