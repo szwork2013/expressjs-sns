@@ -100,7 +100,7 @@ $('#uploadimg-form .up-trigger').click(function(){
 
 })()
 
-var url_reg = /^(?!(?:settings|collect|message|about|search|channel|topic|user|login|register|car)$)/;
+var url_reg = /^(?!(?:settings|collect|message|about|search|channel|topic|user|login|register|car|b)$)/;
 
 $script('/js/validator.js',function(){
 

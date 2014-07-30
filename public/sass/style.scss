@@ -180,10 +180,11 @@
     li{
         position:relative;
         .fa{
-            font-size:14px;
+            font-size:10px;
             position:absolute;
+            color:#ddd;
             left:0;
-            top:6px;
+            top:8px;
             vertical-align:middle;
         }
         padding:2px 0 2px 14px;
@@ -440,7 +441,7 @@
         }
     }
     #showurl{
-        color:#cc181e;; 
+        color:#cc181e;
     }
 }
 /*
@@ -663,5 +664,44 @@
         display:block;
         color:#333;
         margin:0;
+    }
+}
+//addcar
+#addcar-form{
+    #showcarname{
+        color:#cc181e;
+    }
+    select{
+        width:100px;
+        border:1px solid #ccc;
+        height:30px;
+    }
+    .wycarname{
+        margin:10px 0; 
+    }
+    .row{
+        margin:10px 0; 
+    }
+    label{
+        width:60px; 
+    }
+    input[type=text],input[type=password]{
+        @include border-radius(2px);
+        padding:0 5px;
+        border:1px solid #ccc;
+        width:60%;
+        height:32px;
+    }
+    button[type=submit],.up-trigger{
+        margin:10px 0;
+        padding:10px 20px;
+        border:none;
+        @include border-radius(3px);
+        background:$action-blue;
+        color:#fff;
+        text-align:center;
+    }
+    button[type=submit]:hover{
+        background:$action-blue-hover;
     }
 }

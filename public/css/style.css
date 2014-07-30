@@ -156,10 +156,11 @@
   position: relative;
   padding: 2px 0 2px 14px; }
   .history-list li .fa {
-    font-size: 14px;
+    font-size: 10px;
     position: absolute;
+    color: #ddd;
     left: 0;
-    top: 6px;
+    top: 8px;
     vertical-align: middle; }
   .history-list li a:hover {
     text-decoration: underline; }
@@ -624,3 +625,40 @@
     display: block;
     color: #333;
     margin: 0; }
+
+#addcar-form #showcarname {
+  color: #cc181e; }
+#addcar-form select {
+  width: 100px;
+  border: 1px solid #ccc;
+  height: 30px; }
+#addcar-form .wycarname {
+  margin: 10px 0; }
+#addcar-form .row {
+  margin: 10px 0; }
+#addcar-form label {
+  width: 60px; }
+#addcar-form input[type=text], #addcar-form input[type=password] {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  padding: 0 5px;
+  border: 1px solid #ccc;
+  width: 60%;
+  height: 32px; }
+#addcar-form button[type=submit], #addcar-form .up-trigger {
+  margin: 10px 0;
+  padding: 10px 20px;
+  border: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  background: #0084ff;
+  color: #fff;
+  text-align: center; }
+#addcar-form button[type=submit]:hover {
+  background: #007aeb; }

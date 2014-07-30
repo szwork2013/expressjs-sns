@@ -1,0 +1,36 @@
+<form id="addcar-form" action="/car/add" method="post">
+    <h2>基础资料</h2>
+    <div class="row">
+        <label for="carbrand">品牌</label>
+        <select id="brandopts" name="brandopts">
+            <option value="amg">amg</option>
+        </select>
+    </div>
+    <div class="row">
+        <label for="cartype">型号</label>
+        <input type="text" name="cartype" id="cartype" />
+    </div>
+    <div class="row">
+        <label for="carname">名称</label>
+        <input type="text" name="carname" id="carname" />
+        <p class="wycarname"><label></label>http://www.com/car/<span id="showcarname"></span></p>
+    </div>
+    <div class="row">
+        <label for="cardesc">描述</label>
+        <textarea id="cardesc" name="cardesc"></textarea>
+    </div>
+    <h2>改装件</h2>
+    <a href="javascript:void(0);">+</a>
+
+    <h2>上传图片</h2>
+    <input type="file">
+
+    <div class="row">
+        <button type="submit">确定</button>
+    </div>
+</form>
+<script>
+    $('#carname').keyup(function(e){
+         $('#showcarname').html($(this).val());
+    });
+</script>

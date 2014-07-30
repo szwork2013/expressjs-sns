@@ -17,6 +17,7 @@ var message = require('./routes/message');
 var collect = require('./routes/collect');
 var about = require('./routes/about');
 var relation = require('./routes/relation');
+var car = require('./routes/car');
 var routes = require('./routes/index');
 
 var app = express();
@@ -62,6 +63,7 @@ app.use('/message', message);
 app.use('/collect', collect);
 app.use('/about', about);
 app.use('/relation', relation);
+app.use('/car', car);
 app.use('/', routes);
 
 /// catch 404 and forwarding to error handler
