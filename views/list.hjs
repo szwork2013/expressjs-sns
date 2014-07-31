@@ -112,12 +112,11 @@
 (function (){
 
 
- //redirect filter
-
-    function Updateurl(paramName, paramValue)
-    {
-        var url = window.location.href;
-        if(paramValue==='') return url;
+    //redirect filter
+    var originurl = location.href.indexOf('?')<0?location.href:location.href.substring(0,location.href.indexOf('?'));
+    function Updateurl(paramName, paramValue){
+        if(paramValue==='') return '';
+        var url = window.location.search;
         if (url.indexOf(paramName + "=") >= 0)
         {
             var prefix = url.substring(0, url.indexOf(paramName));
@@ -135,10 +134,11 @@
     }
 
     $('.filter-bar li a').click(function(){
-        location.href=Updateurl('f',$(this).attr('f'));
+        location.href= originurl+Updateurl('f',$(this).attr('f'));
     });
+
     $('.pager li a').click(function(){
-        if($(this).attr('p') != '') location.href=Updateurl('p',$(this).attr('p'));
+        if($(this).attr('p') != '') location.href=originurl+Updateurl('p',$(this).attr('p'));
     });
 
     $script('/js/loadimg.js',function(){

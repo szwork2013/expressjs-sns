@@ -114,6 +114,7 @@ router.get('/:url', function(req, res) {
                     GetTopicTemplete(n_topics,function(n_topics){
                         var pager = BuildPager(req.query.p?req.query.p:1,board.topic_count);
                         res.render('list', {
+                            title:board.name,
                             topics:n_topics,
                             toptopics:t_topics,
                             board:board,
