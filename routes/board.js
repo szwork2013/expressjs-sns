@@ -99,8 +99,12 @@ router.get('/:url', function(req, res) {
         s_option.sort = {create_date:-1};
 
         if(req.query.f){
-            if(req.query.f==='r'){
+            if(req.query.f==='rd'){
                 s_option.sort = {last_reply_date:-1};
+            }else if(req.query.f==='rn'){
+                s_option.sort = {reply_count:-1};
+            }else if(req.query.f==='vn'){
+                s_option.sort = {visit_count:-1};
             }
         }
 

@@ -17,6 +17,7 @@ var User = new mongoose.Schema({
     actived:Boolean,
 
     score:{type:Number,default:0},
+    donate:{type:Number,default:0},
 
     follower:[{_id:false,user_id:ObjectId}],
     following:[{_id:false,user_id:ObjectId}],
@@ -26,6 +27,7 @@ var User = new mongoose.Schema({
 
     isvip:{type:Boolean,default:false},
     isadmin:{type:Boolean,default:false},
+
     avatar_url: { type: String,default: '/img/avatar/default.png'},
     userbg_url: { type: String,default: '/img/userbg/default.jpeg'}
 

@@ -5,6 +5,22 @@
             <a href="/b/{{board.url}}/new" class="new-post-btn fr"><i class="fa fa-plus"></i>发布新话题</a>
         </div>
         <div class="row">
+            <div class="filter-bar">
+                <ul>
+                    <li>
+                    <a href="javascript:void(0);" f="">按发布日期</a>
+                    </li>
+                    <li>
+                    <a href="javascript:void(0);" f="rd">按回复日期</a>
+                    </li>
+                    <li>
+                    <a href="javascript:void(0);" f="vn">按浏览次数</a>
+                    </li>
+                    <li>
+                    <a href="javascript:void(0);" f="rn">按回复次数</a>
+                    </li>
+                </ul>
+            </div>
             <ul class="topic-list">
                 {{#toptopics}}
                 <li>
@@ -21,10 +37,10 @@
                 </span>
                 <span class="topic-last-reply">
                     {{#last_reply_name}}
-                        {{last_reply_name}}：{{last_reply_date_format}}
+                    {{last_reply_name}}：{{last_reply_date_format}}
                     {{/last_reply_name}}
                     {{^last_reply_name}}
-                        {{create_date_fromnow}}
+                    {{create_date_fromnow}}
                     {{/last_reply_name}}
                 </span>
                 </li>
@@ -44,10 +60,10 @@
                 </span>
                 <span class="topic-last-reply">
                     {{#last_reply_name}}
-                        {{last_reply_name}}：{{last_reply_date_format}}
+                    {{last_reply_name}}：{{last_reply_date_format}}
                     {{/last_reply_name}}
                     {{^last_reply_name}}
-                        {{create_date_fromnow}}
+                    {{create_date_fromnow}}
                     {{/last_reply_name}}
                 </span>
                 </li>
@@ -61,18 +77,18 @@
             {{total}}篇帖子
             <ul class="pager-wrapper">
                 {{#prev}}
-                <li><a href="/b/{{board.url}}?p={{prev}}"><i class="fa fa-chevron-circle-left"></i></a></li>
+                <li><a href="javascript:void(0);" p="{{prev}}"><i class="fa fa-chevron-circle-left"></i></a></li>
                 {{/prev}}
                 {{#pager.pagenums}}
                 {{#curnum}}
-                <li><a class="nums cur" href="javascript:void(0);">{{curnum}}</a></li>
+                <li><a class="nums cur" href="javascript:void(0);" p="">{{curnum}}</a></li>
                 {{/curnum}}
                 {{^curnum}}
-                <li><a class="nums" href="/b/{{board.url}}?p={{num}}">{{num}}</a></li>
+                <li><a class="nums" href="javascript:void(0);" p="{{num}}">{{num}}</a></li>
                 {{/curnum}}
                 {{/pager.pagenums}}
                 {{#next}}
-                <li><a href="/b/{{board.url}}?p={{next}}"><i class="fa fa-chevron-circle-right"></i></a></li>
+                <li><a href="javascript:void(0);" p="{{next}}"><i class="fa fa-chevron-circle-right"></i></a></li>
                 {{/next}}
             </ul>
         </div>
@@ -95,20 +111,50 @@
 <script>
 (function (){
 
-     $script('/js/loadimg.js',function(){
-         loadimg('http://cdn.ifanr.cn/wp-content/uploads/2014/06/IXDCifanr-02.jpg',function(img){
-             $(img).appendTo($('.ad1 a')); 
-         })
-     })
 
-     $('.topic-list li').bind({
-         'mouseover':function(){
-             $(this).css('background','#fcfcfc');
-         },
-         'mouseout':function(){
-             $(this).css('background','');
-         }
-     });
+ //redirect filter
 
- })() 
+    function Updateurl(paramName, paramValue)
+    {
+        var url = window.location.href;
+        if(paramValue==='') return url;
+        if (url.indexOf(paramName + "=") >= 0)
+        {
+            var prefix = url.substring(0, url.indexOf(paramName));
+            var suffix = url.substring(url.indexOf(paramName));
+            suffix = suffix.substring(suffix.indexOf("=") + 1);
+            suffix = (suffix.indexOf("&") >= 0) ? suffix.substring(suffix.indexOf("&")) : "";
+            url = prefix + paramName + "=" + paramValue + suffix;
+        }else{
+            if (url.indexOf("?") < 0)
+                url += "?" + paramName + "=" + paramValue;
+            else
+                url += "&" + paramName + "=" + paramValue;
+        }
+        return url;
+    }
+
+    $('.filter-bar li a').click(function(){
+        location.href=Updateurl('f',$(this).attr('f'));
+    });
+    $('.pager li a').click(function(){
+        if($(this).attr('p') != '') location.href=Updateurl('p',$(this).attr('p'));
+    });
+
+    $script('/js/loadimg.js',function(){
+        loadimg('http://cdn.ifanr.cn/wp-content/uploads/2014/06/IXDCifanr-02.jpg',function(img){
+            $(img).appendTo($('.ad1 a')); 
+        })
+    });
+
+    $('.topic-list li').bind({
+    'mouseover':function(){
+        $(this).css('background','#fcfcfc');
+    },
+    'mouseout':function(){
+        $(this).css('background','');
+    }
+});
+
+})() 
 </script>

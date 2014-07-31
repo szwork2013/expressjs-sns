@@ -37,5 +37,7 @@ Topic.virtual('last_reply_date_format').get(function(){
 Topic.index({create_date:-1});
 Topic.index({top: -1, last_reply_date: -1});
 Topic.index({last_reply_date:-1});
+Topic.index({reply_count:-1});
+Topic.index({visit_count:-1});
 
 var TopicModel = mongoose.model('Topic',Topic);

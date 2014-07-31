@@ -55,6 +55,28 @@
     color: #fff;
     border: none; }
 
+.filter-bar {
+  margin: 10px 0; }
+  .filter-bar:before, .filter-bar:after {
+    content: "";
+    display: table; }
+  .filter-bar:after {
+    clear: both; }
+  .filter-bar ul li {
+    float: left;
+    margin-right: 10px;
+    padding-right: 10px;
+    border-right: 1px solid #f0f0f0;
+    font-weight: bold; }
+    .filter-bar ul li:last-child {
+      margin-right: 0;
+      padding-right: 0;
+      border-right: none; }
+    .filter-bar ul li a {
+      color: #999; }
+      .filter-bar ul li a:hover, .filter-bar ul li a.active {
+        color: #333; }
+
 .topic-list {
   margin: 20px 0;
   width: 100%;
@@ -69,7 +91,9 @@
     .topic-list li:after {
       clear: both; }
     .topic-list li h2 {
-      margin: 0; }
+      margin: 0;
+      padding: 0;
+      line-height: 24px; }
       .topic-list li h2 .fa {
         vertical-align: middle;
         font-size: 14px; }
@@ -90,13 +114,15 @@
     .topic-list li .topic-title {
       float: left;
       overflow: hidden;
-      width: 53%;
+      width: 63%;
       padding: 0 1%; }
     .topic-list li .topic-detail {
+      line-height: 48px;
       float: left;
       width: 10%; }
     .topic-list li .topic-last-reply {
-      width: 25%;
+      line-height: 48px;
+      width: 15%;
       float: left; }
 
 .topic-main h1 {
@@ -248,6 +274,8 @@
       color: #ccc; }
   .reply-list .reply-meta, .hot-reply-list .reply-meta {
     margin-left: 90px; }
+    .reply-list .reply-meta .fa, .hot-reply-list .reply-meta .fa {
+      margin-right: 2px; }
     .reply-list .reply-meta a, .hot-reply-list .reply-meta a {
       color: #666; }
       .reply-list .reply-meta a:hover, .hot-reply-list .reply-meta a:hover {

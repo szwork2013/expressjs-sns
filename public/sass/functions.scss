@@ -76,3 +76,10 @@
      background:-moz-linear-gradient($colorfrom, $colorto);
 }
 
+@mixin blur($color){
+    -moz-filter: blur($color);
+    -webkit-filter: blur($color);
+    -o-filter: blur($color);
+    -ms-filter: blur($color);
+    filter: blur($color);
+}
