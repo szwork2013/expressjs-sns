@@ -335,27 +335,30 @@
                 return;
             }
 
-            $.ajax({
-                url:'/topic/addreply',
-                method:'post',
-                data:$('.reply-form').serialize()+'&topic_id={{topic._id}}',
-                beforeSend:function(){
-                    $('<div class="more"></div>').appendTo($('.reply-list')); 
-                },
-                success:function(re){
-                    if(re.r === 3){
-                        $script('/js/tip.js',function(){
-                            Tip('未登录，请登录');
-                        });
-                        return;
+            $script('/js/xss.js',function(){
+                
+                $.ajax({
+                    url:'/topic/addreply',
+                    method:'post',
+                    data:'replyContent='+filterXSS($('#replyContent').val())+'&topic_id={{topic._id}}',
+                    beforeSend:function(){
+                        $('<div class="more"></div>').appendTo($('.reply-list')); 
+                    },
+                    success:function(re){
+                        if(re.r === 3){
+                            $script('/js/tip.js',function(){
+                                Tip('未登录，请登录');
+                            });
+                            return;
+                        }
+                        $('#replyContent').val('');
+                        $('.reply-list .more').remove();
+                        if(!$('.reply-list h2').length) $('.reply-list').append($('<h2>评论：</h2>'));
+                        $('.reply-list').append(new EJS({text:$('#reply-item-temp').html()}).render(re));
+                        UpReplyBind($('.reply-list .reply-item').last().find('.up,.down'));
+                        Replytoreply($('.reply-list .reply-item').last().find('.reply-reply'));
                     }
-                    $('#replyContent').val('');
-                    $('.reply-list .more').remove();
-                    if(!$('.reply-list h2').length) $('.reply-list').append($('<h2>评论：</h2>'));
-                    $('.reply-list').append(new EJS({text:$('#reply-item-temp').html()}).render(re));
-                    UpReplyBind($('.reply-list .reply-item').last().find('.up,.down'));
-                    Replytoreply($('.reply-list .reply-item').last().find('.reply-reply'));
-                }
+                })
             })
         });
 

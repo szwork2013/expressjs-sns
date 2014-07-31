@@ -53,7 +53,7 @@ app.use(function(req, res, next){
 
 //global config
 app.locals = {
-    gtitle:'sns'
+    gtitle:'车厘子'
 };
 
 app.use('/user', user);

@@ -18,7 +18,7 @@
 
     <div class="nav-container">
         <div class="logo">
-            <a href="/">rabbit</a>
+            <a href="/">车厘子</a>
         </div>
 
         <form action="/search" class="fl search-form">
