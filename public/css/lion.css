@@ -674,6 +674,28 @@ footer {
       width: 15%;
       float: left; }
 
+.last-reply-list ul li {
+  padding-bottom: 5px;
+  margin-bottom: 5px; }
+  .last-reply-list ul li:before, .last-reply-list ul li:after {
+    content: "";
+    display: table; }
+  .last-reply-list ul li:after {
+    clear: both; }
+  .last-reply-list ul li .lastreply-avatar, .last-reply-list ul li .lastreply-content {
+    float: left; }
+  .last-reply-list ul li .lastreply-avatar {
+    margin-right: 10px; }
+    .last-reply-list ul li .lastreply-avatar img {
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+      border-radius: 5px; }
+  .last-reply-list ul li .lastreply-content .time {
+    margin-left: 10px;
+    color: #ccc; }
+
 .topic-main h1 {
   font-size: 18px; }
 .topic-main .topic-date {
@@ -1101,7 +1123,8 @@ footer {
         color: #ccc;
         font-size: 28px; }
         .pager .pager-wrapper li a.cur {
-          color: #a1a1a1; }
+          color: #a1a1a1;
+          cursor: default; }
         .pager .pager-wrapper li a.nums {
           font-size: 24px; }
         .pager .pager-wrapper li a:hover {

@@ -109,13 +109,9 @@
     </form>
 </div>
 <div class="sidebar">
-
     <div class="back-action side-mod">
-        {{#board}}
-        <a href="/b/{{url}}"><i class="fa fa-arrow-left"></i>返回{{name}}</a>
-        {{/board}}
+        <a href="/b/{{board.url}}"><i class="fa fa-arrow-left"></i>返回{{board.name}}</a>
     </div>
-
     <div class="side-mod">
         <h3>最近浏览</h3>
         <ul class="history-list">
@@ -237,7 +233,7 @@
             if($(window).scrollTop()+$(window).height()>$('.reply-list').offset().top || $('.reply-list').offset().top < $(window).height()){
                 $(window).off('scroll');
                 $.ajax({
-                    url:'/topic/getreplys',
+                    url:'getreplys',
                     data:'id={{topic._id}}',
                     beforeSend:function(){
                         $('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>').appendTo($('.reply-list')); 
@@ -271,32 +267,32 @@
         function AddReplyPagerEvent(el){
             $(el).find('a').click(function(){
                 $.ajax({
-                url:'/topic/getreplys',
-                data:'id={{topic._id}}&p='+$(this).attr('p'),
-                beforeSend:function(){
-                    $('.reply-list .reply-item,.reply-list .pager').hide();
-                    $('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>').appendTo($('.reply-list')); 
-                },
-                success:function(re){
-                    $('.reply-list .reply-item,.reply-list .pager').remove();
-                    $('.reply-list .more').remove();
-                    RenderReplyList(re.replys);
-                    if(re.pager){
-                        $('.reply-list').append(new EJS({text:$('#reply-pager').html()}).render(re.pager));
-                        AddReplyPagerEvent($('.reply-list .pager'));
+                    url:'getreplys',
+                    data:'id={{topic._id}}&p='+$(this).attr('p'),
+                    beforeSend:function(){
+                        $('.reply-list .reply-item,.reply-list .pager').hide();
+                        $('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>').appendTo($('.reply-list')); 
+                    },
+                    success:function(re){
+                        $('.reply-list .reply-item,.reply-list .pager').remove();
+                        $('.reply-list .more').remove();
+                        RenderReplyList(re.replys);
+                        if(re.pager){
+                            $('.reply-list').append(new EJS({text:$('#reply-pager').html()}).render(re.pager));
+                            AddReplyPagerEvent($('.reply-list .pager'));
+                        }
+                        $('html,body').scrollTop($('.reply-list').offset().top - $('.nav').height());
                     }
-                    $('html,body').scrollTop($('.reply-list').offset().top - $('.nav').height());
-                }
                 });
             });
         }
 
         function UpReplyBind(els){
-            els.click(function(){
+            els.off('click').click(function(){
                 var self = this;
                 var num = $(this).hasClass('up')?1:-1;
                 $.ajax({
-                    url:'/topic/upreply',
+                    url:'upreply',
                     data:'reply_id='+$(this).parents('.reply-item').attr('rid')+'&num='+num,
                     method:'post',
                     success:function(re){
@@ -318,7 +314,7 @@
         var contentInput = $('#replyContent');
 
         function Replytoreply(els){
-            els.click(function(){
+            els.off('click').click(function(){
                 contentInput.focus();
                 contentInput.val('@'+$(this).parents('.reply-item').find('.uname a').html()+'，');
             });
@@ -338,9 +334,9 @@
             $script('/js/xss.js',function(){
                 
                 $.ajax({
-                    url:'/topic/addreply',
+                    url:'addreply',
                     method:'post',
-                    data:'replyContent='+filterXSS($('#replyContent').val())+'&topic_id={{topic._id}}',
+                    data:'replyContent='+filterXSS($('#replyContent').val())+'&topic_id={{topic._id}}&board_id={{board._id}}',
                     beforeSend:function(){
                         $('<div class="more"></div>').appendTo($('.reply-list')); 
                     },

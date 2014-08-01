@@ -13,20 +13,11 @@ var path = require( 'path' );
 var fs = require( 'fs' );
 var moment =  require('moment');
 
-function BuildReplyItem(origin,user){
-    var temp = {};
-    temp = origin.toObject();
-    temp.create_date_format = origin.create_date_format;
-    temp.author_name = user.name;
-    temp.author_signature = user.signature?user.signature:null;
-    temp.author_url = user.url;
-    temp.avatar_url_s = user.avatar_url_s;
-    return temp;
-}
+var common = require('../routes/common');
+var BuildPager = common.BuildPager;
+var BuildReplyItem = common.BuildReplyItem;
 
 var replys_pager_num = 10;
-var BuildPager = require('../routes/board').BuildPager;
-
 function GetReplyById(id,p,cb){
     Topic.findOne({_id:id},function(err,topic){
 
@@ -45,10 +36,10 @@ function GetReplyById(id,p,cb){
                         callback();
                     });
                 }, function (err) {
-                    cb(replys_o,BuildPager(p,topic.reply_count));
+                    cb(replys_o,BuildPager(p,topic.reply_count,replys_pager_num));
                 });
             }else{
-                cb(replys_o,BuildPager(p,topic.reply_count)); 
+                cb(replys_o,BuildPager(p,topic.reply_count,replys_pager_num));
             }
         });
     });
@@ -81,6 +72,7 @@ router.post('/addreply',function(req,res){
     new Reply({
         content:req.body.replyContent,
         topic_id:req.body.topic_id,
+        board_id:req.body.board_id,
         author_id:req.session.user._id
     }).save(function(err,reply){
         User.findOneAndUpdate({_id:req.session.user._id},{$inc:{score:1}},function(){
@@ -139,7 +131,7 @@ router.get('/:_id', function(req, res, next) {
     var islogin  = req.session.user?true:false;
     var queryuser = islogin?{user_id:req.session.user._id}:{};
     Topic.findOneAndUpdate({_id:req.params._id},{$inc:{visit_count:1}},function(err,topic){
-        Board.find({_id:topic.board_id},function(err,board){
+        Board.findOne({_id:topic.board_id},function(err,board){
             if(topic){
                 GetHotreplyById(topic.id,function(hotreplys){
                     Collect.find({$and:[queryuser,{topic_id:topic.id}]},function(err,collect){

@@ -135,6 +135,30 @@
         }
     }
 }
+.last-reply-list{
+    ul{
+        li{
+            @include clearfix();    
+            padding-bottom:5px;
+            margin-bottom:5px;
+            .lastreply-avatar,.lastreply-content{
+                float:left; 
+            } 
+            .lastreply-avatar{
+                margin-right:10px;
+                img{
+                    @include border-radius(5px); 
+                }
+            }
+            .lastreply-content{
+                .time{
+                    margin-left:10px;
+                    color:#ccc; 
+                } 
+            }
+        }
+    }
+}
 //detail
 .topic-main{
     h1{
@@ -590,6 +614,7 @@
                 font-size:28px; 
                 &.cur{
                     color:#a1a1a1; 
+                    cursor:default;
                 }
                 &.nums{
                     font-size:24px;

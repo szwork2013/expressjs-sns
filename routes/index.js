@@ -19,7 +19,8 @@ function GetTopicAndReplyByUser(user,callback){
     })
 }
 
-var GetTopicTemplete = require('../routes/board').GetTopicTemplete;
+var common = require('../routes/common');
+var GetTopicTemplete = common.GetTopicTemplete;
 
 //获取标题列表
 router.get('/', function(req, res) {

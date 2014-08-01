@@ -7,6 +7,7 @@ var ObjectId = Schema.ObjectId;
 var Reply = new Schema({
 	content: { type: String },
 	topic_id: { type: ObjectId},
+	board_id: { type: ObjectId},
 	reply_id : { type: ObjectId },
 	author_id: { type: ObjectId },
 	create_date: { type: Date, default: Date.now },
