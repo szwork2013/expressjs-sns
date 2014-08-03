@@ -7,24 +7,21 @@
 {{#title}}
 <title>{{ title }} - {{ gtitle }}</title>
 {{/title}}
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<link rel="stylesheet" href="/css/lion.css" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link href="/css/font-awesome.css" rel="stylesheet">
+<link href="/css/lion.css" rel="stylesheet">
 <script src="/js/jquery.min.js"></script>
 <script src="/js/script.js"></script>
 </head>
 <body>
 <header class="nav">
-
     <div class="nav-container">
         <div class="logo">
             <a href="/">车厘子</a>
         </div>
-
         <form action="/search" class="fl search-form">
             <input type="text" id-"q" name="q" class="search" placeholder="避震" /><i class="fa fa-search"></i>
         </form>
-
         <ul class="menu">
             {{^user}}
             <li><a href="/login" class="login">登录</a></li>
@@ -32,21 +29,20 @@
             {{/user}}
             {{#user}}
             <li><a href="/logout" class="loginout">退出</a></li>
+            <li><a href="/settings">用户设置</a></li>
+            <li><a href="/tips" class="tips">提醒</a></li>
             <li><a href="/message">私信</a></li>
             <li><a href="/collect">收藏</a></li>
-            <li><a href="/settings">用户设置</a></li>
             <li><a href="/{{user.url}}">欢迎，{{user.name}}</a></li>
             {{/user}}
         </ul>
     </div>
 </header>
-
 <section class="main">
     <div class="main-wrapper">
         {{{ body }}}
     </div>
 </section>
-
 <footer>
     <p>
     &copy;2014 , all rights reserved
@@ -58,5 +54,21 @@
         <li><a href="/about/disclaimer">免责声明</a></li>
     </ul>
 </footer>
+<script>
+{{#user}}
+$(document).ready(function(){
+    $.ajax({
+        url:'/tips/unreadtips',
+        success:function(r){
+            if(parseInt(r.tipsnum)<1000 && parseInt(r.tipsnum)>0){
+                $('.menu .tips').append($('<span class="tipsnum"></span>').html(r.tipsnum)); 
+            }else if(parseInt(r.tipsnum)>999){
+                $('.menu .tips').append($('<span class="tipsnum"></span>').html('999+')); 
+            }
+        }
+    })
+})
+{{/user}}
+</script>
 </body>
 </html>

@@ -17,7 +17,7 @@ var common = require('../routes/common');
 var BuildPager = common.BuildPager;
 var BuildReplyItem = common.BuildReplyItem;
 
-var replys_pager_num = 10;
+var replys_pager_num = 20;
 function GetReplyById(id,p,cb){
     Topic.findOne({_id:id},function(err,topic){
 

@@ -14,6 +14,7 @@ var user = require('./routes/user');
 var board = require('./routes/board');
 var topic = require('./routes/topic');
 var message = require('./routes/message');
+var tips = require('./routes/tips');
 var collect = require('./routes/collect');
 var about = require('./routes/about');
 var relation = require('./routes/relation');
@@ -53,13 +54,14 @@ app.use(function(req, res, next){
 
 //global config
 app.locals = {
-    gtitle:'车厘子'
+    gtitle:'test'
 };
 
 app.use('/user', user);
 app.use('/b', board);
 app.use('/topic', topic);
 app.use('/message', message);
+app.use('/tips', tips);
 app.use('/collect', collect);
 app.use('/about', about);
 app.use('/relation', relation);
@@ -68,7 +70,7 @@ app.use('/', routes);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
-    var err = new Error('404,未找到页面!');
+    var err = new Error('抱歉,未找到页面,到别处转转!');
     err.status = 404;
     next(err);
 });

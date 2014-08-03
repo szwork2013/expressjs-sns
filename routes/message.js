@@ -5,8 +5,7 @@ var async =  require('async');
 //data
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-var Topic = mongoose.model('Topic');
-var Reply = mongoose.model('Reply');
+var Tips = mongoose.model('Tips');
 var Message = mongoose.model('Message');
 
 function GetMessageTempleteByUserId(name,id,callback){
@@ -67,8 +66,14 @@ router.post('/:url/new', function(req, res) {
                 content:req.body.n_message
             }).save(function(err,message){
                 if(!err){
-                    res.redirect('/message');
-                } 
+                    new Tips({
+                        type:'3',
+                        user_id:user._id,
+                        message_id:message._id
+                    }).save(function(err){
+                        if(!err) res.redirect('/message');
+                    });
+                }
             });
         } 
     });

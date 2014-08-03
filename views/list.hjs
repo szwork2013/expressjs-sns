@@ -101,7 +101,6 @@
         <a href="/about/contact"></a>
     </div>
     <div class="side-mod last-reply-list">
-        <h3>最近回复</h3>
         <ul></ul>
     </div>
 </div>
@@ -111,7 +110,7 @@
                 <img src="<%= avatar_url_s %>" alt="">
             </div>
             <div class="lastreply-content">
-               <%= author_name%>：<%= content %><span class="time"><%= create_date_format %></span>
+            <a href="/<%= author_url%>"><%= author_name%></a> ：<a href="/topic/<%=topic_id%>#<%=_id%>"><%= content %></a><span class="time"><%= create_date_format %></span>
             </div>
         </li>
 </script>
@@ -147,26 +146,40 @@
         if($(this).attr('p')) location.href=originurl+Updateurl('p',$(this).attr('p'));
     });
 
-    $script('/js/ejs.js',function(){
-        $.ajax({
-            url:'lastreplys',
-            data:'board_id={{board._id}}',
-            beforeSend:function(){
-                $('.last-reply-list ul').append($('<li class="more" style="display:none;"><i class="fa fa-circle-o-notch fa-spin"></i></li>'));
-            },
-            success:function(re){
-                $('.last-reply-list ul .more').remove();
-                $(re.replys).each(function(k,v){
-                    $('.last-reply-list ul').append(new EJS({text:$('#lastreply-item').html()}).render(v));
-                });
-            }
+
+    $(document).ready(function(){
+        $script('/js/ejs.js',function(){
+            $.ajax({
+                url:'lastreplys',
+                data:'board_id={{board._id}}',
+                beforeSend:function(){
+                    $('.last-reply-list ul').append($('<li class="more"><i class="fa fa-circle-o-notch fa-spin"></i></li>'));
+                },
+                error:function(){
+                    $('.last-reply-list ul .more').remove();
+                },
+                success:function(re){
+                    $('.last-reply-list ul .more').remove();
+                    if($(re.replys).length>0){
+                        $('.last-reply-list ul').append('<h3>最近回复</h3>');
+                        $(re.replys).each(function(k,v){
+                            $('.last-reply-list ul').append(new EJS({text:$('#lastreply-item').html()}).render(v));
+                        });
+                    }
+                }
+            });
         });
     });
 
-    $script('/js/loadimg.js',function(){
-        loadimg('http://cdn.ifanr.cn/wp-content/uploads/2014/06/IXDCifanr-02.jpg',function(img){
-            $(img).appendTo($('.ad1 a')); 
-        })
+
+    $(window).load(function(){
+        $script('/js/loadimg.js',function(){
+            $('.ad1').append($('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>'));
+            loadimg('http://cdn.ifanr.cn/wp-content/uploads/2014/06/IXDCifanr-02.jpg',function(img){
+                $('.ad1 .more').remove();
+                $(img).appendTo($('.ad1 a')); 
+            })
+        });
     });
 
     $('.topic-list li').bind({

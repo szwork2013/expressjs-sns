@@ -1,0 +1,90 @@
+<h2>提醒</h2>
+
+
+<div class="tips-list">
+    {{#tips.length}}
+    <div class="action-bar">
+        <a href="javascript:void(0);" id="read-all">标记全部为已读</a>
+        <a href="javascript:void(0);" id="del-all">删除全部</a>
+    </div>
+    {{/tips.length}}
+    {{#tips}}
+    <div id="{{_id}}" has_read="{{has_read}}" class="tips-item">
+    {{#has_read}}
+    (已读)
+    {{/has_read}}
+    {{^has_read}}
+    (未读)
+    {{/has_read}}
+    {{#topic_id}}
+    <a href="/topic/{{topic_id}}">您的帖子有新回复</a>
+    {{/topic_id}}
+    {{#reply_id}}
+    您的留言有新回复
+    {{/reply_id}}
+    {{#message_id}}
+    <a href="/message">您有一条新私信</a>
+    {{/message_id}}
+    <a href="javascript:void(0);" class="del fr" tipsid="{{_id}}"><i class="fa fa-trash-o"></i></a>
+    </div>
+    {{/tips}}
+</div>
+{{^tips}}
+<p>暂时没有提醒</p>
+{{/tips}}
+<script>
+
+(function(){
+
+        $('.tips-list .tips-item .del').click(function(e){
+            var self =this;
+            $.ajax({
+               url:'/tips/del',
+               data:'id='+$(this).parent('.tips-item').attr('id'),
+               method:'post',
+               success:function(r){
+                if(r.r===1){
+                    $(self).parent('.tips-item').fadeOut(200,function(){
+                        $script('/js/tip.js',function(){
+                            Tip('删除成功');
+                        });
+                        this.remove();
+                    });
+                }
+               }
+            })
+        });
+
+        $('#del-all').click(function(e){
+            $.ajax({
+                url:'/tips/delall',
+                method:'post',
+                success:function(r){
+                    if(r.r===1){
+                        $script('/js/tip.js',function(){
+                            Tip('删除全部成功');
+                        });
+                    }
+                }
+                
+            })
+        });
+
+
+        $('#read-all').click(function(e){
+            $.ajax({
+                url:'/tips/readall',
+                method:'post',
+                success:function(r){
+                    if(r.r===1){
+                        $script('/js/tip.js',function(){
+                            Tip('标记成功');
+                        });
+                    }
+                }
+            })
+        });
+
+})()
+
+</script>

@@ -10,8 +10,8 @@ var ObjectId = Schema.ObjectId;
  * 4.关注
  */
 var TipSchema = new Schema({
-    type:{ type: String },
-    user_id: { type: ObjectId },
+    type:{ type: String,required:true},
+    user_id: { type: ObjectId,required:true},
     topic_id: { type: ObjectId },
     reply_id: { type: ObjectId },
     message_id:{ type: ObjectId },
@@ -27,4 +27,4 @@ TipSchema.virtual('create_date_fromnow').get(function(){
     return moment(this.create_date).lang('zh-cn').fromNow();
 });
 
-var TipModel = mongoose.model('Tip', TipSchema);
+var TipModel = mongoose.model('Tips', TipSchema);

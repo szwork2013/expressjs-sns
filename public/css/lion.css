@@ -505,7 +505,8 @@ textarea {
     right: 30px;
     width: 40%;
     height: 50px; }
-    .nav .menu > li {
+    .nav .menu li {
+      position: relative;
       float: right;
       text-align: center;
       vertical-align: middle;
@@ -514,7 +515,7 @@ textarea {
       -ms-border-radius: 3px;
       -o-border-radius: 3px;
       border-radius: 3px; }
-      .nav .menu > li a {
+      .nav .menu li a {
         border: none;
         padding: 0 10px;
         -webkit-border-radius: 3px;
@@ -524,8 +525,24 @@ textarea {
         border-radius: 3px;
         display: inline-block;
         color: #999; }
-        .nav .menu > li a:hover {
+        .nav .menu li a:hover {
           color: #ddd; }
+        .nav .menu li a .tipsnum {
+          position: absolute;
+          top: 7px;
+          left: 28px;
+          background: #fc5140;
+          color: #fff;
+          -webkit-border-radius: 8px;
+          -moz-border-radius: 8px;
+          -ms-border-radius: 8px;
+          -o-border-radius: 8px;
+          border-radius: 8px;
+          padding: 0 5px;
+          height: 16px;
+          line-height: 16px;
+          text-align: center;
+          font-size: 12px; }
 
 footer {
   color: #999;
@@ -541,6 +558,7 @@ footer {
     display: inline-block;
     margin-right: 20px; }
   footer .ft-meta {
+    float: right;
     vertical-align: middle;
     display: inline-block; }
     footer .ft-meta li {
@@ -553,7 +571,7 @@ footer {
     background: #fff;
     margin: 0px auto;
     width: 1000px;
-    min-height: 600px;
+    min-height: 650px;
     padding: 100px 0 50px 0;
     color: #666; }
     .main .main-wrapper:before, .main .main-wrapper:after {
@@ -582,7 +600,7 @@ footer {
     .sidebar .ad img {
       max-width: 100%; }
   .sidebar .back-action a {
-    font-size: 16px; }
+    font-size: 14px; }
 
 .new-post-btn {
   display: inline-block;
@@ -674,9 +692,13 @@ footer {
       width: 15%;
       float: left; }
 
+.last-reply-list h3 {
+  margin-bottom: 10px; }
 .last-reply-list ul li {
   padding-bottom: 5px;
   margin-bottom: 5px; }
+  .last-reply-list ul li a {
+    color: #666; }
   .last-reply-list ul li:before, .last-reply-list ul li:after {
     content: "";
     display: table; }
@@ -1117,7 +1139,9 @@ footer {
       line-height: 40px;
       height: 40px;
       float: left;
-      margin-right: 10px; }
+      width: 24px;
+      text-align: center;
+      margin: 0 2px; }
       .pager .pager-wrapper li a {
         vertical-align: middle;
         color: #ccc;
@@ -1131,6 +1155,24 @@ footer {
           color: #a1a1a1; }
 
 .message-list li {
+  padding: 10px 0; }
+
+.tips-list .action-bar {
+  margin: 15px 0; }
+  .tips-list .action-bar a {
+    margin-right: 10px;
+    padding: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    color: #fff;
+    background: #999; }
+    .tips-list .action-bar a:hover {
+      background: #666; }
+.tips-list .tips-item {
+  border-bottom: 1px solid #ddd;
   padding: 10px 0; }
 
 .g-tip {

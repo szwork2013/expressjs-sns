@@ -58,7 +58,8 @@ $menu-width:30px;
         right:30px;
         width:40%;
         height:50px;
-        >li{
+        li{
+            position:relative;
             float:right;
             text-align:center;
             vertical-align:middle;
@@ -71,6 +72,19 @@ $menu-width:30px;
                 color:#999;
                 &:hover{
                     color:#ddd;
+                }
+                .tipsnum{
+                    position:absolute;
+                    top:7px;
+                    left:28px;
+                    background:$action-red; 
+                    color:#fff;
+                    @include border-radius(8px);
+                    padding:0 5px;
+                    height:16px;
+                    line-height:16px;
+                    text-align:center;
+                    font-size:12px;
                 }
             }
         }
@@ -94,6 +108,7 @@ footer{
         margin-right:20px;
     }
     .ft-meta{
+        float:right;
         vertical-align:middle;
         display:inline-block; 
         li{
