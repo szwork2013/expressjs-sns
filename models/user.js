@@ -14,7 +14,7 @@ var User = new mongoose.Schema({
 
     signature : String,
     desc : String,
-    actived:Boolean,
+    actived:{type:Boolean,default:false},
 
     score:{type:Number,default:0},
     donate:{type:Number,default:0},

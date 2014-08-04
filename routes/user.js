@@ -12,6 +12,8 @@ var Reply = mongoose.model('Reply');
 var formidable = require('formidable');
 var fs = require('fs');
 
+var crypto = require('crypto');
+
 router.post('/saveimgsettings', function(req, res) {
     new formidable.IncomingForm().parse(req,function(err,fields,files){
 
@@ -95,12 +97,18 @@ User.findOneAndUpdate({_id:req.session.user._id,pwd:oldpwd},{
 });
 
 router.post('/registervalidate', function(req, res) {
-    if(req.body.email){
+    if(req.body.email && req.body.name){
         User.findOne({email:req.body.email},function(err,user){
             if(user){
                 res.json({r:1});
             }else{
-                res.json({r:0});
+                User.findOne({name:req.body.name},function(err,user){
+                    if(user){
+                        res.json({r:2});
+                    }else{
+                        res.json({r:0});
+                    }
+                })
             }
         });
     }
@@ -124,17 +132,20 @@ router.post('/register', function(req, res) {
        new User({
            email:req.body.uemail,
            name:req.body.uname,
-           pwd:req.body.upwd,
+           pwd:crypto.createHash('sha1').update(req.body.upwd).digest('hex'),
            phone:req.body.uphone
-       }).save( function( err,user){
+       }).save(function(err,user){
            if(err){
                 res.redirect('/error');
             }else{
-                User.findOneAndUpdate({_id:user._id},{url:user._id},function(){
-                    res.redirect('/login');
+                User.findOneAndUpdate({_id:user._id},{url:user._id},function(err,user){
+                    res.render('user/active',{
+                        title:'激活账号',
+                        link:crypto.createHash('sha1').update(user._id.toString()).digest('hex')
+                    });
                 })
             }
-        });
+       });
 });
 
 router.post('/login', function(req, res) {
@@ -160,6 +171,20 @@ router.post('/login', function(req, res) {
             res.redirect('/');
         }
     });
+});
+
+router.get('/:name/:idhash', function(req, res) {
+    if(req.params.name){
+        User.findOne({name:req.params.name},function(err,user){
+            if(user){
+                if(req.params.idhash === crypto.createHash('sha1').update(user._id.toString()).digest('hex')){
+                  User.update({name:user.name},{actived:true},function(err,user){
+                      if(user) res.redirect('/login');
+                  })   
+                }
+            }
+        })
+    }
 });
 
 module.exports = router;

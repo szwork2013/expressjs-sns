@@ -10,6 +10,7 @@
         <label for="uname">昵称：</label>
         <input type="text" name = "uname" placeholder="请输入昵称" />
         <span class="tips">请输入昵称</span>
+        <span class="tips1 tips">您输入的昵称已被占用</span>
     </div>
     <div class="row">
         <label for="uphone">手机：</label>
@@ -64,7 +65,7 @@
                     $.ajax({
                         url:'user/registervalidate',
                         type:'post',
-                        data:'email='+emailInput.val(),
+                        data:'email='+emailInput.val()+'&name='+nameInput.val(),
                         beforeSend:function(){
                             emailInput.after($('<i class="fa fa-circle-o-notch  fa-spin" style="position: absolute; left: 99%; top: 12px;"></i>'));
                         },
@@ -72,6 +73,9 @@
                             emailInput.nextAll('.fa-circle-o-notch').remove(); 
                             if(re.r===1){
                                 emailInput.nextAll('.tips1').show();
+                                return;
+                            }else if(re.r===2){
+                                nameInput.nextAll('.tips1').show();
                                 return;
                             }else if(re.r===0){
                                 $('#reg-form').submit();
