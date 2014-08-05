@@ -10,6 +10,7 @@ var Topic = new Schema({
     board_id:{type:ObjectId},
     author_id:{type:ObjectId},
     last_reply: { type:ObjectId},
+    top: { type: Boolean, default:false}, 
     reply_count: { type: Number, default: 0 },
     visit_count: { type: Number, default: 0 },
     collect_count: { type: Number, default:0 },

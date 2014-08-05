@@ -31,7 +31,8 @@ router.get('/lastreplys', function(req, res){
     Reply.find({board_id:req.query.board_id},null,{sort:{create_date:-1},limit:10},function(err,replys){
         var n_replys=[];
         async.eachSeries(replys,function(reply,cb){
-            User.findOne({_id:reply.author_id },'name url signature avatar_url', function(error, user) {
+            User.findOne({_id:reply.author_id },'name url signature avatar_url avatar_url_s', function(error, user) {
+                if(!user) return cb();
                 n_replys.push(BuildReplyItem(reply,user));
                 cb();
             });
