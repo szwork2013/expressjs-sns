@@ -15,6 +15,7 @@ var User = new mongoose.Schema({
     signature : String,
     desc : String,
     actived:{type:Boolean,default:false},
+    baned:{type:Boolean,default:false},
 
     score:{type:Number,default:0},
     donate:{type:Number,default:0},

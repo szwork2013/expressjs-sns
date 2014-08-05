@@ -16,7 +16,7 @@ function GetTopicTemplete(topics,callback){
         async.eachSeries(topics,function(topic,cb){
             User.findOne({_id:topic.author_id},function(err,user){
                 User.findOne({_id:topic.last_reply},function(err,replyuser){
-                    if(!user) return;
+                    if(!user) return cb();
                     var temp_topic = topic.toObject();
                     temp_topic.author_name = user.name;
                     temp_topic.author_url = user.url;
@@ -35,6 +35,7 @@ function GetTopicTemplete(topics,callback){
 }
 
 function BuildReplyItem(origin,user){
+    if(!user) return;
     var temp = {};
     temp = origin.toObject();
     temp.create_date_format = origin.create_date_format;

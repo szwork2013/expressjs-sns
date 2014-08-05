@@ -141,7 +141,8 @@ router.post('/register', function(req, res) {
                 User.findOneAndUpdate({_id:user._id},{url:user._id},function(err,user){
                     res.render('user/active',{
                         title:'激活账号',
-                        link:crypto.createHash('sha1').update(user._id.toString()).digest('hex')
+                        link:crypto.createHash('sha1').update(user._id.toString()).digest('hex'),
+                        isregister:true
                     });
                 })
             }
@@ -165,7 +166,8 @@ router.post('/login', function(req, res) {
         }else if(!user.actived){
             res.render('user/active',{
                 title:'激活账号',
-                link:crypto.createHash('sha1').update(user._id.toString()).digest('hex')
+                link:crypto.createHash('sha1').update(user._id.toString()).digest('hex'),
+                isregister:false
             });
         }else{
             req.session.user = user;

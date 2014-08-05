@@ -1,5 +1,6 @@
-<h1>恭喜你，您的账号已经激活成功！<a href="/login">去登陆</a></h1>
+<h1>恭喜你，您的账号已经激活成功！</h1>
 <p>5秒自动调整至登陆页面</p>
+<a href="/login">去登陆</a>
 <script>
 setTimeout(function(){
     location.href="/login";
