@@ -63,6 +63,28 @@ function GetHotreplyById(id,cb){
     });
 }
 
+router.post('/addlike',function(req,res){
+    if(!req.session.user){
+        res.json({r:3}); 
+        return;
+    }
+    Topic.findOne({_id:req.body.topic_id},function(err,topic){
+        var islike = topic.liker.some(function (liker) { return liker.liker_id.equals(req.session.user._id);});
+        var isself = topic.author_id.equals(req.session.user._id)?true:false;
+        if(isself){
+            res.json({r:2});
+        }else if(islike){
+            res.json({r:0});
+        }else{
+            Topic.update({_id:topic._id},{$push:{liker:{liker_id:req.session.user._id}}},function(err,topic_n){
+                if(!err && topic_n){
+                    res.json({r:1});
+                } 
+            })
+        }
+    }); 
+});
+
 //添加留言api
 router.post('/addreply',function(req,res){
     if(!req.session.user){
@@ -131,6 +153,7 @@ router.get('/:_id', function(req, res, next) {
     var islogin  = req.session.user?true:false;
     var queryuser = islogin?{user_id:req.session.user._id}:{};
     Topic.findOneAndUpdate({_id:req.params._id},{$inc:{visit_count:1}},function(err,topic){
+        var islike = topic.liker.some(function (liker) { return liker.liker_id.equals(req.session.user._id);});
         Board.findOne({_id:topic.board_id},function(err,board){
             if(topic){
                 GetHotreplyById(topic.id,function(hotreplys){
@@ -140,7 +163,8 @@ router.get('/:_id', function(req, res, next) {
                             topic:topic,
                             board:board,
                             hotreplys:hotreplys,
-                            iscollect:islogin && collect.length>0?true:false
+                            iscollect:islogin && collect.length>0?true:false,
+                            islike:islogin && islike?true:false
                         })
                     });
                 })

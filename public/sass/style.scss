@@ -363,9 +363,12 @@
 }
 //reg,login
 .reg-form,.login-form{
+    padding:50px 10%;
+    @include border-radius(5px);
+    @include box-shadow(0px 0px 5px rgba(0,0,0,.1));
     font-size:14px;
     width:60%;
-    margin:0 20%;
+    margin:0 10%;
     .row{
         position:relative;
         margin:10px 0 0 0; 
@@ -380,7 +383,7 @@
         height:20px; 
         line-height:20px;
         @include border-radius(3px);
-        border:1px solid #ccc;
+        border:1px solid #ddd;
         vertical-align:middle;
     }
     label,.tips{
@@ -474,7 +477,7 @@
         input[type=text],input[type=password]{
             @include border-radius(2px);
             padding:0 5px;
-            border:1px solid #ccc;
+            border:1px solid #ddd;
             width:60%;
             height:32px;
         }
@@ -511,7 +514,7 @@
 #new-topic{
     font-size:16px;
     input,textarea{
-        border:1px solid #ccc;
+        border:1px solid #ddd;
         @include border-radius(3px); 
         margin:10px 0;
     }
@@ -528,7 +531,7 @@
     }
     #new-topic-content{
         margin:10px 0;
-        border:1px solid #ccc;
+        border:1px solid #ddd;
         @include border-radius(3px); 
         width:99%;
         height:450px;
@@ -757,7 +760,7 @@
     }
     select{
         width:100px;
-        border:1px solid #ccc;
+        border:1px solid #ddd;
         height:30px;
     }
     .wycarname{
@@ -772,7 +775,7 @@
     input[type=text],input[type=password]{
         @include border-radius(2px);
         padding:0 5px;
-        border:1px solid #ccc;
+        border:1px solid #ddd;
         width:60%;
         height:32px;
     }

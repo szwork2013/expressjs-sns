@@ -327,9 +327,17 @@
       font-size: 20px; }
 
 .reg-form, .login-form {
+  padding: 50px 10%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   font-size: 14px;
   width: 60%;
-  margin: 0 20%; }
+  margin: 0 10%; }
   .reg-form .row, .login-form .row {
     position: relative;
     margin: 10px 0 0 0;
@@ -347,7 +355,7 @@
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
     border-radius: 3px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     vertical-align: middle; }
   .reg-form label, .reg-form .tips, .login-form label, .login-form .tips {
     vertical-align: middle; }
@@ -430,7 +438,7 @@
   -o-border-radius: 2px;
   border-radius: 2px;
   padding: 0 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   width: 60%;
   height: 32px; }
 .settings form .wyurl {
@@ -464,7 +472,7 @@
 #new-topic {
   font-size: 16px; }
   #new-topic input, #new-topic textarea {
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -482,7 +490,7 @@
     font-size: 16px; }
   #new-topic #new-topic-content {
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -705,7 +713,7 @@
   color: #cc181e; }
 #addcar-form select {
   width: 100px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   height: 30px; }
 #addcar-form .wycarname {
   margin: 10px 0; }
@@ -720,7 +728,7 @@
   -o-border-radius: 2px;
   border-radius: 2px;
   padding: 0 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   width: 60%;
   height: 32px; }
 #addcar-form button[type=submit], #addcar-form .up-trigger {

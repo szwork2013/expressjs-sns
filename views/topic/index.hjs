@@ -22,6 +22,14 @@
             <a href="javascript:void(0);" id="addcollect"><i class="fa fa-star-o"></i>收藏</a>
             {{/iscollect}}
             </li>
+            <li>
+            {{#islike}}
+            <a href="javascript:void(0);" id="addlike"><i class="fa fa-heart"></i>已赞</a>
+            {{/islike}}
+            {{^islike}}
+            <a href="javascript:void(0);" id="addlike"><i class="fa fa-heart-o"></i>赞，有用</a>
+            {{/islike}}
+            </li>
             <li class="share">
             <span>分享到：</span>
             <a title="分享到微博" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=appkey',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','','{{topic.title}}','http://dev:8080/topic/{{topic._id}}','utf-8'));"><i class="fa fa-weibo"></i></a> 
@@ -219,15 +227,6 @@
         localStorage.setItem('viewhistory',JSON.stringify(viewd));
     }
 
-    /*
-    $('.topic-content img').each(function(k,v){
-            $(v).attr('datasrc',$(v).attr('src'));  
-            $script('/js/loadimg.js',function(){
-                $(v).asyncimg();
-            });
-    });
-    $('.topic-content img').attr('src','/img/blank.png');
-    */
         //加载留言
         function fetchreplys(){
             if($(window).scrollTop()+$(window).height()>$('.reply-list').offset().top || $('.reply-list').offset().top < $(window).height()){
@@ -373,6 +372,27 @@
                         }else if(re.s===2){
                             Tip('已经收藏');
                         }else if(re.s===3){
+                            Tip('未登录，请登录');
+                        }
+                    });
+                }
+            });
+        });
+
+        $('#addlike').click(function(){
+            var self = this;
+            $.ajax({
+                url:'/topic/addlike',
+                data:'topic_id={{topic._id}}',
+                method:'post',
+                success:function(re){
+                    $script('/js/tip.js',function(){
+                        if(re.r === 1){
+                            $(self).html('<i class="fa fa-heart"></i>已赞');
+                            Tip('赞一个成功');
+                        }else if(re.r===2){
+                            Tip('已经赞过');
+                        }else if(re.r===3){
                             Tip('未登录，请登录');
                         }
                     });

@@ -13,7 +13,7 @@ var Topic = new Schema({
     reply_count: { type: Number, default: 0 },
     visit_count: { type: Number, default: 0 },
     collect_count: { type: Number, default:0 },
-    top: { type: Boolean, default: false },
+    liker:[{_id:false,liker_id:ObjectId}],
     create_date: { type: Date, default: Date.now },
     update_date: { type: Date, default: Date.now },
     last_reply_date: { type: Date, default: Date.now }

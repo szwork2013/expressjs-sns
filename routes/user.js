@@ -150,7 +150,7 @@ router.post('/register', function(req, res) {
 
 router.post('/login', function(req, res) {
     var username = req.body.username;
-    var userpwd = req.body.userpwd;
+    var userpwd = crypto.createHash('sha1').update(req.body.userpwd).digest('hex');
     User.findOne({$or:[{ name:username}, {email:username}]},function(err,user){
         var error_msg = '';
         if(!user || userpwd != user.pwd){
@@ -161,6 +161,11 @@ router.post('/login', function(req, res) {
             }
             res.render('error',{
                 message:error_msg
+            });
+        }else if(!user.actived){
+            res.render('user/active',{
+                title:'激活账号',
+                link:crypto.createHash('sha1').update(user._id.toString()).digest('hex')
             });
         }else{
             req.session.user = user;
@@ -179,8 +184,8 @@ router.get('/:name/:idhash', function(req, res) {
             if(user){
                 if(req.params.idhash === crypto.createHash('sha1').update(user._id.toString()).digest('hex')){
                   User.update({name:user.name},{actived:true},function(err,user){
-                      if(user) res.redirect('/login');
-                  })   
+                      if(user) res.render('user/actived');
+                  })
                 }
             }
         })
