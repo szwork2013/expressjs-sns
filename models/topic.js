@@ -41,4 +41,12 @@ Topic.index({last_reply_date:-1});
 Topic.index({reply_count:-1});
 Topic.index({visit_count:-1});
 
+Topic.set('toObject',{
+   virtuals: true
+});
+
+Topic.set('toJSON',{
+   virtuals: true
+});
+
 var TopicModel = mongoose.model('Topic',Topic);

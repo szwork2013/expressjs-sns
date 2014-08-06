@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var async = require('async');
+var nodemailer = require("nodemailer");
 
 var path = require( 'path' );
 var gm = require( 'gm' );
@@ -71,15 +72,15 @@ router.post('/savebasesettings', function(req, res) {
     newemail = req.body.uemail,
     newurl = req.body.uurl;
     newsign = req.body.usign;
-User.findOneAndUpdate({_id:req.session.user._id},{name:newname,email:newemail,url:newurl,signature:newsign},function(err,user){
-    if(!err){
-        req.session.user.name = newname; 
-        req.session.user.email = newemail; 
-        req.session.user.url = newurl;
-        req.session.user.signature = newsign;
-        res.redirect('/'+newurl);
-    }
-});
+    User.findOneAndUpdate({_id:req.session.user._id},{name:newname,email:newemail,url:newurl,signature:newsign},function(err,user){
+        if(!err){
+            req.session.user.name = newname; 
+            req.session.user.email = newemail; 
+            req.session.user.url = newurl;
+            req.session.user.signature = newsign;
+            res.redirect('/'+newurl);
+        }
+    });
 });
 
 router.post('/savepwdsettings', function(req, res) {
@@ -128,6 +129,14 @@ router.post('/validateurl', function(req, res) {
     }
 });
 
+var smtpTransport = nodemailer.createTransport("SMTP",{
+    service: "Gmail",
+    auth: {
+        user: "spirityy109@gmail.com",
+        pass: "spspsp19881009"
+    }
+});
+
 router.post('/register', function(req, res) {
        new User({
            email:req.body.uemail,
@@ -139,10 +148,24 @@ router.post('/register', function(req, res) {
                 res.redirect('/error');
             }else{
                 User.findOneAndUpdate({_id:user._id},{url:user._id},function(err,user){
-                    res.render('user/active',{
-                        title:'激活账号',
-                        link:crypto.createHash('sha1').update(user._id.toString()).digest('hex'),
-                        isregister:true
+                    var linkstr=crypto.createHash('sha1').update(user._id.toString()).digest('hex');
+                    //send email
+                    var html ='<h2>亲爱的'+user.name+':</h2><h3>恭喜你，注册账号成功！请点击以下链接激活您的账号：</h3><p><a href="http://dev:8080/user/'+user.name+'/'+linkstr+'">点此链接激活账号!</a></p><p>(这是一封自动产生的email，请勿回复。)</p>';
+                    smtpTransport.sendMail({
+                        to: user.email,
+                        subject: "xx网",
+                        html: html,
+                    }, function(err,response){
+                        if(err){
+                            res.redirect('/error');
+                        }else{
+                            res.render('user/active',{
+                                title:'激活账号',
+                                link:linkstr,
+                                isregister:true,
+                                uemail:user.email
+                            });
+                        }
                     });
                 })
             }
@@ -167,7 +190,8 @@ router.post('/login', function(req, res) {
             res.render('user/active',{
                 title:'激活账号',
                 link:crypto.createHash('sha1').update(user._id.toString()).digest('hex'),
-                isregister:false
+                isregister:false,
+                uemail:user.email
             });
         }else{
             req.session.user = user;

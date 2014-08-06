@@ -97,6 +97,15 @@
           line-height: 16px;
           text-align: center;
           font-size: 12px; }
+      .nav .menu li .menu-avatar {
+        width: 32px;
+        height: 32px;
+        margin-right: 10px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+        border-radius: 3px; }
 
 footer {
   color: #999;

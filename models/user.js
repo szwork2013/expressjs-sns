@@ -54,4 +54,12 @@ User.virtual('avatar_url_l').get(function(){
 
 User.index({email: 1}, {unique: true});
 
+User.set('toObject',{
+   virtuals: true
+});
+
+User.set('toJSON',{
+   virtuals: true
+});
+
 var UserModel = mongoose.model('User',User);

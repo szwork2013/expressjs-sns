@@ -57,12 +57,13 @@ router.get('/search', function(req, res) {
             GetTopicTemplete(topics,function(rtopics){
                 res.render('list', { 
                     title: '搜索结果',
-                    topics:rtopics
+                    topics:rtopics,
+                    issearch:true
                 });
             })
         }else{
             res.render('error',{
-                error:'抱歉，没有结果请重试！'
+                message:'抱歉，没有结果请重试！'
             });
         }
     });

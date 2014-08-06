@@ -1,5 +1,6 @@
 <script src="/js/validator.js"></script>
 <form action="/user/login" method="post" class="login-form" id="login-form">
+    <h1>登陆</h1>
     <div class="row">
         <label for="username">账号：</label>
         <input type="text" name="username" id="username" placeholder="邮箱或昵称" />

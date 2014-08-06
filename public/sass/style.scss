@@ -364,11 +364,15 @@
 //reg,login
 .reg-form,.login-form{
     padding:50px 10%;
-    @include border-radius(5px);
-    @include box-shadow(0px 0px 5px rgba(0,0,0,.1));
+    //@include border-radius(5px);
+    //@include box-shadow(0px 0px 10px #ccc);
     font-size:14px;
     width:60%;
     margin:0 10%;
+    text-align:center;
+    h1{
+        margin-bottom:30px; 
+    }
     .row{
         position:relative;
         margin:10px 0 0 0; 
@@ -385,6 +389,8 @@
         @include border-radius(3px);
         border:1px solid #ddd;
         vertical-align:middle;
+        background:#f9f9f9;
+        text-align:left;
     }
     label,.tips{
         vertical-align:middle;

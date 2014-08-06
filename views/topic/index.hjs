@@ -391,6 +391,8 @@
                             $(self).html('<i class="fa fa-heart"></i>已赞');
                             Tip('赞一个成功');
                         }else if(re.r===2){
+                            Tip('无法自赞');
+                        }else if(re.r===0){
                             Tip('已经赞过');
                         }else if(re.r===3){
                             Tip('未登录，请登录');

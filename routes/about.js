@@ -34,7 +34,7 @@ router.post('/postsuggest', function(req, res,next) {
         text: req.body.uname+':'+req.body.suggestcontent
     }, function(err, response){
         if(err){
-            next(err);
+            res.redirect('/error');
         }else{
             res.redirect('/');
         }

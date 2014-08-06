@@ -1,5 +1,6 @@
 <div class="content">
     <div class="list-wrapper">
+        {{^issearch}}
         <div class="row clearfix">
             <h1 class="fl">{{board.name}}</h1>
             <a href="/b/{{board.url}}/new" class="new-post-btn fr"><i class="fa fa-plus"></i>发布新话题</a>
@@ -21,6 +22,14 @@
                     </li>
                 </ul>
             </div>
+        </div>
+        {{/issearch}}
+        {{#issearch}}
+        <div class="row">
+            <h1>搜索结果</h1>
+        </div>
+        {{/issearch}}
+        <div class="row">
             <ul class="topic-list">
                 {{#toptopics}}
                 <li>
@@ -147,6 +156,7 @@
     });
 
 
+    {{^issearch}}
     $(document).ready(function(){
         $script('/js/ejs.js',function(){
             $.ajax({
@@ -170,7 +180,7 @@
             });
         });
     });
-
+    {{/issearch}}
 
     $(window).load(function(){
         $script('/js/loadimg.js',function(){

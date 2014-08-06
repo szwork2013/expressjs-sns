@@ -1,5 +1,6 @@
 <script src="/js/validator.js"></script>
 <form action="/user/register" method="post" class="reg-form" id="reg-form">
+    <h1>注册</h1>
     <div class="row">
         <label for="uemail">邮箱：</label>
         <input type="text" name="uemail" placeholder="请输入邮箱" />

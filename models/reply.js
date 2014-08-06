@@ -19,4 +19,12 @@ Reply.virtual('create_date_format').get(function(){
     return moment(this.create_date).lang('zh-cn').fromNow();
 });
 
+Reply.set('toObject',{
+   virtuals: true
+});
+
+Reply.set('toJSON',{
+   virtuals: true
+});
+
 mongoose.model('Reply', Reply);

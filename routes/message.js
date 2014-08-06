@@ -15,8 +15,6 @@ function GetMessageTempleteByUserId(name,id,callback){
             User.findOne({_id:msg.from_id},function(err,from_user){
                 User.findOne({_id:msg.to_id},function(err,to_user){
                     var msg_temp = msg.toObject();
-                    msg_temp.create_date_format = msg.create_date_format;
-                    msg_temp.create_date_fromnow = msg.create_date_fromnow;
                     msg_temp.from_user_name = from_user.name;
                     msg_temp.from_user_url = from_user.url;
                     msg_temp.from_user_avatar_url = from_user.avatar_url_s;

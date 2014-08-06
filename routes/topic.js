@@ -31,7 +31,8 @@ function GetReplyById(id,p,cb){
             var replys_o = [];
             if(replys && replys.length>0){ 
                 async.eachSeries(replys, function(reply, callback) {
-                    User.findOne({_id:reply.author_id },'name url signature avatar_url', function(error, user) {
+                    User.findOne({_id:reply.author_id },function(error, user) {
+                        if(!user) return callback();
                         replys_o.push(BuildReplyItem(reply,user));
                         callback();
                     });
@@ -153,7 +154,7 @@ router.get('/:_id', function(req, res, next) {
     var islogin  = req.session.user?true:false;
     var queryuser = islogin?{user_id:req.session.user._id}:{};
     Topic.findOneAndUpdate({_id:req.params._id},{$inc:{visit_count:1}},function(err,topic){
-        var islike = topic.liker.some(function (liker) { return liker.liker_id.equals(req.session.user._id);});
+        var islike = islogin && topic.liker && topic.liker.some(function (liker) { return liker.liker_id.equals(req.session.user._id);});
         Board.findOne({_id:topic.board_id},function(err,board){
             if(topic){
                 GetHotreplyById(topic.id,function(hotreplys){

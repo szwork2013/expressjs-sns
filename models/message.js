@@ -19,4 +19,12 @@ MessageSchema.virtual('create_date_fromnow').get(function(){
     return moment(this.create_date).lang('zh-cn').fromNow();
 });
 
+MessageSchema.set('toObject',{
+   virtuals: true
+});
+
+MessageSchema.set('toJSON',{
+   virtuals: true
+});
+
 var MessageModel = mongoose.model('Message', MessageSchema);

@@ -33,7 +33,7 @@
             <li><a href="/tips" class="tips">提醒</a></li>
             <li><a href="/message">私信</a></li>
             <li><a href="/collect">收藏</a></li>
-            <li><a href="/{{user.url}}">欢迎，{{user.name}}</a></li>
+            <li><a href="/{{user.url}}"><img class="menu-avatar" src="{{user.avatar_url_s}}">{{user.name}}</a></li>
             {{/user}}
         </ul>
     </div>
