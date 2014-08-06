@@ -49,6 +49,12 @@ app.use(session({
 
 app.use(function(req, res, next){
   res.locals.user = req.session.user;
+  if(req.session.user && req.session.user.baned){
+        req.session.destroy(function(err){
+            res.locals.user = null;
+            res.redirect('/baned');
+        });
+  }
   next();
 });
 
