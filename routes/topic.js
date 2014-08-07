@@ -166,7 +166,6 @@ router.get('/:_id', function(req, res, next) {
                 if(topic){
                     GetHotreplyById(topic.id,function(hotreplys){
                         Collect.find({$and:[queryuser,{topic_id:topic.id}]},function(err,collect){
-                            console.info(author);
                             res.render('topic/index',{
                                 title:topic.title,
                                 topic:topic,
