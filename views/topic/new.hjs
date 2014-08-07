@@ -123,7 +123,8 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js','/js/tip.js'],function()
                            }
                            url='http://'+url;
                        }
-                       editor.setHTML(editor.getText()+'<a target="_blank" href="'+url+'">'+text+'</a>');
+
+                       editor.insertText(editor.getLength()-1,text,'link',url);
                        addlinkpopup.close();
                    });
                })
