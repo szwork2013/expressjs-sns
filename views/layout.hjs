@@ -9,7 +9,12 @@
 {{/title}}
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link href="/css/font-awesome.css" rel="stylesheet">
+{{#isdev}}
 <link href="/css/lion.css" rel="stylesheet">
+{{/isdev}}
+{{^isdev}}
+<link href="/css/min.css" rel="stylesheet">
+{{/isdev}}
 <script src="/js/jquery.min.js"></script>
 <script src="/js/script.js"></script>
 </head>
@@ -20,7 +25,7 @@
             <a href="/">车厘子</a>
         </div>
         <form action="/search" class="fl search-form">
-            <input type="text" id-"q" name="q" class="search" placeholder="避震" /><i class="fa fa-search"></i>
+            <input type="text" id-"q" name="q" class="search" placeholder="搜索" /><i class="fa fa-search"></i>
         </form>
         <ul class="menu">
             {{^user}}
@@ -48,7 +53,7 @@
     &copy;2014 , all rights reserved
     </p>
     <ul class="ft-meta">
-        <li><a href="/about">关于我们</a></li>
+        <li><a href="/about">关于{{gtitle}}</a></li>
         <li><a href="/about/contact">联系我们</a></li>
         <li><a href="/about/suggest">意见反馈</a></li>
         <li><a href="/about/disclaimer">免责声明</a></li>

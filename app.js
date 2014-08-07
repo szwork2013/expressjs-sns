@@ -60,7 +60,9 @@ app.use(function(req, res, next){
 
 //global config
 app.locals = {
-    gtitle:'test'
+    gtitle:'test',
+    gurl:'www.xxx.com',
+    isdev:true
 };
 
 app.use('/user', user);

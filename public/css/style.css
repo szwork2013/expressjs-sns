@@ -214,6 +214,8 @@
     left: 0;
     top: 8px;
     vertical-align: middle; }
+  .history-list li a, .history-list li a:hover {
+    color: #666; }
   .history-list li a:hover {
     text-decoration: underline; }
 

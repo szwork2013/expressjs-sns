@@ -23,5 +23,12 @@
     "nodemailer": "^0.7.0",
     "static-favicon": "~1.0.0",
     "socket.io": "^1.0.6"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-cssmin": "^0.9.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-uglify": "^0.4.0"
   }
 }

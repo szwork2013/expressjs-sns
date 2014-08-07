@@ -154,6 +154,12 @@ router.get('/:_id', function(req, res, next) {
     var islogin  = req.session.user?true:false;
     var queryuser = islogin?{user_id:req.session.user._id}:{};
     Topic.findOneAndUpdate({_id:req.params._id},{$inc:{visit_count:1}},function(err,topic){
+        if(!topic){
+            res.render('error',{
+               message:'抱歉，帖子不存在！'
+            });
+            return;
+        }
         var islike = islogin && topic.liker && topic.liker.some(function (liker) { return liker.liker_id.equals(req.session.user._id);});
         Board.findOne({_id:topic.board_id},function(err,board){
             if(topic){

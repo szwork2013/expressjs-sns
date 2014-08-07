@@ -1,3 +1,11 @@
 <h1>{{ message }}</h1>
 
 <a href="/">返回首页</a>
+
+<script>
+    setTimeout(function(){
+        location.href="/"; 
+    },60000); 
+</script>
+
+
