@@ -169,6 +169,7 @@
 .topic-main{
     h1{
         font-size:18px; 
+        margin-bottom:10px;
     }
     .topic-date{
         font-size:12px;
@@ -228,6 +229,12 @@
                 font-size:14px;
                 margin-right:5px;
             }
+            &.author{
+                padding-left:0px;
+                img{
+                    @include border-radius(5px); 
+                } 
+            }
         }
         .fa-clock-o{
             font-size:16px;
@@ -271,10 +278,9 @@
         background:$action-blue;
         color:#fff;
         border:none;
-        @include border-radius(3px);
+        @include border-radius(5px);
         &:hover{
             background:$action-blue-hover;
-
         }
     }
 }

@@ -152,7 +152,8 @@
     color: #ccc; }
 
 .topic-main h1 {
-  font-size: 18px; }
+  font-size: 18px;
+  margin-bottom: 10px; }
 .topic-main .topic-date {
   font-size: 12px;
   color: #333; }
@@ -201,6 +202,14 @@
     cursor: pointer;
     font-size: 14px;
     margin-right: 5px; }
+  .topic-main .topic-meta li.author {
+    padding-left: 0px; }
+    .topic-main .topic-meta li.author img {
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+      border-radius: 5px; }
 .topic-main .topic-meta .fa-clock-o {
   font-size: 16px; }
 
@@ -236,11 +245,11 @@
     background: #0084ff;
     color: #fff;
     border: none;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-    border-radius: 3px; }
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px; }
     .reply-form button[type=submit]:hover {
       background: #007aeb; }
 

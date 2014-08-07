@@ -160,24 +160,28 @@ router.get('/:_id', function(req, res, next) {
             });
             return;
         }
-        var islike = islogin && topic.liker && topic.liker.some(function (liker) { return liker.liker_id.equals(req.session.user._id);});
-        Board.findOne({_id:topic.board_id},function(err,board){
-            if(topic){
-                GetHotreplyById(topic.id,function(hotreplys){
-                    Collect.find({$and:[queryuser,{topic_id:topic.id}]},function(err,collect){
-                        res.render('topic/index',{
-                            title:topic.title,
-                            topic:topic,
-                            board:board,
-                            hotreplys:hotreplys,
-                            iscollect:islogin && collect.length>0?true:false,
-                            islike:islogin && islike?true:false
-                        })
-                    });
-                })
-            }else{
-                next(); 
-            }
+        User.findOne({_id:topic.author_id},function(err,author){
+            var islike = islogin && topic.liker && topic.liker.some(function (liker) { return liker.liker_id.equals(req.session.user._id);});
+            Board.findOne({_id:topic.board_id},function(err,board){
+                if(topic){
+                    GetHotreplyById(topic.id,function(hotreplys){
+                        Collect.find({$and:[queryuser,{topic_id:topic.id}]},function(err,collect){
+                            console.info(author);
+                            res.render('topic/index',{
+                                title:topic.title,
+                                topic:topic,
+                                author:author,
+                                board:board,
+                                hotreplys:hotreplys,
+                                iscollect:islogin && collect.length>0?true:false,
+                                islike:islogin && islike?true:false
+                            })
+                        });
+                    })
+                }else{
+                    next(); 
+                }
+            });
         });
     });
 });

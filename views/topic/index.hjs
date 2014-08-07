@@ -2,8 +2,14 @@
     <div class="topic-main">
         <h1>{{topic.title}}</h1>
         <ul class="topic-meta">
+            <li class="author">
+                <img src="{{author.avatar_url_s}}" alt="{{author.name}}">
+            </li>
             <li>
-            <span>{{topic.create_date_format}}</span>
+                <span>{{author.name}}：</span>
+            </li>
+            <li class="fr">
+                <span>{{topic.create_date_format}}</span>
             </li>
         </ul>
         <div class="topic-content">
