@@ -4,8 +4,10 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 var RelationSchema = new Schema({
-    from_id: { type: ObjectId },
-    to_id:{ type: ObjectId },
+    user_id: { type: ObjectId },
+    focus_user_id:{ type: ObjectId },
+    car_id:{ type: ObjectId },
+    model_id:{ type: ObjectId },
     create_date: { type: Date, default: Date.now }
 });
 
@@ -15,6 +17,14 @@ RelationSchema.virtual('create_date_format').get(function(){
 
 RelationSchema.virtual('create_date_fromnow').get(function(){
     return moment(this.create_date).lang('zh-cn').fromNow();
+});
+
+RelationSchema.set('toObject',{
+   virtuals: true
+});
+
+RelationSchema.set('toJSON',{
+   virtuals: true
 });
 
 var Relation = mongoose.model('Relation', RelationSchema);

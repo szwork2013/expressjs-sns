@@ -7,6 +7,7 @@ var Topic = mongoose.model('Topic');
 var Board = mongoose.model('Board');
 var Reply = mongoose.model('Reply');
 var Collect = mongoose.model('Collect');
+var Tips = mongoose.model('Tips');
 var formidable = require('formidable');
 var gm = require( 'gm' );
 var path = require( 'path' );
@@ -92,26 +93,51 @@ router.post('/addreply',function(req,res){
         res.json({r:3}); 
         return;
     }
-    new Reply({
+    var sqlstr = {
         content:req.body.replyContent,
         topic_id:req.body.topic_id,
         board_id:req.body.board_id,
         author_id:req.session.user._id
-    }).save(function(err,reply){
-        User.findOneAndUpdate({_id:req.session.user._id},{$inc:{score:1}},function(){
+    };
+    if(req.body.reply_id) sqlstr.reply_id=req.body.reply_id;
+
+    new Reply(sqlstr).save(function(err,reply){
+        User.findOneAndUpdate({_id:req.session.user._id},{$inc:{score:1}},function(err,user){
             Topic.findOneAndUpdate({_id:req.body.topic_id},{$inc:{reply_count:1},last_reply_date:Date.now(),last_reply:req.session.user._id},function(err,topic){
-                var result = BuildReplyItem(reply,req.session.user);
-                if(req.session.user.avatar_url_s){
-                    result.avatar_url_s = req.session.user.avatar_url_s;
+                if(req.body.reply_id){
+                    Reply.findOne({_id:req.body.reply_id},function(err,reply){
+                        new Tips({
+                            type:'2',
+                            user_id:reply.author_id,
+                            topic_id:topic._id,
+                            reply_id:reply._id
+                        }).save(function(err){
+                            if(!err) {
+                                var result = BuildReplyItem(reply,req.session.user);
+                                result.avatar_url_s = req.session.user.avatar_url_s;
+                                if(!err){
+                                    res.json(result);
+                                }
+                            }
+                        });
+                    })
                 }else{
-                    var str = req.session.user.avatar_url;
-                    result.avatar_url_s = [str.slice(0,str.lastIndexOf('.')),"_s",str.slice(str.lastIndexOf('.'))].join("");
+                    new Tips({
+                        type:'1',
+                        user_id:topic.author_id,
+                        topic_id:topic._id
+                    }).save(function(err){
+                        if(!err) {
+                            var result = BuildReplyItem(reply,req.session.user);
+                            result.avatar_url_s = req.session.user.avatar_url_s;
+                            if(!err){
+                                res.json(result);
+                            }
+                        }
+                    });
                 }
-                if(!err){
-                    res.json(result);
-                }
-            })
-        })
+            });
+        });
     });
 });
 

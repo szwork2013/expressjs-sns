@@ -4,8 +4,9 @@
         line-height:45px;
         border-bottom:1px solid #ddd;
     }
-    .collect-list li:last-child{
-        border-bottom:none;
+    .collect-list li .date{
+        color:#999;
+        margin-left:10px;
     }
     .collect-list li .topic-title:hover{
         text-decoration:underline;
@@ -18,7 +19,7 @@
 <ul class="collect-list">
     {{#collects}}
     <li>
-        <a class="topic-title" href="topic/{{topic_id}}">{{topic_title}}</a><a href="javascript:void(0);" class="del fr" tid="{{topic_id}}"><i class="fa fa-trash-o"></i></a>
+    <a class="topic-title" href="topic/{{topic_id}}">{{topic_title}}</a><span class="date">{{create_date_fromnow}}</span><a href="javascript:void(0);" class="del fr" tid="{{topic_id}}"><i class="fa fa-times"></i></a>
     </li>
     {{/collects}}
 </ul>

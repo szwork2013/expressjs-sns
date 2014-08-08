@@ -82,37 +82,12 @@
     <div class="reply-list">
     {{#topic.reply_count}}
         <h2>评论：</h2>
-        <!--<div class="reply-item" rid="{{_id}}">
-            <div class="reply-wrapper">
-                <div class="vote">
-                    <i class="fa fa-chevron-up up"></i>
-                    <b class="vote-num">{{up}}</b>
-                    <i class="fa fa-chevron-down down"></i>
-                </div>
-                <div class="user-avatar">
-                    <img class="user-avatar" src="{{avatar_url_s}}" />
-                </div>
-                <div class="reply-main">
-                    <span class="uname"><a href="/{{author_url}}">{{author_name}}</a></span>
-                    <span class="usignature">{{author_signature}}</span>
-                    <span class="date">{{create_date_format}}</span>
-                    <div class="reply-content">
-                        {{content}}
-                    </div>
-                </div>
-                <div class="reply-meta">
-                    <ul>
-                        <li>
-                        <i class="fa fa-reply"></i>
-                        <a href="javascript:void(0);" class="reply-reply">回复</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>-->
     {{/topic.reply_count}}
     </div>
-
+    <div id="reply-reply-desc" style="display:none;">
+        <i class="fa fa-times fr"></i>
+        回复<span class="rr-name"></span>：<span class="rr-content"></span>
+    </div>
     <form action="/topic/addreply" method="post" class="reply-form" id="reply-form">
         <div class="row">
             <textarea id="replyContent" name="replyContent" placeholder="回复内容...."></textarea>
@@ -147,9 +122,7 @@
                 <span class="uname"><a href="/<%= author_url %>"><%= author_name %></a></span>
                 <% if (author_signature) { %><span class="usignature">，<%=author_signature %></span><% } %>
                 <span class="date"><%= create_date_format %></span>
-                <div class="reply-content">
-                    <%= content %>
-                </div>
+                <div class="reply-content"><%= content %></div>
             </div>
             <div class="reply-meta">
                 <ul>
@@ -235,8 +208,9 @@
 
         //加载留言
         function fetchreplys(){
-            if($(window).scrollTop()+$(window).height()>$('.reply-list').offset().top || $('.reply-list').offset().top < $(window).height()){
-                $(window).off('scroll');
+                var hash = window.location.hash;
+            //if($(window).scrollTop()+$(window).height()>$('.reply-list').offset().top || $('.reply-list').offset().top < $(window).height()){
+                //$(window).off('scroll');
                 $.ajax({
                     url:'getreplys',
                     data:'id={{topic._id}}',
@@ -250,12 +224,14 @@
                             $('.reply-list').append(new EJS({text:$('#reply-pager').html()}).render(re.pager));
                             AddReplyPagerEvent($('.reply-list .pager'));
                         }
+
+                        if($(hash).length>0) $('html, body').animate({ scrollTop: $(hash).offset().top-$('.nav').height() }, 200);
                     }
                 });
-            }
+            //}
         }
         {{#topic.reply_count}}
-            $(window).on('scroll',fetchreplys);
+            //$(window).on('scroll',fetchreplys);
             $(document).ready(fetchreplys);
         {{/topic.reply_count}}
 
@@ -316,13 +292,25 @@
                 })
             });
         }
-        var contentInput = $('#replyContent');
+        var contentInput = $('#replyContent'),rrcontentInput = $('#reply-reply-desc');
 
         function Replytoreply(els){
             els.off('click').click(function(){
+                var item = $(this).parents('.reply-item');
+                var rrcontent = item.find('.reply-content').html();
                 contentInput.focus();
-                contentInput.val('@'+$(this).parents('.reply-item').find('.uname a').html()+'，');
+                contentInput.attr('rrid',item.attr('rid'));
+                contentInput.val('@'+item.find('.uname a').html()+',');
+                rrcontentInput.find('.rr-name').html(item.find('.uname a').html());
+                rrcontentInput.find('.rr-content').html(rrcontent.length>20?rrcontent.substring(0,20)+'...':rrcontent);
+                rrcontentInput.show();
             });
+
+            rrcontentInput.find('.fa-times').click(function(){
+                rrcontentInput.hide();
+                contentInput.removeAttr('rrid');
+                contentInput.val('');
+            })
         }
 
         $('.reply-form button[type="submit"]').click(function(e){
@@ -337,11 +325,13 @@
             }
 
             $script('/js/xss.js',function(){
+
+                var rrstr = contentInput.attr('rrid')?'&reply_id='+contentInput.attr('rrid'):'';
                 
                 $.ajax({
                     url:'addreply',
                     method:'post',
-                    data:'replyContent='+filterXSS($('#replyContent').val())+'&topic_id={{topic._id}}&board_id={{board._id}}',
+                    data:'replyContent='+filterXSS($('#replyContent').val())+'&topic_id={{topic._id}}&board_id={{board._id}}'+rrstr,
                     beforeSend:function(){
                         $('<div class="more"></div>').appendTo($('.reply-list')); 
                     },

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var moment =  require('moment');
 var ObjectId = Schema.ObjectId;
 
 /*
@@ -25,6 +26,14 @@ TipSchema.virtual('create_date_format').get(function(){
 
 TipSchema.virtual('create_date_fromnow').get(function(){
     return moment(this.create_date).lang('zh-cn').fromNow();
+});
+
+TipSchema.set('toObject',{
+   virtuals: true
+});
+
+TipSchema.set('toJSON',{
+   virtuals: true
 });
 
 var TipModel = mongoose.model('Tips', TipSchema);

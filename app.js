@@ -62,7 +62,8 @@ app.use(function(req, res, next){
 app.locals = {
     gtitle:'test',
     gurl:'www.xxx.com',
-    isdev:true
+    isdev:true,
+    jsfolder:'/js',
 };
 
 app.use('/user', user);

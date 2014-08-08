@@ -1,31 +1,24 @@
 <h2>提醒</h2>
-
-
 <div class="tips-list">
     {{#tips.length}}
     <div class="action-bar">
-        <a href="javascript:void(0);" id="read-all">标记全部为已读</a>
-        <a href="javascript:void(0);" id="del-all">删除全部</a>
+        <a href="javascript:void(0);" id="del-all"><i class="fa fa-trash-o"></i>删除全部提醒</a>
     </div>
     {{/tips.length}}
     {{#tips}}
     <div id="{{_id}}" has_read="{{has_read}}" class="tips-item">
-    {{#has_read}}
-    (已读)
-    {{/has_read}}
-    {{^has_read}}
-    (未读)
-    {{/has_read}}
-    {{#topic_id}}
-    <a href="/topic/{{topic_id}}">您的帖子有新回复</a>
-    {{/topic_id}}
     {{#reply_id}}
-    您的留言有新回复
+    （{{create_date_fromnow}}）<a href="/topic/{{topic_id}}#{{reply_id}}">您的留言有新回复</a>
     {{/reply_id}}
+    {{#topic_id}}
+    {{^reply_id}}
+    （{{create_date_fromnow}}）<a href="/topic/{{topic_id}}">您的帖子有新回复</a>
+    {{/reply_id}}
+    {{/topic_id}}
     {{#message_id}}
-    <a href="/message">您有一条新私信</a>
+    （{{create_date_fromnow}}）<a href="/message#{{message_id}}">您有1条新私信</a>
     {{/message_id}}
-    <a href="javascript:void(0);" class="del fr" tipsid="{{_id}}"><i class="fa fa-trash-o"></i></a>
+    <a href="javascript:void(0);" class="del fr" tipsid="{{_id}}"><i class="fa fa-times"></i></a>
     </div>
     {{/tips}}
 </div>
@@ -33,7 +26,6 @@
 <p>暂时没有提醒</p>
 {{/tips}}
 <script>
-
 (function(){
 
         $('.tips-list .tips-item .del').click(function(e){
@@ -70,7 +62,6 @@
             })
         });
 
-
         $('#read-all').click(function(e){
             $.ajax({
                 url:'/tips/readall',
@@ -86,5 +77,4 @@
         });
 
 })()
-
 </script>

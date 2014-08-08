@@ -31,4 +31,12 @@ BoardSchema.virtual('last_reply_fromnow').get(function(){
 BoardSchema.index({create_date:-1});
 BoardSchema.index({last_reply:-1});
 
+BoardSchema.set('toObject',{
+   virtuals: true
+});
+
+BoardSchema.set('toJSON',{
+   virtuals: true
+});
+
 var BoardModel = mongoose.model('Board', BoardSchema);

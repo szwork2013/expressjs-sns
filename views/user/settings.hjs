@@ -121,9 +121,6 @@ $script('/js/validator.js',function(){
             }else if(validator.isNull(validator.trim(urlInput.val())) || !validator.matches(urlInput.val(),url_reg) || !validator.isAlphanumeric(urlInput.val())){
             urlInput.focus();
             return;
-            }else if(validator.isNull(validator.trim(signInput.val()))){
-            signInput.focus();
-            return;
             }else{
                 $.ajax({
                     url:'user/validateurl',

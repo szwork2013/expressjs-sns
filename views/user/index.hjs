@@ -8,7 +8,7 @@
         <img src="{{showuser.avatar_url_l}}" id="current-avatar" class="user-avatar" />
         <h1>{{showuser.name}}</h1>
         {{^isme}}
-        <a href="/relation/{{showuser.url}}/new">
+        <a id="add-relation" href="/relation/{{showuser.url}}/new">
             <i class="fa fa-plus-circle"></i>关注
         </a>
         <a href="/message/{{showuser.url}}/new">
@@ -40,3 +40,21 @@
         </ul>
     </div>
 </div>
+<script>
+    (function(){
+        $('#add-relation').click(function(e){
+            e.preventDefault();
+            $.ajax({
+                url:$(this).attr('href'),
+                method:'post',
+                success:function(r){
+                    $script('/js/tip.js',function(){
+                        if(r.r===1){
+                            Tip('关注+1');
+                        }
+                    })
+                }
+            })
+        });
+    })()
+</script>

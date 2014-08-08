@@ -23,4 +23,12 @@ CarSchema.virtual('update_date_format').get(function(){
     return moment(this.update_date).lang('zh-cn').fromNow();
 });
 
-var CarModel = mongoose.model('Car', CarSchema);
+CarSchema.set('toObject',{
+   virtuals: true
+});
+
+CarSchema.set('toJSON',{
+   virtuals: true
+});
+
+var Car = mongoose.model('Car', CarSchema);

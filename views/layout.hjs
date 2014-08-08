@@ -15,8 +15,8 @@
 {{^isdev}}
 <link href="/css/min.css" rel="stylesheet">
 {{/isdev}}
-<script src="/js/jquery.min.js"></script>
-<script src="/js/script.js"></script>
+<script src="{{jsfolder}}/jquery.min.js"></script>
+<script src="{{jsfolder}}/script.js"></script>
 </head>
 <body>
 <header class="nav">
