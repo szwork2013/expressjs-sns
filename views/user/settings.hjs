@@ -53,11 +53,9 @@
                 <div class="row">
                     <button type="button" class="up-trigger"><i class="fa fa-picture-o"></i>修改头像</button>
                     <input name="avatar" type="file" accept="image/*" id="take-avatar" class="hide"></input>
-                    <img id="show-avatar" src="{{user.avatar_url_l}}" alt="" />
+                    <img id="show-avatar" src="{{user.avatar_url_l}}" alt="" >
                 </div>
-                <div class="row">
-                    <button type="submit">提交</button>
-                </div>
+                <div class="row"><button type="submit">提交</button></div>
             </form>
         </div>
     </div>
@@ -103,8 +101,6 @@ $('#uploadimg-form .up-trigger').click(function(){
 var url_reg = /^(?!(?:settings|collect|message|about|search|channel|topic|user|login|register|car|b)$)/;
 
 $script('/js/validator.js',function(){
-
-
         $('#base-form button[type=submit]').click(function(e){
             e.preventDefault();
             var nameInput = $('input[name="uname"]'),
@@ -123,16 +119,21 @@ $script('/js/validator.js',function(){
             return;
             }else{
                 $.ajax({
-                    url:'user/validateurl',
+                    url:'user/validatebase',
                     method:'post',
-                    data:'url='+urlInput.val(),
+                    data:'url='+urlInput.val()+'&name='+nameInput.val()+'&email='+emailInput.val(),
                     success:function(re){
-                    if(re.r===1){
                         $script('/js/tip.js',function(){
-                            Tip('该域名已经存在'); 
+                            if(re.r===2){
+                                    Tip('该域名已经存在！'); 
+                            }else if(re.r===1){
+                                    Tip('该昵称已经存在！'); 
+                            }else if(re.r===3){
+                                    Tip('该邮箱已经存在！'); 
+                            }else if(re.r===0){
+                                $('#base-form').submit();
+                            }
                         })
-                    }else if(re.r===0)
-                        $('#base-form').submit();
                     }
                 })
             }

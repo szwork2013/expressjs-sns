@@ -33,8 +33,10 @@ router.get('/lastreplys', function(req, res){
         async.eachSeries(replys,function(reply,cb){
             User.findOne({_id:reply.author_id },'name url signature avatar_url avatar_url_s', function(error, user) {
                 if(!user) return cb();
-                n_replys.push(BuildReplyItem(reply,user));
-                cb();
+                BuildReplyItem(reply,user,function(r){
+                    n_replys.push(r)
+                    cb();
+                });
             });
         },function(err){
             res.json({replys:n_replys});
@@ -96,6 +98,7 @@ router.get('/:url/new', function(req, res) {
 
     Board.findOne({url:req.params.url},function(err,board){
         res.render('topic/new',{
+            title:'发布新帖('+board.name+')',
             board:board 
         });
     })
@@ -106,6 +109,7 @@ router.get('/:url/newvote', function(req, res) {
 
     Board.findOne({url:req.params.url},function(err,board){
         res.render('topic/newvote',{
+            title:'新建投票票',
             board:board
         });
     })

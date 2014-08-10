@@ -121,9 +121,8 @@ footer {
     display: inline-block;
     margin-right: 20px; }
   footer .ft-meta {
-    float: right;
     vertical-align: middle;
     display: inline-block; }
     footer .ft-meta li {
       float: left;
-      margin-right: 10px; }
+      margin-right: 15px; }

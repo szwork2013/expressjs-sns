@@ -115,18 +115,51 @@ router.post('/registervalidate', function(req, res) {
     }
 });
 
-router.post('/validateurl', function(req, res) {
-    if(req.session.user && req.body.url === req.session.user.url){
-        res.json({r:0});
-    }else if(req.body.url){
-        User.findOne({url:req.body.url},function(err,user){
-            if(user){
-                res.json({r:1});
+router.post('/validatebase', function(req, res) {
+        var resultjson = {};
+        async.parallel([
+            function(cb){
+                if(req.body.name && req.body.name != req.session.user.name){
+                    User.findOne({name:req.body.name},function(err,username){
+                       if(username) resultjson.un = true;
+                       cb();
+                    })
+                }else{
+                       cb();
+                }
+            },
+            function(cb){
+                if(req.body.url && req.body.url != req.session.user.url){
+                    User.findOne({url:req.body.url},function(err,userurl){
+                       if(userurl) resultjson.uu =  true;
+                       cb();
+                    })
+                }else{
+                       cb();
+                }
+
+            },
+            function(cb){
+                if(req.body.email && req.body.email != req.session.user.email){
+                    User.findOne({email:req.body.email},function(err,useremail){
+                       if(useremail) resultjson.ue =  true;
+                       cb();
+                    })
+                }else{
+                       cb();
+                }
+            }
+        ],function(){
+            if(resultjson.un){
+                res.json({r:1})
+            }else if(resultjson.uu){
+                res.json({r:2});
+            }else if(resultjson.ue){
+                res.json({r:3});
             }else{
                 res.json({r:0});
             }
-        });
-    }
+        })
 });
 
 var smtpTransport = nodemailer.createTransport("SMTP",{

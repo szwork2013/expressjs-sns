@@ -12,8 +12,8 @@ var Relation = mongoose.model('Relation');
 
 
 function GetTopicAndReplyByUser(user,callback){
-    Topic.find({author_id:user._id},null,{sort:{create_date:-1}},function(err,topics){
-        Reply.find({author_id:user._id},null,{sort:{create_date:-1}},function(err,replys){
+    Topic.find({author_id:user._id},null,{sort:{create_date:-1},limit:10},function(err,topics){
+        Reply.find({author_id:user._id},null,{sort:{create_date:-1},limit:10},function(err,replys){
             callback(topics,replys);
         })
     })
@@ -88,14 +88,27 @@ router.get('/:url', function(req, res,next) {
             next();
         }else{
             GetTopicAndReplyByUser(user,function(topics,replys){
-                res.render('./user/index', { 
-                    title: user.name,
-                    user:req.session.user,
-                    showuser:user,
-                    topics:topics,
-                    replys:replys,
-                    isme:req.session.user && user._id.equals(req.session.user._id)?[1]:null
-                });
+                if(req.session.user){
+                    Relation.findOne({$and:[{user_id:req.session.user._id},{focus_user_id:user._id}]},function(err,relation){
+                        res.render('./user/index', { 
+                            title:user.name,
+                            showuser:user,
+                            topics:topics,
+                            replys:replys,
+                            isme:user._id.equals(req.session.user._id)?[1]:null,
+                            isfocus:relation?true:false
+                        });
+                    });
+                }else{
+                        res.render('./user/index', { 
+                            title:user.name,
+                            showuser:user,
+                            topics:topics,
+                            replys:replys,
+                            isme:null,
+                            isfocus:false
+                        });
+                }
             });
         }
     });

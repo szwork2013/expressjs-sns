@@ -22,7 +22,7 @@
 <header class="nav">
     <div class="nav-container">
         <div class="logo">
-            <a href="/">车厘子</a>
+            <a href="/">{{gtitle}}</a>
         </div>
         <form action="/search" class="fl search-form">
             <input type="text" id-"q" name="q" class="search" placeholder="搜索" /><i class="fa fa-search"></i>

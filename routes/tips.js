@@ -9,8 +9,9 @@ var Reply = mongoose.model('Reply');
 var Tips = mongoose.model('Tips');
 
 router.get('/', function(req, res) {
-    Tips.find({user_id:req.session.user._id},function(err,tips){
+    Tips.find({user_id:req.session.user._id},null,{sort:{create_date:-1}},function(err,tips){
         res.render('tips/index',{
+            title:'我的提醒',
             tips:tips
         });
     });

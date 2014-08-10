@@ -28,6 +28,7 @@ function GetCollectTempleteByUserId(res,req,callback){
 router.get('/', function(req, res) {
     GetCollectTempleteByUserId(res,req,function(cols){
         res.render('collect/index',{
+            title:'我的收藏',
             collects:cols
         });
     });
@@ -35,12 +36,10 @@ router.get('/', function(req, res) {
 });
 
 router.post('/new', function(req, res) {
-
     if(!req.session.user){
         res.json({s:3});
         return; 
     }
-
     Collect.findOne({$and:[{topic_id:req.body.topic_id},{user_id:req.session.user._id}]},function(err,col){
         if(col){
             res.json({s:2});

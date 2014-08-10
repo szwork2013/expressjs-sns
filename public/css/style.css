@@ -147,13 +147,21 @@
       -ms-border-radius: 5px;
       -o-border-radius: 5px;
       border-radius: 5px; }
-  .last-reply-list ul li .lastreply-content .time {
-    margin-left: 10px;
-    color: #ccc; }
+  .last-reply-list ul li .lastreply-content {
+    width: 210px; }
+    .last-reply-list ul li .lastreply-content .time {
+      margin-left: 10px;
+      color: #ccc; }
 
 .topic-main h1 {
   font-size: 18px;
   margin-bottom: 10px; }
+  .topic-main h1 .user-avatar img {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px; }
 .topic-main .topic-date {
   font-size: 12px;
   color: #333; }
@@ -202,14 +210,6 @@
     cursor: pointer;
     font-size: 14px;
     margin-right: 5px; }
-  .topic-main .topic-meta li.author {
-    padding-left: 0px; }
-    .topic-main .topic-meta li.author img {
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      -ms-border-radius: 5px;
-      -o-border-radius: 5px;
-      border-radius: 5px; }
 .topic-main .topic-meta .fa-clock-o {
   font-size: 16px; }
 
@@ -228,7 +228,23 @@
   .history-list li a:hover {
     text-decoration: underline; }
 
-#replyContent {
+#reply-reply-desc {
+  line-height: 22px;
+  color: #8a6d3b;
+  background: #fcf8e3;
+  width: 97%;
+  padding: 1%;
+  border: 1px solid #faebcc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
+  #reply-reply-desc .fa {
+    line-height: 22px;
+    cursor: pointer; }
+
+#reply_content {
   width: 97%;
   height: 100px;
   border: 1px solid #ddd;
@@ -280,7 +296,7 @@
       width: 16px;
       text-align: center;
       display: block; }
-  .reply-list .user-avatar img, .hot-reply-list .user-avatar img {
+  .reply-list .user-avatar-wrapper img, .hot-reply-list .user-avatar-wrapper img {
     position: absolute;
     left: 30px;
     top: 0;
@@ -605,7 +621,25 @@
           color: #a1a1a1; }
 
 .message-list li {
-  padding: 10px 0; }
+  padding: 20px 0;
+  border-bottom: 1px solid #ddd; }
+  .message-list li .user-avatar {
+    margin-right: 12px; }
+  .message-list li p {
+    padding-left: 60px; }
+    .message-list li p .date {
+      color: #ccc;
+      margin-left: 10px; }
+
+#new-message-form #new-message {
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  width: 50%;
+  min-height: 100px;
+  overflow-y: scroll;
+  padding: 5px; }
+#new-message-form .btn {
+  margin: 10px 0; }
 
 .tips-list .action-bar {
   margin: 15px 0; }
@@ -637,10 +671,19 @@
   left: 40%;
   line-height: 40px;
   text-align: center;
-  background: #000;
+  background: #fcf8e3;
   opacity: .8;
-  color: #fff;
-  z-index: 10002; }
+  color: #8a6d3b;
+  z-index: 10002;
+  border: 1px solid #faebcc; }
+  .g-tip.success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6; }
+  .g-tip.error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1; }
 
 #show-avatar, #current-avatar {
   width: 128px;
@@ -652,7 +695,7 @@
   border-radius: 5px; }
 
 .user-wrapper {
-  margin: -20px; }
+  margin-top: -20px; }
   .user-wrapper .user-hd {
     width: 100%;
     height: 420px; }
@@ -678,6 +721,21 @@
       background: #fff;
       padding: 5px;
       margin-top: -64px; }
+  .user-wrapper .user-topics, .user-wrapper .user-replys, .user-wrapper .car-list {
+    width: 300px;
+    padding: 10px;
+    float: left; }
+    .user-wrapper .user-topics h2 .fa, .user-wrapper .user-replys h2 .fa, .user-wrapper .car-list h2 .fa {
+      width: 5px;
+      margin-right: 5px; }
+    .user-wrapper .user-topics h3, .user-wrapper .user-replys h3, .user-wrapper .car-list h3 {
+      padding-left: 10px;
+      font-size: 14px; }
+      .user-wrapper .user-topics h3 span, .user-wrapper .user-replys h3 span, .user-wrapper .car-list h3 span {
+        color: #ccc;
+        float: right; }
+    .user-wrapper .user-topics ul li, .user-wrapper .user-replys ul li, .user-wrapper .car-list ul li {
+      margin: 6px 0; }
 
 .popup {
   width: 50%;

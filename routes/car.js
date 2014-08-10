@@ -15,7 +15,9 @@ var fs = require( 'fs' );
 var moment =  require('moment');
 
 router.get('/add',function(req,res){
-    res.render('car/add');
+    res.render('car/add',{
+        title:'添加新车' 
+    });
 });
 
 router.post('/add', function(req, res){
@@ -35,6 +37,7 @@ router.post('/add', function(req, res){
 router.get('/:name',function(req,res){
     Car.findOne({name:req.params.name},function(err,car){
        res.render('car/index',{
+           title:car.name,
            car:car
        });
     })

@@ -21,7 +21,6 @@ var BuildReplyItem = common.BuildReplyItem;
 var replys_pager_num = 20;
 function GetReplyById(id,p,cb){
     Topic.findOne({_id:id},function(err,topic){
-
         q_option ={};
         q_option.limit = replys_pager_num; 
         if(topic.reply_count>replys_pager_num){
@@ -34,8 +33,10 @@ function GetReplyById(id,p,cb){
                 async.eachSeries(replys, function(reply, callback) {
                     User.findOne({_id:reply.author_id },function(error, user) {
                         if(!user) return callback();
-                        replys_o.push(BuildReplyItem(reply,user));
-                        callback();
+                        BuildReplyItem(reply,user,function(r){
+                            replys_o.push(r)
+                            callback();
+                        });
                     });
                 }, function (err) {
                     cb(replys_o,BuildPager(p,topic.reply_count,replys_pager_num));
@@ -53,8 +54,10 @@ function GetHotreplyById(id,cb){
         if(hreplys && hreplys.length>0){
             async.eachSeries(hreplys, function(reply, callback) {
                 User.findOne({_id:reply.author_id },'name url signature avatar_url', function(error, user) {
-                    replys_o.push(BuildReplyItem(reply,user));
-                    callback();
+                    BuildReplyItem(reply,user,function(r){
+                        replys_o.push(r);
+                        callback();
+                    });
                 });
             }, function (err) {
                 cb(replys_o);
@@ -80,8 +83,10 @@ router.post('/addlike',function(req,res){
         }else{
             Topic.update({_id:topic._id},{$push:{liker:{liker_id:req.session.user._id}}},function(err,topic_n){
                 if(!err && topic_n){
-                    res.json({r:1});
-                } 
+                    User.findOneAndUpdate({_id:topic.author_id},{$inc:{score:1}},function(err,user){
+                        if(user) res.json({r:1});
+                    });
+                }
             })
         }
     }); 
@@ -94,7 +99,7 @@ router.post('/addreply',function(req,res){
         return;
     }
     var sqlstr = {
-        content:req.body.replyContent,
+        content:req.body.reply_content,
         topic_id:req.body.topic_id,
         board_id:req.body.board_id,
         author_id:req.session.user._id
@@ -105,19 +110,24 @@ router.post('/addreply',function(req,res){
         User.findOneAndUpdate({_id:req.session.user._id},{$inc:{score:1}},function(err,user){
             Topic.findOneAndUpdate({_id:req.body.topic_id},{$inc:{reply_count:1},last_reply_date:Date.now(),last_reply:req.session.user._id},function(err,topic){
                 if(req.body.reply_id){
-                    Reply.findOne({_id:req.body.reply_id},function(err,reply){
+                    Reply.findOne({_id:req.body.reply_id},function(err,orgreply){
                         new Tips({
                             type:'2',
-                            user_id:reply.author_id,
+                            user_id:orgreply.author_id,
                             topic_id:topic._id,
-                            reply_id:reply._id
+                            reply_id:orgreply._id
                         }).save(function(err){
                             if(!err) {
-                                var result = BuildReplyItem(reply,req.session.user);
-                                result.avatar_url_s = req.session.user.avatar_url_s;
-                                if(!err){
-                                    res.json(result);
-                                }
+                                User.findOne({_id:orgreply.author_id},function(err,replyeduser){
+                                    BuildReplyItem(reply,req.session.user,function(r){
+                                        r.avatar_url_s = req.session.user.avatar_url_s;
+                                        r.replyedcontent = orgreply.content;
+                                        r.replyedauthor = replyeduser.name;
+                                        if(!err){
+                                            res.json(r);
+                                        }
+                                    });
+                                })
                             }
                         });
                     })
@@ -128,11 +138,10 @@ router.post('/addreply',function(req,res){
                         topic_id:topic._id
                     }).save(function(err){
                         if(!err) {
-                            var result = BuildReplyItem(reply,req.session.user);
-                            result.avatar_url_s = req.session.user.avatar_url_s;
-                            if(!err){
-                                res.json(result);
-                            }
+                            BuildReplyItem(reply,req.session.user,function(r){
+                                r.avatar_url_s = req.session.user.avatar_url_s;
+                                res.json(r);
+                            });
                         }
                     });
                 }
@@ -158,7 +167,7 @@ router.post('/upreply',function(req,res){
             Reply.findOneAndUpdate({_id:reply._id},{$inc:{up:req.body.num},$push:{uper:{uper_id:req.session.user._id}}},function(err,reply_updated){
                 if(!err){
                     res.json({r:1,reply:reply_updated});
-                } 
+                }
             })
         }
     }); 

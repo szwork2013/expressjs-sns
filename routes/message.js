@@ -9,7 +9,7 @@ var Tips = mongoose.model('Tips');
 var Message = mongoose.model('Message');
 
 function GetMessageTempleteByUserId(name,id,callback){
-    Message.find({$or:[{to_id:id},{from_id:id}]},function(err,msgs){
+    Message.find({$or:[{to_id:id},{from_id:id}]},null,{sort:{create_date:-1}},function(err,msgs){
         var msg_n = [];
         async.eachSeries(msgs,function(msg,callback){
             User.findOne({_id:msg.from_id},function(err,from_user){
@@ -20,7 +20,7 @@ function GetMessageTempleteByUserId(name,id,callback){
                     msg_temp.from_user_avatar_url = from_user.avatar_url_s;
                     msg_temp.to_user_name = to_user.name;
                     msg_temp.to_user_url = to_user.url;
-                    msg_temp.to_user_avatar_url = to_user.avatar_url_S;
+                    msg_temp.to_user_avatar_url = to_user.avatar_url_s;
                     msg_temp.isowner = from_user.name === name?true:false;
                     msg_n.push(msg_temp);
                     callback();
@@ -35,6 +35,7 @@ function GetMessageTempleteByUserId(name,id,callback){
 router.get('/', function(req, res) {
     GetMessageTempleteByUserId(req.session.user.name,req.session.user._id,function(msgs){
         res.render('message/index',{
+            title:'我的私信',
             msgs:msgs
         });
     })

@@ -31,15 +31,26 @@ function GetTopicTemplete(topics,callback){
         });
 }
 
-function BuildReplyItem(origin,user){
-    if(!user) return;
+function BuildReplyItem(origin,user,cb){
+    if(!user || !cb) return;
     var temp = {};
     temp = origin.toObject();
     temp.author_name = user.name;
     temp.author_signature = user.signature?user.signature:null;
     temp.author_url = user.url;
     temp.avatar_url_s = user.avatar_url_s;
-    return temp;
+    if(temp.reply_id){
+        Reply.findOne({_id:origin._id},function(err,replyed){
+            User.findOne({_id:replyed.author_id},function(err,replyeduser){
+                temp.replyedcontent = replyed.content;
+                temp.replyedauthor = replyeduser.name;
+                cb(temp);
+            })
+        });
+    }else{
+        temp.reply_id=null;
+        cb(temp);
+    } 
 }
 
 function BuildPager(cur,total,pager_num){

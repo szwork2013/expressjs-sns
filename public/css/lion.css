@@ -40,6 +40,9 @@ ul, ol {
 .fa {
   margin-right: 5px; }
 
+.date {
+  color: #ccc; }
+
 .container {
   width: 100%;
   margin: 0 auto; }
@@ -310,27 +313,23 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-.img-rounded {
+.user-avatar {
+  width: 48px;
+  height: 48px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px; }
 
-.img-boedered {
-  display: inline-block;
-  height: auto;
-  max-width: 100%;
-  padding: 4px;
-  background-color: #ffffff;
-  border: 1px solid #dddddd; }
-
-.img-circle {
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  border-radius: 50%; }
+.user-avatar-origin {
+  width: 128px;
+  height: 128px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px; }
 
 fieldset {
   padding: 0;
@@ -414,25 +413,27 @@ textarea {
   height: auto; }
 
 .btn {
-  display: inline-block;
-  margin-bottom: 0;
-  color: #111111;
-  font-size: 12px;
-  height: 20px;
-  line-height: 20px;
-  padding: 2px 3px 2px 3px;
-  background: #dddddd;
+  background: #0084ff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  padding: 10px 15px;
+  color: #fff;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
   border: 0; }
+  .btn:hover {
+    text-decoration: none;
+    background: #007aeb;
+    color: #fff;
+    border: none; }
   .btn:focus {
     outline: thin dotted #333;
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px; }
-  .btn:hover, .btn:focus {
-    color: #111111;
-    text-decoration: none; }
   .btn.disabled, .btn[disabled], fieldset[disabled] .btn {
     cursor: not-allowed; }
 
@@ -559,12 +560,11 @@ footer {
     display: inline-block;
     margin-right: 20px; }
   footer .ft-meta {
-    float: right;
     vertical-align: middle;
     display: inline-block; }
     footer .ft-meta li {
       float: left;
-      margin-right: 10px; }
+      margin-right: 15px; }
 
 .main {
   width: 100%; }
@@ -715,13 +715,21 @@ footer {
       -ms-border-radius: 5px;
       -o-border-radius: 5px;
       border-radius: 5px; }
-  .last-reply-list ul li .lastreply-content .time {
-    margin-left: 10px;
-    color: #ccc; }
+  .last-reply-list ul li .lastreply-content {
+    width: 210px; }
+    .last-reply-list ul li .lastreply-content .time {
+      margin-left: 10px;
+      color: #ccc; }
 
 .topic-main h1 {
   font-size: 18px;
   margin-bottom: 10px; }
+  .topic-main h1 .user-avatar img {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px; }
 .topic-main .topic-date {
   font-size: 12px;
   color: #333; }
@@ -770,14 +778,6 @@ footer {
     cursor: pointer;
     font-size: 14px;
     margin-right: 5px; }
-  .topic-main .topic-meta li.author {
-    padding-left: 0px; }
-    .topic-main .topic-meta li.author img {
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      -ms-border-radius: 5px;
-      -o-border-radius: 5px;
-      border-radius: 5px; }
 .topic-main .topic-meta .fa-clock-o {
   font-size: 16px; }
 
@@ -796,7 +796,23 @@ footer {
   .history-list li a:hover {
     text-decoration: underline; }
 
-#replyContent {
+#reply-reply-desc {
+  line-height: 22px;
+  color: #8a6d3b;
+  background: #fcf8e3;
+  width: 97%;
+  padding: 1%;
+  border: 1px solid #faebcc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
+  #reply-reply-desc .fa {
+    line-height: 22px;
+    cursor: pointer; }
+
+#reply_content {
   width: 97%;
   height: 100px;
   border: 1px solid #ddd;
@@ -848,7 +864,7 @@ footer {
       width: 16px;
       text-align: center;
       display: block; }
-  .reply-list .user-avatar img, .hot-reply-list .user-avatar img {
+  .reply-list .user-avatar-wrapper img, .hot-reply-list .user-avatar-wrapper img {
     position: absolute;
     left: 30px;
     top: 0;
@@ -1173,7 +1189,25 @@ footer {
           color: #a1a1a1; }
 
 .message-list li {
-  padding: 10px 0; }
+  padding: 20px 0;
+  border-bottom: 1px solid #ddd; }
+  .message-list li .user-avatar {
+    margin-right: 12px; }
+  .message-list li p {
+    padding-left: 60px; }
+    .message-list li p .date {
+      color: #ccc;
+      margin-left: 10px; }
+
+#new-message-form #new-message {
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  width: 50%;
+  min-height: 100px;
+  overflow-y: scroll;
+  padding: 5px; }
+#new-message-form .btn {
+  margin: 10px 0; }
 
 .tips-list .action-bar {
   margin: 15px 0; }
@@ -1205,10 +1239,19 @@ footer {
   left: 40%;
   line-height: 40px;
   text-align: center;
-  background: #000;
+  background: #fcf8e3;
   opacity: .8;
-  color: #fff;
-  z-index: 10002; }
+  color: #8a6d3b;
+  z-index: 10002;
+  border: 1px solid #faebcc; }
+  .g-tip.success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6; }
+  .g-tip.error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1; }
 
 #show-avatar, #current-avatar {
   width: 128px;
@@ -1220,7 +1263,7 @@ footer {
   border-radius: 5px; }
 
 .user-wrapper {
-  margin: -20px; }
+  margin-top: -20px; }
   .user-wrapper .user-hd {
     width: 100%;
     height: 420px; }
@@ -1246,6 +1289,21 @@ footer {
       background: #fff;
       padding: 5px;
       margin-top: -64px; }
+  .user-wrapper .user-topics, .user-wrapper .user-replys, .user-wrapper .car-list {
+    width: 300px;
+    padding: 10px;
+    float: left; }
+    .user-wrapper .user-topics h2 .fa, .user-wrapper .user-replys h2 .fa, .user-wrapper .car-list h2 .fa {
+      width: 5px;
+      margin-right: 5px; }
+    .user-wrapper .user-topics h3, .user-wrapper .user-replys h3, .user-wrapper .car-list h3 {
+      padding-left: 10px;
+      font-size: 14px; }
+      .user-wrapper .user-topics h3 span, .user-wrapper .user-replys h3 span, .user-wrapper .car-list h3 span {
+        color: #ccc;
+        float: right; }
+    .user-wrapper .user-topics ul li, .user-wrapper .user-replys ul li, .user-wrapper .car-list ul li {
+      margin: 6px 0; }
 
 .popup {
   width: 50%;

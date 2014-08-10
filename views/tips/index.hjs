@@ -8,15 +8,15 @@
     {{#tips}}
     <div id="{{_id}}" has_read="{{has_read}}" class="tips-item">
     {{#reply_id}}
-    （{{create_date_fromnow}}）<a href="/topic/{{topic_id}}#{{reply_id}}">您的留言有新回复</a>
+    <a href="/topic/{{topic_id}}#{{reply_id}}">您的留言有新回复</a><span class="date">（{{create_date_fromnow}}）</span>
     {{/reply_id}}
     {{#topic_id}}
     {{^reply_id}}
-    （{{create_date_fromnow}}）<a href="/topic/{{topic_id}}">您的帖子有新回复</a>
+    <a href="/topic/{{topic_id}}">您的帖子有新回复</a><span class="date">（{{create_date_fromnow}}）</span>
     {{/reply_id}}
     {{/topic_id}}
     {{#message_id}}
-    （{{create_date_fromnow}}）<a href="/message#{{message_id}}">您有1条新私信</a>
+    <a href="/message#{{message_id}}">您有一条新的私信</a><span class="date">（{{create_date_fromnow}}）</span>
     {{/message_id}}
     <a href="javascript:void(0);" class="del fr" tipsid="{{_id}}"><i class="fa fa-times"></i></a>
     </div>
@@ -38,7 +38,7 @@
                 if(r.r===1){
                     $(self).parent('.tips-item').fadeOut(200,function(){
                         $script('/js/tip.js',function(){
-                            Tip('删除成功');
+                            Tip('删除成功','success');
                         });
                         this.remove();
                     });

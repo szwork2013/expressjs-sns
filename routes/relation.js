@@ -9,14 +9,20 @@ var Relation = mongoose.model('Relation');
 
 router.post('/:url/new',function(req,res){
     User.findOne({url:req.params.url},function(err,user){
-        new Relation({
-            user_id:req.session.user._id,
-            focus_user_id:user._id
-        }).save(function(err,relation){
+        Relation.findOne({$and:[{user_id:req.session.user._id},{focus_user_id:user._id}]},function(err,relation){
             if(relation){
-                res.json({r:1}); 
+                    res.json({r:0});
+            }else{
+                new Relation({
+                    user_id:req.session.user._id,
+                    focus_user_id:user._id
+                }).save(function(err,relation){
+                    if(relation){
+                        res.json({r:1}); 
+                    }
+                });
             }
-        })
+        });
     });
 });
 

@@ -1,14 +1,9 @@
 <div class="content">
     <div class="topic-main">
-        <h1>{{topic.title}}</h1>
+        <h1>{{topic.title}}<a class="user-avatar fr" title="{{author.name}}" href="/{{author.url}}"><img src="{{author.avatar_url_s}}"></a>
+        </h1>
         <ul class="topic-meta">
-            <li class="author">
-                <img src="{{author.avatar_url_s}}" alt="{{author.name}}">
-            </li>
             <li>
-                <span>{{author.name}}：</span>
-            </li>
-            <li class="fr">
                 <span>{{topic.create_date_format}}</span>
             </li>
         </ul>
@@ -57,7 +52,7 @@
                     <b class="vote-num">{{up}}</b>
                     <i class="fa fa-chevron-down down"></i>
                 </div>
-                <div class="user-avatar">
+                <div class="user-avatar-wrapper">
                     <img class="user-avatar" src="{{avatar_url_s}}" />
                 </div>
                 <div class="reply-main">
@@ -90,7 +85,7 @@
     </div>
     <form action="/topic/addreply" method="post" class="reply-form" id="reply-form">
         <div class="row">
-            <textarea id="replyContent" name="replyContent" placeholder="回复内容...."></textarea>
+            <textarea id="reply_content" name="reply_content" placeholder="回复内容...."></textarea>
         </div>
         <div class="row act">
             <button type="submit">顶上去</button> 
@@ -115,14 +110,19 @@
                 <b class="vote-num"><%= up %></b>
                 <i class="fa fa-chevron-down down"></i>
             </div>
-            <div class="user-avatar">
+            <div class="user-avatar-wrapper">
                 <img class="user-avatar" src="<%= avatar_url_s %>" />
             </div>
             <div class="reply-main">
                 <span class="uname"><a href="/<%= author_url %>"><%= author_name %></a></span>
                 <% if (author_signature) { %><span class="usignature">，<%=author_signature %></span><% } %>
                 <span class="date"><%= create_date_format %></span>
-                <div class="reply-content"><%= content %></div>
+                <div class="reply-content">
+                    <span class="rcontent"><%= content %></span>
+                    <% if (reply_id) { %>
+                    <span class="rrdesc"> //@ <%= replyedauthor %>：<%= replyedcontent %></span>
+                    <% } %>
+                </div>
             </div>
             <div class="reply-meta">
                 <ul>
@@ -292,15 +292,13 @@
                 })
             });
         }
-        var contentInput = $('#replyContent'),rrcontentInput = $('#reply-reply-desc');
+        var contentInput = $('#reply_content'),rrcontentInput = $('#reply-reply-desc');
 
         function Replytoreply(els){
             els.off('click').click(function(){
-                var item = $(this).parents('.reply-item');
-                var rrcontent = item.find('.reply-content').html();
+                var item = $(this).parents('.reply-item'),rrcontent = item.find('.reply-content .rcontent').html();
                 contentInput.focus();
                 contentInput.attr('rrid',item.attr('rid'));
-                contentInput.val('@'+item.find('.uname a').html()+',');
                 rrcontentInput.find('.rr-name').html(item.find('.uname a').html());
                 rrcontentInput.find('.rr-content').html(rrcontent.length>20?rrcontent.substring(0,20)+'...':rrcontent);
                 rrcontentInput.show();
@@ -309,45 +307,41 @@
             rrcontentInput.find('.fa-times').click(function(){
                 rrcontentInput.hide();
                 contentInput.removeAttr('rrid');
-                contentInput.val('');
             })
         }
 
         $('.reply-form button[type="submit"]').click(function(e){
-
             e.preventDefault();
-
             if(validator.isNull(validator.trim(contentInput.val()))){
                 $script('/js/tip.js',function(){
                     Tip('请填写内容');
                 });
                 return;
             }
-
-            $script('/js/xss.js',function(){
-
-                var rrstr = contentInput.attr('rrid')?'&reply_id='+contentInput.attr('rrid'):'';
-                
+            $script(['/js/xss.js','/js/tip.js'],function(){
+                var replycontent = filterXSS($('#reply_content').val());
+                var rridstr = contentInput.attr('rrid')?'&reply_id='+contentInput.attr('rrid'):'';
                 $.ajax({
                     url:'addreply',
                     method:'post',
-                    data:'replyContent='+filterXSS($('#replyContent').val())+'&topic_id={{topic._id}}&board_id={{board._id}}'+rrstr,
+                    data:'reply_content='+replycontent+'&topic_id={{topic._id}}&board_id={{board._id}}'+rridstr,
                     beforeSend:function(){
                         $('<div class="more"></div>').appendTo($('.reply-list')); 
                     },
                     success:function(re){
                         if(re.r === 3){
-                            $script('/js/tip.js',function(){
-                                Tip('未登录，请登录');
-                            });
+                            Tip('未登录，请登录');
                             return;
                         }
-                        $('#replyContent').val('');
+                        $('#reply_content').val('');
+                        if($('#reply-reply-desc').css('display')==='block') $('#reply-reply-desc .fa-times').click();
                         $('.reply-list .more').remove();
                         if(!$('.reply-list h2').length) $('.reply-list').append($('<h2>评论：</h2>'));
+                        Tip('回复成功！','success');
                         $('.reply-list').append(new EJS({text:$('#reply-item-temp').html()}).render(re));
                         UpReplyBind($('.reply-list .reply-item').last().find('.up,.down'));
                         Replytoreply($('.reply-list .reply-item').last().find('.reply-reply'));
+
                     }
                 })
             })

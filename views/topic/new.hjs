@@ -180,7 +180,7 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js','/js/tip.js'],function()
                 editor.focus();
                 return;
             }else{
-                Tip('发布成功！',function(){
+                Tip('发布成功！','success',function(){
                    if(localStorage.getItem('temptitle') || localStorage.getItem('tempcontent')){
                        localStorage.setItem('temptitle','');
                        localStorage.setItem('tempcontent','');
