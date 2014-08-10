@@ -59,7 +59,10 @@
                     <span class="uname"><a href="/{{author_url}}">{{author_name}}</a></span>
                     <span class="date">{{create_date_format}}</span>
                     <div class="reply-content">
-                        {{content}}
+                        <span class="rcontent">{{content}}</span>
+                        {{#reply_id}}
+                        <span class="rrdesc"> //@ {{replyedauthor}}：{{replyedcontent}}</span>
+                        {{/reply_id}}
                     </div>
                 </div>
                 <div class="reply-meta">

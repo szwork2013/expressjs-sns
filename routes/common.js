@@ -40,7 +40,7 @@ function BuildReplyItem(origin,user,cb){
     temp.author_url = user.url;
     temp.avatar_url_s = user.avatar_url_s;
     if(temp.reply_id){
-        Reply.findOne({_id:origin._id},function(err,replyed){
+        Reply.findOne({_id:temp.reply_id},function(err,replyed){
             User.findOne({_id:replyed.author_id},function(err,replyeduser){
                 temp.replyedcontent = replyed.content;
                 temp.replyedauthor = replyeduser.name;
