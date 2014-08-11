@@ -98,6 +98,8 @@ $menu-width:30px;
 }
 
 footer{
+    font-size:12px;
+    @include clearfix();
     color:#999;
     a{
         color:#999;
@@ -107,18 +109,14 @@ footer{
     }
     padding:20px 30px;
     border-top:1px solid #e5e5e5;
-    height:30px;
-    line-height:30px;
-    p{
-        display:inline-block; 
-        margin-right:20px;
-    }
+    line-height:24px;
     .ft-meta{
+        @include clearfix();
         vertical-align:middle;
-        display:inline-block; 
+        display:block; 
         li{
             float:left; 
-            margin-right:15px;
+            margin-right:10px;
         } 
     }
 }

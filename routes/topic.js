@@ -208,7 +208,8 @@ router.get('/:_id', function(req, res, next) {
                                 board:board,
                                 hotreplys:hotreplys,
                                 iscollect:islogin && collect.length>0?true:false,
-                                islike:islogin && islike?true:false
+                                islike:islogin && islike?true:false,
+                                liker_count:topic.liker.length
                             })
                         });
                     })

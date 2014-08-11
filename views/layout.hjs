@@ -49,15 +49,13 @@
     </div>
 </section>
 <footer>
-    <p>
-    &copy;2014 , all rights reserved
-    </p>
     <ul class="ft-meta">
         <li><a href="/about">关于{{gtitle}}</a></li>
         <li><a href="/about/contact">联系我们</a></li>
         <li><a href="/about/suggest">意见反馈</a></li>
         <li><a href="/about/disclaimer">免责声明</a></li>
     </ul>
+    <p>Copyright &copy;2014-2014 , all rights reserved xxx.com</p>
 </footer>
 <script>
 {{#user}}

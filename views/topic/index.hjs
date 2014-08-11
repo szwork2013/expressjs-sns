@@ -28,8 +28,11 @@
             <a href="javascript:void(0);" id="addlike"><i class="fa fa-heart"></i>已赞</a>
             {{/islike}}
             {{^islike}}
-            <a href="javascript:void(0);" id="addlike"><i class="fa fa-heart-o"></i>赞，有用</a>
+            <a href="javascript:void(0);" id="addlike"><i class="fa fa-heart-o"></i>赞</a>
             {{/islike}}
+            {{#liker_count}}
+            <span class="liker_count">,已被赞{{liker_count}}次</span>
+            {{/liker_count}}
             </li>
             <li class="share">
             <span>分享到：</span>
