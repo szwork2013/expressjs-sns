@@ -614,7 +614,7 @@ footer {
   display: inline-block;
   height: 40px;
   line-height: 40px;
-  background: #0084ff;
+  background: #30c880;
   color: #fff;
   padding: 0 15px;
   border: none;
@@ -626,9 +626,11 @@ footer {
   border-radius: 3px; }
   .new-post-btn:hover {
     text-decoration: none;
-    background: #007aeb;
+    background: #30c880;
     color: #fff;
     border: none; }
+  .new-post-btn .fa {
+    color: rgba(0, 0, 0, 0.2); }
 
 .filter-bar {
   margin: 10px 0; }
@@ -1017,14 +1019,19 @@ footer {
     padding: 0 10px;
     color: #a1a1a1;
     display: block;
-    height: 30px;
-    line-height: 30px; }
+    height: 38px;
+    line-height: 30px;
+    border-bottom: none; }
     .settings .switch-triggers li a:hover {
       color: #111;
-      border-bottom: 3px solid #111; }
+      height: 34px;
+      border-bottom: 4px solid #111;
+      -webkit-transition: all 0.15s ease-in-out;
+      transition: all 0.15s ease-in-out; }
   .settings .switch-triggers li.cur a {
+    height: 34px;
     color: #111;
-    border-bottom: 3px solid #111; }
+    border-bottom: 4px solid #111; }
 .settings .switch-contents {
   padding: 10px; }
 .settings form .row {

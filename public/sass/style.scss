@@ -49,7 +49,7 @@
     display:inline-block;
     height:40px;
     line-height:40px;
-    background:$action-blue;
+    background:$action-green;
     color:#fff;
     padding:0 15px;
     border:none;
@@ -57,9 +57,12 @@
     @include border-radius(3px);
     &:hover{
         text-decoration:none;
-        background:$action-blue-hover;
+        background:$action-green-hover;
         color:#fff;
         border:none;
+    }
+    .fa{
+        color:rgba(0,0,0,.2); 
     }
 }
 .filter-bar{
@@ -477,17 +480,21 @@
                 padding:0 10px;
                 color:#a1a1a1;
                 display:block;
-                height:30px;
+                height:38px;
                 line-height:30px;
+                border-bottom:none;
                 &:hover{
                     color:#111;
-                    border-bottom:3px solid #111;
+                    height:34px;
+                    border-bottom:4px solid #111;
+                    @include transition(all .15s ease-in-out);
                 }
             }
             &.cur{
                 a{
+                    height:34px;
                     color:#111;
-                    border-bottom:3px solid #111;
+                    border-bottom:4px solid #111;
                 }
             }
         }
