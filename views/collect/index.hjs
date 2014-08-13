@@ -1,6 +1,6 @@
 <style>
     .collect-list li{
-        height:45px; 
+        height:45px;
         line-height:45px;
         border-bottom:1px solid #ddd;
     }

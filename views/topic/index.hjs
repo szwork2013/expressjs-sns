@@ -36,7 +36,7 @@
             </li>
             <li class="share">
             <span>分享到：</span>
-            <a title="分享到微博" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=appkey',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','','{{topic.title}}','http://dev:8080/topic/{{topic._id}}','utf-8'));"><i class="fa fa-weibo"></i></a> 
+            <a title="分享到微博" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=appkey',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','','{{topic.title}}','http://dev:8080/topic/{{topic._id}}','utf-8'));"><i class="fa fa-weibo"></i></a>
             <a title="分享到qq空间" href="javascript:void(0);" onclick="window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?summary={{topic.title}}&url=http://127.0.0.1:8080/topic/{{topic._id}}')" title="分享到QQ空间"><i class="fa fa-qq"></i></a>
             <a href="javascript:void(0);"><i title="分享到微信" class="fa fa-weixin"></i>
             </a>
@@ -94,7 +94,7 @@
             <textarea id="reply_content" name="reply_content" placeholder="回复内容...."></textarea>
         </div>
         <div class="row act">
-            <button type="submit">顶上去</button> 
+            <button type="submit">顶上去</button>
         </div>
     </form>
 </div>
@@ -179,7 +179,7 @@
                     width:zoomwidth
                 });
                 popup_img.find('img').click(function(){
-                    popup_img.close();   
+                    popup_img.close();
                 });
              })
          })
@@ -221,7 +221,7 @@
                     url:'getreplys',
                     data:'id={{topic._id}}',
                     beforeSend:function(){
-                        $('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>').appendTo($('.reply-list')); 
+                        $('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>').appendTo($('.reply-list'));
                     },
                     success:function(re){
                         $('.reply-list .more').remove();
@@ -258,7 +258,7 @@
                     data:'id={{topic._id}}&p='+$(this).attr('p'),
                     beforeSend:function(){
                         $('.reply-list .reply-item,.reply-list .pager').hide();
-                        $('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>').appendTo($('.reply-list')); 
+                        $('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>').appendTo($('.reply-list'));
                     },
                     success:function(re){
                         $('.reply-list .reply-item,.reply-list .pager').remove();
@@ -332,7 +332,7 @@
                     method:'post',
                     data:'reply_content='+replycontent+'&topic_id={{topic._id}}&board_id={{board._id}}'+rridstr,
                     beforeSend:function(){
-                        $('<div class="more"></div>').appendTo($('.reply-list')); 
+                        $('<div class="more"></div>').appendTo($('.reply-list'));
                     },
                     success:function(re){
                         if(re.r === 3){

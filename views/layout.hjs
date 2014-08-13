@@ -64,9 +64,9 @@ $(document).ready(function(){
         url:'/tips/unreadtips',
         success:function(r){
             if(parseInt(r.tipsnum)<1000 && parseInt(r.tipsnum)>0){
-                $('.menu .tips').append($('<span class="tipsnum"></span>').html(r.tipsnum)); 
+                $('.menu .tips').append($('<span class="tipsnum"></span>').html(r.tipsnum));
             }else if(parseInt(r.tipsnum)>999){
-                $('.menu .tips').append($('<span class="tipsnum"></span>').html('999+')); 
+                $('.menu .tips').append($('<span class="tipsnum"></span>').html('999+'));
             }
         }
     })

@@ -187,7 +187,7 @@
             $('.ad1').append($('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>'));
             loadimg('http://cdn.ifanr.cn/wp-content/uploads/2014/06/IXDCifanr-02.jpg',function(img){
                 $('.ad1 .more').remove();
-                $(img).appendTo($('.ad1 a')); 
+                $(img).appendTo($('.ad1 a'));
             })
         });
     });
@@ -201,5 +201,5 @@
     }
 });
 
-})() 
+})()
 </script>

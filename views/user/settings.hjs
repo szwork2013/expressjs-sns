@@ -78,7 +78,7 @@ $('#uploadimg-form .up-trigger').click(function(){
 });
 
 
- //upload avatar 
+ //upload avatar
  $('#take-avatar').change(function(e){
      var files = e.target.files;
      if (files && files.length > 0) {
@@ -125,11 +125,11 @@ $script('/js/validator.js',function(){
                     success:function(re){
                         $script('/js/tip.js',function(){
                             if(re.r===2){
-                                    Tip('该域名已经存在！'); 
+                                    Tip('该域名已经存在！');
                             }else if(re.r===1){
-                                    Tip('该昵称已经存在！'); 
+                                    Tip('该昵称已经存在！');
                             }else if(re.r===3){
-                                    Tip('该邮箱已经存在！'); 
+                                    Tip('该邮箱已经存在！');
                             }else if(re.r===0){
                                 $('#base-form').submit();
                             }

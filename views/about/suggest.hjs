@@ -1,7 +1,7 @@
 <h1>意见反馈</h1>
 <style>
     #postsuggest{
-        font-size:14px; 
+        font-size:14px;
     }
     #postsuggest .row{
         margin:10px 0;
@@ -24,7 +24,7 @@
         border-radius: 3px;
     }
     #postsuggest textarea{
-        height:110px; 
+        height:110px;
     }
     #postsuggest button{
         margin:10px 0 0 112px;

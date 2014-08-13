@@ -77,7 +77,7 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js','/js/tip.js'],function()
                     width:'200px'
                },function(){
                     $(this).find('#upimg-trigger').click(function(){
-                        $('#uploadimg').click();    
+                        $('#uploadimg').click();
                     });
                     $('#uploadimg').change(function(e){
                         var files = e.target.files;
@@ -102,14 +102,14 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js','/js/tip.js'],function()
                         fileReader.readAsDataURL(file);
                         }
                     })
-               });     
+               });
            });
         });
 
         $('.ql-link').click(function(){
             $script('/js/spopup.js',function(){
                var addlinkpopup = $('.addlink-popup').clone().spopup({
-                   width:'300px' 
+                   width:'300px'
                },function(){
                    var self = this;
                    $(this).find('#addlink-btn').click(function(){
@@ -133,10 +133,8 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js','/js/tip.js'],function()
 
 
         $('#uploadimg-form').submit(function(e){
-               e.preventDefault(); 
+               e.preventDefault();
         });
-
-
 
         var titleInput = $('input[name="title"]');
 
@@ -150,7 +148,7 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js','/js/tip.js'],function()
                     localStorage.setItem('tempcontent',editor.getHTML());
                     $('#auto-save').fadeIn().delay(2000).fadeOut();
                 },10000);
-            }    
+            }
         });
         $('#auto-save-trigger').click();
 
@@ -161,12 +159,12 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js','/js/tip.js'],function()
             localStorage.setItem('temptitle','');
             localStorage.setItem('tempcontent','');
         });
-        
+
 
         if(localStorage.getItem('temptitle') || localStorage.getItem('tempcontent')){
             titleInput.val(localStorage.getItem('temptitle'));
             editor.setHTML(localStorage.getItem('tempcontent'));
-        } 
+        }
 
         $('#new-topic button[type="submit"]').click(function(e){
             e.preventDefault();

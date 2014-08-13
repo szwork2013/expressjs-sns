@@ -4,8 +4,6 @@
 
 <script>
     setTimeout(function(){
-        location.href="/"; 
-    },60000); 
+        location.href="/";
+    },60000);
 </script>
-
-
