@@ -32,13 +32,13 @@ router.get('/', function(req, res) {
             collects:cols
         });
     });
-            
+
 });
 
 router.post('/new', function(req, res) {
     if(!req.session.user){
         res.json({s:3});
-        return; 
+        return;
     }
     Collect.findOne({$and:[{topic_id:req.body.topic_id},{user_id:req.session.user._id}]},function(err,col){
         if(col){
@@ -49,7 +49,7 @@ router.post('/new', function(req, res) {
                 topic_id:req.body.topic_id
             }).save(function(err){
                 if(!err){
-                    res.json({s:1}); 
+                    res.json({s:1});
                 }else{
                     res.json({s:0});
                 }
@@ -64,7 +64,7 @@ router.post('/del', function(req, res) {
         topic_id:req.body.topic_id
     },function(err){
         if(!err){
-            res.json({s:1}); 
+            res.json({s:1});
         }else{
             res.json({s:0});
         }

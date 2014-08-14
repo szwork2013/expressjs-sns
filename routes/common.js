@@ -50,7 +50,7 @@ function BuildReplyItem(origin,user,cb){
     }else{
         temp.reply_id=null;
         cb(temp);
-    } 
+    }
 }
 
 function BuildPager(cur,total,pager_num){

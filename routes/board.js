@@ -18,11 +18,11 @@ router.get('/add', function(req, res){
 
 router.post('/add', function(req, res){
     new Board({
-        name:req.body.bname, 
+        name:req.body.bname,
         url:req.body.burl
     }).save(function(err,board){
         if(!err){
-            res.redirect('/b/'+board.url); 
+            res.redirect('/b/'+board.url);
         }
     });
 });
@@ -99,7 +99,7 @@ router.get('/:url/new', function(req, res) {
     Board.findOne({url:req.params.url},function(err,board){
         res.render('topic/new',{
             title:'发布新帖('+board.name+')',
-            board:board 
+            board:board
         });
     })
 });
@@ -128,7 +128,7 @@ router.post('/:url/new', function(req, res) {
                     res.redirect('/b/'+board.url);
                 });
             }
-        }); 
+        });
     })
 });
 

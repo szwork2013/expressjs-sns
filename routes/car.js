@@ -16,20 +16,20 @@ var moment =  require('moment');
 
 router.get('/add',function(req,res){
     res.render('car/add',{
-        title:'添加新车' 
+        title:'添加新车'
     });
 });
 
 router.post('/add', function(req, res){
     new Car({
         brand:req.body.carbrand,
-        type:req.body.cartype, 
+        type:req.body.cartype,
         name:req.body.carname,
         desc:req.body.cardesc,
         owner:req.session.user._id
     }).save(function(err,car){
         if(!err){
-            res.redirect('/car/'+car.name); 
+            res.redirect('/car/'+car.name);
         }
     });
 });

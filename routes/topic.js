@@ -22,14 +22,14 @@ var replys_pager_num = 20;
 function GetReplyById(id,p,cb){
     Topic.findOne({_id:id},function(err,topic){
         q_option ={};
-        q_option.limit = replys_pager_num; 
+        q_option.limit = replys_pager_num;
         if(topic.reply_count>replys_pager_num){
-            q_option.skip = (p-1)*replys_pager_num; 
+            q_option.skip = (p-1)*replys_pager_num;
         }
         q_option.sort={create_date:1};
         Reply.find({topic_id:id},null,q_option,function(err,replys){
             var replys_o = [];
-            if(replys && replys.length>0){ 
+            if(replys && replys.length>0){
                 async.eachSeries(replys, function(reply, callback) {
                     User.findOne({_id:reply.author_id },function(error, user) {
                         if(!user) return callback();
@@ -63,14 +63,14 @@ function GetHotreplyById(id,cb){
                 cb(replys_o);
             });
         }else{
-            cb(replys_o); 
+            cb(replys_o);
         }
     });
 }
 
 router.post('/addlike',function(req,res){
     if(!req.session.user){
-        res.json({r:3}); 
+        res.json({r:3});
         return;
     }
     Topic.findOne({_id:req.body.topic_id},function(err,topic){
@@ -89,13 +89,13 @@ router.post('/addlike',function(req,res){
                 }
             })
         }
-    }); 
+    });
 });
 
 //添加留言api
 router.post('/addreply',function(req,res){
     if(!req.session.user){
-        res.json({r:3}); 
+        res.json({r:3});
         return;
     }
     var sqlstr = {
@@ -153,7 +153,7 @@ router.post('/addreply',function(req,res){
 //upreply
 router.post('/upreply',function(req,res){
     if(!req.session.user){
-        res.json({r:3}); 
+        res.json({r:3});
         return;
     }
     Reply.findOne({_id:req.body.reply_id},function(err,reply){
@@ -170,7 +170,7 @@ router.post('/upreply',function(req,res){
                 }
             })
         }
-    }); 
+    });
 });
 
 //ajax fetch replys
@@ -180,7 +180,7 @@ router.get('/getreplys',function(req,res,next){
         return;
     }
     GetReplyById(req.query.id,req.query.p?req.query.p:1,function(replys,pager){
-        res.json({replys:replys,pager:pager}) 
+        res.json({replys:replys,pager:pager})
     });
 });
 
@@ -214,7 +214,7 @@ router.get('/:_id', function(req, res, next) {
                         });
                     })
                 }else{
-                    next(); 
+                    next();
                 }
             });
         });

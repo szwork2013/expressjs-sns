@@ -22,7 +22,7 @@ router.post('/saveimgsettings', function(req, res) {
             res.redirect('/error');
         }else{
             /*
-             *  check floder  
+             *  check floder
              */
             var target_floder = process.cwd()+'/public/assets/avatar/'+req.session.user._id;
             if(!fs.existsSync(target_floder)){
@@ -50,7 +50,7 @@ router.post('/saveimgsettings', function(req, res) {
                 },
                 function(callback){
                     gm(files.avatar.path).resize(48,48,'!').write(process.cwd()+'/public'+save_url_s,function(){
-                        callback();    
+                        callback();
                     })
                 }
             ],function(){
@@ -74,8 +74,8 @@ router.post('/savebasesettings', function(req, res) {
     newsign = req.body.usign;
     User.findOneAndUpdate({_id:req.session.user._id},{name:newname,email:newemail,url:newurl,signature:newsign},function(err,user){
         if(!err){
-            req.session.user.name = newname; 
-            req.session.user.email = newemail; 
+            req.session.user.name = newname;
+            req.session.user.email = newemail;
             req.session.user.url = newurl;
             req.session.user.signature = newsign;
             res.redirect('/'+newurl);

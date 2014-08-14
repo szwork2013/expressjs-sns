@@ -55,7 +55,7 @@ router.get('/search', function(req, res) {
     Topic.find({title: new RegExp(req.query.q, 'i')},function(err,topics){
         if(topics.length>0){
             GetTopicTemplete(topics,function(rtopics){
-                res.render('list', { 
+                res.render('list', {
                     title: '搜索结果',
                     topics:rtopics,
                     issearch:true
@@ -72,7 +72,7 @@ router.get('/search', function(req, res) {
 router.get('/settings', function(req, res,next) {
     if(req.session.user){
         User.findOne({_id:req.session.user._id},function(err,user){
-            res.render('./user/settings', { 
+            res.render('./user/settings', {
                 title: '账户设置',
                 user:user
             });
@@ -90,7 +90,7 @@ router.get('/:url', function(req, res,next) {
             GetTopicAndReplyByUser(user,function(topics,replys){
                 if(req.session.user){
                     Relation.findOne({$and:[{user_id:req.session.user._id},{focus_user_id:user._id}]},function(err,relation){
-                        res.render('./user/index', { 
+                        res.render('./user/index', {
                             title:user.name,
                             showuser:user,
                             topics:topics,
@@ -100,7 +100,7 @@ router.get('/:url', function(req, res,next) {
                         });
                     });
                 }else{
-                        res.render('./user/index', { 
+                        res.render('./user/index', {
                             title:user.name,
                             showuser:user,
                             topics:topics,
