@@ -1,0 +1,36 @@
+<h1>与{{touser.name}}的私信</h1>
+<div>
+
+    <form action="/message/{{touser.url}}/new" method="post" id="new-message-form">
+        <p>给{{touser.name}}的私信</p>
+        <p>
+        <textarea id="new-message" name="n_message" placeholder="私信内容...."></textarea>
+        </p>
+        <p>
+        <button class="btn" type="submmit">写好了,发送</button>
+        </p>
+    </form>
+
+    <ul class="message-list">
+        {{#msgs}}
+            {{#isowner}}
+                <li id="{{_id}}">
+                <a href="/{{to_user_url}}" class="fl">
+                    <img class="user-avatar" src="{{to_user_avatar_url}}" alt="">
+                </a>
+                <p>我对<a href="/{{to_user_url}}">{{to_user_name}}</a>说:<span class="date">{{create_date_format}}</span></p>
+                <p>{{content}}</p>
+                </li>
+            {{/isowner}}
+            {{^isowner}}
+                <li id="{{_id}}">
+                <a href="/{{to_user_url}}" class="fl">
+                    <img class="user-avatar" src="{{from_user_avatar_url}}" alt="">
+                </a>
+                <p><a href="/{{from_user_url}}">{{from_user_name}}</a>对我说:<span class="date">{{create_date_format}}</span></p>
+                <p>{{content}}</p>
+                </li>
+            {{/isowner}}
+        {{/msgs}}
+    </ul>
+</div>

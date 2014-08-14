@@ -8,7 +8,7 @@ var User = mongoose.model('User');
 var Tips = mongoose.model('Tips');
 var Message = mongoose.model('Message');
 
-function GetMessageTempleteByUserId(name,id,callback){
+function GetAllMessageByOneUserId(id,callback){
     Message.find({$or:[{to_id:id},{from_id:id}]},null,{sort:{create_date:-1}},function(err,msgs){
         var msg_n = [];
         async.eachSeries(msgs,function(msg,callback){
@@ -21,7 +21,32 @@ function GetMessageTempleteByUserId(name,id,callback){
                     msg_temp.to_user_name = to_user.name;
                     msg_temp.to_user_url = to_user.url;
                     msg_temp.to_user_avatar_url = to_user.avatar_url_s;
-                    msg_temp.isowner = from_user.name === name?true:false;
+                    msg_temp.isowner = from_user.id === id?true:false;
+                    msg_n.push(msg_temp);
+                    callback();
+                })
+            })
+        },function(){
+            callback(msg_n);
+        });
+    });
+}
+
+function GetAllMessageByTwoUserId(fromid,toid,callback){
+    Message.find({$or:[{to_id:to_id,from_id:from_id},{from_id:to_id,to_id:from_id}]},null,{sort:{create_date:-1}},function(err,msgs){
+        var msg_n = [];
+        async.eachSeries(msgs,function(msg,callback){
+            User.findOne({_id:msg.from_id},function(err,from_user){
+                User.findOne({_id:msg.to_id},function(err,to_user){
+                    var msg_temp = msg.toObject();
+                    msg_temp.from_user_name = from_user.name;
+                    msg_temp.from_user_url = from_user.url;
+                    msg_temp.from_user_avatar_url = from_user.avatar_url_s;
+                    msg_temp.to_user_name = to_user.name;
+                    msg_temp.to_user_url = to_user.url;
+                    msg_temp.to_user_avatar_url = to_user.avatar_url_s;
+                    msg_temp.isowner = from_user.id === id?true:false;
+                    console.info(msg_temp);
                     msg_n.push(msg_temp);
                     callback();
                 })
@@ -33,11 +58,24 @@ function GetMessageTempleteByUserId(name,id,callback){
 }
 
 router.get('/', function(req, res) {
-    GetMessageTempleteByUserId(req.session.user.name,req.session.user._id,function(msgs){
+    GetAllMessageByOneUserId(req.session.user._id,function(msgs){
         res.render('message/index',{
             title:'我的私信',
             msgs:msgs
         });
+    })
+});
+
+router.get('/:url', function(req, res) {
+    User.findOne({'url':req.params.url},function(err,user){
+        GetAllMessageByTwoUserId(req.session.user._id,user._id,function(msgs){
+                res.render('message/detail', {
+                    title: '与'+user.name+'的对话',
+                    fromuser:req.session.user,
+                    touser:user,
+                    msgs:msgs
+                });
+        })
     })
 });
 
@@ -76,7 +114,6 @@ router.post('/:url/new', function(req, res) {
             });
         }
     });
-
 });
 
 module.exports = router;

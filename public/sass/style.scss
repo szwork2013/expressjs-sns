@@ -19,7 +19,7 @@
     padding:10px;
     .list-wrapper{
         h1{
-            float:left; 
+            float:left;
             margin:0;
             font-size:24px;
         }
@@ -33,14 +33,14 @@
         margin-bottom:20px;
     }
     .ad{
-        width:100%; 
+        width:100%;
         img{
-            max-width:100%; 
+            max-width:100%;
         }
     }
     .back-action{
         a{
-            font-size:14px; 
+            font-size:14px;
         }
     }
 }
@@ -60,9 +60,12 @@
         background:$action-green-hover;
         color:#fff;
         border:none;
+        .fa{
+            color:#fff;
+        }
     }
     .fa{
-        color:rgba(0,0,0,.2); 
+        color:rgba(0,0,0,.2);
     }
 }
 .filter-bar{
@@ -84,10 +87,10 @@
                 color:#999;
                 &:hover,&.active{
                     color:#333;
-                } 
+                }
             }
         }
-    } 
+    }
 }
 .topic-list{
     margin:20px 0;
@@ -104,10 +107,10 @@
             line-height:24px;
             .fa{
                 vertical-align:middle;
-                font-size:14px; 
+                font-size:14px;
             }
             a{
-                color:#111; 
+                color:#111;
                 vertical-align:middle;
             }
         }
@@ -117,7 +120,7 @@
             img{
                 width:48px;
                 height:48px;
-                @include border-radius(5px); 
+                @include border-radius(5px);
             }
         }
         .topic-title{
@@ -145,26 +148,26 @@
     ul{
         li{
             a{
-                color:#666; 
+                color:#666;
             }
-            @include clearfix();    
+            @include clearfix();
             padding-bottom:5px;
             margin-bottom:5px;
             .lastreply-avatar,.lastreply-content{
-                float:left; 
-            } 
+                float:left;
+            }
             .lastreply-avatar{
                 margin-right:10px;
                 img{
-                    @include border-radius(5px); 
+                    @include border-radius(5px);
                 }
             }
             .lastreply-content{
                 width:210px;
                 .time{
                     margin-left:10px;
-                    color:#ccc; 
-                } 
+                    color:#ccc;
+                }
             }
         }
     }
@@ -172,12 +175,12 @@
 //detail
 .topic-main{
     h1{
-        font-size:18px; 
+        font-size:18px;
         margin-bottom:10px;
         .user-avatar{
             img{
-                @include border-radius(5px); 
-            } 
+                @include border-radius(5px);
+            }
         }
     }
     .topic-date{
@@ -188,37 +191,37 @@
         }
         span{
             vertical-align:middle;
-            margin-left:5px; 
+            margin-left:5px;
         }
     }
     .topic-content{
         img{
-            max-width:100%; 
+            max-width:100%;
             &.canzoom{
                 cursor:-webkit-zoom-in;
-                cursor:-moz-zoom-in; 
-                cursor:zoom-in; 
+                cursor:-moz-zoom-in;
+                cursor:zoom-in;
             }
         }
         margin:20px 0;
         font-size:14px;
-        ul { 
+        ul {
             list-style-type: disc;
-            list-style-position: inside; 
+            list-style-position: inside;
         }
-        ol { 
-            list-style-type: decimal; 
-            list-style-position: inside; 
+        ol {
+            list-style-type: decimal;
+            list-style-position: inside;
         }
-        ul ul, ol ul { 
-            list-style-type: circle; 
-            list-style-position: inside; 
-            margin-left: 15px; 
+        ul ul, ol ul {
+            list-style-type: circle;
+            list-style-position: inside;
+            margin-left: 15px;
         }
-        ol ol, ul ol { 
-            list-style-type: lower-latin; 
-            list-style-position: inside; 
-            margin-left: 15px; 
+        ol ol, ul ol {
+            list-style-type: lower-latin;
+            list-style-position: inside;
+            margin-left: 15px;
         }
     }
     .topic-meta{
@@ -226,7 +229,7 @@
         li{
             color:#ccc;
             margin-right:20px;
-            float:left; 
+            float:left;
             a{
                 color:#ccc;
                 &:hover{
@@ -260,7 +263,7 @@
             color:#666;
         }
         a:hover{
-            text-decoration:underline; 
+            text-decoration:underline;
         }
     }
 }
@@ -268,7 +271,7 @@
     line-height:22px;
     .fa{
         line-height:22px;
-        cursor:pointer; 
+        cursor:pointer;
     }
     color:#8a6d3b;
     background:#fcf8e3;
@@ -288,7 +291,7 @@
 .reply-form{
     margin-top:20px;
     button[type=submit]{
-        width:100px; 
+        width:100px;
         height:40px;
         margin-top:20px;
         background:$action-blue;
@@ -307,21 +310,21 @@
     margin-top:20px;
     .reply-item{
         width:100%;
-        @include clearfix(); 
+        @include clearfix();
     }
     .reply-wrapper{
         margin:20px 0;
         position:relative;
     }
     .vote{
-        float:left; 
+        float:left;
         font-size:16px;
         i{
             cursor:pointer;
-            display:block; 
+            display:block;
         }
         i.disable{
-            color:#ccc; 
+            color:#ccc;
         }
         b{
             width:16px;
@@ -333,7 +336,7 @@
         position:absolute;
         left:30px;
         top:0;
-        width:48px; 
+        width:48px;
         height:48px;
         margin-right:1%;
         @include border-radius(5px);
@@ -342,12 +345,12 @@
         padding:0 0 0 90px;
         @include clearfix();
         .uname,.usignature{
-            font-size:16px; 
+            font-size:16px;
             vertical-align:middle;
         }
         .usignature{
-            font-size:14px; 
-            color:#000; 
+            font-size:14px;
+            color:#000;
         }
         .date{
             margin-left:2%;
@@ -357,12 +360,12 @@
     }
     .reply-meta{
         .fa{
-            margin-right:2px; 
+            margin-right:2px;
         }
         a{
-            color:#666; 
+            color:#666;
             &:hover{
-                color:$link-color; 
+                color:$link-color;
             }
         }
         margin-left:90px;
@@ -374,12 +377,12 @@
         margin-left:10%;
         @include border-radius(999em);
         background:none;
-        border:1px solid #a9d8b2;  
+        border:1px solid #a9d8b2;
         padding:10px 20px;
         color:#57ad68;
         outline:0;
         &:hover{
-            border:1px solid #57ad68; 
+            border:1px solid #57ad68;
         }
         span{
             font-size:20px;
@@ -396,11 +399,11 @@
     margin:0 10%;
     text-align:center;
     h1{
-        margin-bottom:30px; 
+        margin-bottom:30px;
     }
     .row{
         position:relative;
-        margin:10px 0 0 0; 
+        margin:10px 0 0 0;
         height:60px;
     }
     input[type="text"],input[type="password"]{
@@ -409,7 +412,7 @@
         width:80%;
         padding:10px 2%;
         font-size:16px;
-        height:20px; 
+        height:20px;
         line-height:20px;
         @include border-radius(3px);
         border:1px solid #ddd;
@@ -446,7 +449,7 @@
             position:absolute;
             top:20px;
             left:50px;
-            height:40px;     
+            height:40px;
             padding:0 30px;
             border:none;
             color:#fff;
@@ -458,7 +461,7 @@
         }
     }
     .loading{
-        position:absolute; 
+        position:absolute;
         left:50px;
         top:50px;
     }
@@ -500,14 +503,14 @@
         }
     }
     .switch-contents{
-        padding:10px; 
+        padding:10px;
     }
     form{
         .row{
-            margin:10px 0; 
+            margin:10px 0;
         }
         label{
-            width:60px; 
+            width:60px;
         }
         input[type=text],input[type=password]{
             @include border-radius(2px);
@@ -517,7 +520,7 @@
             height:32px;
         }
         .wyurl{
-            margin:10px 0; 
+            margin:10px 0;
         }
         button[type=submit],.up-trigger{
             margin:10px 0;
@@ -550,7 +553,7 @@
     font-size:16px;
     input,textarea{
         border:1px solid #ddd;
-        @include border-radius(3px); 
+        @include border-radius(3px);
         margin:10px 0;
     }
     h1 a{
@@ -567,14 +570,14 @@
     #new-topic-content{
         margin:10px 0;
         border:1px solid #ddd;
-        @include border-radius(3px); 
+        @include border-radius(3px);
         width:99%;
         height:450px;
         resize:vertical;
         background:#fff;
     }
     button[type=submit]{
-        width:100px; 
+        width:100px;
         height:40px;
         line-height:40px;
         background:$action-blue;
@@ -587,10 +590,10 @@
         }
     }
     #auto-save-trigger,#clear-save{
-        margin-left:20px; 
+        margin-left:20px;
     }
     #auto-save{
-        display:none; 
+        display:none;
         margin-left:15px;
         .fa{
             margin-right:5px;
@@ -602,11 +605,11 @@
         margin-top:20px;
     }
     .row,p{
-        margin:10px 0; 
+        margin:10px 0;
     }
     label {
         text-align:center;
-        width:80px;    
+        width:80px;
     }
     input[type="text"]{
         width:200px;
@@ -616,7 +619,7 @@
         padding:0 5px;
     }
     button{
-        width:100px; 
+        width:100px;
         height:40px;
         line-height:40px;
         background:$action-green;
@@ -657,31 +660,31 @@
             a{
                 vertical-align:middle;
                 color:#ccc;
-                font-size:28px; 
+                font-size:28px;
                 &.cur{
-                    color:#a1a1a1; 
+                    color:#a1a1a1;
                     cursor:default;
                 }
                 &.nums{
                     font-size:24px;
                 }
                 &:hover{
-                    color:#a1a1a1; 
+                    color:#a1a1a1;
                 }
             }
-        }    
+        }
     }
 }
 //message
 .message-list{
     li{
         .user-avatar{
-            margin-right:12px; 
+            margin-right:12px;
         }
         p{
             padding-left:60px;
             .date{
-                color:#ccc; 
+                color:#ccc;
                 margin-left:10px;
             }
         }
@@ -691,7 +694,7 @@
 }
 #new-message-form{
     #new-message{
-        margin:10px 0; 
+        margin:10px 0;
         border:1px solid #ddd;
         width:50%;
         min-height:100px;
@@ -699,15 +702,15 @@
         padding:5px;
     }
     .btn{
-        margin:10px 0; 
+        margin:10px 0;
     }
 }
 //tips
 .tips-list{
     .action-bar{
-        margin:15px 0; 
+        margin:15px 0;
         a{
-            margin-right:10px;     
+            margin-right:10px;
             padding:10px;
             @include border-radius(5px);
             color:#fff;
@@ -737,12 +740,12 @@
     z-index:10002;
     border:1px solid #faebcc;
     &.success{
-        color:#3c763d; 
+        color:#3c763d;
         background-color:#dff0d8;
         border-color:#d6e9c6;
     }
     &.error{
-        color:#a94442; 
+        color:#a94442;
         background-color:#f2dede;
         border-color:#ebccd1;
     }
@@ -786,7 +789,7 @@
         }
     }
     .user-topics,.user-replys,.car-list{
-        width:300px; 
+        width:300px;
         padding:10px;
         float:left;
         h2{
@@ -800,13 +803,13 @@
             font-size:14px;
             span{
                 color:#ccc;
-                float:right; 
-            } 
+                float:right;
+            }
         }
         ul{
             li{
-                margin:6px 0; 
-            } 
+                margin:6px 0;
+            }
         }
     }
 }
@@ -815,13 +818,13 @@
     img{
         &.canzoomout{
             cursor:-webkit-zoom-out;
-            cursor:-moz-zoom-out; 
-            cursor:zoom-out; 
+            cursor:-moz-zoom-out;
+            cursor:zoom-out;
         }
-        max-width:100%; 
+        max-width:100%;
     }
     .popup-wrapper{
-        position:relative; 
+        position:relative;
     }
     @include clearfix();
     width:50%;
@@ -858,13 +861,13 @@
         height:30px;
     }
     .wycarname{
-        margin:10px 0; 
+        margin:10px 0;
     }
     .row{
-        margin:10px 0; 
+        margin:10px 0;
     }
     label{
-        width:60px; 
+        width:60px;
     }
     input[type=text],input[type=password]{
         @include border-radius(2px);

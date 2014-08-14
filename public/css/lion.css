@@ -626,9 +626,11 @@ footer {
   border-radius: 3px; }
   .new-post-btn:hover {
     text-decoration: none;
-    background: #30c880;
+    background: #29c27e;
     color: #fff;
     border: none; }
+    .new-post-btn:hover .fa {
+      color: #fff; }
   .new-post-btn .fa {
     color: rgba(0, 0, 0, 0.2); }
 
@@ -1161,7 +1163,7 @@ footer {
   -o-border-radius: 3px;
   border-radius: 3px; }
   .addlink-popup button:hover, .uploadimg-popup button:hover {
-    background: #30c880; }
+    background: #29c27e; }
 
 .more {
   margin-top: 20px;
