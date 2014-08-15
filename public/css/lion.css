@@ -13,8 +13,14 @@ body {
     color: #4083aa; }
     body a:hover {
       color: #205f7e; }
-  body h1, body h2, body h3, body h4, body h5, body h6 {
+  body h1, body h2 {
     font-size: 18px;
+    margin: 0; }
+  body h3, body h4 {
+    font-size: 14px;
+    margin: 0; }
+  body h5, body h6 {
+    font-size: 12px;
     margin: 0; }
 
 ::selection {

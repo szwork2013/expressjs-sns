@@ -51,7 +51,6 @@ function GetAllMessageByTwoUserId(m_id,u_id,callback){
                     msg_temp.to_user_url = to_user.url;
                     msg_temp.to_user_avatar_url = to_user.avatar_url_s;
                     msg_temp.isowner = from_user.id === m_id?true:false;
-                    console.info(msg_temp);
                     msg_n.push(msg_temp);
                     callback();
                 })

@@ -17,11 +17,19 @@ body{
         text-decoration:none;
         color:$link-color;
         &:hover{
-            color:$link-hover-color; 
+            color:$link-hover-color;
         }
     }
-    h1,h2,h3,h4,h5,h6{
-        font-size:18px; 
+    h1,h2,{
+        font-size:18px;
+        margin:0;
+    }
+    h3,h4{
+        font-size:14px;
+        margin:0;
+    }
+    h5,h6{
+        font-size:12px;
         margin:0;
     }
 }
@@ -44,12 +52,12 @@ p,ul,ol{
 }
 
 ul,ol{
-   padding-left:0; 
+   padding-left:0;
    list-style:none;
 }
 .list-inline{
     >li{
-        display:inline-block; 
+        display:inline-block;
     }
 }
 .fa{

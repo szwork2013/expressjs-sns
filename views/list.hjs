@@ -9,16 +9,16 @@
             <div class="filter-bar">
                 <ul>
                     <li>
-                    <a href="javascript:void(0);" f="cd">按发布日期</a>
+                        <a href="javascript:void(0);" f="cd">按发布日期</a>
                     </li>
                     <li>
-                    <a href="javascript:void(0);" f="rd">按回复日期</a>
+                        <a href="javascript:void(0);" f="rd">按回复日期</a>
                     </li>
                     <li>
-                    <a href="javascript:void(0);" f="vn">按浏览次数</a>
+                        <a href="javascript:void(0);" f="vn">按浏览次数</a>
                     </li>
                     <li>
-                    <a href="javascript:void(0);" f="rn">按回复次数</a>
+                        <a href="javascript:void(0);" f="rn">按回复次数</a>
                     </li>
                 </ul>
             </div>
@@ -126,6 +126,18 @@
 <script>
 (function (){
 
+    var filter = '{{filter}}';
+
+    if(filter==='' || filter ==='cd'){
+        $('.filter-bar li a[f="cd"]').addClass('active');
+    }else if(filter ==='rd'){
+        $('.filter-bar li a[f="rd"]').addClass('active');
+    }else if( filter ==='vn'){
+        $('.filter-bar li a[f="vn"]').addClass('active');
+    }else if( filter ==='rn'){
+        $('.filter-bar li a[f="rn"]').addClass('active');
+    }
+
     //redirect filter
     var originurl = location.href.indexOf('?')<0?location.href:location.href.substring(0,location.href.indexOf('?'));
     function Updateurl(paramName, paramValue){
@@ -171,7 +183,7 @@
                 success:function(re){
                     $('.last-reply-list ul .more').remove();
                     if($(re.replys).length>0){
-                        $('.last-reply-list ul').append('<h3>最近回复</h3>');
+                        $('.last-reply-list ul').append('<h3>大家都在讨论</h3>');
                         $(re.replys).each(function(k,v){
                             $('.last-reply-list ul').append(new EJS({text:$('#lastreply-item').html()}).render(v));
                         });

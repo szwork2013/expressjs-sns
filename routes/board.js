@@ -83,6 +83,7 @@ router.get('/:url', function(req, res,next) {
                             topics:n_topics,
                             toptopics:t_topics,
                             board:board,
+                            filter:req.query.f,
                             pager:pager===null?null:pager
                         });
                     });
