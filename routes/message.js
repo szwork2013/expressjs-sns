@@ -10,30 +10,35 @@ var Message = mongoose.model('Message');
 
 function GetAllMessageByOneUserId(id,callback){
     Message.find({$or:[{to_id:id},{from_id:id}]},null,{sort:{create_date:-1}},function(err,msgs){
-        var msg_n = [];
+        var msg_n=[],msg_check=[];
         async.eachSeries(msgs,function(msg,callback){
-            User.findOne({_id:msg.from_id},function(err,from_user){
-                User.findOne({_id:msg.to_id},function(err,to_user){
-                    var msg_temp = msg.toObject();
-                    msg_temp.from_user_name = from_user.name;
-                    msg_temp.from_user_url = from_user.url;
-                    msg_temp.from_user_avatar_url = from_user.avatar_url_s;
-                    msg_temp.to_user_name = to_user.name;
-                    msg_temp.to_user_url = to_user.url;
-                    msg_temp.to_user_avatar_url = to_user.avatar_url_s;
-                    msg_temp.isowner = from_user.id === id?true:false;
-                    msg_n.push(msg_temp);
-                    callback();
+            if(msg_check.indexOf(msg.from_id.toString()===id.toString()?msg.to_id.toString():msg.from_id.toString()) > -1){
+                callback();
+            }else{
+                User.findOne({_id:msg.from_id},function(err,from_user){
+                    User.findOne({_id:msg.to_id},function(err,to_user){
+                        var msg_temp = msg.toObject();
+                        msg_temp.from_user_name = from_user.name;
+                        msg_temp.from_user_url = from_user.url;
+                        msg_temp.from_user_avatar_url = from_user.avatar_url_s;
+                        msg_temp.to_user_name = to_user.name;
+                        msg_temp.to_user_url = to_user.url;
+                        msg_temp.to_user_avatar_url = to_user.avatar_url_s;
+                        msg_temp.isowner = from_user.id === id?true:false;
+                        msg_check.push(from_user.id.toString() === id.toString()?to_user.id.toString():from_user.id.toString());
+                        msg_n.push(msg_temp);
+                        callback();
+                    })
                 })
-            })
+            }
         },function(){
             callback(msg_n);
         });
     });
 }
 
-function GetAllMessageByTwoUserId(fromid,toid,callback){
-    Message.find({$or:[{to_id:to_id,from_id:from_id},{from_id:to_id,to_id:from_id}]},null,{sort:{create_date:-1}},function(err,msgs){
+function GetAllMessageByTwoUserId(m_id,u_id,callback){
+    Message.find({$or:[{to_id:u_id,from_id:m_id},{from_id:u_id,to_id:m_id}]},null,{sort:{create_date:-1}},function(err,msgs){
         var msg_n = [];
         async.eachSeries(msgs,function(msg,callback){
             User.findOne({_id:msg.from_id},function(err,from_user){
@@ -45,7 +50,7 @@ function GetAllMessageByTwoUserId(fromid,toid,callback){
                     msg_temp.to_user_name = to_user.name;
                     msg_temp.to_user_url = to_user.url;
                     msg_temp.to_user_avatar_url = to_user.avatar_url_s;
-                    msg_temp.isowner = from_user.id === id?true:false;
+                    msg_temp.isowner = from_user.id === m_id?true:false;
                     console.info(msg_temp);
                     msg_n.push(msg_temp);
                     callback();

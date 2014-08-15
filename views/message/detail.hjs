@@ -1,8 +1,7 @@
+<a href="/message"><i class="fa fa-arrow-left"></i>回到私信列表</a>
 <h1>与{{touser.name}}的私信</h1>
 <div>
-
     <form action="/message/{{touser.url}}/new" method="post" id="new-message-form">
-        <p>给{{touser.name}}的私信</p>
         <p>
         <textarea id="new-message" name="n_message" placeholder="私信内容...."></textarea>
         </p>
