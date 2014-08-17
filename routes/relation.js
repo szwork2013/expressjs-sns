@@ -17,9 +17,7 @@ router.post('/:url/new',function(req,res){
                     user_id:req.session.user._id,
                     focus_user_id:user._id
                 }).save(function(err,relation){
-                    if(relation){
-                        res.json({r:1});
-                    }
+                        if(relation) res.json({r:1});
                 });
             }
         });

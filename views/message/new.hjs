@@ -1,5 +1,5 @@
 <form action="/message/{{touser.url}}/new" method="post" id="new-message-form">
-    <p>给{{touser.name}}的私信</p>
+    <h3>给{{touser.name}}的私信</h3>
     <p>
     <textarea id="new-message" name="n_message" placeholder="私信内容...."></textarea>
     </p>

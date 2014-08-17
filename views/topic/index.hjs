@@ -103,7 +103,7 @@
         <a href="/b/{{board.url}}"><i class="fa fa-arrow-left"></i>返回{{board.name}}</a>
     </div>
     <div class="side-mod">
-        <h3>最近浏览</h3>
+        <h3>刚刚看了</h3>
         <ul class="history-list">
         </ul>
     </div>
@@ -126,7 +126,7 @@
                 <div class="reply-content">
                     <span class="rcontent"><%= content %></span>
                     <% if (reply_id) { %>
-                    <span class="rrdesc"> //@ <%= replyedauthor %>：<%= replyedcontent %></span>
+                    <span class="rrdesc"> //@<%= replyedauthor %>：<%= replyedcontent %></span>
                     <% } %>
                 </div>
             </div>
@@ -302,10 +302,10 @@
 
         function Replytoreply(els){
             els.off('click').click(function(){
-                var item = $(this).parents('.reply-item'),rrcontent = item.find('.reply-content .rcontent').html();
+                var item = $(this).parents('.reply-item'),rrcontent = item.find('.reply-content .rcontent').text();
                 contentInput.focus();
                 contentInput.attr('rrid',item.attr('rid'));
-                rrcontentInput.find('.rr-name').html(item.find('.uname a').html());
+                rrcontentInput.find('.rr-name').html(item.find('.uname a').text());
                 rrcontentInput.find('.rr-content').html(rrcontent.length>20?rrcontent.substring(0,20)+'...':rrcontent);
                 rrcontentInput.show();
             });
@@ -364,7 +364,7 @@
                         if(re.s === 1){
                             $(self).find('.fa').removeClass('fa-star-o').addClass('fa-star');
                             $(self).html('<i class="fa fa-star"></i>已收藏');
-                            Tip('收藏成功');
+                            Tip('收藏成功','success');
                         }else if(re.s===2){
                             Tip('已经收藏');
                         }else if(re.s===3){
@@ -385,7 +385,7 @@
                     $script('/js/tip.js',function(){
                         if(re.r === 1){
                             $(self).html('<i class="fa fa-heart"></i>已赞');
-                            Tip('赞一个成功');
+                            Tip('赞一个成功','success');
                         }else if(re.r===2){
                             Tip('无法自赞');
                         }else if(re.r===0){

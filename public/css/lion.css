@@ -44,6 +44,8 @@ ul, ol {
   display: inline-block; }
 
 .fa {
+  min-width: 16px;
+  font-size: 14px;
   margin-right: 5px; }
 
 .date {
@@ -481,6 +483,7 @@ textarea {
     position: relative;
     width: 50%; }
     .nav .search-form .fa-search {
+      cursor: pointer;
       position: absolute;
       right: 39%;
       color: #000;
@@ -607,6 +610,8 @@ footer {
   width: 280px;
   padding: 10px;
   float: left; }
+  .sidebar h3, .sidebar h4 {
+    margin-bottom: 10px; }
   .sidebar .side-mod {
     margin-bottom: 20px; }
   .sidebar .ad {
@@ -632,7 +637,7 @@ footer {
   border-radius: 3px; }
   .new-post-btn:hover {
     text-decoration: none;
-    background: #29c27e;
+    background: #2cb675;
     color: #fff;
     border: none; }
     .new-post-btn:hover .fa {
@@ -710,8 +715,6 @@ footer {
       width: 15%;
       float: left; }
 
-.last-reply-list h3 {
-  margin-bottom: 10px; }
 .last-reply-list ul li {
   padding-bottom: 5px;
   margin-bottom: 5px; }
@@ -757,7 +760,8 @@ footer {
     margin-left: 5px; }
 .topic-main .topic-content {
   margin: 20px 0;
-  font-size: 14px; }
+  font-size: 14px;
+  color: #333; }
   .topic-main .topic-content img {
     max-width: 100%; }
     .topic-main .topic-content img.canzoom {
@@ -846,11 +850,11 @@ footer {
     background: #0084ff;
     color: #fff;
     border: none;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    border-radius: 5px; }
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px; }
     .reply-form button[type=submit]:hover {
       background: #007aeb; }
 
@@ -910,6 +914,10 @@ footer {
       margin-left: 2%;
       vertical-align: middle;
       color: #ccc; }
+    .reply-list .reply-main .rcontent, .hot-reply-list .reply-main .rcontent {
+      color: #333; }
+    .reply-list .reply-main .rrdesc, .hot-reply-list .reply-main .rrdesc {
+      color: #999; }
   .reply-list .reply-meta, .hot-reply-list .reply-meta {
     margin-left: 90px; }
     .reply-list .reply-meta .fa, .hot-reply-list .reply-meta .fa {
@@ -1045,7 +1053,8 @@ footer {
 .settings form .row {
   margin: 10px 0; }
 .settings form label {
-  width: 60px; }
+  width: 60px;
+  border: none; }
 .settings form input[type=text], .settings form input[type=password] {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -1057,8 +1066,9 @@ footer {
   width: 60%;
   height: 32px; }
 .settings form .wyurl {
+  padding-left: 65px;
   margin: 10px 0; }
-.settings form button[type=submit], .settings form .up-trigger {
+.settings form button[type=submit] {
   margin: 10px 0;
   padding: 10px 20px;
   border: none;
@@ -1070,10 +1080,14 @@ footer {
   background: #0084ff;
   color: #fff;
   text-align: center; }
-.settings form button[type=submit]:hover {
-  background: #007aeb; }
+  .settings form button[type=submit]:hover {
+    background: #007aeb; }
+  .settings form button[type=submit].ml {
+    margin-left: 62px; }
 .settings form .up-trigger {
+  border: none;
   padding: 0px;
+  margin-bottom: 10px;
   background: none;
   color: #30c880;
   outline: 0;
@@ -1169,7 +1183,7 @@ footer {
   -o-border-radius: 3px;
   border-radius: 3px; }
   .addlink-popup button:hover, .uploadimg-popup button:hover {
-    background: #29c27e; }
+    background: #2cb675; }
 
 .more {
   margin-top: 20px;
@@ -1211,7 +1225,6 @@ footer {
           color: #a1a1a1; }
 
 .message-list li {
-  cursor: pointer;
   padding: 20px 0;
   border-bottom: 1px solid #ddd; }
   .message-list li .user-avatar {
@@ -1221,6 +1234,8 @@ footer {
     .message-list li p .date {
       color: #ccc;
       margin-left: 10px; }
+  .message-list li.godetail {
+    cursor: pointer; }
 
 #new-message-form #new-message {
   margin: 10px 0;
@@ -1286,39 +1301,113 @@ footer {
   border-radius: 5px; }
 
 .user-wrapper {
-  margin-top: -20px; }
-  .user-wrapper .user-hd {
-    width: 100%;
-    height: 420px; }
-    .user-wrapper .user-hd .userbg {
-      z-index: 1;
-      height: 420px;
-      overflow: hidden;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 50px;
-      margin: auto 0; }
-      .user-wrapper .user-hd .userbg img {
-        width: 100%; }
-  .user-wrapper .user-detail {
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+  position: relative;
+  margin-top: -49px;
+  overflow: hidden; }
+  .user-wrapper .user-top-bg {
     position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 300px; }
+    .user-wrapper .user-top-bg img.user-avatar {
+      z-index: 10;
+      position: absolute;
+      left: 83px;
+      bottom: -60px;
+      width: 128px;
+      height: 128px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+      border-radius: 5px;
+      border: 5px solid white; }
+  .user-wrapper .user-main {
+    position: relative; }
+  .user-wrapper .user-detail {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    z-index: 10;
+    width: 300px;
+    overflow: hidden;
+    padding-bottom: 10px;
     z-index: 99;
     text-align: center; }
-    .user-wrapper .user-detail img.user-avatar {
-      background: #fff;
-      padding: 5px;
-      margin-top: -64px; }
+    .user-wrapper .user-detail h1 {
+      font-size: 24px; }
+    .user-wrapper .user-detail .focus {
+      margin: 0 auto;
+      width: 250px;
+      padding: 15px 0;
+      margin-top: 15px;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd; }
+      .user-wrapper .user-detail .focus:before, .user-wrapper .user-detail .focus:after {
+        content: "";
+        display: table; }
+      .user-wrapper .user-detail .focus:after {
+        clear: both; }
+      .user-wrapper .user-detail .focus dl {
+        float: left;
+        width: 101px;
+        margin: 0 12px;
+        cursor: pointer; }
+        .user-wrapper .user-detail .focus dl dt, .user-wrapper .user-detail .focus dl dd {
+          margin: 0;
+          color: #333;
+          font-size: 16px;
+          font-weight: bold;
+          text-align: center; }
+  .user-wrapper .user-bar {
+    height: 50px;
+    line-height: 50px;
+    padding-left: 310px;
+    font-size: 16px; }
+    .user-wrapper .user-bar:before, .user-wrapper .user-bar:after {
+      content: "";
+      display: table; }
+    .user-wrapper .user-bar:after {
+      clear: both; }
+    .user-wrapper .user-bar .action {
+      color: #30c880;
+      float: right; }
+      .user-wrapper .user-bar .action a {
+        font-size: 14px;
+        margin-left: 10px;
+        color: #999;
+        border: 1px solid #999;
+        padding: 5px 10px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+        border-radius: 3px; }
+        .user-wrapper .user-bar .action a:hover {
+          color: #fff;
+          background: #999; }
+      .user-wrapper .user-bar .action #add-relation {
+        color: #30c880;
+        border: 1px solid #30c880; }
+        .user-wrapper .user-bar .action #add-relation:hover {
+          color: #fff;
+          background: #30c880; }
   .user-wrapper .user-topics, .user-wrapper .user-replys, .user-wrapper .car-list {
-    width: 300px;
+    margin-left: 300px;
+    width: 680px;
     padding: 10px;
     float: left; }
-    .user-wrapper .user-topics h2 .fa, .user-wrapper .user-replys h2 .fa, .user-wrapper .car-list h2 .fa {
-      width: 5px;
-      margin-right: 5px; }
+    .user-wrapper .user-topics a, .user-wrapper .user-replys a, .user-wrapper .car-list a {
+      color: #333; }
+      .user-wrapper .user-topics a:hover, .user-wrapper .user-replys a:hover, .user-wrapper .car-list a:hover {
+        text-decoration: underline; }
+    .user-wrapper .user-topics h2, .user-wrapper .user-replys h2, .user-wrapper .car-list h2 {
+      color: #111;
+      padding-left: 10px;
+      border-left: 5px solid #fc5140; }
+      .user-wrapper .user-topics h2 .fa, .user-wrapper .user-replys h2 .fa, .user-wrapper .car-list h2 .fa {
+        width: 5px;
+        margin-right: 5px; }
     .user-wrapper .user-topics h3, .user-wrapper .user-replys h3, .user-wrapper .car-list h3 {
       padding-left: 10px;
       font-size: 14px; }

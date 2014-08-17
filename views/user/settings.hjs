@@ -16,7 +16,7 @@
                 <div class="row">
                     <label for="uurl">个性网址</label>
                     <input type="text" name="uurl" id="uurl" value="{{user.url}}">
-                    <p class="wyurl"><label></label>{{gurl}}/<span id="showurl">{{user.url}}</span></p>
+                    <p class="wyurl">{{gurl}}/<span id="showurl">{{user.url}}</span></p>
                 </div>
 
                 <div class="row">
@@ -29,7 +29,7 @@
                     <input type="text" name="usign" id="usign" value="{{user.signature}}">
                 </div>
                 <div class="row">
-                    <button type="submit">提交</button>
+                    <button type="submit" class="ml">提交</button>
                 </div>
             </form>
         </div>
@@ -44,7 +44,7 @@
                     <input type="password" name="newupwd" id="newupwd" value="">
                 </div>
                 <div class="row">
-                    <button type="submit">提交</button>
+                    <button type="submit" class="ml">提交</button>
                 </div>
             </form>
         </div>

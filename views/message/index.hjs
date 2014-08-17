@@ -3,7 +3,7 @@
     <ul class="message-list">
         {{#msgs}}
             {{#isowner}}
-                <li id="{{_id}}" to_url="/message/{{to_user_url}}">
+                <li id="{{_id}}" to_url="/message/{{to_user_url}}" class="godetail">
                     <a href="/{{to_user_url}}" class="fl">
                         <img class="user-avatar" src="{{to_user_avatar_url}}" alt="">
                     </a>

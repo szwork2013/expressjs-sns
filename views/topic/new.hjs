@@ -27,7 +27,7 @@
         <button type="submit">发出去</button>
         <a id="clear-save" href="javascript:void(0);"><i class="fa fa-trash-o"></i>清空保存</a>
         <input type="checkbox" id="auto-save-trigger">自动保存
-        <span id="auto-save"><i class="fa fa-circle-o-notch fa-spin"></i>自动保存中...</span>
+        <span id="auto-save">自动保存中...</span>
     </div>
 </form>
 
@@ -118,7 +118,7 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js','/js/tip.js'],function()
 
                        if(!validator.isURL(url,{require_protocol: true})){
                            if(!validator.isURL(url)){
-                               Tip('请输入正确的链接地址！');
+                               Tip('请输入正确的链接地址！','error');
                                return;
                            }
                            url='http://'+url;

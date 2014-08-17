@@ -1,74 +1,93 @@
 <div class="user-wrapper">
-    <div class="user-hd">
-        <div class="userbg">
-            <img src="{{showuser.userbg_url}}">
-        </div>
+    <div class="user-top-bg">
+        <img src="{{showuser.userbg_url}}" alt="" class="user-top-bg">
+        <img src="{{showuser.avatar_url_l}}" class="user-avatar" />
     </div>
-    <div class="user-detail">
-        <img src="{{showuser.avatar_url_l}}" id="current-avatar" class="user-avatar" />
-        <h1>{{showuser.name}}</h1>
-        {{^isme}}
+    <div class="user-bar">
+        <div class="action">
+            {{#isme}}
+            <a href="javascript:void(0);">更换背景</a>
+            {{/isme}}
+            {{^isme}}
             {{#isfocus}}
-                <i class="fa fa-check"></i>已关注
+            <i class="fa fa-check"></i>已关注
             {{/isfocus}}
             {{^isfocus}}
-                <a id="add-relation" href="/relation/{{showuser.url}}/new">
-                    <i class="fa fa-plus-circle"></i>关注
-                </a>
+            <a id="add-relation" href="/relation/{{showuser.url}}/new">
+                <i class="fa fa-plus"></i>关注
+            </a>
             {{/isfocus}}
             <a href="/message/{{showuser.url}}/new">
-                <i class="fa fa-pencil-square-o"></i>私信
+                <i class="fa fa-envelope-o"></i>私信
             </a>
-        {{/isme}}
+            {{/isme}}
+        </div>
     </div>
-    <div class="car-list">
-        <a href="/car/add">添加汽车</a>
-    </div>
-    <div class="user-topics">
-        <h2><i class="fa fa-ellipsis-v"></i>最近发表过的帖子</h2>
-        <ul class="user-topic-list">
-        {{#topics}}
-            <li>
+    <div class="user-main">
+        <div class="user-detail">
+            <h1>{{showuser.name}}</h1>
+            <h3>{{showuser.signature}}</h3>
+            <p>{{showuser.desc}}</p>
+            <div class="focus">
+                <dl>
+                    <dt>关注</dt>
+                    <dd>{{showuser.following.length}}</dd>
+                </dl>
+                <dl>
+                    <dt>被关注</dt>
+                    <dd>{{showuser.follower.length}}</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="car-list">
+            <a href="/car/add"><i class="fa fa-plus"></i>添加汽车</a>
+        </div>
+        <div class="user-topics">
+            <h2>最近发表过的帖子</h2>
+            <ul class="user-topic-list">
+                {{#topics}}
+                <li>
                 <h3>
                     <a href="/topic/{{_id}}">{{title}}</a>
                     <span>{{create_date_fromnow}}</span>
                 </h3>
-            </li>
-        {{/topics}}
-        </ul>
-    </div>
-    <div class="user-replys">
-        <h2><i class="fa fa-ellipsis-v"></i>最近回复过的帖子</h2>
-        <ul class="user-reply-list">
-            {{#replys}}
-            <li>
-            <h3>
-                <a href="/topic/{{topic_id}}#{{_id}}">{{content}}</a>
-                <span>{{create_date_format}}</span>
-            </h3>
-            </li>
-            {{/replys}}
-        </ul>
+                </li>
+                {{/topics}}
+            </ul>
+        </div>
+        <div class="user-replys">
+            <h2>最近回复过的帖子</h2>
+            <ul class="user-reply-list">
+                {{#replys}}
+                <li>
+                <h3>
+                    <a href="/topic/{{topic_id}}#{{_id}}">{{content}}</a>
+                    <span>{{create_date_format}}</span>
+                </h3>
+                </li>
+                {{/replys}}
+            </ul>
+        </div>
     </div>
 </div>
 <script>
-    (function(){
-        $('#add-relation').click(function(e){
-            e.preventDefault();
-            $.ajax({
-                url:$(this).attr('href'),
-                method:'post',
-                success:function(r){
-                    $script('/js/tip.js',function(){
-                        if(r.r===1){
-                            Tip('关注+1');
-                            $(e.target).html('<i class="fa fa-check"></i>已关注');
-                        }else if(r.r===0){
-                            Tip('已经关注');
-                        }
-                    })
-                }
-            })
-        });
-    })()
+(function(){
+ $('#add-relation').click(function(e){
+     e.preventDefault();
+     $.ajax({
+url:$(this).attr('href'),
+method:'post',
+success:function(r){
+$script('/js/tip.js',function(){
+    if(r.r===1){
+    Tip('关注+1');
+    $(e.target).html('<i class="fa fa-check"></i>已关注');
+    }else if(r.r===0){
+    Tip('已经关注');
+    }
+    })
+}
+})
+     });
+ })()
 </script>

@@ -58,8 +58,8 @@
     <p>Copyright &copy;2014-2014 , all rights reserved xxx.com</p>
 </footer>
 <script>
-{{#user}}
 $(document).ready(function(){
+    {{#user}}
     $.ajax({
         url:'/tips/unreadtips',
         success:function(r){
@@ -69,9 +69,20 @@ $(document).ready(function(){
                 $('.menu .tips').append($('<span class="tipsnum"></span>').html('999+'));
             }
         }
-    })
+    });
+    {{/user}}
+    $('.search-form').submit(function(e){
+           if($(this).find('.search').val()===''){
+               e.preventDefault(); 
+               $script('/js/tip.js',function(){
+                    Tip('请输入搜索内容','error'); 
+               }); 
+           } 
+    });
+    $('.search-form .fa-search').click(function(){
+         $('.search-form').submit();
+    });
 })
-{{/user}}
 </script>
 </body>
 </html>

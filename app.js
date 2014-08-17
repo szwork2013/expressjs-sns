@@ -60,7 +60,7 @@ app.use(function(req, res, next){
 
 //global config
 app.locals = {
-    gtitle:'车盘',
+    gtitle:'风车',
     gurl:'www.xxx.com',
     isdev:true,
     jsfolder:'/js',

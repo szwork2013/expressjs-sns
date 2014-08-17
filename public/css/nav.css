@@ -36,6 +36,7 @@
     position: relative;
     width: 50%; }
     .nav .search-form .fa-search {
+      cursor: pointer;
       position: absolute;
       right: 39%;
       color: #000;

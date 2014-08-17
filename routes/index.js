@@ -48,7 +48,9 @@ router.get('/logout', function(req, res) {
 });
 
 router.get('/baned', function(req, res) {
-    res.render('user/baned');
+    res.render('error',{
+        message:'抱歉，您的账号已经被注销！' 
+    });
 });
 
 router.get('/search', function(req, res) {
