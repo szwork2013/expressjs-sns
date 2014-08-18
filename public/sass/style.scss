@@ -30,7 +30,7 @@
     padding:10px;
     float:left;
     h3,h4{
-        margin-bottom:10px; 
+        margin-bottom:10px;
     }
     .side-mod{
         margin-bottom:20px;
@@ -359,10 +359,10 @@
             color:#ccc;
         }
         .rcontent{
-            color:#333; 
+            color:#333;
         }
         .rrdesc{
-            color:#999; 
+            color:#999;
         }
     }
     .reply-meta{
@@ -543,7 +543,7 @@
                 background:$action-blue-hover;
             }
             &.ml{
-                margin-left:62px; 
+                margin-left:62px;
             }
         }
         .up-trigger{
@@ -674,7 +674,9 @@
             a{
                 vertical-align:middle;
                 color:#ccc;
-                font-size:28px;
+                .fa{
+                    font-size:28px;
+                }
                 &.cur{
                     color:#a1a1a1;
                     cursor:default;
@@ -705,7 +707,7 @@
         padding:20px 0;
         border-bottom:1px solid #ddd;
         &.godetail{
-            cursor:pointer; 
+            cursor:pointer;
         }
     }
 }
@@ -790,7 +792,7 @@
             width:128px;
             height:128px;
             @include border-radius(5px);
-            border:5px solid #fff 
+            border:5px solid #fff
         }
     }
     .user-main{
@@ -818,7 +820,7 @@
             border-top:1px solid #ddd;
             border-bottom:1px solid #ddd;
             dl{
-                float:left; 
+                float:left;
                 width:101px;
                 margin: 0 12px;
                 cursor:pointer;
@@ -827,19 +829,19 @@
                     color:#333;
                     font-size:16px;
                     font-weight:bold;
-                    text-align:center; 
+                    text-align:center;
                 }
             }
         }
     }
     .user-bar{
         @include clearfix();
-        height:50px; 
+        height:50px;
         line-height:50px;
         padding-left:310px;
         font-size:16px;
         .action{
-            color:$action-green; 
+            color:$action-green;
             a{
                 font-size:14px;
                 margin-left:10px;
@@ -848,7 +850,7 @@
                 padding:5px 10px;
                 @include border-radius(3px);
                 &:hover{
-                    color:#fff; 
+                    color:#fff;
                     background:#999;
                 }
             }
@@ -869,7 +871,7 @@
         padding:10px;
         float:left;
         a{
-            color:#333; 
+            color:#333;
             &:hover{
                 text-decoration:underline;
             }

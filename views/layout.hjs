@@ -73,11 +73,11 @@ $(document).ready(function(){
     {{/user}}
     $('.search-form').submit(function(e){
            if($(this).find('.search').val()===''){
-               e.preventDefault(); 
+               e.preventDefault();
                $script('/js/tip.js',function(){
-                    Tip('请输入搜索内容','error'); 
-               }); 
-           } 
+                    Tip('请输入搜索内容','error');
+               });
+           }
     });
     $('.search-form .fa-search').click(function(){
          $('.search-form').submit();

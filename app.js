@@ -6,9 +6,11 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var compress = require('compression');
 var session = require('express-session');
 var partials = require('express-partials');
 var formidable = require('formidable');
+
 
 var user = require('./routes/user');
 var board = require('./routes/board');
@@ -27,7 +29,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hjs');
 app.use(partials());
-
+app.use(compress());
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());

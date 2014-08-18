@@ -630,8 +630,9 @@
       margin: 0 2px; }
       .pager .pager-wrapper li a {
         vertical-align: middle;
-        color: #ccc;
-        font-size: 28px; }
+        color: #ccc; }
+        .pager .pager-wrapper li a .fa {
+          font-size: 28px; }
         .pager .pager-wrapper li a.cur {
           color: #a1a1a1;
           cursor: default; }

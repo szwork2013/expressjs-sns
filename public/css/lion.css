@@ -46,7 +46,8 @@ ul, ol {
 .fa {
   min-width: 16px;
   font-size: 14px;
-  margin-right: 5px; }
+  margin-right: 5px;
+  vertical-align: middle; }
 
 .date {
   color: #ccc; }
@@ -1214,8 +1215,9 @@ footer {
       margin: 0 2px; }
       .pager .pager-wrapper li a {
         vertical-align: middle;
-        color: #ccc;
-        font-size: 28px; }
+        color: #ccc; }
+        .pager .pager-wrapper li a .fa {
+          font-size: 28px; }
         .pager .pager-wrapper li a.cur {
           color: #a1a1a1;
           cursor: default; }
