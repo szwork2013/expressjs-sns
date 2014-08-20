@@ -29,7 +29,7 @@
                     <input type="text" name="usign" id="usign" value="{{user.signature}}">
                 </div>
                 <div class="row">
-                    <button type="submit" class="ml">提交</button>
+                    <button type="submit" class="ml">保存</button>
                 </div>
             </form>
         </div>
@@ -44,18 +44,18 @@
                     <input type="password" name="newupwd" id="newupwd" value="">
                 </div>
                 <div class="row">
-                    <button type="submit" class="ml">提交</button>
+                    <button type="submit" class="ml">保存</button>
                 </div>
             </form>
         </div>
         <div class="switch-content" style="display:none;">
             <form action="/user/saveimgsettings" enctype="multipart/form-data" method="post" id="uploadimg-form">
                 <div class="row">
-                    <button type="button" class="up-trigger"><i class="fa fa-picture-o"></i>修改头像</button>
+                    <button type="button" class="up-trigger"><i class="fa fa-cloud-upload"></i>修改头像</button>
                     <input name="avatar" type="file" accept="image/*" id="take-avatar" class="hide"></input>
                     <img id="show-avatar" src="{{user.avatar_url_l}}" alt="" >
                 </div>
-                <div class="row"><button type="submit">提交</button></div>
+                <div class="row"><button type="submit">保存</button></div>
             </form>
         </div>
     </div>

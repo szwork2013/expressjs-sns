@@ -550,6 +550,7 @@ textarea {
         width: 32px;
         height: 32px;
         margin-right: 10px;
+        background: #fff;
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
         -ms-border-radius: 3px;
@@ -695,6 +696,7 @@ footer {
       width: 10%;
       float: left; }
       .topic-list li .author-avatar img {
+        background: #fff;
         width: 48px;
         height: 48px;
         -webkit-border-radius: 5px;
@@ -731,6 +733,9 @@ footer {
   .last-reply-list ul li .lastreply-avatar {
     margin-right: 10px; }
     .last-reply-list ul li .lastreply-avatar img {
+      background: #fff;
+      width: 48px;
+      height: 48px;
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
       -ms-border-radius: 5px;
@@ -746,6 +751,9 @@ footer {
   font-size: 18px;
   margin-bottom: 10px; }
   .topic-main h1 .user-avatar img {
+    background: #fff;
+    width: 48px;
+    height: 48px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
@@ -1086,13 +1094,22 @@ footer {
   .settings form button[type=submit].ml {
     margin-left: 62px; }
 .settings form .up-trigger {
+  height: 30px;
+  line-height: 30px;
   border: none;
-  padding: 0px;
+  padding: 0px 10px;
   margin-bottom: 10px;
-  background: none;
-  color: #30c880;
+  background: #30c880;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  color: #fff;
   outline: 0;
   display: block; }
+  .settings form .up-trigger .fa {
+    font-size: 16px; }
 .settings #showurl {
   color: #cc181e; }
 
@@ -1293,9 +1310,8 @@ footer {
     background-color: #f2dede;
     border-color: #ebccd1; }
 
-#show-avatar, #current-avatar {
-  width: 128px;
-  height: 128px;
+.user-avatar {
+  background: #fff;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -1402,7 +1418,7 @@ footer {
     .user-wrapper .user-topics a, .user-wrapper .user-replys a, .user-wrapper .car-list a {
       color: #333; }
       .user-wrapper .user-topics a:hover, .user-wrapper .user-replys a:hover, .user-wrapper .car-list a:hover {
-        text-decoration: underline; }
+        color: #fc5140; }
     .user-wrapper .user-topics h2, .user-wrapper .user-replys h2, .user-wrapper .car-list h2 {
       color: #111;
       padding-left: 10px;

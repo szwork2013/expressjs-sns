@@ -121,6 +121,7 @@
             width:10%;
             float:left;
             img{
+                background:#fff;
                 width:48px;
                 height:48px;
                 @include border-radius(5px);
@@ -159,6 +160,9 @@
             .lastreply-avatar{
                 margin-right:10px;
                 img{
+                    background:#fff;
+                    width:48px;
+                    height:48px;
                     @include border-radius(5px);
                 }
             }
@@ -179,6 +183,9 @@
         margin-bottom:10px;
         .user-avatar{
             img{
+                background:#fff;
+                width:48px;
+                height:48px;
                 @include border-radius(5px);
             }
         }
@@ -547,11 +554,17 @@
             }
         }
         .up-trigger{
+            .fa{
+                font-size:16px;
+            }
+            height:30px;
+            line-height:30px;
             border:none;
-            padding:0px;
+            padding:0px 10px;
             margin-bottom:10px;
-            background:none;
-            color:$action-green;
+            background:$action-green;
+            @include border-radius(3px);
+            color:#fff;
             outline:0;
             display:block;
         }
@@ -770,9 +783,8 @@
     }
 }
 //user index
-#show-avatar,#current-avatar{
-    width:128px;
-    height:128px;
+.user-avatar{
+    background:#fff;
     @include border-radius(5px);
 }
 .user-wrapper{
@@ -873,7 +885,7 @@
         a{
             color:#333;
             &:hover{
-                text-decoration:underline;
+                color:$action-red;
             }
         }
         h2{
