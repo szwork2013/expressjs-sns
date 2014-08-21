@@ -46,8 +46,8 @@ ul, ol {
 .fa {
   min-width: 16px;
   font-size: 14px;
-  margin-right: 5px;
-  vertical-align: middle; }
+  margin-right: 2px;
+  vertical-align: baseline; }
 
 .date {
   color: #ccc; }

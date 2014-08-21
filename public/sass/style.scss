@@ -313,6 +313,10 @@
 }
 .reply-list h2,.hot-reply-list h2{
     border-bottom:1px solid $border-color;
+    .fa{
+        font-size:18px; 
+        margin-right:5px;
+    }
 }
 .reply-list,.hot-reply-list{
     margin-top:20px;
@@ -358,7 +362,7 @@
         }
         .usignature{
             font-size:14px;
-            color:#000;
+            color:#ccc;
         }
         .date{
             margin-left:2%;
@@ -369,7 +373,7 @@
             color:#333;
         }
         .rrdesc{
-            color:#999;
+            color:#ccc;
         }
     }
     .reply-meta{
@@ -418,7 +422,7 @@
     .row{
         position:relative;
         margin:10px 0 0 0;
-        height:60px;
+        height:70px;
     }
     input[type="text"],input[type="password"]{
         position:absolute;
@@ -688,6 +692,7 @@
                 vertical-align:middle;
                 color:#ccc;
                 .fa{
+                    vertical-align:middle;
                     font-size:28px;
                 }
                 &.cur{
@@ -882,12 +887,6 @@
         width:680px;
         padding:10px;
         float:left;
-        a{
-            color:#333;
-            &:hover{
-                color:$action-red;
-            }
-        }
         h2{
             color:#111;
             padding-left:10px;
@@ -897,17 +896,24 @@
                 margin-right:5px;
             }
         }
-        h3{
-            padding-left:10px;
-            font-size:14px;
-            span{
-                color:#ccc;
-                float:right;
-            }
-        }
         ul{
             li{
+                font-size:14px;
+                padding-left:10px;
                 margin:6px 0;
+                a{
+                    display:inline-block;
+                    font-weight:bold;
+                    text-decoration:none;
+                    color:#333;
+                    &:hover{
+                        color:red;
+                    }
+                }
+                span{
+                    color:#ccc;
+                    float:right;
+                }
             }
         }
     }

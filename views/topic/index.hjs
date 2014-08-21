@@ -46,7 +46,7 @@
 
     {{#hotreplys.length}}
     <div class="hot-reply-list">
-        <h2>最佳评论：</h2>
+        <h2><i class="fa fa-comment"></i>最佳评论</h2>
         {{#hotreplys}}
         <div class="reply-item" rid="{{_id}}" id="{{_id}}">
             <div class="reply-wrapper">
@@ -60,6 +60,9 @@
                 </div>
                 <div class="reply-main">
                     <span class="uname"><a href="/{{author_url}}">{{author_name}}</a></span>
+                    {{#author_signature}}
+                        <span class="usignature">,{{author_signature}}</span>
+                    {{/author_signature}}
                     <span class="date">{{create_date_format}}</span>
                     <div class="reply-content">
                         <span class="rcontent">{{content}}</span>
@@ -82,7 +85,7 @@
     {{/hotreplys.length}}
     <div class="reply-list">
     {{#topic.reply_count}}
-        <h2>评论：</h2>
+        <h2><i class="fa fa-comment"></i>评论</h2>
     {{/topic.reply_count}}
     </div>
     <div id="reply-reply-desc" style="display:none;">
@@ -121,7 +124,7 @@
             </div>
             <div class="reply-main">
                 <span class="uname"><a href="/<%= author_url %>"><%= author_name %></a></span>
-                <% if (author_signature) { %><span class="usignature">，<%=author_signature %></span><% } %>
+                <% if (author_signature) { %><span class="usignature">,<%=author_signature %></span><% } %>
                 <span class="date"><%= create_date_format %></span>
                 <div class="reply-content">
                     <span class="rcontent"><%= content %></span>
@@ -342,7 +345,7 @@
                         $('#reply_content').val('');
                         if($('#reply-reply-desc').css('display')==='block') $('#reply-reply-desc .fa-times').click();
                         $('.reply-list .more').remove();
-                        if(!$('.reply-list h2').length) $('.reply-list').append($('<h2>评论：</h2>'));
+                        if(!$('.reply-list h2').length) $('.reply-list').append($('<h2><i class="fa fa-comment"></i>评论</h2>'));
                         Tip('回复成功！','success');
                         $('.reply-list').append(new EJS({text:$('#reply-item-temp').html()}).render(re));
                         UpReplyBind($('.reply-list .reply-item').last().find('.up,.down'));

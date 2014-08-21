@@ -12,7 +12,7 @@
                 </li>
             {{/isowner}}
             {{^isowner}}
-                <li id="{{_id}}" to_url="/message/{{from_user_url}}">
+                <li id="{{_id}}" to_url="/message/{{from_user_url}}" class="godetail">
                     <a href="/{{from_user_url}}" class="fl">
                         <img class="user-avatar" src="{{from_user_avatar_url}}" alt="">
                     </a>

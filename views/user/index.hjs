@@ -46,12 +46,7 @@
             <h2>最近发表过的帖子</h2>
             <ul class="user-topic-list">
                 {{#topics}}
-                <li>
-                <h3>
-                    <a href="/topic/{{_id}}">{{title}}</a>
-                    <span>{{create_date_fromnow}}</span>
-                </h3>
-                </li>
+                <li><a href="/topic/{{_id}}">{{title}}</a><span>{{create_date_fromnow}}</span></li>
                 {{/topics}}
             </ul>
         </div>
@@ -59,12 +54,7 @@
             <h2>最近回复过的帖子</h2>
             <ul class="user-reply-list">
                 {{#replys}}
-                <li>
-                <h3>
-                    <a href="/topic/{{topic_id}}#{{_id}}">{{content}}</a>
-                    <span>{{create_date_format}}</span>
-                </h3>
-                </li>
+                <li><a href="/topic/{{topic_id}}#{{_id}}">{{content}}</a><span>{{create_date_format}}</span></li>
                 {{/replys}}
             </ul>
         </div>

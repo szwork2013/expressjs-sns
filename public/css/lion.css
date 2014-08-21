@@ -46,8 +46,8 @@ ul, ol {
 .fa {
   min-width: 16px;
   font-size: 14px;
-  margin-right: 5px;
-  vertical-align: middle; }
+  margin-right: 2px;
+  vertical-align: baseline; }
 
 .date {
   color: #ccc; }
@@ -869,6 +869,9 @@ footer {
 
 .reply-list h2, .hot-reply-list h2 {
   border-bottom: 1px solid #f0f0f0; }
+  .reply-list h2 .fa, .hot-reply-list h2 .fa {
+    font-size: 18px;
+    margin-right: 5px; }
 
 .reply-list, .hot-reply-list {
   margin-top: 20px; }
@@ -918,7 +921,7 @@ footer {
       vertical-align: middle; }
     .reply-list .reply-main .usignature, .hot-reply-list .reply-main .usignature {
       font-size: 14px;
-      color: #000; }
+      color: #ccc; }
     .reply-list .reply-main .date, .hot-reply-list .reply-main .date {
       margin-left: 2%;
       vertical-align: middle;
@@ -926,7 +929,7 @@ footer {
     .reply-list .reply-main .rcontent, .hot-reply-list .reply-main .rcontent {
       color: #333; }
     .reply-list .reply-main .rrdesc, .hot-reply-list .reply-main .rrdesc {
-      color: #999; }
+      color: #ccc; }
   .reply-list .reply-meta, .hot-reply-list .reply-meta {
     margin-left: 90px; }
     .reply-list .reply-meta .fa, .hot-reply-list .reply-meta .fa {
@@ -966,7 +969,7 @@ footer {
   .reg-form .row, .login-form .row {
     position: relative;
     margin: 10px 0 0 0;
-    height: 60px; }
+    height: 70px; }
   .reg-form input[type="text"], .reg-form input[type="password"], .login-form input[type="text"], .login-form input[type="password"] {
     position: absolute;
     left: 50px;
@@ -1234,6 +1237,7 @@ footer {
         vertical-align: middle;
         color: #ccc; }
         .pager .pager-wrapper li a .fa {
+          vertical-align: middle;
           font-size: 28px; }
         .pager .pager-wrapper li a.cur {
           color: #a1a1a1;
@@ -1415,10 +1419,6 @@ footer {
     width: 680px;
     padding: 10px;
     float: left; }
-    .user-wrapper .user-topics a, .user-wrapper .user-replys a, .user-wrapper .car-list a {
-      color: #333; }
-      .user-wrapper .user-topics a:hover, .user-wrapper .user-replys a:hover, .user-wrapper .car-list a:hover {
-        color: #fc5140; }
     .user-wrapper .user-topics h2, .user-wrapper .user-replys h2, .user-wrapper .car-list h2 {
       color: #111;
       padding-left: 10px;
@@ -1426,14 +1426,20 @@ footer {
       .user-wrapper .user-topics h2 .fa, .user-wrapper .user-replys h2 .fa, .user-wrapper .car-list h2 .fa {
         width: 5px;
         margin-right: 5px; }
-    .user-wrapper .user-topics h3, .user-wrapper .user-replys h3, .user-wrapper .car-list h3 {
+    .user-wrapper .user-topics ul li, .user-wrapper .user-replys ul li, .user-wrapper .car-list ul li {
+      font-size: 14px;
       padding-left: 10px;
-      font-size: 14px; }
-      .user-wrapper .user-topics h3 span, .user-wrapper .user-replys h3 span, .user-wrapper .car-list h3 span {
+      margin: 6px 0; }
+      .user-wrapper .user-topics ul li a, .user-wrapper .user-replys ul li a, .user-wrapper .car-list ul li a {
+        display: inline-block;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333; }
+        .user-wrapper .user-topics ul li a:hover, .user-wrapper .user-replys ul li a:hover, .user-wrapper .car-list ul li a:hover {
+          color: red; }
+      .user-wrapper .user-topics ul li span, .user-wrapper .user-replys ul li span, .user-wrapper .car-list ul li span {
         color: #ccc;
         float: right; }
-    .user-wrapper .user-topics ul li, .user-wrapper .user-replys ul li, .user-wrapper .car-list ul li {
-      margin: 6px 0; }
 
 .popup {
   width: 50%;
