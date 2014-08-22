@@ -65,16 +65,18 @@
                     {{/author_signature}}
                     <span class="date">{{create_date_format}}</span>
                     <div class="reply-content">
-                        <span class="rcontent">{{content}}</span>
                         {{#reply_id}}
-                        <span class="rrdesc"> //@ {{replyedauthor}}：{{replyedcontent}}</span>
+                        <span class="rrdesc">@{{replyedauthor}}：{{replyedcontent}}</span>
                         {{/reply_id}}
+                    </div>
+                    <div class="reply-content">
+                        <span class="rcontent">{{content}}</span>
                     </div>
                 </div>
                 <div class="reply-meta">
                     <ul>
                         <li>
-                        <a href="javascript:void(0);" class="reply-reply"><i class="fa fa-reply"></i>回复</a>
+                        <a href="javascript:void(0);" class="reply-reply"><i class="fa  fa-comments-o"></i>回复</a>
                         </li>
                     </ul>
                 </div>
@@ -127,16 +129,18 @@
                 <% if (author_signature) { %><span class="usignature">,<%=author_signature %></span><% } %>
                 <span class="date"><%= create_date_format %></span>
                 <div class="reply-content">
-                    <span class="rcontent"><%= content %></span>
                     <% if (reply_id) { %>
-                    <span class="rrdesc"> //@<%= replyedauthor %>：<%= replyedcontent %></span>
+                    <span class="rrdesc">@<%= replyedauthor %>：<%= replyedcontent %></span>
                     <% } %>
+                </div>
+                <div class="reply-content">
+                    <span class="rcontent"><%= content %></span>
                 </div>
             </div>
             <div class="reply-meta">
                 <ul>
                     <li>
-                        <a href="javascript:void(0);" class="reply-reply"><i class="fa fa-reply"></i>回复</a>
+                        <a href="javascript:void(0);" class="reply-reply"><i class="fa fa-comments-o"></i>回复</a>
                     </li>
                 </ul>
             </div>

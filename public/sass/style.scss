@@ -373,6 +373,8 @@
             color:#333;
         }
         .rrdesc{
+            border-left:5px solid #ccc;
+            padding-left:5px;
             color:#ccc;
         }
     }
@@ -477,6 +479,12 @@
                 background:$action-blue-hover;
             }
         }
+        .goregister{
+            position:absolute;
+            top:30px;
+            right:40px;
+        }
+
     }
     .loading{
         position:absolute;

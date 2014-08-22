@@ -16,7 +16,7 @@
             <div class="rememberme">
                 <input type="checkbox" id="rememberme" name="rememberme" />30天免登陆
             </div>
-            <button type="submit">登录</button>
+            <button type="submit">登录</button><a class="goregister" href="/register">没有账号？去注册<i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
 </form>
