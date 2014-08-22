@@ -20,23 +20,23 @@ $menu-width:30px;
         @include clearfix();
         .logo{
             width:80px;
-            float:left; 
+            float:left;
         }
         height:$nav-container-height;
         padding:0 30px;
         position:relative;
     }
     a{
-        color:$font-color; 
+        color:$font-color;
         &:hover{
-            text-decoration:none; 
+            text-decoration:none;
         }
     }
     .search-form{
         position:relative;
         .fa-search{
             cursor:pointer;
-            position:absolute; 
+            position:absolute;
             right:39%;
             color:#000;
             top:18px;
@@ -69,7 +69,7 @@ $menu-width:30px;
                 border:none;
                 padding:0 10px;
                 @include border-radius(3px);
-                display:inline-block; 
+                display:inline-block;
                 color:#999;
                 &:hover{
                     color:#ddd;
@@ -78,7 +78,7 @@ $menu-width:30px;
                     position:absolute;
                     top:7px;
                     left:28px;
-                    background:$action-red; 
+                    background:$action-red;
                     color:#fff;
                     @include border-radius(8px);
                     padding:0 5px;
@@ -106,7 +106,7 @@ footer{
     a{
         color:#999;
         &:hover{
-            color:#666; 
+            color:#666;
         }
     }
     padding:20px 30px;
@@ -115,10 +115,10 @@ footer{
     .ft-meta{
         @include clearfix();
         vertical-align:middle;
-        display:block; 
+        display:block;
         li{
-            float:left; 
+            float:left;
             margin-right:10px;
-        } 
+        }
     }
 }

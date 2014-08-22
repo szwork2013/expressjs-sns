@@ -839,6 +839,7 @@ footer {
   -o-border-radius: 3px;
   border-radius: 3px; }
   #reply-reply-desc .fa {
+    color: rgba(0, 0, 0, 0.2);
     line-height: 22px;
     cursor: pointer; }
 
@@ -867,21 +868,22 @@ footer {
     .reply-form button[type=submit]:hover {
       background: #007aeb; }
 
-.reply-list h2, .hot-reply-list h2 {
-  border-bottom: 1px solid #f0f0f0; }
-  .reply-list h2 .fa, .hot-reply-list h2 .fa {
-    font-size: 18px;
-    margin-right: 5px; }
+.reply-list h2 .fa, .hot-reply-list h2 .fa {
+  font-size: 18px;
+  margin-right: 5px; }
 
 .reply-list, .hot-reply-list {
   margin-top: 20px; }
   .reply-list .reply-item, .hot-reply-list .reply-item {
+    border-bottom: 1px solid #eee;
     width: 100%; }
     .reply-list .reply-item:before, .reply-list .reply-item:after, .hot-reply-list .reply-item:before, .hot-reply-list .reply-item:after {
       content: "";
       display: table; }
     .reply-list .reply-item:after, .hot-reply-list .reply-item:after {
       clear: both; }
+    .reply-list .reply-item:first-child, .hot-reply-list .reply-item:first-child {
+      border-bottom: none; }
   .reply-list .reply-wrapper, .hot-reply-list .reply-wrapper {
     margin: 20px 0;
     position: relative; }
@@ -926,6 +928,8 @@ footer {
       margin-left: 2%;
       vertical-align: middle;
       color: #ccc; }
+    .reply-list .reply-main .reply-content, .hot-reply-list .reply-main .reply-content {
+      line-height: 24px; }
     .reply-list .reply-main .rcontent, .hot-reply-list .reply-main .rcontent {
       color: #333; }
     .reply-list .reply-main .rrdesc, .hot-reply-list .reply-main .rrdesc {
@@ -1217,11 +1221,8 @@ footer {
   text-align: center;
   font-size: 16px; }
 
-.reply-list .pager {
-  margin: 0; }
-
 .pager {
-  margin: 20px 0;
+  margin: 16px 0;
   line-height: 40px;
   height: 40px; }
   .pager .pager-wrapper {
@@ -1236,8 +1237,8 @@ footer {
       line-height: 40px;
       height: 40px;
       float: left;
-      width: 24px;
       text-align: center;
+      padding: 0 3px;
       margin: 0 2px; }
       .pager .pager-wrapper li a {
         vertical-align: middle;
@@ -1255,7 +1256,7 @@ footer {
 
 .message-list li {
   padding: 20px 0;
-  border-bottom: 1px solid #ddd; }
+  border-bottom: 1px solid #eee; }
   .message-list li .user-avatar {
     margin-right: 12px; }
   .message-list li p {
@@ -1295,6 +1296,7 @@ footer {
   padding: 10px 0; }
 
 .g-tip {
+  font-weight: bold;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;

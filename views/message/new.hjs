@@ -4,6 +4,23 @@
     <textarea id="new-message" name="n_message" placeholder="私信内容...."></textarea>
     </p>
     <p>
-    <button class="btn" type="submmit">写好了,发送</button>
+    <button class="btn" type="submit">写好了,发送</button>
     </p>
 </form>
+<script>
+    (function(){
+        $('#new-message-form button[type=submit]').click(function(e){
+            e.preventDefault();
+            $script(['/js/validator.js','/js/tip.js'],function(){
+                var msgInput = $('#new-message');
+                if(validator.isNull(validator.trim(msgInput.val()))){
+                    Tip('请输入私信内容','error');
+                    msgInput.focus();
+                    return;
+                }else{
+                    $('#new-message-form').submit();
+                }
+            })
+        })
+    })()
+</script>

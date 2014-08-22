@@ -155,7 +155,7 @@
             <% } %>
             <% for(var i=0; i<pagenums.length; i++) {%>
                 <%if (pagenums[i].curnum) { %>
-                    <li><a class="nums cur" href="javascript:void(0);"><%= pagenums[i].curnum %></a></li>
+                    <li><a class="nums cur" href="javascript:void(0);"  p="<%= pagenums[i].curnum %>"><%= pagenums[i].curnum %></a></li>
                 <% }else{ %>
                     <li><a class="nums" href="javascript:void(0);" p="<%= pagenums[i].num %>"><%= pagenums[i].num %></a></li>
                 <% } %>
@@ -171,81 +171,92 @@
 </script>
 <script>
 (function(){
-
-    //图片缩放
-     $script('/js/spopup.js',function(){
-         $('.topic-content img').each(function(k,v){
-            var image = new Image();
-            image.src = $(this).attr("src");
-            $(v).addClass('canzoom');
-            $(v).click(function(e){
-                var zoomwidth =image.naturalWidth>$(window).width()?'90%':image.naturalWidth;
-                ;
-                var popup_html = '<div class="popup"><div class="popup-wrapper">'+$('<div>').append($(e.target).clone().removeClass('canzoom').addClass('canzoomout')).html()+'</div></div>';
-                var popup_img = $(popup_html).spopup({
-                    width:zoomwidth
-                });
-                popup_img.find('img').click(function(){
-                    popup_img.close();
-                });
+        //图片缩放
+        $script('/js/spopup.js',function(){
+             $('.topic-content img').each(function(k,v){
+                var image = new Image();
+                image.src = $(this).attr("src");
+                $(v).addClass('canzoom');
+                $(v).click(function(e){
+                    var zoomwidth =image.naturalWidth>$(window).width()?'90%':image.naturalWidth;
+                    ;
+                    var popup_html = '<div class="popup"><div class="popup-wrapper">'+$('<div>').append($(e.target).clone().removeClass('canzoom').addClass('canzoomout')).html()+'</div></div>';
+                    var popup_img = $(popup_html).spopup({
+                        width:zoomwidth
+                    });
+                    popup_img.find('img').click(function(){
+                        popup_img.close();
+                    });
+                 })
              })
-         })
-     });
-
-    $script(['/js/validator.js','/js/ejs.js'],function(){
-
-    //最近浏览
-    if(window.localStorage){
-        //获得最近浏览并渲染
-        var viewd = localStorage.getItem('viewhistory')?JSON.parse(localStorage.getItem('viewhistory')):[];
-        if(viewd.length>0){
-            $(viewd).each(function(k,v){
-                $('.history-list').append(new EJS({text:$('#history-item').html()}).render(v));
-            })
-        }
-        //最近浏览重组
-        var cur = {title:'{{topic.title}}',url:'/topic/{{topic._id}}'};
-        viewd = $.grep(viewd, function(v) {
-            if(typeof(cur) === 'object'){
-              return v.title != cur.title;
-            }else{
-              return v != cur;
-            }
         });
-        viewd.unshift(cur)
 
-        //浏览记录长度限制
-        if(viewd.length>10) viewd.splice(9,viewd.length);
-        localStorage.setItem('viewhistory',JSON.stringify(viewd));
-    }
+        $script(['/js/validator.js','/js/ejs.js'],function(){
+        //最近浏览
+        if(window.localStorage){
+            //获得最近浏览并渲染
+            var viewd = localStorage.getItem('viewhistory')?JSON.parse(localStorage.getItem('viewhistory')):[];
+            if(viewd.length>0){
+                $(viewd).each(function(k,v){
+                    $('.history-list').append(new EJS({text:$('#history-item').html()}).render(v));
+                })
+            }
+            //最近浏览重组
+            var cur = {title:'{{topic.title}}',url:'/topic/{{topic._id}}'};
+            viewd = $.grep(viewd, function(v) {
+                if(typeof(cur) === 'object'){
+                  return v.title != cur.title;
+                }else{
+                  return v != cur;
+                }
+            });
+            viewd.unshift(cur)
+
+            //浏览记录长度限制
+            if(viewd.length>10) viewd.splice(9,viewd.length);
+            localStorage.setItem('viewhistory',JSON.stringify(viewd));
+        }
 
         //加载留言
-        function fetchreplys(){
-                var hash = window.location.hash;
+        function fetchreplys(pid,cb){
+            var hash = window.location.hash;
             //if($(window).scrollTop()+$(window).height()>$('.reply-list').offset().top || $('.reply-list').offset().top < $(window).height()){
                 //$(window).off('scroll');
+                p = pid?'&p='+pid:'';
                 $.ajax({
                     url:'getreplys',
-                    data:'id={{topic._id}}',
+                    data:'id={{topic._id}}'+p,
                     beforeSend:function(){
+                        if(p) $('.reply-list .reply-item,.reply-list .pager').hide();
                         $('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>').appendTo($('.reply-list'));
                     },
                     success:function(re){
                         $('.reply-list .more').remove();
+                        $('.reply-list .reply-item').remove();
                         RenderReplyList(re.replys);
+                        UpReplyBind($('.reply-item .up,.reply-item .down'));
+                        Replytoreply($('.reply-item .reply-reply'));
                         if(re.pager){
+                            $('.reply-list .pager').remove();
                             $('.reply-list').append(new EJS({text:$('#reply-pager').html()}).render(re.pager));
-                            AddReplyPagerEvent($('.reply-list .pager'));
+                            $('.reply-list .pager').find('a').click(function(e){
+                                fetchreplys($(this).attr('p'));
+                            });
                         }
-
-                        if($(hash).length>0) $('html, body').animate({ scrollTop: $(hash).offset().top-$('.nav').height() }, 200);
+                        if($(hash).length>0){
+                            $('html,body').animate({ scrollTop: $(hash).offset().top-$('.nav').height() },200);
+                        }else if(p){
+                            $('html,body').animate({scrollTop:$('.reply-list').offset().top - $('.nav').height()},200);
+                        }
+                        if(cb && typeof(cb) == "function") cb();
                     }
                 });
             //}
         }
+
         {{#topic.reply_count}}
-            //$(window).on('scroll',fetchreplys);
-            $(document).ready(fetchreplys);
+        //$(window).on('scroll',fetchreplys);
+        $(document).ready(function(){ fetchreplys(); });
         {{/topic.reply_count}}
 
         function RenderReplyList(replys){
@@ -256,29 +267,6 @@
                     Replytoreply($('.reply-list .reply-item').find('.reply-reply'));
                 });
             }
-        }
-
-        function AddReplyPagerEvent(el){
-            $(el).find('a').click(function(){
-                $.ajax({
-                    url:'getreplys',
-                    data:'id={{topic._id}}&p='+$(this).attr('p'),
-                    beforeSend:function(){
-                        $('.reply-list .reply-item,.reply-list .pager').hide();
-                        $('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>').appendTo($('.reply-list'));
-                    },
-                    success:function(re){
-                        $('.reply-list .reply-item,.reply-list .pager').remove();
-                        $('.reply-list .more').remove();
-                        RenderReplyList(re.replys);
-                        if(re.pager){
-                            $('.reply-list').append(new EJS({text:$('#reply-pager').html()}).render(re.pager));
-                            AddReplyPagerEvent($('.reply-list .pager'));
-                        }
-                        $('html,body').scrollTop($('.reply-list').offset().top - $('.nav').height());
-                    }
-                });
-            });
         }
 
         function UpReplyBind(els){
@@ -305,6 +293,7 @@
                 })
             });
         }
+
         var contentInput = $('#reply_content'),rrcontentInput = $('#reply-reply-desc');
 
         function Replytoreply(els){
@@ -339,22 +328,23 @@
                     method:'post',
                     data:'reply_content='+replycontent+'&topic_id={{topic._id}}&board_id={{board._id}}'+rridstr,
                     beforeSend:function(){
-                        $('<div class="more"></div>').appendTo($('.reply-list'));
+                        if($('.reply-list .pager').length>0) fetchreplys($('.reply-list .pager ul .nums').last().attr('p'));
+                        $('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>').appendTo($('.reply-list'));
                     },
                     success:function(re){
+                        $('.reply-list .more').remove();
                         if(re.r === 3){
                             Tip('未登录，请登录');
                             return;
                         }
                         $('#reply_content').val('');
                         if($('#reply-reply-desc').css('display')==='block') $('#reply-reply-desc .fa-times').click();
-                        $('.reply-list .more').remove();
                         if(!$('.reply-list h2').length) $('.reply-list').append($('<h2><i class="fa fa-comment"></i>评论</h2>'));
                         Tip('回复成功！','success');
+                        //add html dom
                         $('.reply-list').append(new EJS({text:$('#reply-item-temp').html()}).render(re));
                         UpReplyBind($('.reply-list .reply-item').last().find('.up,.down'));
                         Replytoreply($('.reply-list .reply-item').last().find('.reply-reply'));
-
                     }
                 })
             })
@@ -405,10 +395,6 @@
             });
         });
 
-        UpReplyBind($('.reply-item .up,.reply-item .down'));
-
-        Replytoreply($('.reply-item .reply-reply'));
-
         $('.fa-weixin').click(function(){
             $script('/js/spopup.js',function(){
                 $('<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&choe=UTF-8&chld=L|2&chl=http://127.0.0.1:8080/topic/{{topic._id}}" width="200" height="200"/></img></div>').spopup({
@@ -418,6 +404,7 @@
                 });
             });
         });
+
 
     });
 })()

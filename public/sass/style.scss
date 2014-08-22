@@ -278,6 +278,7 @@
 #reply-reply-desc{
     line-height:22px;
     .fa{
+        color:rgba(0,0,0,.2);
         line-height:22px;
         cursor:pointer;
     }
@@ -312,17 +313,20 @@
     }
 }
 .reply-list h2,.hot-reply-list h2{
-    border-bottom:1px solid $border-color;
     .fa{
-        font-size:18px; 
+        font-size:18px;
         margin-right:5px;
     }
 }
 .reply-list,.hot-reply-list{
     margin-top:20px;
     .reply-item{
+        border-bottom:1px solid #eee;
         width:100%;
         @include clearfix();
+        &:first-child{
+            border-bottom:none;
+        }
     }
     .reply-wrapper{
         margin:20px 0;
@@ -368,6 +372,9 @@
             margin-left:2%;
             vertical-align:middle;
             color:#ccc;
+        }
+        .reply-content{
+            line-height:24px;
         }
         .rcontent{
             color:#333;
@@ -678,11 +685,8 @@
     font-size:16px;
 }
 //pager
-.reply-list .pager{
-    margin:0;
-}
 .pager{
-    margin:20px 0;
+    margin:16px 0;
     line-height:40px;
     height:40px;
     .pager-wrapper{
@@ -693,8 +697,8 @@
             line-height:40px;
             height:40px;
             float:left;
-            width:24px;
             text-align:center;
+            padding:0 3px;
             margin:0 2px;
             a{
                 vertical-align:middle;
@@ -731,7 +735,7 @@
             }
         }
         padding:20px 0;
-        border-bottom:1px solid #ddd;
+        border-bottom:1px solid #eee;
         &.godetail{
             cursor:pointer;
         }
@@ -772,6 +776,7 @@
 }
 //tip
 .g-tip{
+    font-weight:bold;
     @include border-radius(3px);
     position:fixed;
     top:60px;
