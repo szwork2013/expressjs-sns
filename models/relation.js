@@ -4,8 +4,8 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 var RelationSchema = new Schema({
-    user_id: { type: ObjectId },
-    focus_user_id:{ type: ObjectId },
+    following: { type: ObjectId },
+    follower:{ type: ObjectId },
     car_id:{ type: ObjectId },
     model_id:{ type: ObjectId },
     create_date: { type: Date, default: Date.now }

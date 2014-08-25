@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var async =  require('async');
 
-//data
 var mongoose = require( 'mongoose' );
 var User = mongoose.model('User');
 var Relation = mongoose.model('Relation');
@@ -15,11 +14,11 @@ router.post('/:url/new',function(req,res){
     User.findOne({url:req.params.url},function(err,user){
         Relation.findOne({$and:[{user_id:req.session.user._id},{focus_user_id:user._id}]},function(err,relation){
             if(relation){
-                    res.json({r:0});
+                res.json({r:0});
             }else{
                 new Relation({
-                    user_id:req.session.user._id,
-                    focus_user_id:user._id
+                    following:req.session.user._id,
+                    follower:user._id
                 }).save(function(err,relation){
                     User.update({_id:req.session.user._id},{$push:{following:{user_id:user._id}}},function(err,fuser){
                         User.update({_id:user._id},{$push:{follower:{user_id:req.session.user._id}}},function(err,fduser){
@@ -30,6 +29,47 @@ router.post('/:url/new',function(req,res){
             }
         });
     });
+});
+
+router.get('/:url/follower',function(req,res){
+    User.findOne({url:req.params.url},function(err,user){
+        Relation.find({follower:user._id},function(err,relation){
+            var relation_users = [];
+            async.eachSeries(relation,function(relation_item,cb){
+                User.findOne({_id:relation_item.following},'name url signature avatar_url avatar_url_s', function(error, user_o) {
+                    if(!user_o) return cb();
+                    relation_users.push(user_o)
+                    cb();
+                });
+            },function(err){
+                res.render('relation/follower',{
+                    user_relation:user.name,
+                    relation_users:relation_users
+                });
+            })
+        })
+    })
+});
+
+router.get('/:url/following',function(req,res){
+    User.findOne({url:req.params.url},function(err,user){
+        Relation.find({following:user._id},function(err,relation){
+            var relation_users = [];
+            async.eachSeries(relation,function(relation_item,cb){
+                User.findOne({_id:relation_item.follower},'name url signature avatar_url avatar_url_s', function(error, user_o) {
+                    if(!user_o) return cb();
+                    relation_users.push(user_o)
+                    cb();
+                });
+            },function(err){
+                console.info(relation_users);
+                res.render('relation/following',{
+                    user_relation:user.name,
+                    relation_users:relation_users
+                });
+            })
+        })
+    })
 });
 
 module.exports = router;

@@ -1,5 +1,5 @@
 .btn {
-  background: #0084ff;
+  background: #3498db;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
@@ -13,7 +13,7 @@
   border: 0; }
   .btn:hover {
     text-decoration: none;
-    background: #007aeb;
+    background: #2980b9;
     color: #fff;
     border: none; }
   .btn:focus {

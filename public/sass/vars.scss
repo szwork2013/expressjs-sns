@@ -1,10 +1,10 @@
 //font
 //-----------------------
-$font:13px/1.7 'Helvetica Neue',Arial,'Microsoft YaHei','Hiragino Sans GB',sans-serif;
+$font:13px/1.7 'Helvetica Neue',Arial,'Hiragino Sans GB','WenQuanYi Micro Hei',sans-serif;
 
 $font-color:#8c8c8c;
 
-$main-width:1240px;
+$main-width:1040px;
 //colors
 //-----------------------
 
@@ -20,15 +20,13 @@ $link-hover-color:#205F7E;
 $input-color-placeholder:#ddd;
 $border-color:#f0f0f0;
 
-//$global-color:#0084ff;
-
-$action-blue:#0084ff;
-$action-blue-hover:#007AEB;
+$action-blue:#3498db;//#0084ff;
+$action-blue-hover:#2980b9;//#007AEB;
 
 $action-green:#30C880;
 $action-green-hover:#2CB675;
 
-$action-red:#fc5140;
+$action-red:#e74c3c;
 $action-red-hover:#fc5140;
 
 $red-error:#F14F3D;

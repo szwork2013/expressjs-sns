@@ -3,7 +3,7 @@
   .main .main-wrapper {
     background: #fff;
     margin: 0px auto;
-    width: 1240px;
+    width: 1040px;
     min-height: 650px;
     padding: 100px 10px 50px;
     color: #666; }
@@ -15,7 +15,7 @@
 
 .content {
   float: left;
-  width: 830px; }
+  width: 740px; }
   .content .list-wrapper h1 {
     float: left;
     margin: 0;
@@ -26,7 +26,7 @@
 
 .sidebar {
   margin-left: 30px;
-  width: 380px;
+  width: 270px;
   float: left; }
   .sidebar h3, .sidebar h4 {
     margin-bottom: 10px; }
@@ -109,7 +109,8 @@
         color: #111;
         vertical-align: middle; }
     .topic-list li .author-avatar {
-      width: 10%;
+      width: 48px;
+      margin-right: 20px;
       float: left; }
       .topic-list li .author-avatar img {
         background: #fff;
@@ -140,7 +141,7 @@
   .last-reply-list ul li a {
     color: #666; }
     .last-reply-list ul li a:hover {
-      color: #fc5140; }
+      color: #4083aa; }
   .last-reply-list ul li:before, .last-reply-list ul li:after {
     content: "";
     display: table; }
@@ -243,7 +244,7 @@
   .history-list li a {
     color: #666; }
     .history-list li a:hover {
-      color: #fc5140; }
+      color: #4083aa; }
 
 #reply-reply-desc {
   line-height: 22px;
@@ -276,7 +277,7 @@
     width: 100px;
     height: 40px;
     margin-top: 20px;
-    background: #0084ff;
+    background: #3498db;
     color: #fff;
     border: none;
     -webkit-border-radius: 3px;
@@ -285,7 +286,7 @@
     -o-border-radius: 3px;
     border-radius: 3px; }
     .reply-form button[type=submit]:hover {
-      background: #007aeb; }
+      background: #2980b9; }
 
 .reply-list h2, .hot-reply-list h2 {
   border-bottom: 2px solid #eee;
@@ -451,14 +452,14 @@
     padding: 0 30px;
     border: none;
     color: #fff;
-    background: #0084ff;
+    background: #3498db;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
     border-radius: 3px; }
     .reg-form .act button:hover, .login-form .act button:hover {
-      background: #007aeb; }
+      background: #2980b9; }
   .reg-form .act .goregister, .reg-form .act .gologin, .login-form .act .goregister, .login-form .act .gologin {
     position: absolute;
     top: 30px;
@@ -533,11 +534,11 @@
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
-  background: #0084ff;
+  background: #3498db;
   color: #fff;
   text-align: center; }
   .settings form button[type=submit]:hover {
-    background: #007aeb; }
+    background: #2980b9; }
   .settings form button[type=submit].ml {
     margin-left: 62px; }
 .settings form .up-trigger {
@@ -600,7 +601,7 @@
     width: 100px;
     height: 40px;
     line-height: 40px;
-    background: #0084ff;
+    background: #3498db;
     color: #fff;
     border: none;
     padding: 0;
@@ -610,7 +611,7 @@
     -o-border-radius: 3px;
     border-radius: 3px; }
     #new-topic button[type=submit]:hover {
-      background: #007aeb; }
+      background: #2980b9; }
   #new-topic #auto-save-trigger, #new-topic #clear-save {
     margin-left: 20px; }
   #new-topic #auto-save {
@@ -781,7 +782,7 @@
     .user-wrapper .user-top-bg img.user-avatar {
       z-index: 10;
       position: absolute;
-      left: 111px;
+      left: 61px;
       bottom: -60px;
       width: 128px;
       height: 128px;
@@ -792,14 +793,14 @@
       border-radius: 5px;
       border: 5px solid white; }
   .user-wrapper .user-main {
-    width: 1240px;
+    width: 1040px;
     position: relative; }
   .user-wrapper .user-detail {
     position: absolute;
     left: 0;
     top: 10px;
     z-index: 10;
-    width: 360px;
+    width: 260px;
     overflow: hidden;
     padding-bottom: 10px;
     z-index: 99;
@@ -828,8 +829,7 @@
       .user-wrapper .user-detail .focus dl {
         float: left;
         width: 101px;
-        margin: 0 12px;
-        cursor: pointer; }
+        margin: 0 12px; }
         .user-wrapper .user-detail .focus dl dt, .user-wrapper .user-detail .focus dl dd {
           margin: 0;
           color: #333;
@@ -870,8 +870,8 @@
           color: #fff;
           background: #30c880; }
   .user-wrapper .user-topics, .user-wrapper .user-replys, .user-wrapper .car-list {
-    margin-left: 380px;
-    width: 850px;
+    margin-left: 280px;
+    width: 750px;
     padding: 10px 0 10px 10px;
     float: left; }
     .user-wrapper .user-topics h2, .user-wrapper .user-replys h2, .user-wrapper .car-list h2 {
@@ -969,11 +969,11 @@
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
-  background: #0084ff;
+  background: #3498db;
   color: #fff;
   text-align: center; }
 #addcar-form button[type=submit]:hover {
-  background: #007aeb; }
+  background: #2980b9; }
 #addcar-form textarea {
   padding: 5px;
   width: 60%;
@@ -981,3 +981,6 @@
 
 .about h3 {
   margin-top: 20px; }
+
+.user-list li {
+  float: left; }

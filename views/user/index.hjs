@@ -35,11 +35,11 @@
             <div class="focus">
                 <dl>
                     <dt>关注</dt>
-                    <dd>{{showuser.following.length}}</dd>
+                    <dd><a href="/relation/{{showuser.url}}/following">{{showuser.following.length}}</a></dd>
                 </dl>
                 <dl>
                     <dt>被关注</dt>
-                    <dd>{{showuser.follower.length}}</dd>
+                    <dd><a href="/relation/{{showuser.url}}/follower">{{showuser.follower.length}}</a></dd>
                 </dl>
             </div>
         </div>

@@ -15,7 +15,7 @@
 }
 .content{
     float:left;
-    width:830px;
+    width:740px;
     .list-wrapper{
         h1{
             float:left;
@@ -32,7 +32,7 @@
 }
 .sidebar{
     margin-left:30px;
-    width:380px;
+    width:270px;
     float:left;
     h3,h4{
         margin-bottom:10px;
@@ -123,7 +123,8 @@
             }
         }
         .author-avatar{
-            width:10%;
+            width:48px;
+            margin-right:20px;
             float:left;
             img{
                 background:#fff;
@@ -156,7 +157,7 @@
             a{
                 color:#666;
                 &:hover{
-                    color:$action-red;
+                    color:$link-color;
                 }
             }
             @include clearfix();
@@ -279,7 +280,7 @@
         a{
             color:#666;
             &:hover{
-                color:$action-red;
+                color:$link-color;
             }
         }
     }
@@ -846,7 +847,7 @@
         img.user-avatar{
             z-index:10;
             position:absolute;
-            left:111px;
+            left:61px;
             bottom:-60px;
             width:128px;
             height:128px;
@@ -863,7 +864,7 @@
         left:0;
         top:10px;
         z-index:10;
-        width:360px;
+        width:260px;
         overflow:hidden;
         padding-bottom:10px;
         z-index:99;
@@ -892,7 +893,6 @@
                 float:left;
                 width:101px;
                 margin: 0 12px;
-                cursor:pointer;
                 dt,dd{
                     margin:0;
                     color:#333;
@@ -935,8 +935,8 @@
         }
     }
     .user-topics,.user-replys,.car-list{
-        margin-left:380px;
-        width:850px;
+        margin-left:280px;
+        width:750px;
         padding:10px 0 10px 10px;
         float:left;
         h2{
@@ -1059,5 +1059,10 @@
 .about{
     h3{
         margin-top:20px;
+    }
+}
+.user-list{
+    li{
+        float:left;
     }
 }
