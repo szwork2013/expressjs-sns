@@ -70,14 +70,16 @@ router.post('/saveimgsettings', function(req, res) {
 router.post('/savebasesettings', function(req, res) {
     var newname = req.body.uname,
     newemail = req.body.uemail,
-    newurl = req.body.uurl;
+    newurl = req.body.uurl,
+    newdesc = req.body.udesc,
     newsign = req.body.usign;
-    User.findOneAndUpdate({_id:req.session.user._id},{name:newname,email:newemail,url:newurl,signature:newsign},function(err,user){
+    User.findOneAndUpdate({_id:req.session.user._id},{name:newname,email:newemail,url:newurl,signature:newsign,desc:newdesc},function(err,user){
         if(!err){
             req.session.user.name = newname;
             req.session.user.email = newemail;
             req.session.user.url = newurl;
             req.session.user.signature = newsign;
+            req.session.user.desc = newdesc;
             res.redirect('/'+newurl);
         }
     });

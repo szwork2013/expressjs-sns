@@ -20,17 +20,28 @@
         <textarea id="cardesc" name="cardesc"></textarea>
     </div>
     <h2>改装件</h2>
-    <a href="javascript:void(0);">+</a>
-
+    <a href="javascript:void(0);" class="add-caritem"><i class="fa fa-plus"></i>添加改装件</a>
     <h2>上传图片</h2>
-    <input type="file">
+    <a href="javascript:void(0);" id="upload-carimg"><i class="fa fa-cloud-upload"></i>上传汽车图片</a>
+    <input type="file" class="hide" id="upload-img">
+    <div class="img-list">
+    </div>
+
 
     <div class="row">
         <button type="submit">确定</button>
     </div>
 </form>
 <script>
-    $('#carname').keyup(function(e){
-         $('#showcarname').html($(this).val());
-    });
+    (function(){
+
+        $('#carname').keyup(function(e){
+             $('#showcarname').html($(this).val());
+        });
+
+        $('#upload-carimg').click(function(e){
+            $('#upload-img').click();
+        })
+
+    })()
 </script>

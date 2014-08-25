@@ -1,5 +1,5 @@
 html {
-  font: 13px/1.7 "Helvetica Neue", Arial, "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
+  font: 13px/1.7 "Helvetica Neue", Arial, "Microsoft YaHei", "Hiragino Sans GB", sans-serif; }
 
 body {
   margin: 0;
@@ -465,8 +465,8 @@ textarea {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    width: 1240px;
     height: 50px;
-    padding: 0 30px;
     position: relative; }
     .nav .nav-container:before, .nav .nav-container:after {
       content: "";
@@ -559,15 +559,18 @@ textarea {
 
 footer {
   font-size: 12px;
-  color: #999;
-  padding: 20px 30px;
-  border-top: 1px solid #e5e5e5;
-  line-height: 24px; }
+  color: #999; }
   footer:before, footer:after {
     content: "";
     display: table; }
   footer:after {
     clear: both; }
+  footer .wrapper {
+    line-height: 24px;
+    padding: 20px 30px;
+    border-top: 1px solid #f4f4f4;
+    margin: 0 auto;
+    width: 1240px; }
   footer a {
     color: #999; }
     footer a:hover {
@@ -589,9 +592,9 @@ footer {
   .main .main-wrapper {
     background: #fff;
     margin: 0px auto;
-    width: 1000px;
+    width: 1240px;
     min-height: 650px;
-    padding: 100px 0 50px 0;
+    padding: 100px 10px 50px;
     color: #666; }
     .main .main-wrapper:before, .main .main-wrapper:after {
       content: "";
@@ -601,16 +604,18 @@ footer {
 
 .content {
   float: left;
-  width: 680px;
-  padding: 10px; }
+  width: 830px; }
   .content .list-wrapper h1 {
     float: left;
     margin: 0;
     font-size: 24px; }
+  .content .topic-main .report, .content .reply-list .report, .content .hot-reply-list .report {
+    color: #ccc;
+    display: none; }
 
 .sidebar {
-  width: 280px;
-  padding: 10px;
+  margin-left: 30px;
+  width: 380px;
   float: left; }
   .sidebar h3, .sidebar h4 {
     margin-bottom: 10px; }
@@ -723,6 +728,8 @@ footer {
   margin-bottom: 5px; }
   .last-reply-list ul li a {
     color: #666; }
+    .last-reply-list ul li a:hover {
+      color: #fc5140; }
   .last-reply-list ul li:before, .last-reply-list ul li:after {
     content: "";
     display: table; }
@@ -801,6 +808,7 @@ footer {
   margin-right: 20px;
   float: left; }
   .topic-main .topic-meta li a {
+    display: inline-block;
     color: #ccc; }
     .topic-main .topic-meta li a:hover {
       color: #999; }
@@ -821,10 +829,10 @@ footer {
     left: 0;
     top: 8px;
     vertical-align: middle; }
-  .history-list li a, .history-list li a:hover {
+  .history-list li a {
     color: #666; }
-  .history-list li a:hover {
-    text-decoration: underline; }
+    .history-list li a:hover {
+      color: #fc5140; }
 
 #reply-reply-desc {
   line-height: 22px;
@@ -868,9 +876,12 @@ footer {
     .reply-form button[type=submit]:hover {
       background: #007aeb; }
 
-.reply-list h2 .fa, .hot-reply-list h2 .fa {
-  font-size: 18px;
-  margin-right: 5px; }
+.reply-list h2, .hot-reply-list h2 {
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px; }
+  .reply-list h2 .fa, .hot-reply-list h2 .fa {
+    font-size: 18px;
+    margin-right: 5px; }
 
 .reply-list, .hot-reply-list {
   margin-top: 20px; }
@@ -882,7 +893,7 @@ footer {
       display: table; }
     .reply-list .reply-item:after, .hot-reply-list .reply-item:after {
       clear: both; }
-    .reply-list .reply-item:first-child, .hot-reply-list .reply-item:first-child {
+    .reply-list .reply-item:last-child, .hot-reply-list .reply-item:last-child {
       border-bottom: none; }
   .reply-list .reply-wrapper, .hot-reply-list .reply-wrapper {
     margin: 20px 0;
@@ -938,9 +949,17 @@ footer {
       color: #ccc; }
   .reply-list .reply-meta, .hot-reply-list .reply-meta {
     margin-left: 90px; }
+    .reply-list .reply-meta:before, .reply-list .reply-meta:after, .hot-reply-list .reply-meta:before, .hot-reply-list .reply-meta:after {
+      content: "";
+      display: table; }
+    .reply-list .reply-meta:after, .hot-reply-list .reply-meta:after {
+      clear: both; }
+    .reply-list .reply-meta li, .hot-reply-list .reply-meta li {
+      float: left; }
     .reply-list .reply-meta .fa, .hot-reply-list .reply-meta .fa {
       margin-right: 2px; }
     .reply-list .reply-meta a, .hot-reply-list .reply-meta a {
+      display: inline-block;
       color: #666; }
       .reply-list .reply-meta a:hover, .hot-reply-list .reply-meta a:hover {
         color: #4083aa; }
@@ -1029,10 +1048,10 @@ footer {
     border-radius: 3px; }
     .reg-form .act button:hover, .login-form .act button:hover {
       background: #007aeb; }
-  .reg-form .act .goregister, .login-form .act .goregister {
+  .reg-form .act .goregister, .reg-form .act .gologin, .login-form .act .goregister, .login-form .act .gologin {
     position: absolute;
     top: 30px;
-    right: 40px; }
+    right: 9%; }
   .reg-form .loading, .login-form .loading {
     position: absolute;
     left: 50px;
@@ -1077,16 +1096,20 @@ footer {
 .settings form label {
   width: 60px;
   border: none; }
-.settings form input[type=text], .settings form input[type=password] {
+.settings form input[type=text], .settings form input[type=password], .settings form textarea {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px;
-  padding: 0 5px;
   border: 1px solid #ddd;
-  width: 60%;
-  height: 32px; }
+  width: 60%; }
+.settings form input[type=text], .settings form input[type=password] {
+  height: 32px;
+  padding: 0 5px; }
+.settings form textarea {
+  padding: 5px;
+  height: 96px; }
 .settings form .wyurl {
   padding-left: 65px;
   margin: 10px 0; }
@@ -1142,6 +1165,8 @@ footer {
   #new-topic h1 a {
     font-size: 14px;
     line-height: 30px; }
+  #new-topic .fa-video-camera:hover {
+    color: #06c; }
   #new-topic #new-topic-title {
     width: 95%;
     height: 40px;
@@ -1183,14 +1208,14 @@ footer {
     #new-topic #auto-save .fa {
       margin-right: 5px; }
 
-.addlink-popup .popup-wrapper, .uploadimg-popup .popup-wrapper {
+.addlink-popup .popup-wrapper, .uploadimg-popup .popup-wrapper, .addvideo-popup .popup-wrapper {
   margin-top: 20px; }
-.addlink-popup .row, .addlink-popup p, .uploadimg-popup .row, .uploadimg-popup p {
+.addlink-popup .row, .addlink-popup p, .uploadimg-popup .row, .uploadimg-popup p, .addvideo-popup .row, .addvideo-popup p {
   margin: 10px 0; }
-.addlink-popup label, .uploadimg-popup label {
+.addlink-popup label, .uploadimg-popup label, .addvideo-popup label {
   text-align: center;
   width: 80px; }
-.addlink-popup input[type="text"], .uploadimg-popup input[type="text"] {
+.addlink-popup input[type="text"], .uploadimg-popup input[type="text"], .addvideo-popup input[type="text"] {
   width: 200px;
   height: 30px;
   border: 1px solid #ddd;
@@ -1200,7 +1225,7 @@ footer {
   -o-border-radius: 3px;
   border-radius: 3px;
   padding: 0 5px; }
-.addlink-popup button, .uploadimg-popup button {
+.addlink-popup button, .uploadimg-popup button, .addvideo-popup button {
   width: 100px;
   height: 40px;
   line-height: 40px;
@@ -1213,8 +1238,11 @@ footer {
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px; }
-  .addlink-popup button:hover, .uploadimg-popup button:hover {
+  .addlink-popup button:hover, .uploadimg-popup button:hover, .addvideo-popup button:hover {
     background: #2cb675; }
+.addlink-popup #video-url, .uploadimg-popup #video-url, .addvideo-popup #video-url {
+  width: 270px;
+  margin-right: 10px; }
 
 .more {
   margin-top: 20px;
@@ -1342,7 +1370,7 @@ footer {
     .user-wrapper .user-top-bg img.user-avatar {
       z-index: 10;
       position: absolute;
-      left: 83px;
+      left: 111px;
       bottom: -60px;
       width: 128px;
       height: 128px;
@@ -1353,22 +1381,30 @@ footer {
       border-radius: 5px;
       border: 5px solid white; }
   .user-wrapper .user-main {
+    width: 1240px;
     position: relative; }
   .user-wrapper .user-detail {
     position: absolute;
     left: 0;
     top: 10px;
     z-index: 10;
-    width: 300px;
+    width: 360px;
     overflow: hidden;
     padding-bottom: 10px;
     z-index: 99;
     text-align: center; }
+    .user-wrapper .user-detail h1, .user-wrapper .user-detail h3, .user-wrapper .user-detail p, .user-wrapper .user-detail .focus {
+      margin: 0 auto;
+      width: 250px; }
     .user-wrapper .user-detail h1 {
       font-size: 24px; }
+    .user-wrapper .user-detail p {
+      border-top: 1px solid #ddd;
+      margin: 8px auto;
+      padding: 12px 0;
+      text-align: left; }
     .user-wrapper .user-detail .focus {
       margin: 0 auto;
-      width: 250px;
       padding: 15px 0;
       margin-top: 15px;
       border-top: 1px solid #ddd;
@@ -1392,7 +1428,7 @@ footer {
   .user-wrapper .user-bar {
     height: 50px;
     line-height: 50px;
-    padding-left: 310px;
+    padding-left: 390px;
     font-size: 16px; }
     .user-wrapper .user-bar:before, .user-wrapper .user-bar:after {
       content: "";
@@ -1423,14 +1459,14 @@ footer {
           color: #fff;
           background: #30c880; }
   .user-wrapper .user-topics, .user-wrapper .user-replys, .user-wrapper .car-list {
-    margin-left: 300px;
-    width: 680px;
-    padding: 10px;
+    margin-left: 380px;
+    width: 850px;
+    padding: 10px 0 10px 10px;
     float: left; }
     .user-wrapper .user-topics h2, .user-wrapper .user-replys h2, .user-wrapper .car-list h2 {
       color: #111;
       padding-left: 10px;
-      border-left: 5px solid #fc5140; }
+      border-left: 5px solid #ddd; }
       .user-wrapper .user-topics h2 .fa, .user-wrapper .user-replys h2 .fa, .user-wrapper .car-list h2 .fa {
         width: 5px;
         margin-right: 5px; }
@@ -1488,6 +1524,8 @@ footer {
     color: #333;
     margin: 0; }
 
+#addcar-form h2 {
+  margin-top: 24px; }
 #addcar-form #showcarname {
   color: #cc181e; }
 #addcar-form select {
@@ -1500,14 +1538,15 @@ footer {
   margin: 10px 0; }
 #addcar-form label {
   width: 60px; }
-#addcar-form input[type=text], #addcar-form input[type=password] {
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
-  border-radius: 2px;
-  padding: 0 5px;
+#addcar-form input[type=text], #addcar-form input[type=password], #addcar-form textarea {
   border: 1px solid #ddd;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
+#addcar-form input[type=text], #addcar-form input[type=password] {
+  padding: 0 5px;
   width: 60%;
   height: 32px; }
 #addcar-form button[type=submit], #addcar-form .up-trigger {
@@ -1524,6 +1563,13 @@ footer {
   text-align: center; }
 #addcar-form button[type=submit]:hover {
   background: #007aeb; }
+#addcar-form textarea {
+  padding: 5px;
+  width: 60%;
+  height: 96px; }
+
+.about h3 {
+  margin-top: 20px; }
 
 @media screen and (min-width: 767px) and (max-width: 970px) {
   .main .main-wrapper {

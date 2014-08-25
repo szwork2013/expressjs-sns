@@ -25,7 +25,7 @@
     </div>
     <div class="row">
         <div class="act">
-            <button type="submit">注册</button> 
+            <button type="submit">注册</button><a class="goregister" href="/login">已有账号？去登陆<i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
 </form>
@@ -71,7 +71,7 @@
                             emailInput.after($('<i class="fa fa-circle-o-notch  fa-spin" style="position: absolute; left: 99%; top: 12px;"></i>'));
                         },
                         success:function(re){
-                            emailInput.nextAll('.fa-circle-o-notch').remove(); 
+                            emailInput.nextAll('.fa-circle-o-notch').remove();
                             if(re.r===1){
                                 emailInput.nextAll('.tips1').show();
                                 return;

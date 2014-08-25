@@ -10,9 +10,10 @@ var Reply = new Schema({
 	board_id: { type: ObjectId},
 	reply_id : { type: ObjectId },
 	author_id: { type: ObjectId },
-	create_date: { type: Date, default: Date.now },
+    report:{ type: Number,default: 0},
     up:{ type: Number,default: 0},
-    uper:[{_id:false,uper_id:ObjectId}]
+    uper:[{_id:false,uper_id:ObjectId}],
+	create_date: { type: Date, default: Date.now }
 });
 
 Reply.virtual('create_date_format').get(function(){

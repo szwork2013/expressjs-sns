@@ -15,9 +15,10 @@
             <span title="普通列表" class="ql-format-button ql-bullet"></span>
             <span title="数字列表" class="ql-format-button ql-list"></span>
             <span class="ql-format-separator"></span>
-            <span title="链接" class="ql-format-button ql-link"></span>
+            <span title="插入链接" class="ql-format-button ql-link"></span>
             <span title="插入图片" class="ql-format-button ql-image"></span>
-            <!--<span title="插入视频" class="ql-format-button ql-vedio"><i class="fa fa-youtube-play"></i></span>-->
+            <!--<span class="ql-format-separator"></span>-->
+            <!--<span title="插入视频" class="ql-format-button ql-video"><i class="fa fa-video-camera"></i></span>-->
         </div>
         <div id="new-topic-content" placeholder="标题字数10字以上"></div>
         <textarea id="hiddeninput" name="content" class="hide"></textarea>
@@ -57,10 +58,24 @@
         </div>
         <form action="/topic/uploadimg" method="post" id="uploadimg-form" enctype="multipart/form-data">
             <input type="file" name="uploadimg" id="uploadimg" class="hide">
-            <button id="upimg-trigger" type="button">选择图片</button>
+            <button id="upimg-trigger" type="button"><i class="fa fa-cloud-upload"></i>选择图片</button>
         </form>
     </div>
 </div>
+
+<div class="addvideo-popup popup" style="display:none;">
+    <i class="fa fa-times p-close"></i>
+    <div class="popup-wrapper">
+        <div class="row">
+            <p>插入视频</p>
+        </div>
+        <div class="row">
+            <input type="text" name="video-url" id="video-url">
+            <button id="addvideo-btn">确定</button>
+        </div>
+    </div>
+</div>
+
 
 <script>
 $script(['/js/quill.js','/js/validator.js','/js/xss.js','/js/tip.js'],function(){
@@ -105,6 +120,9 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js','/js/tip.js'],function()
                });
            });
         });
+        $('#uploadimg-form').submit(function(e){
+               e.preventDefault();
+        });
 
         $('.ql-link').click(function(){
             $script('/js/spopup.js',function(){
@@ -132,9 +150,28 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js','/js/tip.js'],function()
         });
 
 
-        $('#uploadimg-form').submit(function(e){
-               e.preventDefault();
+        /*
+        var flashhtml ='<object width="100%" height="100%"><param name="movie" value="http://player.youku.com/player.php/sid/XNTU5NTY3NjQ4/v.swf"><embed src="http://player.youku.com/player.php/sid/XNTU5NTY3NjQ4/v.swf" width="100%" height="100%"></embed></object>';
+
+        $('.ql-video').click(function(){
+            $script('/js/spopup.js',function(){
+               var addvideopopup = $('.addvideo-popup').clone().spopup({
+                   width:'400px'
+               },function(){
+                   var self = this;
+                   $(this).find('#addvideo-btn').click(function(){
+                       if(!validator.isURL(url,{require_protocol: true})){
+                               Tip('请输入正确的视频地址！(html代码)','error');
+                               return;
+                       }
+                       editor.setHTML(flashhtml);
+                       addvideopopup.close();
+                   });
+               })
+            });
         });
+        */
+
 
         var titleInput = $('input[name="title"]');
 

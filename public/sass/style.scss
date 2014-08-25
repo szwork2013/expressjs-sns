@@ -7,16 +7,15 @@
         @include clearfix();
         background:#fff;
         margin:0px auto;
-        width:1000px;
+        width:$main-width;
         min-height:650px;
-        padding:100px 0 50px 0;
+        padding:100px 10px 50px;
         color:#666;
     }
 }
 .content{
     float:left;
-    width:680px;
-    padding:10px;
+    width:830px;
     .list-wrapper{
         h1{
             float:left;
@@ -24,10 +23,16 @@
             font-size:24px;
         }
     }
+    .topic-main,.reply-list,.hot-reply-list{
+        .report{
+            color:#ccc;
+            display:none;
+        }
+    }
 }
 .sidebar{
-    width:280px;
-    padding:10px;
+    margin-left:30px;
+    width:380px;
     float:left;
     h3,h4{
         margin-bottom:10px;
@@ -150,6 +155,9 @@
         li{
             a{
                 color:#666;
+                &:hover{
+                    color:$action-red;
+                }
             }
             @include clearfix();
             padding-bottom:5px;
@@ -239,6 +247,7 @@
             margin-right:20px;
             float:left;
             a{
+                display:inline-block;
                 color:#ccc;
                 &:hover{
                     color:#999;
@@ -267,11 +276,11 @@
             vertical-align:middle;
         }
         padding:2px 0 2px 14px;
-        a,a:hover{
+        a{
             color:#666;
-        }
-        a:hover{
-            text-decoration:underline;
+            &:hover{
+                color:$action-red;
+            }
         }
     }
 }
@@ -313,6 +322,8 @@
     }
 }
 .reply-list h2,.hot-reply-list h2{
+    border-bottom:2px solid #eee;
+    padding-bottom:10px;
     .fa{
         font-size:18px;
         margin-right:5px;
@@ -324,7 +335,7 @@
         border-bottom:1px solid #eee;
         width:100%;
         @include clearfix();
-        &:first-child{
+        &:last-child{
             border-bottom:none;
         }
     }
@@ -386,10 +397,15 @@
         }
     }
     .reply-meta{
+        @include clearfix();
+        li{
+            float:left;
+        }
         .fa{
             margin-right:2px;
         }
         a{
+            display:inline-block;
             color:#666;
             &:hover{
                 color:$link-color;
@@ -486,10 +502,10 @@
                 background:$action-blue-hover;
             }
         }
-        .goregister{
+        .goregister,.gologin{
             position:absolute;
             top:30px;
-            right:40px;
+            right:9%;
         }
 
     }
@@ -546,12 +562,18 @@
             width:60px;
             border:none;
         }
-        input[type=text],input[type=password]{
+        input[type=text],input[type=password],textarea{
             @include border-radius(2px);
-            padding:0 5px;
             border:1px solid #ddd;
             width:60%;
+        }
+        input[type=text],input[type=password]{
             height:32px;
+            padding:0 5px;
+        }
+        textarea{
+            padding:5px;
+            height:96px;
         }
         .wyurl{
             padding-left:65px;
@@ -606,6 +628,9 @@
         font-size:14px;
         line-height:30px;
     }
+    .fa-video-camera:hover{
+        color:#06c;
+    }
     #new-topic-title{
         width:95%;
         height:40px;
@@ -646,7 +671,7 @@
         }
     }
 }
-.addlink-popup,.uploadimg-popup{
+.addlink-popup,.uploadimg-popup,.addvideo-popup{
     .popup-wrapper{
         margin-top:20px;
     }
@@ -676,6 +701,10 @@
         &:hover{
             background:$action-green-hover;
         }
+    }
+    #video-url{
+        width:270px;
+        margin-right:10px;
     }
 }
 //loading
@@ -817,7 +846,7 @@
         img.user-avatar{
             z-index:10;
             position:absolute;
-            left:83px;
+            left:111px;
             bottom:-60px;
             width:128px;
             height:128px;
@@ -826,6 +855,7 @@
         }
     }
     .user-main{
+        width:$main-width;
         position:relative;
     }
     .user-detail{
@@ -833,18 +863,27 @@
         left:0;
         top:10px;
         z-index:10;
-        width:300px;
+        width:360px;
         overflow:hidden;
         padding-bottom:10px;
         z-index:99;
         text-align:center;
+        h1,h3,p,.focus{
+            margin:0 auto;
+            width:250px;
+        }
         h1{
-            font-size:24px;
+           font-size:24px;
+        }
+        p{
+           border-top:1px solid #ddd;
+           margin:8px auto;
+           padding:12px 0;
+           text-align:left;
         }
         .focus{
             @include clearfix();
             margin:0 auto;
-            width:250px;
             padding:15px 0;
             margin-top:15px;
             border-top:1px solid #ddd;
@@ -868,7 +907,7 @@
         @include clearfix();
         height:50px;
         line-height:50px;
-        padding-left:310px;
+        padding-left:390px;
         font-size:16px;
         .action{
             color:$action-green;
@@ -896,14 +935,14 @@
         }
     }
     .user-topics,.user-replys,.car-list{
-        margin-left:300px;
-        width:680px;
-        padding:10px;
+        margin-left:380px;
+        width:850px;
+        padding:10px 0 10px 10px;
         float:left;
         h2{
             color:#111;
             padding-left:10px;
-            border-left:5px solid $action-red;
+            border-left:5px solid #ddd;
             .fa{
                 width:5px;
                 margin-right:5px;
@@ -970,6 +1009,9 @@
 }
 //addcar
 #addcar-form{
+    h2{
+        margin-top:24px;
+    }
     #showcarname{
         color:#cc181e;
     }
@@ -987,10 +1029,12 @@
     label{
         width:60px;
     }
-    input[type=text],input[type=password]{
-        @include border-radius(2px);
-        padding:0 5px;
+    input[type=text],input[type=password],textarea{
         border:1px solid #ddd;
+        @include border-radius(3px);
+    }
+    input[type=text],input[type=password]{
+        padding:0 5px;
         width:60%;
         height:32px;
     }
@@ -1005,5 +1049,15 @@
     }
     button[type=submit]:hover{
         background:$action-blue-hover;
+    }
+    textarea{
+        padding:5px;
+        width:60%;
+        height:96px;
+    }
+}
+.about{
+    h3{
+        margin-top:20px;
     }
 }

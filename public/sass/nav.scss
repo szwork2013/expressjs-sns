@@ -18,13 +18,13 @@ $menu-width:30px;
     .nav-container{
         @include center-block();
         @include clearfix();
+        width:$main-width;
+        height:$nav-container-height;
+        position:relative;
         .logo{
             width:80px;
             float:left;
         }
-        height:$nav-container-height;
-        padding:0 30px;
-        position:relative;
     }
     a{
         color:$font-color;
@@ -103,15 +103,19 @@ footer{
     font-size:12px;
     @include clearfix();
     color:#999;
+    .wrapper{
+        line-height:24px;
+        padding:20px 30px;
+        border-top:1px solid #f4f4f4;
+        margin:0 auto;
+        width:$main-width;
+    }
     a{
         color:#999;
         &:hover{
             color:#666;
         }
     }
-    padding:20px 30px;
-    border-top:1px solid #e5e5e5;
-    line-height:24px;
     .ft-meta{
         @include clearfix();
         vertical-align:middle;

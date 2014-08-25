@@ -183,7 +183,7 @@
                 success:function(re){
                     $('.last-reply-list ul .more').remove();
                     if($(re.replys).length>0){
-                        $('.last-reply-list ul').append('<h3>大家都在讨论</h3>');
+                        $('.last-reply-list ul').append('<h3>最近大家在讨论</h3>');
                         $(re.replys).each(function(k,v){
                             $('.last-reply-list ul').append(new EJS({text:$('#lastreply-item').html()}).render(v));
                         });

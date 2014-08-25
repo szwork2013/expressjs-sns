@@ -12,7 +12,7 @@ var path = require( 'path' );
 var fs = require( 'fs' );
 
 function GetTopicTemplete(topics,callback){
-        var n_topics = [];
+        var topics_o = [];
         async.eachSeries(topics,function(topic,cb){
             User.findOne({_id:topic.author_id},function(err,user){
                 User.findOne({_id:topic.last_reply},function(err,replyuser){
@@ -22,12 +22,12 @@ function GetTopicTemplete(topics,callback){
                     temp_topic.author_url = user.url;
                     temp_topic.author_avatar_url = user.avatar_url_s;
                     temp_topic.last_reply_name = replyuser?replyuser.name:'';
-                    n_topics.push(temp_topic);
+                    topics_o.push(temp_topic);
                     cb();
                 });
             });
         },function(err){
-            callback(n_topics);
+            callback(topics_o);
         });
 }
 

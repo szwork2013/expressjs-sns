@@ -41,6 +41,7 @@
             <a href="javascript:void(0);"><i title="分享到微信" class="fa fa-weixin"></i>
             </a>
             </li>
+            <li class="fr"><a href="javascript:void(0);" class="report">举报</a></li>
         </ul>
     </div>
 
@@ -78,6 +79,7 @@
                         <li>
                         <a href="javascript:void(0);" class="reply-reply"><i class="fa  fa-comments-o"></i>回复</a>
                         </li>
+                        <li class="fr"><a href="javascript:void(0);" class="report">举报</a></li>
                     </ul>
                 </div>
             </div>
@@ -105,7 +107,7 @@
 </div>
 <div class="sidebar">
     <div class="back-action side-mod">
-        <a href="/b/{{board.url}}"><i class="fa fa-arrow-left"></i>返回{{board.name}}</a>
+        <a href="/b/{{board.url}}"><i class="fa fa-arrow-circle-left"></i>返回{{board.name}}</a>
     </div>
     <div class="side-mod">
         <h3>刚刚看了</h3>
@@ -142,6 +144,7 @@
                     <li>
                         <a href="javascript:void(0);" class="reply-reply"><i class="fa fa-comments-o"></i>回复</a>
                     </li>
+                    <li class="fr"><a href="javascript:void(0);" class="report">举报</a></li>
                 </ul>
             </div>
         </div>
@@ -217,6 +220,18 @@
             localStorage.setItem('viewhistory',JSON.stringify(viewd));
         }
 
+        //添加举报事件
+        function AddReportEvent(el){
+            $(el).unbind('mouseover mouseout').bind({
+                'mouseover':function(){
+                    $(this).find('.report').show();
+                },
+                'mouseout':function(){
+                    $(this).find('.report').hide();
+                }
+            })
+        }
+
         //加载留言
         function fetchreplys(pid,cb){
             var hash = window.location.hash;
@@ -236,6 +251,7 @@
                         RenderReplyList(re.replys);
                         UpReplyBind($('.reply-item .up,.reply-item .down'));
                         Replytoreply($('.reply-item .reply-reply'));
+                        AddReportEvent($('.reply-item'));
                         if(re.pager){
                             $('.reply-list .pager').remove();
                             $('.reply-list').append(new EJS({text:$('#reply-pager').html()}).render(re.pager));
@@ -284,7 +300,7 @@
                             }else if(re.r ===0){
                                 Tip('不能重复提交');
                             }else if(re.r === 2){
-                                Tip('不能自己顶自己');
+                                Tip('不能给自己投票');
                             }else if(re.r===3){
                                 Tip('未登录，请登录');
                             }
@@ -328,7 +344,6 @@
                     method:'post',
                     data:'reply_content='+replycontent+'&topic_id={{topic._id}}&board_id={{board._id}}'+rridstr,
                     beforeSend:function(){
-                        if($('.reply-list .pager').length>0) fetchreplys($('.reply-list .pager ul .nums').last().attr('p'));
                         $('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>').appendTo($('.reply-list'));
                     },
                     success:function(re){
@@ -342,9 +357,13 @@
                         if(!$('.reply-list h2').length) $('.reply-list').append($('<h2><i class="fa fa-comment"></i>评论</h2>'));
                         Tip('回复成功！','success');
                         //add html dom
-                        $('.reply-list').append(new EJS({text:$('#reply-item-temp').html()}).render(re));
+                        var el = new EJS({text:$('#reply-item-temp').html()}).render(re);
+                        $('.reply-list').append($(el).css('opacity',0).animate({
+                            'opacity':1
+                        }));
                         UpReplyBind($('.reply-list .reply-item').last().find('.up,.down'));
                         Replytoreply($('.reply-list .reply-item').last().find('.reply-reply'));
+                        AddReportEvent($('.reply-list .reply-item').last());
                     }
                 })
             })
@@ -395,6 +414,9 @@
             });
         });
 
+
+
+        //微信二维码
         $('.fa-weixin').click(function(){
             $script('/js/spopup.js',function(){
                 $('<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&choe=UTF-8&chld=L|2&chl=http://127.0.0.1:8080/topic/{{topic._id}}" width="200" height="200"/></img></div>').spopup({
@@ -406,6 +428,8 @@
         });
 
 
+        //举报
+        AddReportEvent($('.topic-main'));
     });
 })()
 </script>

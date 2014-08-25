@@ -6,7 +6,7 @@
     <div class="user-bar">
         <div class="action">
             {{#isme}}
-            <a href="javascript:void(0);">更换背景</a>
+            <a href="javascript:void(0);"><i class="fa fa-file-image-o"></i>更改背景</a>
             {{/isme}}
             {{^isme}}
             {{#isfocus}}
@@ -26,8 +26,12 @@
     <div class="user-main">
         <div class="user-detail">
             <h1>{{showuser.name}}</h1>
+            {{#showuser.signature}}
             <h3>{{showuser.signature}}</h3>
+            {{/showuser.signature}}
+            {{#showuser.desc}}
             <p>{{showuser.desc}}</p>
+            {{/showuser.desc}}
             <div class="focus">
                 <dl>
                     <dt>关注</dt>
@@ -62,22 +66,30 @@
 </div>
 <script>
 (function(){
- $('#add-relation').click(function(e){
+
+    $('#add-relation').click(function(e){
      e.preventDefault();
      $.ajax({
-url:$(this).attr('href'),
-method:'post',
-success:function(r){
-$script('/js/tip.js',function(){
-    if(r.r===1){
-    Tip('关注+1');
-    $(e.target).html('<i class="fa fa-check"></i>已关注');
-    }else if(r.r===0){
-    Tip('已经关注');
-    }
+        url:$(this).attr('href'),
+        method:'post',
+        success:function(r){
+            $script('/js/tip.js',function(){
+                if(r.r===1){
+                    Tip('关注+1');
+                    $(e.target).before('<i class="fa fa-check"></i>已关注');
+                    $(e.target).remove();
+                }else if(r.r===0){
+                    Tip('已经关注');
+                }else if(r.r===2){
+                    Tip('未登陆，请先登陆');
+                }
+            })
+        }
     })
-}
-})
-     });
+    });
+
+    //更换背景
+
+
  })()
 </script>

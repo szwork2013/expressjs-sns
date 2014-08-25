@@ -8,7 +8,7 @@ var Reply = mongoose.model('Reply');
 var Collect= mongoose.model('Collect');
 
 function GetCollectTempleteByUserId(res,req,callback){
-    Collect.find({user_id:req.session.user._id},function(err,cols){
+    Collect.find({user_id:req.session.user._id},null,{sort:{create_date:-1}},function(err,cols){
         var cols_n = [];
         async.eachSeries(cols, function(col, callback){
             Topic.findOne({_id:col.topic_id},function(err,topic){

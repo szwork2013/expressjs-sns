@@ -18,15 +18,17 @@
                     <input type="text" name="uurl" id="uurl" value="{{user.url}}">
                     <p class="wyurl">{{gurl}}/<span id="showurl">{{user.url}}</span></p>
                 </div>
-
                 <div class="row">
                     <label for="uemail">邮箱</label>
                     <input type="text" name="uemail" id="uemail" value="{{user.email}}">
                 </div>
-
                 <div class="row">
                     <label for="usign">签名</label>
                     <input type="text" name="usign" id="usign" value="{{user.signature}}">
+                </div>
+                <div class="row">
+                    <label for="udesc">个性描述</label>
+                    <textarea name="udesc" id="udesc">{{user.desc}}</textarea>
                 </div>
                 <div class="row">
                     <button type="submit" class="ml">保存</button>
