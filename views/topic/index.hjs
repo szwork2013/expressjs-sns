@@ -41,7 +41,7 @@
             <a href="javascript:void(0);"><i title="分享到微信" class="fa fa-weixin"></i>
             </a>
             </li>
-            <li class="fr"><a href="javascript:void(0);" class="report">举报</a></li>
+            <li class="fr"><a href="javascript:void(0);" class="report"><i class="fa fa-flag-o"></i>举报</a></li>
         </ul>
     </div>
 
@@ -79,7 +79,7 @@
                         <li>
                         <a href="javascript:void(0);" class="reply-reply"><i class="fa  fa-comments-o"></i>回复</a>
                         </li>
-                        <li class="fr"><a href="javascript:void(0);" class="report">举报</a></li>
+                        <li class="fr"><a href="javascript:void(0);" class="report"><i class="fa fa-flag-o"></i>举报</a></li>
                     </ul>
                 </div>
             </div>
@@ -87,11 +87,10 @@
         {{/hotreplys}}
     </div>
     {{/hotreplys.length}}
-    <div class="reply-list">
     {{#topic.reply_count}}
-        <h2><i class="fa fa-comment"></i>评论</h2>
-    {{/topic.reply_count}}
+    <div class="reply-list">
     </div>
+    {{/topic.reply_count}}
     <div id="reply-reply-desc" style="display:none;">
         <i class="fa fa-times fr"></i>
         回复<span class="rr-name"></span>：<span class="rr-content"></span>
@@ -144,7 +143,7 @@
                     <li>
                         <a href="javascript:void(0);" class="reply-reply"><i class="fa fa-comments-o"></i>回复</a>
                     </li>
-                    <li class="fr"><a href="javascript:void(0);" class="report">举报</a></li>
+                    <li class="fr"><a href="javascript:void(0);" class="report"><i class="fa fa-flag-o"></i>举报</a></li>
                 </ul>
             </div>
         </div>
@@ -249,9 +248,6 @@
                         $('.reply-list .more').remove();
                         $('.reply-list .reply-item').remove();
                         RenderReplyList(re.replys);
-                        UpReplyBind($('.reply-item .up,.reply-item .down'));
-                        Replytoreply($('.reply-item .reply-reply'));
-                        AddReportEvent($('.reply-item'));
                         if(re.pager){
                             $('.reply-list .pager').remove();
                             $('.reply-list').append(new EJS({text:$('#reply-pager').html()}).render(re.pager));
@@ -278,9 +274,14 @@
         function RenderReplyList(replys){
             if(replys && replys.length>0){
                 $(replys).each(function(k,v){
-                    $('.reply-list').append(new EJS({text:$('#reply-item-temp').html()}).render(v));
-                    UpReplyBind($('.reply-list .reply-item').find('.up,.down'));
-                    Replytoreply($('.reply-list .reply-item').find('.reply-reply'));
+                    if(!$('.reply-list h2').length) $('.reply-list').append($('<h2><i class="fa fa-comment"></i>评论</h2>'));
+                    $('.reply-list').append($(new EJS({text:$('#reply-item-temp').html()}).render(v)).css('opacity',0).animate({
+                        'opacity':1
+                    }));
+
+                    UpReplyBind($('.reply-item .up,.reply-item .down'));
+                    Replytoreply($('.reply-item .reply-reply'));
+                    AddReportEvent($('.reply-item'));
                 });
             }
         }
@@ -351,19 +352,15 @@
                         if(re.r === 3){
                             Tip('未登录，请登录');
                             return;
+                        }else if(re.r === 0){
+                            Tip('留言失败','error');
+                            return;
                         }
                         $('#reply_content').val('');
                         if($('#reply-reply-desc').css('display')==='block') $('#reply-reply-desc .fa-times').click();
-                        if(!$('.reply-list h2').length) $('.reply-list').append($('<h2><i class="fa fa-comment"></i>评论</h2>'));
                         Tip('回复成功！','success');
                         //add html dom
-                        var el = new EJS({text:$('#reply-item-temp').html()}).render(re);
-                        $('.reply-list').append($(el).css('opacity',0).animate({
-                            'opacity':1
-                        }));
-                        UpReplyBind($('.reply-list .reply-item').last().find('.up,.down'));
-                        Replytoreply($('.reply-list .reply-item').last().find('.reply-reply'));
-                        AddReportEvent($('.reply-list .reply-item').last());
+                        RenderReplyList([re]);
                     }
                 })
             })
@@ -413,8 +410,6 @@
                 }
             });
         });
-
-
 
         //微信二维码
         $('.fa-weixin').click(function(){

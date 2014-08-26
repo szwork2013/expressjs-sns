@@ -450,7 +450,7 @@
     @include border-radius(5px);
     ront-size:14px;
     color:#fff;
-    background:rgba(0,0,0,.8);
+    background:rgba(0,0,0,.7);
     width:540px;
     margin:0 150px;
     text-align:center;
@@ -519,6 +519,10 @@
             position:absolute;
             top:30px;
             right:9%;
+            color:$action-green;
+            &:hover{
+                color:$action-green-hover;
+            }
         }
 
     }

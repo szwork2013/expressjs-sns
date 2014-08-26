@@ -414,7 +414,7 @@
   border-radius: 5px;
   ront-size: 14px;
   color: #fff;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.7);
   width: 540px;
   margin: 0 150px;
   text-align: center; }
@@ -480,7 +480,10 @@
   .reg-form .act .goregister, .reg-form .act .gologin, .login-form .act .goregister, .login-form .act .gologin {
     position: absolute;
     top: 30px;
-    right: 9%; }
+    right: 9%;
+    color: #30c880; }
+    .reg-form .act .goregister:hover, .reg-form .act .gologin:hover, .login-form .act .goregister:hover, .login-form .act .gologin:hover {
+      color: #2cb675; }
   .reg-form .loading, .login-form .loading {
     position: absolute;
     left: 50px;

@@ -107,6 +107,10 @@ router.post('/addreply',function(req,res){
     if(req.body.reply_id) sqlstr.reply_id=req.body.reply_id;
 
     new Reply(sqlstr).save(function(err,reply){
+        if(err){
+            res.json({r:0});
+            return;
+        }
         User.findOneAndUpdate({_id:req.session.user._id},{$inc:{score:1}},function(err,user){
             Topic.findOneAndUpdate({_id:req.body.topic_id},{$inc:{reply_count:1},last_reply_date:Date.now(),last_reply:req.session.user._id},function(err,topic){
                 if(req.body.reply_id){
