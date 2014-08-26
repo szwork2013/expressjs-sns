@@ -2,23 +2,26 @@
 <div class="tips-list">
     {{#tips.length}}
     <div class="action-bar">
-        <a href="javascript:void(0);" id="del-all"><i class="fa fa-trash-o"></i>删除全部提醒</a>
+        <a href="javascript:void(0);" id="del-all"><i class="fa fa-trash-o"></i>删除全部</a>
     </div>
     {{/tips.length}}
     {{#tips}}
     <div id="{{_id}}" has_read="{{has_read}}" class="tips-item">
+    <p>
     {{#reply_id}}
-    <a href="/topic/{{topic_id}}#{{reply_id}}">您的留言有新回复</a><span class="date">（{{create_date_fromnow}}）</span>
+    <a href="/topic/{{topic_id}}#{{reply_id}}">您的留言"{{rcontent}}"有新回复</a>
     {{/reply_id}}
     {{#topic_id}}
     {{^reply_id}}
-    <a href="/topic/{{topic_id}}">您的帖子有新回复</a><span class="date">（{{create_date_fromnow}}）</span>
+    <a href="/topic/{{topic_id}}">您的帖子"{{ttitle}}"有新回复</a>
     {{/reply_id}}
     {{/topic_id}}
     {{#message_id}}
-    <a href="/message#{{message_id}}">您有一条新的私信</a><span class="date">（{{create_date_fromnow}}）</span>
+    <a href="/message#{{message_id}}">{{mauthor}}发给您一条新私信</a>
     {{/message_id}}
     <a href="javascript:void(0);" class="del fr" tipsid="{{_id}}"><i class="fa fa-times"></i></a>
+    </p>
+    <p class="date">{{create_date_fromnow}}</p>
     </div>
     {{/tips}}
 </div>
@@ -32,15 +35,19 @@
             var self =this;
             $.ajax({
                url:'/tips/del',
-               data:'id='+$(this).parent('.tips-item').attr('id'),
+               data:'id='+$(this).parents('.tips-item').attr('id'),
                method:'post',
                success:function(r){
                 if(r.r===1){
-                    $(self).parent('.tips-item').fadeOut(200,function(){
+                    $(self).parents('.tips-item').fadeOut(200,function(){
                         $script('/js/tip.js',function(){
                             Tip('删除成功','success');
                         });
                         this.remove();
+                    });
+                }else if(r.r===0){
+                    $script('/js/tip.js',function(){
+                        Tip('删除失败','error');
                     });
                 }
                }

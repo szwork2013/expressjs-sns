@@ -7,13 +7,49 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Reply = mongoose.model('Reply');
 var Tips = mongoose.model('Tips');
+var Topic = mongoose.model('Topic');
+var Reply = mongoose.model('Reply');
+var Message = mongoose.model('Message');
 
 router.get('/', function(req, res) {
     Tips.find({user_id:req.session.user._id},null,{sort:{create_date:-1}},function(err,tips){
-        res.render('tips/index',{
-            title:'我的提醒',
-            tips:tips
-        });
+        var tips_o = [];
+        async.eachSeries(tips,function(tip,cb){
+            switch (tip.type){
+                case '1':
+                    Topic.findOne({_id:tip.topic_id},function(err,topic){
+                        var tiptemp = tip.toObject();
+                        tiptemp.ttitle=topic.title;
+                        tips_o.push(tiptemp);
+                        cb();
+                    })
+                break;
+                case '2':
+                    Reply.findOne({_id:tip.reply_id},function(err,reply){
+                        var tiptemp = tip.toObject();
+                        tiptemp.rcontent = reply.content;
+                        tips_o.push(tiptemp);
+                        cb();
+                    })
+                break;
+                case '3':
+                    Message.findOne({_id:tip.message_id},function(err,message){
+                        User.findOne({_id:message.from_id},function(err,from_user){
+                            var tiptemp = tip.toObject();
+                            tiptemp.mauthor = from_user.name;
+                            tips_o.push(tiptemp);
+                            cb();
+                        })
+                    })
+                break;
+
+            }
+        },function(){
+            res.render('tips/index',{
+                title:'我的提醒',
+                tips:tips_o
+            });
+        })
     });
 });
 
