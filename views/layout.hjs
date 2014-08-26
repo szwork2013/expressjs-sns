@@ -50,8 +50,10 @@
 <script>
     (function(){
         setInterval(function(){
-            $('.bg img').fadeOut(500).attr('src','/img/startbg/'+(Math.floor(Math.random()*10)+1)+'.jpg').fadeIn(1000);
-        },3000);
+            $('.bg img').fadeOut(500,function(){
+                $(this).attr('src','/img/startbg/'+(Math.floor(Math.random()*10)+1)+'.jpg').fadeIn(1000);
+            })
+        },10000);
     })()
 </script>
 {{/bg}}

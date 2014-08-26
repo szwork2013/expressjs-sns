@@ -24,6 +24,7 @@ var GetTopicTemplete = common.GetTopicTemplete;
 
 //获取标题列表
 router.get('/', function(req, res) {
+    if(!req.session.user) res.redirect('/login');
     Board.find({},function(err,bs){
         res.render('index',{
             boards:bs
@@ -32,11 +33,11 @@ router.get('/', function(req, res) {
 });
 
 router.get('/register', function(req, res) {
-    res.render('user/register', { title: '注册',bg:Math.floor(Math.random()*10)+1});
+    res.render('user/register', { title: '注册',bg:Math.floor(Math.random()*20)+1});
 });
 
 router.get('/login', function(req, res) {
-    res.render('user/login', { title: '登陆',bg:Math.floor(Math.random()*10)+1});
+    res.render('user/login', { title: '登陆',bg:Math.floor(Math.random()*20)+1});
 });
 
 router.get('/logout', function(req, res) {

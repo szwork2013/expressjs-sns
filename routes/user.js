@@ -67,6 +67,27 @@ router.post('/saveimgsettings', function(req, res) {
     });
 });
 
+router.post('/uploaduserbg', function(req, res) {
+    new formidable.IncomingForm().parse(req,function(err,fields,files){
+        if(!files.avatar.name) {
+            res.redirect('/error');
+        }else{
+            var img = files.img;
+            var target_floder = process.cwd()+'/public/assets/userbg/'+req.session.user._id;
+            if(!fs.existsSync(target_floder)){
+                if(!fs.existsSync(process.cwd()+'/public/assets/userbg')){
+                    fs.mkdirSync(process.cwd()+'/public/assets/userbg');
+                }
+                fs.mkdirSync(target_floder);
+            }
+            var save_url = '/assets/userbg/'+req.session.user._id+'/ubg'+req.session.user._id+path.extname(files.avatar.name);
+            gm(img.path).write(process.cwd()+'/public'+save_url,function(){
+                res.json({r:1,url:save_url});
+            })
+        }
+    });
+});
+
 router.post('/savebasesettings', function(req, res) {
     var newname = req.body.uname,
     newemail = req.body.uemail,

@@ -6,10 +6,11 @@ var ObjectId = Schema.ObjectId;
 
 var Reply = new Schema({
 	content: { type: String },
+	author_id: { type: ObjectId },
 	topic_id: { type: ObjectId},
 	board_id: { type: ObjectId},
 	reply_id : { type: ObjectId },
-	author_id: { type: ObjectId },
+    car_id: { type: ObjectId },
     report:{ type: Number,default: 0},
     up:{ type: Number,default: 0},
     uper:[{_id:false,uper_id:ObjectId}],
