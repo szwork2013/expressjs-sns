@@ -32,11 +32,11 @@ router.get('/', function(req, res) {
 });
 
 router.get('/register', function(req, res) {
-    res.render('user/register', { title: '注册' });
+    res.render('user/register', { title: '注册',bg:Math.floor(Math.random()*10)+1});
 });
 
 router.get('/login', function(req, res) {
-    res.render('user/login', { title: '登陆' });
+    res.render('user/login', { title: '登陆',bg:Math.floor(Math.random()*10)+1});
 });
 
 router.get('/logout', function(req, res) {
@@ -49,7 +49,7 @@ router.get('/logout', function(req, res) {
 
 router.get('/baned', function(req, res) {
     res.render('error',{
-        message:'抱歉，您的账号已经被注销！' 
+        message:'抱歉，您的账号已经被注销！'
     });
 });
 
