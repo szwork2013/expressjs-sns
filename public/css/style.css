@@ -118,7 +118,6 @@
         vertical-align: middle; }
     .topic-list li .author-avatar {
       width: 48px;
-      margin-right: 20px;
       float: left; }
       .topic-list li .author-avatar img {
         background: #fff;
@@ -133,7 +132,7 @@
       float: left;
       overflow: hidden;
       width: 63%;
-      padding: 0 1%; }
+      padding: 0 2%; }
     .topic-list li .topic-detail {
       line-height: 48px;
       float: left;
@@ -1002,5 +1001,26 @@
 .about h3 {
   margin-top: 20px; }
 
-.user-list li {
-  float: left; }
+.user-list {
+  width: 100%; }
+  .user-list:before, .user-list:after {
+    content: "";
+    display: table; }
+  .user-list:after {
+    clear: both; }
+  .user-list li {
+    width: 80px;
+    height: 96px;
+    overflow: hidden;
+    text-align: center;
+    float: left;
+    margin-top: 14px;
+    text-align: center; }
+    .user-list li .avatar, .user-list li .user-avatar {
+      margin: 0 auto;
+      width: 48px;
+      height: 48px; }
+    .user-list li .name {
+      margin-top: 10px;
+      line-height: 18px;
+      color: #000; }

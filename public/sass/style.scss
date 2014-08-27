@@ -133,7 +133,6 @@
         }
         .author-avatar{
             width:48px;
-            margin-right:20px;
             float:left;
             img{
                 background:#fff;
@@ -145,8 +144,8 @@
         .topic-title{
             float:left;
             overflow:hidden;
-            width:63%;
-            padding:0 1%;
+            width:61%;
+            padding:0 2%;
         }
         .topic-detail{
             line-height:48px;
@@ -1078,7 +1077,25 @@
     }
 }
 .user-list{
+    @include clearfix();
+    width:100%;
     li{
+        width:80px;
+        height:96px;
+        overflow:hidden;
+        text-align:center;
         float:left;
+        margin-top:14px;
+        text-align:center;
+        .avatar,.user-avatar{
+            margin:0 auto;
+            width:48px;
+            height:48px;
+        }
+        .name{
+            margin-top:10px;
+            line-height:18px;
+            color:#000;
+        }
     }
 }

@@ -1,8 +1,15 @@
-<h3>{{user_relation}}关注这些人</h3>
+<h1>{{user_relation}}关注这些人</h1>
 <ul class="user-list">
     {{#relation_users}}
     <li>
-        <img src="{{avatar_url_s}}" alt="">{{name}}
+        <div class="avatar">
+            <a href="/{{url}}">
+                <img class="user-avatar" src="{{avatar_url_s}}">
+            </a>
+        </div>
+        <div class="name">
+            {{name}}
+        </div>
     </li>
     {{/relation_users}}
 </ul>

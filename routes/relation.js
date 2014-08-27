@@ -62,7 +62,6 @@ router.get('/:url/following',function(req,res){
                     cb();
                 });
             },function(err){
-                console.info(relation_users);
                 res.render('relation/following',{
                     user_relation:user.name,
                     relation_users:relation_users

@@ -278,10 +278,9 @@
                     $('.reply-list').append($(new EJS({text:$('#reply-item-temp').html()}).render(v)).css('opacity',0).animate({
                         'opacity':1
                     }));
-
-                    UpReplyBind($('.reply-item .up,.reply-item .down'));
-                    Replytoreply($('.reply-item .reply-reply'));
-                    AddReportEvent($('.reply-item'));
+                    UpReplyBind($('.reply-item').last().find('.up,.down'));
+                    Replytoreply($('.reply-item').last().find('.reply-reply'));
+                    AddReportEvent($('.reply-item').last());
                 });
             }
         }
