@@ -69,10 +69,15 @@ router.post('/saveimgsettings', function(req, res) {
 
 router.post('/uploaduserbg', function(req, res) {
     new formidable.IncomingForm().parse(req,function(err,fields,files){
-        if(!files.avatar.name) {
-            res.redirect('/error');
+        var img = files.img;
+        if(!img.name) {
+            res.json({r:0});
+            return;
         }else{
-            var img = files.img;
+            if(parseInt(img.size/1024)>200){
+                res.json({r:2});
+                return;
+            }
             var target_floder = process.cwd()+'/public/assets/userbg/'+req.session.user._id;
             if(!fs.existsSync(target_floder)){
                 if(!fs.existsSync(process.cwd()+'/public/assets/userbg')){
@@ -80,9 +85,14 @@ router.post('/uploaduserbg', function(req, res) {
                 }
                 fs.mkdirSync(target_floder);
             }
-            var save_url = '/assets/userbg/'+req.session.user._id+'/ubg'+req.session.user._id+path.extname(files.avatar.name);
+            var save_url = '/assets/userbg/'+req.session.user._id+'/ubg'+req.session.user._id+path.extname(img.name);
             gm(img.path).write(process.cwd()+'/public'+save_url,function(){
-                res.json({r:1,url:save_url});
+                User.update({_id:req.session.user._id},{userbg_url:save_url},function(err){
+                    if(!err){
+                        req.session.user.userbg_url = save_url;
+                        res.json({r:1,url:save_url});
+                    }
+                });
             })
         }
     });

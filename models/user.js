@@ -28,6 +28,7 @@ var User = new mongoose.Schema({
 
     isvip:{type:Boolean,default:false},
     isadmin:{type:Boolean,default:false},
+    admin_board:[{_id:false,board_id:ObjectId}],
 
     avatar_url: { type: String,default: '/img/avatar/default.png'},
     userbg_url: { type: String,default: '/img/userbg/default.jpeg'}

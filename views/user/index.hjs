@@ -1,12 +1,13 @@
 <div class="user-wrapper">
     <div class="user-top-bg">
-        <img src="{{showuser.userbg_url}}" alt="" class="user-top-bg">
+        <img src="{{showuser.userbg_url}}" alt="" class="user-top-bg" id="user-top-bg">
         <img src="{{showuser.avatar_url_l}}" class="user-avatar" />
     </div>
     <div class="user-bar">
         <div class="action">
             {{#isme}}
-            <a href="javascript:void(0);"><i class="fa fa-file-image-o"></i>更改背景</a>
+            <a href="javascript:void(0);" id="userbg-btn"><i class="fa fa-file-image-o"></i>更改背景</a>
+            <input type="file" id="upload-userbg" class="hide">
             {{/isme}}
             {{^isme}}
             {{#isfocus}}
@@ -69,27 +70,62 @@
 
     $('#add-relation').click(function(e){
      e.preventDefault();
-     $.ajax({
-        url:$(this).attr('href'),
-        method:'post',
-        success:function(r){
-            $script('/js/tip.js',function(){
-                if(r.r===1){
-                    Tip('关注+1');
-                    $(e.target).before('<i class="fa fa-check"></i>已关注');
-                    $(e.target).remove();
-                }else if(r.r===0){
-                    Tip('已经关注');
-                }else if(r.r===2){
-                    Tip('未登陆，请先登陆');
-                }
-            })
-        }
-    })
+        $.ajax({
+            url:$(this).attr('href'),
+            method:'post',
+            success:function(r){
+                $script('/js/tip.js',function(){
+                    if(r.r===1){
+                        Tip('关注+1');
+                        $(e.target).before('<i class="fa fa-check"></i>已关注');
+                        $(e.target).remove();
+                    }else if(r.r===0){
+                        Tip('已经关注');
+                    }else if(r.r===2){
+                        Tip('未登陆，请先登陆');
+                    }
+                })
+            }
+        })
     });
 
     //更换背景
+    $('#userbg-btn').click(function(){
+        $('#upload-userbg').click();
+    });
 
+     $('#upload-userbg').change(function(e){
+         var files = e.target.files;
+         if (files && files.length > 0) {
+         file = files[0];
+         var fileReader = new FileReader();
+         fileReader.onload = function (event) {
+                var data = new FormData();
+                data.append('img',$('#upload-userbg')[0].files[0]);
+                $.ajax({
+                    url:'/user/uploaduserbg',
+                    method:'post',
+                    contentType: false,
+                    processData: false,
+                    data:data,
+                    success:function(re){
+                        if(re.r===0){
+                            $script('/js/tip.js',function(){
+                                Tip('上传失败','error');
+                            })
+                        }else if(re.r===2){
+                            $script('/js/tip.js',function(){
+                                Tip('图片尺寸过大，请上传<200kb的图片','error');
+                            })
+                        }else if(re.r===1){
+                            $('#user-top-bg').attr('src',re.url);
+                        }
+                    }
+                });
+         };
+         fileReader.readAsDataURL(file);
+         }
+     });
 
  })()
 </script>

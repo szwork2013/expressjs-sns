@@ -51,7 +51,7 @@
     (function(){
         setInterval(function(){
             $('.bg img').fadeOut(500,function(){
-                $(this).attr('src','/img/startbg/'+(Math.floor(Math.random()*10)+1)+'.jpg').fadeIn(1000);
+                $(this).attr('src','/img/startbg/'+(Math.floor(Math.random()*20)+1)+'.jpg').fadeIn(1000);
             })
         },10000);
     })()

@@ -3,12 +3,18 @@
 
 .bg{
     position:fixed;
+    background:#000;
     top:50px;
     left:0;
     bottom:0;
     right:0;
+    width:100%;
+    min-width:1024px;
+    min-height:768px;
     img{
         width:100%;
+        min-width:1024px;
+        min-height:768px;
     }
 }
 .main{

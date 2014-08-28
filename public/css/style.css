@@ -1,11 +1,17 @@
 .bg {
   position: fixed;
+  background: #000;
   top: 50px;
   left: 0;
   bottom: 0;
-  right: 0; }
+  right: 0;
+  width: 100%;
+  min-width: 1024px;
+  min-height: 768px; }
   .bg img {
-    width: 100%; }
+    width: 100%;
+    min-width: 1024px;
+    min-height: 768px; }
 
 .main {
   width: 100%; }
@@ -131,7 +137,7 @@
     .topic-list li .topic-title {
       float: left;
       overflow: hidden;
-      width: 63%;
+      width: 61%;
       padding: 0 2%; }
     .topic-list li .topic-detail {
       line-height: 48px;
