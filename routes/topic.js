@@ -92,6 +92,45 @@ router.post('/addlike',function(req,res){
     });
 });
 
+router.post('/addreport',function(req,res){
+    if(!req.session.user){
+        res.json({r:3});
+        return;
+    }
+
+    if(req.body.topic_id){
+        Topic.findOne({_id:req.body.topic_id},function(err,topic){
+            var isreport = topic.reporter.some(function (reporter) { return reporter.reporter_id.equals(req.session.user._id);});
+            if(isreport){
+                res.json({r:0});
+            }else{
+                Topic.update({_id:topic._id},{$push:{reporter:{reporter_id:req.session.user._id}}},function(err,topic_n){
+                    if(!err && topic_n){
+                        res.json({r:1});
+                    }
+                })
+            }
+        });
+    }else if(req.body.reply_id){
+        Reply.findOne({_id:req.body.reply_id},function(err,reply){
+            var isreport = reply.reporter.some(function (reporter) { return reporter.reporter_id.equals(req.session.user._id);});
+            if(isreport){
+                res.json({r:0});
+            }else{
+                Reply.update({_id:reply._id},{$push:{reporter:{reporter_id:req.session.user._id}}},function(err,reply_n){
+                    if(!err && reply_n){
+                        res.json({r:1});
+                    }
+                })
+            }
+        });
+    }
+});
+
+
+
+
+
 //添加留言api
 router.post('/addreply',function(req,res){
     if(!req.session.user){

@@ -11,11 +11,11 @@ var Topic = new Schema({
     author_id:{type:ObjectId},
     last_reply: { type:ObjectId},
     top: {type: Boolean, default:false},
-    report:{type: Number, default:0},
     reply_count: { type: Number, default: 0 },
     visit_count: { type: Number, default: 0 },
     collect_count: { type: Number, default:0 },
     liker:[{_id:false,liker_id:ObjectId}],
+    reporter:[{_id:false,reporter_id:ObjectId}],
     create_date: { type: Date, default: Date.now },
     update_date: { type: Date, default: Date.now },
     last_reply_date: { type: Date, default: Date.now }

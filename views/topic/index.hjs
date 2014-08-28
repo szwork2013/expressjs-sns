@@ -25,13 +25,13 @@
             </li>
             <li>
             {{#islike}}
-            <a href="javascript:void(0);" id="addlike"><i class="fa fa-heart"></i>已赞</a>
+            <a href="javascript:void(0);" id="addlike"><i class="fa fa-heart"></i>已喜欢</a>
             {{/islike}}
             {{^islike}}
-            <a href="javascript:void(0);" id="addlike"><i class="fa fa-heart-o"></i>赞</a>
+            <a href="javascript:void(0);" id="addlike"><i class="fa fa-heart-o"></i>喜欢</a>
             {{/islike}}
             {{#liker_count}}
-            <span class="liker_count">,已被赞{{liker_count}}次</span>
+            <span class="liker_count">,已被{{liker_count}}人喜欢</span>
             {{/liker_count}}
             </li>
             <li class="share">
@@ -41,7 +41,7 @@
             <a href="javascript:void(0);"><i title="分享到微信" class="fa fa-weixin"></i>
             </a>
             </li>
-            <li class="fr"><a href="javascript:void(0);" class="report"><i class="fa fa-flag-o"></i>举报</a></li>
+            <li class="fr"><a href="javascript:void(0);" class="report topic-report"><i class="fa fa-flag-o"></i>举报</a></li>
         </ul>
     </div>
 
@@ -79,7 +79,7 @@
                         <li>
                         <a href="javascript:void(0);" class="reply-reply"><i class="fa  fa-comments-o"></i>回复</a>
                         </li>
-                        <li class="fr"><a href="javascript:void(0);" class="report"><i class="fa fa-flag-o"></i>举报</a></li>
+                        <li class="fr"><a href="javascript:void(0);" class="report reply-report"><i class="fa fa-flag-o"></i>举报</a></li>
                     </ul>
                 </div>
             </div>
@@ -87,10 +87,8 @@
         {{/hotreplys}}
     </div>
     {{/hotreplys.length}}
-    {{#topic.reply_count}}
     <div class="reply-list">
     </div>
-    {{/topic.reply_count}}
     <div id="reply-reply-desc" style="display:none;">
         <i class="fa fa-times fr"></i>
         回复<span class="rr-name"></span>：<span class="rr-content"></span>
@@ -143,7 +141,7 @@
                     <li>
                         <a href="javascript:void(0);" class="reply-reply"><i class="fa fa-comments-o"></i>回复</a>
                     </li>
-                    <li class="fr"><a href="javascript:void(0);" class="report"><i class="fa fa-flag-o"></i>举报</a></li>
+                    <li class="fr"><a href="javascript:void(0);" class="report reply-report"><i class="fa fa-flag-o"></i>举报</a></li>
                 </ul>
             </div>
         </div>
@@ -221,9 +219,35 @@
 
         //添加举报事件
         function AddReportEvent(el){
-            $(el).unbind('mouseover mouseout').bind({
+            $(el).unbind('mouseover').unbind('mouseout').bind({
                 'mouseover':function(){
-                    $(this).find('.report').show();
+                    $(this).find('.report').show().off('click').click(function(e){
+                        e.stopPropagation();
+                        var data = '';
+                        if($(this).hasClass('topic-report')){
+                            data = 'topic_id={{topic._id}}';
+                        }else if($(this).hasClass('reply-report')){
+                            data = 'reply_id=' + $(this).parents('.reply-item').attr('id');
+                        }
+                        var self = this;
+                        $.ajax({
+                            url:'/topic/addreport',
+                            data:data,
+                            method:'post',
+                            success:function(re){
+                                $script('/js/tip.js',function(){
+                                    if(re.r === 1){
+                                        $(self).html('已举报');
+                                        Tip('举报成功','success');
+                                    }else if(re.r===0){
+                                        Tip('已经举报过了');
+                                    }else if(re.r===3){
+                                        Tip('未登录，请登录');
+                                    }
+                                });
+                            }
+                        })
+                    });
                 },
                 'mouseout':function(){
                     $(this).find('.report').hide();
@@ -396,12 +420,12 @@
                 success:function(re){
                     $script('/js/tip.js',function(){
                         if(re.r === 1){
-                            $(self).html('<i class="fa fa-heart"></i>已赞');
-                            Tip('赞一个成功','success');
+                            $(self).html('<i class="fa fa-heart"></i>已喜欢');
+                            Tip('标注喜欢成功','success');
                         }else if(re.r===2){
-                            Tip('无法自赞');
+                            Tip('无法自恋');
                         }else if(re.r===0){
-                            Tip('已经赞过');
+                            Tip('已经标注喜欢');
                         }else if(re.r===3){
                             Tip('未登录，请登录');
                         }

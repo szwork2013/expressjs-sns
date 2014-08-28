@@ -11,7 +11,7 @@ var Reply = new Schema({
 	board_id: { type: ObjectId},
 	reply_id : { type: ObjectId },
     car_id: { type: ObjectId },
-    report:{ type: Number,default: 0},
+    reporter:[{_id:false,reporter_id:ObjectId}],
     up:{ type: Number,default: 0},
     uper:[{_id:false,uper_id:ObjectId}],
 	create_date: { type: Date, default: Date.now }
