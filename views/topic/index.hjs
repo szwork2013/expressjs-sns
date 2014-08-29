@@ -65,11 +65,11 @@
                         <span class="usignature">,{{author_signature}}</span>
                     {{/author_signature}}
                     <span class="date">{{create_date_format}}</span>
-                    <div class="reply-content">
-                        {{#reply_id}}
+                    {{#reply_id}}
+                    <div class="reply-content rrwrapper">
                         <span class="rrdesc">@{{replyedauthor}}：{{replyedcontent}}</span>
-                        {{/reply_id}}
                     </div>
+                    {{/reply_id}}
                     <div class="reply-content">
                         <span class="rcontent">{{content}}</span>
                     </div>
@@ -127,11 +127,11 @@
                 <span class="uname"><a href="/<%= author_url %>"><%= author_name %></a></span>
                 <% if (author_signature) { %><span class="usignature">,<%=author_signature %></span><% } %>
                 <span class="date"><%= create_date_format %></span>
-                <div class="reply-content">
-                    <% if (reply_id) { %>
+                <% if (reply_id) { %>
+                <div class="reply-content rrwrapper">
                     <span class="rrdesc">@<%= replyedauthor %>：<%= replyedcontent %></span>
-                    <% } %>
                 </div>
+                <% } %>
                 <div class="reply-content">
                     <span class="rcontent"><%= content %></span>
                 </div>
@@ -445,7 +445,9 @@
             });
         });
 
-        //举报
+        //init topic report and hot reply
+        UpReplyBind($('.hot-reply-list .reply-item').find('.up,.down'));
+        Replytoreply($('.hot-reply-list .reply-item').find('.reply-reply'));
         AddReportEvent($('.topic-main,.hot-reply-list .reply-item'));
     });
 })()

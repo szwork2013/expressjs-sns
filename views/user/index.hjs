@@ -6,7 +6,7 @@
     <div class="user-bar">
         <div class="action">
             {{#isme}}
-            <a href="javascript:void(0);" id="userbg-btn"><i class="fa fa-file-image-o"></i>更改背景</a>
+            <span>（推荐尺寸1000*300）</span><a href="javascript:void(0);" id="userbg-btn"><i class="fa fa-file-image-o"></i>更改背景</a>
             <input type="file" id="upload-userbg" class="hide" accept="image/*">
             {{/isme}}
             {{^isme}}
@@ -115,10 +115,10 @@
                         })
                     }else if(re.r===2){
                         $script('/js/tip.js',function(){
-                            Tip('图片尺寸过大，请上传<200kb的图片','error');
+                            Tip('图片尺寸过大，请上传<2mb的图片','error');
                         })
                     }else if(re.r===1){
-                        $('#user-top-bg').attr('src',re.url);
+                        location.reload();
                     }
                 }
             });

@@ -957,9 +957,11 @@ footer {
       line-height: 24px; }
     .reply-list .reply-main .rcontent, .hot-reply-list .reply-main .rcontent {
       color: #333; }
+    .reply-list .reply-main .rrwrapper, .hot-reply-list .reply-main .rrwrapper {
+      border-left: 2px solid #ccc;
+      padding-left: 8px;
+      margin-bottom: 5px; }
     .reply-list .reply-main .rrdesc, .hot-reply-list .reply-main .rrdesc {
-      border-left: 5px solid #ccc;
-      padding-left: 5px;
       color: #ccc; }
   .reply-list .reply-meta, .hot-reply-list .reply-meta {
     margin-left: 90px; }
@@ -1174,6 +1176,14 @@ footer {
     font-size: 16px; }
 .settings #showurl {
   color: #cc181e; }
+.settings #show-avatar {
+  width: 128px;
+  height: 128px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px; }
 
 /*
  * new topic
@@ -1392,7 +1402,7 @@ footer {
     position: relative;
     z-index: 1;
     width: 100%;
-    height: 300px; }
+    max-height: 400px; }
     .user-wrapper .user-top-bg img.user-avatar {
       z-index: 10;
       position: absolute;
@@ -1461,7 +1471,7 @@ footer {
     .user-wrapper .user-bar:after {
       clear: both; }
     .user-wrapper .user-bar .action {
-      color: #30c880;
+      color: #999;
       float: right; }
       .user-wrapper .user-bar .action a {
         font-size: 14px;
@@ -1483,30 +1493,36 @@ footer {
         .user-wrapper .user-bar .action #add-relation:hover {
           color: #fff;
           background: #30c880; }
-  .user-wrapper .user-topics, .user-wrapper .user-replys, .user-wrapper .car-list {
+  .user-wrapper .car-list {
+    width: 750px;
+    margin-left: 280px;
+    padding: 10px 0 10px 10px;
+    float: left; }
+  .user-wrapper .user-topics, .user-wrapper .user-replys {
     margin-left: 280px;
     width: 750px;
     padding: 10px 0 10px 10px;
     float: left; }
-    .user-wrapper .user-topics h2, .user-wrapper .user-replys h2, .user-wrapper .car-list h2 {
+    .user-wrapper .user-topics h2, .user-wrapper .user-replys h2 {
       color: #111;
       padding-left: 10px;
       border-left: 5px solid #ddd; }
-      .user-wrapper .user-topics h2 .fa, .user-wrapper .user-replys h2 .fa, .user-wrapper .car-list h2 .fa {
+      .user-wrapper .user-topics h2 .fa, .user-wrapper .user-replys h2 .fa {
         width: 5px;
         margin-right: 5px; }
-    .user-wrapper .user-topics ul li, .user-wrapper .user-replys ul li, .user-wrapper .car-list ul li {
+    .user-wrapper .user-topics ul li, .user-wrapper .user-replys ul li {
       font-size: 14px;
       padding-left: 10px;
       margin: 6px 0; }
-      .user-wrapper .user-topics ul li a, .user-wrapper .user-replys ul li a, .user-wrapper .car-list ul li a {
+      .user-wrapper .user-topics ul li a, .user-wrapper .user-replys ul li a {
+        width: 650px;
         display: inline-block;
         font-weight: bold;
         text-decoration: none;
         color: #333; }
-        .user-wrapper .user-topics ul li a:hover, .user-wrapper .user-replys ul li a:hover, .user-wrapper .car-list ul li a:hover {
-          color: red; }
-      .user-wrapper .user-topics ul li span, .user-wrapper .user-replys ul li span, .user-wrapper .car-list ul li span {
+        .user-wrapper .user-topics ul li a:hover, .user-wrapper .user-replys ul li a:hover {
+          color: #4083aa; }
+      .user-wrapper .user-topics ul li span, .user-wrapper .user-replys ul li span {
         color: #ccc;
         float: right; }
 
