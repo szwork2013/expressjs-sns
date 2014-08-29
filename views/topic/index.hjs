@@ -445,9 +445,8 @@
             });
         });
 
-
         //举报
-        AddReportEvent($('.topic-main'));
+        AddReportEvent($('.topic-main,.hot-reply-list .reply-item'));
     });
 })()
 </script>

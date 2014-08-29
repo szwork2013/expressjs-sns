@@ -57,7 +57,7 @@
             <p>上传本地图片,图片size &lt; 10m</p>
         </div>
         <form action="/topic/uploadimg" method="post" id="uploadimg-form" enctype="multipart/form-data">
-            <input type="file" name="uploadimg" id="uploadimg" class="hide">
+            <input type="file" name="uploadimg" id="uploadimg" class="hide" accept="image/*">
             <button id="upimg-trigger" type="button"><i class="fa fa-cloud-upload"></i>选择图片</button>
         </form>
     </div>
