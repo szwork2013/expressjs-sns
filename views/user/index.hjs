@@ -10,14 +10,16 @@
             <input type="file" id="upload-userbg" class="hide" accept="image/*">
             {{/isme}}
             {{^isme}}
-            {{#isfocus}}
+            {{#isfollowing}}
+            <span class="following">
             <i class="fa fa-check"></i>已关注
-            {{/isfocus}}
-            {{^isfocus}}
+            </span>
+            {{/isfollowing}}
+            {{^isfollowing}}
             <a id="add-relation" href="/relation/{{showuser.url}}/new">
                 <i class="fa fa-plus"></i>关注
             </a>
-            {{/isfocus}}
+            {{/isfollowing}}
             <a href="/message/{{showuser.url}}/new">
                 <i class="fa fa-envelope-o"></i>私信
             </a>

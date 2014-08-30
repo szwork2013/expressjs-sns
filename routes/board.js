@@ -13,7 +13,16 @@ var BuildPager = common.BuildPager;
 var BuildReplyItem = common.BuildReplyItem;
 
 router.get('/add', function(req, res){
-    res.render('board/new');
+    if(!req.session.user) res.redirect('/error');
+    User.findOne({_id:req.session.user._id},function(err,user){
+        if(user.isadmin){
+            res.render('board/new',{
+                title:'添加板块'
+            });
+        }else{
+            res.redirect('/error');
+        }
+    })
 });
 
 router.post('/add', function(req, res){

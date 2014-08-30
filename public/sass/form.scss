@@ -78,7 +78,7 @@ input[type="text"],input[type="password"],textarea{
     font-size:$input-font-size;
     vertical-align:middle;
     &[disabled],&[readonly],fieldset[disabled]{
-        cursor:not-allowed; 
+        cursor:not-allowed;
     }
     border:1px solid $input-border-color;
 }
@@ -89,10 +89,10 @@ input[type="text"],input[type="password"],textarea{
 
 .form-block,.form-inline{
     display:block;
-} 
+}
 
 .form-inline .inp,.form-inline input,.form-inline textarea{
-    display:inline-block; 
+    display:inline-block;
 }
 
 input[type=radio],
@@ -109,4 +109,38 @@ input[type=checkbox]{
 textarea{
     resize:none;
     height:auto;
+}
+
+.form{
+    .row{
+        margin:12px 0;
+    }
+    label{
+        width:60px;
+    }
+    input[type=text],input[type=password],textarea{
+        border:1px solid #ddd;
+        @include border-radius(3px);
+    }
+    input[type=text],input[type=password]{
+        padding:0 5px;
+        width:60%;
+        height:32px;
+    }
+    textarea{
+        padding:5px;
+        width:60%;
+        height:96px;
+    }
+    select{
+        background-color:#f4f4f4;
+        border:1px solid #ddd;
+        height:30px;
+    }
+    .submit-btn,button[type=submit],.upload-trigger{
+        background:$action-blue;
+    }
+    .submit-btn,button[type=submit]:hover,.upload-trigger:hover{
+        background:$action-blue-hover;
+    }
 }

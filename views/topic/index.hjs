@@ -67,7 +67,7 @@
                     <span class="date">{{create_date_format}}</span>
                     {{#reply_id}}
                     <div class="reply-content rrwrapper">
-                        <span class="rrdesc">@{{replyedauthor}}：{{replyedcontent}}</span>
+                        <span class="rrdesc">回复 “{{replyedauthor}}：{{replyedcontent}}”</span>
                     </div>
                     {{/reply_id}}
                     <div class="reply-content">
@@ -129,7 +129,7 @@
                 <span class="date"><%= create_date_format %></span>
                 <% if (reply_id) { %>
                 <div class="reply-content rrwrapper">
-                    <span class="rrdesc">@<%= replyedauthor %>：<%= replyedcontent %></span>
+                    <span class="rrdesc">回复 “<%= replyedauthor %>：<%= replyedcontent %>”</span>
                 </div>
                 <% } %>
                 <div class="reply-content">

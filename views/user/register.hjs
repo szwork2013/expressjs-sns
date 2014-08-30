@@ -25,7 +25,7 @@
     </div>
     <div class="row">
         <div class="act">
-            <button type="submit">注册</button><a class="goregister" href="/login">已有账号？去登陆<i class="fa fa-arrow-circle-right"></i></a>
+            <button type="submit" class="btn">注册</button><a class="goregister" href="/login">已有账号？去登陆<i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
 </form>
@@ -79,6 +79,7 @@
                                 nameInput.nextAll('.tips1').show();
                                 return;
                             }else if(re.r===0){
+                                $('#reg-form').find('button[type=submit]').attr('disabled',true);
                                 $('#reg-form').submit();
                             }
                         }

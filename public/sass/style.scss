@@ -327,12 +327,9 @@
         width:100px;
         height:40px;
         margin-top:20px;
-        background:$action-blue;
-        color:#fff;
-        border:none;
-        @include border-radius(3px);
+        background-color:$action-blue;
         &:hover{
-            background:$action-blue-hover;
+            background-color:$action-blue-hover;
         }
     }
 }
@@ -406,9 +403,9 @@
             color:#333;
         }
         .rrwrapper{
-            border-left:2px solid #ccc;
+            border-left:3px solid #ccc;
             padding-left:8px;
-            margin-bottom:5px;
+            margin:8px 0;
         }
         .rrdesc{
             color:#ccc;
@@ -424,7 +421,7 @@
         }
         a{
             display:inline-block;
-            color:#666;
+            color:#ccc;
             &:hover{
                 color:$link-color;
             }
@@ -580,38 +577,13 @@
         padding:10px;
     }
     form{
-        .row{
-            margin:10px 0;
-        }
-        label{
-            width:60px;
-            border:none;
-        }
-        input[type=text],input[type=password],textarea{
-            @include border-radius(2px);
-            border:1px solid #ddd;
-            width:60%;
-        }
-        input[type=text],input[type=password]{
-            height:32px;
-            padding:0 5px;
-        }
-        textarea{
-            padding:5px;
-            height:96px;
-        }
         .wyurl{
             padding-left:65px;
             margin:10px 0;
         }
         button[type=submit]{
             margin:10px 0;
-            padding:10px 20px;
-            border:none;
-            @include border-radius(3px);
             background:$action-blue;
-            color:#fff;
-            text-align:center;
             &:hover{
                 background:$action-blue-hover;
             }
@@ -636,7 +608,7 @@
         }
     }
     #showurl{
-        color:#cc181e;
+        color:$action-red;
     }
     #show-avatar{
         width:128px;
@@ -783,17 +755,18 @@
 //message
 .message-list{
     li{
+        margin-top:10px;
         .user-avatar{
             margin-right:12px;
         }
         p{
-            padding-left:60px;
+            margin:0 0 8px 60px;
             .date{
                 color:#ccc;
                 margin-left:10px;
             }
         }
-        padding:20px 0;
+        padding-top:10px;
         border-bottom:1px solid #eee;
         &.godetail{
             cursor:pointer;
@@ -810,7 +783,11 @@
         padding:5px;
     }
     .btn{
+        background-color:$action-blue;
         margin:10px 0;
+        &:hover{
+            background-color:$action-blue-hover;
+        }
     }
 }
 //tips
@@ -885,14 +862,13 @@
         }
     }
     .user-main{
+        @include clearfix();
         width:$main-width;
         position:relative;
     }
     .user-detail{
-        position:absolute;
-        left:0;
-        top:10px;
-        z-index:10;
+        margin-top:20px;
+        float:left;
         width:260px;
         overflow:hidden;
         padding-bottom:10px;
@@ -936,7 +912,7 @@
         @include clearfix();
         height:50px;
         line-height:50px;
-        padding-left:390px;
+        padding-left:280px;
         font-size:16px;
         .action{
             color:#999;
@@ -952,6 +928,9 @@
                     background:#999;
                 }
             }
+            .following{
+                color:$action-green;
+            }
             float:right;
             #add-relation{
                 color:$action-green;
@@ -965,15 +944,15 @@
     }
     .car-list{
         width:750px;
-        margin-left:280px;
+        margin-left:20px;
         padding:10px 0 10px 10px;
-        float:left;
+        float:right;
     }
     .user-topics,.user-replys{
-        margin-left:280px;
+        margin-left:20px;
         width:750px;
         padding:10px 0 10px 10px;
-        float:left;
+        float:right;
         h2{
             color:#111;
             padding-left:10px;
@@ -1046,50 +1025,19 @@
 //addcar
 #addcar-form{
     h2{
-        margin-top:24px;
+        margin-top:12px;
     }
     #showcarname{
-        color:#cc181e;
+        color:$action-red;
     }
     select{
         width:100px;
-        border:1px solid #ddd;
-        height:30px;
     }
     .wycarname{
         margin:10px 0;
     }
-    .row{
-        margin:10px 0;
-    }
-    label{
-        width:60px;
-    }
-    input[type=text],input[type=password],textarea{
-        border:1px solid #ddd;
-        @include border-radius(3px);
-    }
-    input[type=text],input[type=password]{
-        padding:0 5px;
-        width:60%;
-        height:32px;
-    }
-    button[type=submit],.up-trigger{
-        margin:10px 0;
-        padding:10px 20px;
-        border:none;
-        @include border-radius(3px);
-        background:$action-blue;
-        color:#fff;
-        text-align:center;
-    }
     button[type=submit]:hover{
         background:$action-blue-hover;
-    }
-    textarea{
-        padding:5px;
-        width:60%;
-        height:96px;
     }
 }
 .about{

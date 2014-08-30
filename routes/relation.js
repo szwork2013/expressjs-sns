@@ -12,7 +12,7 @@ router.post('/:url/new',function(req,res){
         return;
     }
     User.findOne({url:req.params.url},function(err,user){
-        Relation.findOne({$and:[{user_id:req.session.user._id},{focus_user_id:user._id}]},function(err,relation){
+        Relation.findOne({$and:[{following:req.session.user._id},{follower:user._id}]},function(err,relation){
             if(relation){
                 res.json({r:0});
             }else{

@@ -1,5 +1,4 @@
 <div class="settings">
-
     <ul class="switch-triggers">
         <li class="cur"><a href="javascript:void(0);">修改基本资料</a></li>
         <li><a href="javascript:void(0);">修改密码</a></li>
@@ -7,7 +6,7 @@
     </ul>
     <div class="switch-contents">
         <div class="switch-content">
-            <form action="/user/savebasesettings" method="post" id="base-form">
+            <form action="/user/savebasesettings" method="post" id="base-form" class="form">
                 <div class="row">
                     <label for="uname">昵称</label>
                     <input type="text" name="uname" id="uname" value="{{user.name}}">
@@ -31,12 +30,12 @@
                     <textarea name="udesc" id="udesc">{{user.desc}}</textarea>
                 </div>
                 <div class="row">
-                    <button type="submit" class="ml">保存</button>
+                    <button type="submit" class="ml btn">保存</button>
                 </div>
             </form>
         </div>
         <div class="switch-content" style="display:none;">
-            <form action="/user/savepwdsettings" method="post" id="changepwd-form">
+            <form action="/user/savepwdsettings" method="post" id="changepwd-form" class="form">
                 <div class="row">
                     <label for="oldupwd">旧密码</label>
                     <input type="password" name="oldupwd" id="oldupwd" value="">
@@ -46,18 +45,18 @@
                     <input type="password" name="newupwd" id="newupwd" value="">
                 </div>
                 <div class="row">
-                    <button type="submit" class="ml">保存</button>
+                    <button type="submit" class="ml btn">保存</button>
                 </div>
             </form>
         </div>
         <div class="switch-content" style="display:none;">
-            <form action="/user/saveimgsettings" enctype="multipart/form-data" method="post" id="uploadimg-form">
+            <form action="/user/saveimgsettings" enctype="multipart/form-data" method="post" id="uploadimg-form" class="form">
                 <div class="row">
                     <button type="button" class="up-trigger"><i class="fa fa-cloud-upload"></i>修改头像</button>
                     <input name="avatar" type="file" accept="image/*" id="take-avatar" class="hide"></input>
                     <img id="show-avatar" src="{{user.avatar_url_l}}" alt="" >
                 </div>
-                <div class="row"><button type="submit">保存</button></div>
+                <div class="row"><button type="submit" class="btn">保存</button></div>
             </form>
         </div>
     </div>
@@ -118,6 +117,9 @@ $script('/js/validator.js',function(){
             return;
             }else if(validator.isNull(validator.trim(urlInput.val())) || !validator.matches(urlInput.val(),url_reg) || !validator.isAlphanumeric(urlInput.val())){
             urlInput.focus();
+            return;
+            }else if(signInput.val().length>30){
+            signInput.focus();
             return;
             }else{
                 $.ajax({

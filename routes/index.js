@@ -92,14 +92,14 @@ router.get('/:url', function(req, res,next) {
         }else{
             GetTopicAndReplyByUser(user,function(topics,replys){
                 if(req.session.user){
-                    Relation.findOne({$and:[{user_id:req.session.user._id},{focus_user_id:user._id}]},function(err,relation){
+                    Relation.findOne({$and:[{following:req.session.user._id},{follower:user._id}]},function(err,relation){
                         res.render('./user/index', {
                             title:user.name,
                             showuser:user,
                             topics:topics,
                             replys:replys,
                             isme:user._id.equals(req.session.user._id)?[1]:null,
-                            isfocus:relation?true:false
+                            isfollowing:relation?true:false
                         });
                     });
                 }else{
@@ -109,7 +109,7 @@ router.get('/:url', function(req, res,next) {
                             topics:topics,
                             replys:replys,
                             isme:null,
-                            isfocus:false
+                            isfollowing:false
                         });
                 }
             });

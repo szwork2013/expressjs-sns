@@ -1,4 +1,4 @@
-<form id="addcar-form" action="/car/add" method="post">
+<form id="addcar-form" action="/car/add" method="post" class="form">
     <h2>基础资料</h2>
     <div class="row">
         <label for="carbrand">品牌</label>
@@ -29,7 +29,7 @@
 
 
     <div class="row">
-        <button type="submit">确定</button>
+        <button type="submit" class="btn">确定</button>
     </div>
 </form>
 <script>

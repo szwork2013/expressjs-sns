@@ -78,3 +78,31 @@ input[type=checkbox] {
 textarea {
   resize: none;
   height: auto; }
+
+.form .row {
+  margin: 12px 0; }
+.form label {
+  width: 60px; }
+.form input[type=text], .form input[type=password], .form textarea {
+  border: 1px solid #ddd;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
+.form input[type=text], .form input[type=password] {
+  padding: 0 5px;
+  width: 60%;
+  height: 32px; }
+.form textarea {
+  padding: 5px;
+  width: 60%;
+  height: 96px; }
+.form select {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  height: 30px; }
+.form .submit-btn, .form button[type=submit], .form .upload-trigger {
+  background: #3498db; }
+.form .submit-btn, .form button[type=submit]:hover, .form .upload-trigger:hover {
+  background: #5dade2; }

@@ -423,6 +423,34 @@ textarea {
   resize: none;
   height: auto; }
 
+.form .row {
+  margin: 12px 0; }
+.form label {
+  width: 60px; }
+.form input[type=text], .form input[type=password], .form textarea {
+  border: 1px solid #ddd;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
+.form input[type=text], .form input[type=password] {
+  padding: 0 5px;
+  width: 60%;
+  height: 32px; }
+.form textarea {
+  padding: 5px;
+  width: 60%;
+  height: 96px; }
+.form select {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  height: 30px; }
+.form .submit-btn, .form button[type=submit], .form .upload-trigger {
+  background: #3498db; }
+.form .submit-btn, .form button[type=submit]:hover, .form .upload-trigger:hover {
+  background: #5dade2; }
+
 .btn {
   color: #fff;
   padding: 10px 15px;
@@ -881,16 +909,9 @@ footer {
     width: 100px;
     height: 40px;
     margin-top: 20px;
-    background: #3498db;
-    color: #fff;
-    border: none;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-    border-radius: 3px; }
+    background-color: #3498db; }
     .reply-form button[type=submit]:hover {
-      background: #5dade2; }
+      background-color: #5dade2; }
 
 .reply-list h2, .hot-reply-list h2 {
   border-bottom: 2px solid #eee;
@@ -960,9 +981,9 @@ footer {
     .reply-list .reply-main .rcontent, .hot-reply-list .reply-main .rcontent {
       color: #333; }
     .reply-list .reply-main .rrwrapper, .hot-reply-list .reply-main .rrwrapper {
-      border-left: 2px solid #ccc;
+      border-left: 3px solid #ccc;
       padding-left: 8px;
-      margin-bottom: 5px; }
+      margin: 8px 0; }
     .reply-list .reply-main .rrdesc, .hot-reply-list .reply-main .rrdesc {
       color: #ccc; }
   .reply-list .reply-meta, .hot-reply-list .reply-meta {
@@ -978,7 +999,7 @@ footer {
       margin-right: 2px; }
     .reply-list .reply-meta a, .hot-reply-list .reply-meta a {
       display: inline-block;
-      color: #666; }
+      color: #ccc; }
       .reply-list .reply-meta a:hover, .hot-reply-list .reply-meta a:hover {
         color: #4083aa; }
 
@@ -1121,40 +1142,12 @@ footer {
     border-bottom: 4px solid #111; }
 .settings .switch-contents {
   padding: 10px; }
-.settings form .row {
-  margin: 10px 0; }
-.settings form label {
-  width: 60px;
-  border: none; }
-.settings form input[type=text], .settings form input[type=password], .settings form textarea {
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
-  border-radius: 2px;
-  border: 1px solid #ddd;
-  width: 60%; }
-.settings form input[type=text], .settings form input[type=password] {
-  height: 32px;
-  padding: 0 5px; }
-.settings form textarea {
-  padding: 5px;
-  height: 96px; }
 .settings form .wyurl {
   padding-left: 65px;
   margin: 10px 0; }
 .settings form button[type=submit] {
   margin: 10px 0;
-  padding: 10px 20px;
-  border: none;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-  background: #3498db;
-  color: #fff;
-  text-align: center; }
+  background: #3498db; }
   .settings form button[type=submit]:hover {
     background: #5dade2; }
   .settings form button[type=submit].ml {
@@ -1177,7 +1170,7 @@ footer {
   .settings form .up-trigger .fa {
     font-size: 16px; }
 .settings #showurl {
-  color: #cc181e; }
+  color: #e74c3c; }
 .settings #show-avatar {
   width: 128px;
   height: 128px;
@@ -1321,12 +1314,13 @@ footer {
           color: #a1a1a1; }
 
 .message-list li {
-  padding: 20px 0;
+  margin-top: 10px;
+  padding-top: 10px;
   border-bottom: 1px solid #eee; }
   .message-list li .user-avatar {
     margin-right: 12px; }
   .message-list li p {
-    padding-left: 60px; }
+    margin: 0 0 8px 60px; }
     .message-list li p .date {
       color: #ccc;
       margin-left: 10px; }
@@ -1341,7 +1335,10 @@ footer {
   overflow-y: scroll;
   padding: 5px; }
 #new-message-form .btn {
+  background-color: #3498db;
   margin: 10px 0; }
+  #new-message-form .btn:hover {
+    background-color: #5dade2; }
 
 .tips-list .action-bar {
   margin: 15px 0; }
@@ -1421,11 +1418,14 @@ footer {
   .user-wrapper .user-main {
     width: 1040px;
     position: relative; }
+    .user-wrapper .user-main:before, .user-wrapper .user-main:after {
+      content: "";
+      display: table; }
+    .user-wrapper .user-main:after {
+      clear: both; }
   .user-wrapper .user-detail {
-    position: absolute;
-    left: 0;
-    top: 10px;
-    z-index: 10;
+    margin-top: 20px;
+    float: left;
     width: 260px;
     overflow: hidden;
     padding-bottom: 10px;
@@ -1465,7 +1465,7 @@ footer {
   .user-wrapper .user-bar {
     height: 50px;
     line-height: 50px;
-    padding-left: 390px;
+    padding-left: 280px;
     font-size: 16px; }
     .user-wrapper .user-bar:before, .user-wrapper .user-bar:after {
       content: "";
@@ -1489,6 +1489,8 @@ footer {
         .user-wrapper .user-bar .action a:hover {
           color: #fff;
           background: #999; }
+      .user-wrapper .user-bar .action .following {
+        color: #1abc9c; }
       .user-wrapper .user-bar .action #add-relation {
         color: #1abc9c;
         border: 1px solid #1abc9c; }
@@ -1497,14 +1499,14 @@ footer {
           background: #1abc9c; }
   .user-wrapper .car-list {
     width: 750px;
-    margin-left: 280px;
+    margin-left: 20px;
     padding: 10px 0 10px 10px;
-    float: left; }
+    float: right; }
   .user-wrapper .user-topics, .user-wrapper .user-replys {
-    margin-left: 280px;
+    margin-left: 20px;
     width: 750px;
     padding: 10px 0 10px 10px;
-    float: left; }
+    float: right; }
     .user-wrapper .user-topics h2, .user-wrapper .user-replys h2 {
       color: #111;
       padding-left: 10px;
@@ -1568,48 +1570,15 @@ footer {
     margin: 0; }
 
 #addcar-form h2 {
-  margin-top: 24px; }
+  margin-top: 12px; }
 #addcar-form #showcarname {
-  color: #cc181e; }
+  color: #e74c3c; }
 #addcar-form select {
-  width: 100px;
-  border: 1px solid #ddd;
-  height: 30px; }
+  width: 100px; }
 #addcar-form .wycarname {
   margin: 10px 0; }
-#addcar-form .row {
-  margin: 10px 0; }
-#addcar-form label {
-  width: 60px; }
-#addcar-form input[type=text], #addcar-form input[type=password], #addcar-form textarea {
-  border: 1px solid #ddd;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px; }
-#addcar-form input[type=text], #addcar-form input[type=password] {
-  padding: 0 5px;
-  width: 60%;
-  height: 32px; }
-#addcar-form button[type=submit], #addcar-form .up-trigger {
-  margin: 10px 0;
-  padding: 10px 20px;
-  border: none;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-  background: #3498db;
-  color: #fff;
-  text-align: center; }
 #addcar-form button[type=submit]:hover {
   background: #5dade2; }
-#addcar-form textarea {
-  padding: 5px;
-  width: 60%;
-  height: 96px; }
 
 .about h3 {
   margin-top: 20px; }
