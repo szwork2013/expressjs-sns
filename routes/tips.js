@@ -42,7 +42,6 @@ router.get('/', function(req, res) {
                         })
                     })
                 break;
-
             }
         },function(){
             res.render('tips/index',{

@@ -1,31 +1,27 @@
-<script src="/js/validator.js"></script>
-<form action="/user/register" method="post" class="reg-form" id="reg-form">
+<form action="/user/register" method="post" class="reg-form form" id="reg-form">
     <h1>注册</h1>
     <div class="row">
         <label for="uemail">邮箱：</label>
         <input type="text" name="uemail" placeholder="请输入邮箱" />
-        <span class="tips">请输入正确的邮箱</span>
-        <span class="tips1 tips">邮箱已经重复注册</span>
+        <span class="tips1 tips"></span>
     </div>
     <div class="row">
         <label for="uname">昵称：</label>
         <input type="text" name = "uname" placeholder="请输入昵称" />
-        <span class="tips">请输入昵称</span>
-        <span class="tips1 tips">您输入的昵称已被占用</span>
+        <span class="tips1 tips"></span>
     </div>
     <div class="row">
         <label for="uphone">手机：</label>
         <input type="text" name = "uphone" placeholder="请输入手机" />
-        <span class="tips">请输入正确的手机号码</span>
     </div>
     <div class="row">
         <label for="upwd">密码：</label>
         <input type="password" name="upwd" placeholder="请输入密码"/>
-        <span class="tips">由英文字母（含大小写）和数字组成</span>
     </div>
     <div class="row">
         <div class="act">
-            <button type="submit" class="btn">注册</button><a class="goregister" href="/login">已有账号？去登陆<i class="fa fa-arrow-circle-right"></i></a>
+            <button type="submit" class="btn">注册</button>
+            <a class="goregister" href="/login">已有账号？去登陆<i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
 </form>
@@ -41,49 +37,46 @@
 
 
             $('#reg-form .act button').click(function(e){
-                    e.preventDefault();
-
-                    $('.tips').hide();
-
+                e.preventDefault();
+                $script(['/js/validator.js','/js/tip.js'],function(){
                     if(!validator.isEmail(emailInput.val())){
-                           emailInput.next('.tips').show();
-                           emailInput.focus();
-                           return;
+                            Tip('请输入正确的邮箱','error');
+                            emailInput.focus();
+                            return;
                     }else if(validator.isNull(validator.trim(nameInput.val()))){
-                           nameInput.next('.tips').show();
-                           nameInput.focus();
+                            Tip('请输入昵称','error');
+                            nameInput.focus();
                            return;
                     }else if(validator.isNull(validator.trim(phoneInput.val())) || !validator.matches(phoneInput.val(),phoneRegex)){
-                           phoneInput.next('.tips').show();
-                           phoneInput.focus();
-                           return;
+                            Tip('请输入正确的手机号码','error');
+                            phoneInput.focus();
+                            return;
                     }else if(validator.isNull(validator.trim(pwdInput.val())) || !validator.isAlphanumeric(pwdInput.val())){
-                           pwdInput.next('.tips').show();
-                           pwdInput.focus();
-                           return;
+                            Tip('由英文字母（含大小写）和数字组成','error');
+                            pwdInput.focus();
+                            return;
                     }
 
                     $.ajax({
                         url:'user/registervalidate',
                         type:'post',
                         data:'email='+emailInput.val()+'&name='+nameInput.val(),
-                        beforeSend:function(){
-                            emailInput.after($('<i class="fa fa-circle-o-notch  fa-spin" style="position: absolute; left: 99%; top: 12px;"></i>'));
-                        },
                         success:function(re){
-                            emailInput.nextAll('.fa-circle-o-notch').remove();
                             if(re.r===1){
-                                emailInput.nextAll('.tips1').show();
+                                Tip('邮箱已经重复注册','error');
+                                emailInput.focus();
                                 return;
                             }else if(re.r===2){
-                                nameInput.nextAll('.tips1').show();
+                                Tip('您输入的昵称已被占用','error');
+                                nameInput.focus();
                                 return;
                             }else if(re.r===0){
-                                $('#reg-form').find('button[type=submit]').attr('disabled',true);
+                                $('#reg-form').find('button[type=submit]').attr('disabled',true).html('<i class="fa fa-circle-o-notch  fa-spin"></i>');
                                 $('#reg-form').submit();
                             }
                         }
                     });
+                });
             });
     })()
 </script>

@@ -1,9 +1,14 @@
 <h1>{{ message }}</h1>
-
-<a href="/">返回首页</a>
+<p><span id="count">10</span>秒自动<a href="/">返回首页</a></p>
 
 <script>
-    setTimeout(function(){
-        location.href="/";
-    },60000);
+    (function(){
+        var count = $('#count');
+        setInterval(function(){
+            count.html(parseInt(count.html())-1);
+        },1000);
+        setTimeout(function(){
+            location.href="/";
+        },10000);
+    })()
 </script>

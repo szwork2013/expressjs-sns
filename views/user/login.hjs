@@ -1,5 +1,4 @@
-<script src="/js/validator.js"></script>
-<form action="/user/login" method="post" class="login-form" id="login-form">
+<form action="/user/login" method="post" class="login-form form" id="login-form">
     <h1>登陆</h1>
     <div class="row">
         <label for="username">账号：</label>
@@ -9,39 +8,40 @@
     <div class="row">
         <label for="userpwd">密码：</label>
         <input type="password" id="userpwd" name="userpwd" placeholder="密码" />
-        <span class="tips">请输入密码</span>
+    </div>
+    <div class="rememberme">
+        <input type="checkbox" id="rememberme" name="rememberme" />30天免登陆
     </div>
     <div class="row">
         <div class="act">
-            <div class="rememberme">
-                <input type="checkbox" id="rememberme" name="rememberme" />30天免登陆
-            </div>
-            <button type="submit">登陆</button><a class="goregister" href="/register">没有账号？去注册<i class="fa fa-arrow-circle-right"></i></a>
+            <button type="submit" class="btn">登陆</button><a class="goregister" href="/register">没有账号？去注册<i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
 </form>
 <script>
     (function(){
 
-            var nameInput = $('input[name="username"]'),
-                pwdInput = $('input[name="userpwd"]');
+        var nameInput = $('input[name="username"]'),
+            pwdInput = $('input[name="userpwd"]');
 
         $('#login-form .act button').click(function(e){
-                e.preventDefault();
+            e.preventDefault();
 
-                $('.tips').hide();
-
+            $script(['/js/validator.js','/js/tip.js'],function(){
                 if(validator.isNull(validator.trim(nameInput.val()))){
-                   nameInput.next('.tips').show();
-                   nameInput.focus();
+                    Tip('请输入账号','error');
+                    nameInput.focus();
                    return;
                 }else if(validator.isNull(validator.trim(pwdInput.val()))){
-                   pwdInput.next('.tips').show();
-                   pwdInput.focus();
+                    Tip('请输入密码','error');
+                    pwdInput.focus();
                    return;
                 }else{
+                    $('#login-form').find('button[type=submit]').attr('disabled',true).html('<i class="fa fa-circle-o-notch  fa-spin"></i>');
                     $('#login-form').submit();
                 }
+
+            });
         });
     })()
 </script>

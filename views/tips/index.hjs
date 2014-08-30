@@ -61,8 +61,8 @@
                 success:function(r){
                     if(r.r===1){
                         $script('/js/tip.js',function(){
-                            Tip('删除全部成功');
-                            $('.tips-list .tips-item').remove();
+                            Tip('删除全部成功','success');
+                            location.reload();
                         });
                     }
                 }

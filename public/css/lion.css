@@ -1023,31 +1023,30 @@ footer {
       font-size: 20px; }
 
 .reg-form, .login-form {
-  position: absolute;
-  z-index: 5;
+  position: fixed;
+  top: 120px;
+  z-index: 1;
   padding: 50px 100px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  ront-size: 14px;
+  font-size: 14px;
   color: #fff;
   background: rgba(0, 0, 0, 0.7);
   width: 540px;
-  margin: 0 150px;
-  text-align: center; }
+  margin: 0 150px; }
   .reg-form h1, .login-form h1 {
+    text-align: center;
     margin-bottom: 30px; }
   .reg-form .row, .login-form .row {
-    position: relative;
     margin: 10px 0 0 0;
     height: 70px; }
   .reg-form input[type="text"], .reg-form input[type="password"], .login-form input[type="text"], .login-form input[type="password"] {
-    position: absolute;
-    left: 50px;
     width: 80%;
     padding: 10px 2%;
+    margin-left: 2px;
     font-size: 16px;
     height: 20px;
     line-height: 20px;
@@ -1064,8 +1063,6 @@ footer {
     vertical-align: middle; }
   .reg-form label, .login-form label {
     text-align: center;
-    position: absolute;
-    left: 0;
     width: 50px;
     line-height: 40px; }
   .reg-form .tips, .login-form .tips {
@@ -1076,33 +1073,32 @@ footer {
     line-height: 40px;
     height: 40px;
     left: 50px; }
-  .reg-form .act .rememberme, .login-form .act .rememberme {
-    position: absolute;
-    left: 50px;
-    top: -20px; }
-  .reg-form .act button, .login-form .act button {
-    position: absolute;
-    top: 20px;
-    left: 50px;
-    height: 40px;
-    padding: 0 30px;
-    border: none;
-    color: #fff;
-    background: #3498db;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-    border-radius: 3px; }
-    .reg-form .act button:hover, .login-form .act button:hover {
-      background: #5dade2; }
-  .reg-form .act .goregister, .reg-form .act .gologin, .login-form .act .goregister, .login-form .act .gologin {
-    position: absolute;
-    top: 30px;
-    right: 9%;
-    color: #1abc9c; }
-    .reg-form .act .goregister:hover, .reg-form .act .gologin:hover, .login-form .act .goregister:hover, .login-form .act .gologin:hover {
-      color: #48c9b0; }
+  .reg-form .rememberme, .login-form .rememberme {
+    margin-left: 54px; }
+  .reg-form .act, .login-form .act {
+    text-align: left; }
+    .reg-form .act:before, .reg-form .act:after, .login-form .act:before, .login-form .act:after {
+      content: "";
+      display: table; }
+    .reg-form .act:after, .login-form .act:after {
+      clear: both; }
+    .reg-form .act button, .login-form .act button {
+      margin-left: 56px;
+      float: left;
+      height: 40px;
+      padding: 0 30px;
+      background: #3498db; }
+      .reg-form .act button:hover, .login-form .act button:hover {
+        background: #5dade2; }
+      .reg-form .act button .fa, .login-form .act button .fa {
+        color: #fff; }
+    .reg-form .act .goregister, .reg-form .act .gologin, .login-form .act .goregister, .login-form .act .gologin {
+      height: 40px;
+      margin-left: 30px;
+      line-height: 40px;
+      color: #1abc9c; }
+      .reg-form .act .goregister:hover, .reg-form .act .gologin:hover, .login-form .act .goregister:hover, .login-form .act .gologin:hover {
+        color: #48c9b0; }
   .reg-form .loading, .login-form .loading {
     position: absolute;
     left: 50px;
