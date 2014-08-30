@@ -57,7 +57,7 @@
   display: inline-block;
   height: 40px;
   line-height: 40px;
-  background: #30c880;
+  background: #1abc9c;
   color: #fff;
   padding: 0 15px;
   border: none;
@@ -69,7 +69,7 @@
   border-radius: 3px; }
   .new-post-btn:hover {
     text-decoration: none;
-    background: #2cb675;
+    background: #48c9b0;
     color: #fff;
     border: none; }
     .new-post-btn:hover .fa {
@@ -299,7 +299,7 @@
     -o-border-radius: 3px;
     border-radius: 3px; }
     .reply-form button[type=submit]:hover {
-      background: #2980b9; }
+      background: #5dade2; }
 
 .reply-list h2, .hot-reply-list h2 {
   border-bottom: 2px solid #eee;
@@ -483,14 +483,14 @@
     -o-border-radius: 3px;
     border-radius: 3px; }
     .reg-form .act button:hover, .login-form .act button:hover {
-      background: #2980b9; }
+      background: #5dade2; }
   .reg-form .act .goregister, .reg-form .act .gologin, .login-form .act .goregister, .login-form .act .gologin {
     position: absolute;
     top: 30px;
     right: 9%;
-    color: #30c880; }
+    color: #1abc9c; }
     .reg-form .act .goregister:hover, .reg-form .act .gologin:hover, .login-form .act .goregister:hover, .login-form .act .gologin:hover {
-      color: #2cb675; }
+      color: #48c9b0; }
   .reg-form .loading, .login-form .loading {
     position: absolute;
     left: 50px;
@@ -565,7 +565,7 @@
   color: #fff;
   text-align: center; }
   .settings form button[type=submit]:hover {
-    background: #2980b9; }
+    background: #5dade2; }
   .settings form button[type=submit].ml {
     margin-left: 62px; }
 .settings form .up-trigger {
@@ -574,7 +574,7 @@
   border: none;
   padding: 0px 10px;
   margin-bottom: 10px;
-  background: #30c880;
+  background: #1abc9c;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
@@ -646,7 +646,7 @@
     -o-border-radius: 3px;
     border-radius: 3px; }
     #new-topic button[type=submit]:hover {
-      background: #2980b9; }
+      background: #5dade2; }
   #new-topic #auto-save-trigger, #new-topic #clear-save {
     margin-left: 20px; }
   #new-topic #auto-save {
@@ -676,7 +676,7 @@
   width: 100px;
   height: 40px;
   line-height: 40px;
-  background: #30c880;
+  background: #1abc9c;
   color: #fff;
   border: none;
   padding: 0;
@@ -686,7 +686,7 @@
   -o-border-radius: 3px;
   border-radius: 3px; }
   .addlink-popup button:hover, .uploadimg-popup button:hover, .addvideo-popup button:hover {
-    background: #2cb675; }
+    background: #48c9b0; }
 .addlink-popup #video-url, .uploadimg-popup #video-url, .addvideo-popup #video-url {
   width: 270px;
   margin-right: 10px; }
@@ -899,11 +899,11 @@
           color: #fff;
           background: #999; }
       .user-wrapper .user-bar .action #add-relation {
-        color: #30c880;
-        border: 1px solid #30c880; }
+        color: #1abc9c;
+        border: 1px solid #1abc9c; }
         .user-wrapper .user-bar .action #add-relation:hover {
           color: #fff;
-          background: #30c880; }
+          background: #1abc9c; }
   .user-wrapper .car-list {
     width: 750px;
     margin-left: 280px;
@@ -1014,7 +1014,7 @@
   color: #fff;
   text-align: center; }
 #addcar-form button[type=submit]:hover {
-  background: #2980b9; }
+  background: #5dade2; }
 #addcar-form textarea {
   padding: 5px;
   width: 60%;

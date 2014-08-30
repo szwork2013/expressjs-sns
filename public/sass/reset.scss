@@ -65,6 +65,9 @@ ul,ol{
     font-size:14px;
     margin-right:2px;
     vertical-align:baseline;
+    &.fa-spin{
+        color:#999;
+    }
 }
 .date{
     color:#ccc;

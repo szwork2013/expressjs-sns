@@ -2,29 +2,29 @@
 //----------------------------
 
 @import 'functions';
+@import 'animate';
 
 .btn{
-    background:$action-blue;
-    @include border-radius(3px);
-    padding:10px 15px;
     color:#fff;
-    &:hover{
-        text-decoration:none;
-        background:$action-blue-hover;
-        color:#fff;
-        border:none;
-    }
+    padding:10px 15px;
     text-align:center;
     vertical-align:middle;
     cursor:pointer;
-    border:0;
+    border:none;
+    @include border-radius(3px);
+    @include transition(background-color .25s linear);
+    &:hover{
+        text-decoration:none;
+        color:#fff;
+        border:none;
+    }
     &:focus{
-        @include tab-focus(); 
+        @include tab-focus();
     }
     &.disabled,
     &[disabled],
     fieldset[disabled] & {
-        cursor:not-allowed; 
+        cursor:not-allowed;
     }
 }
 

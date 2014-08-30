@@ -115,7 +115,7 @@
                         })
                     }else if(re.r===2){
                         $script('/js/tip.js',function(){
-                            Tip('图片尺寸过大，请上传<2mb的图片','error');
+                            Tip('图片尺寸过大，请上传<5mb的图片','error');
                         })
                     }else if(re.r===1){
                         location.reload();

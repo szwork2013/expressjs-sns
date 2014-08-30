@@ -1,19 +1,19 @@
 .btn {
-  background: #3498db;
+  color: #fff;
+  padding: 10px 15px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: none;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
-  padding: 10px 15px;
-  color: #fff;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  border: 0; }
+  -webkit-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear; }
   .btn:hover {
     text-decoration: none;
-    background: #2980b9;
     color: #fff;
     border: none; }
   .btn:focus {

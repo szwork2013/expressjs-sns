@@ -3,7 +3,7 @@
         {{^issearch}}
         <div class="row clearfix">
             <h1 class="fl">{{board.name}}</h1>
-            <a href="/b/{{board.url}}/new" class="new-post-btn fr"><i class="fa fa-plus"></i>发布新话题</a>
+            <a href="/b/{{board.url}}/new" class="new-post-btn btn fr"><i class="fa fa-plus"></i>发布新话题</a>
         </div>
         <div class="row">
             <div class="filter-bar">

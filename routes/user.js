@@ -74,7 +74,7 @@ router.post('/uploaduserbg', function(req, res) {
             res.json({r:0});
             return;
         }else{
-            if(parseInt(img.size/1024)>2048){
+            if(parseInt(img.size/1024)>5120){
                 res.json({r:2});
                 return;
             }
@@ -86,7 +86,7 @@ router.post('/uploaduserbg', function(req, res) {
                 fs.mkdirSync(target_floder);
             }
             var save_url = '/assets/userbg/'+req.session.user._id+'/ubg'+req.session.user._id+path.extname(img.name);
-            gm(img.path).resize(1040,300,'!').crop(1040,300).write(process.cwd()+'/public'+save_url,function(){
+            gm(img.path).resize(1040).crop(1040,300).write(process.cwd()+'/public'+save_url,function(){
                 User.update({_id:req.session.user._id},{userbg_url:save_url},function(err){
                     if(!err){
                         req.session.user.userbg_url = save_url;

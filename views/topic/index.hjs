@@ -98,7 +98,7 @@
             <textarea id="reply_content" name="reply_content" placeholder="回复内容...."></textarea>
         </div>
         <div class="row act">
-            <button type="submit">顶上去</button>
+            <button type="submit" class="btn">顶上去</button>
         </div>
     </form>
 </div>

@@ -25,7 +25,7 @@
     </div>
 
     <div class="row">
-        <button type="submit">发出去</button>
+        <button type="submit" class="btn">发出去</button>
         <a id="clear-save" href="javascript:void(0);"><i class="fa fa-trash-o"></i>清空保存</a>
         <input type="checkbox" id="auto-save-trigger">自动保存
         <span id="auto-save">自动保存中...</span>
@@ -45,7 +45,7 @@
         </div>
         <div class="row">
             <label></label>
-            <button id="addlink-btn">确定</button>
+            <button id="addlink-btn btn">确定</button>
         </div>
     </div>
 </div>
@@ -71,7 +71,7 @@
         </div>
         <div class="row">
             <input type="text" name="video-url" id="video-url">
-            <button id="addvideo-btn">确定</button>
+            <button id="addvideo-btn btn">确定</button>
         </div>
     </div>
 </div>
