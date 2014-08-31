@@ -1311,17 +1311,16 @@ footer {
 
 .message-list li {
   margin-top: 10px;
-  padding-top: 10px;
+  padding: 10px 0;
   border-bottom: 1px solid #eee; }
   .message-list li .user-avatar {
     margin-right: 12px; }
   .message-list li p {
-    margin: 0 0 8px 60px; }
+    line-height: 24px;
+    margin-left: 60px; }
     .message-list li p .date {
       color: #ccc;
       margin-left: 10px; }
-  .message-list li.godetail {
-    cursor: pointer; }
 
 #new-message-form #new-message {
   margin: 10px 0;

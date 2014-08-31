@@ -752,20 +752,18 @@
 .message-list{
     li{
         margin-top:10px;
+        padding:10px 0;
+        border-bottom:1px solid #eee;
         .user-avatar{
             margin-right:12px;
         }
         p{
-            margin:0 0 8px 60px;
+            line-height:24px;
+            margin-left:60px;
             .date{
                 color:#ccc;
                 margin-left:10px;
             }
-        }
-        padding-top:10px;
-        border-bottom:1px solid #eee;
-        &.godetail{
-            cursor:pointer;
         }
     }
 }

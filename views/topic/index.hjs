@@ -280,9 +280,9 @@
                             });
                         }
                         if($(hash).length>0){
-                            $('html,body').animate({ scrollTop: $(hash).offset().top-$('.nav').height() },200);
+                            $('html,body').animate({scrollTop: $(hash).offset().top-$('.nav').height() },200);
                         }else if(p){
-                            $('html,body').animate({scrollTop:$('.reply-list').offset().top - $('.nav').height()},200);
+                            $('html,body').animate({scrollTop:$('.reply-list').offset().top - $('.nav').height()-10},200);
                         }
                         if(cb && typeof(cb) == "function") cb();
                     }

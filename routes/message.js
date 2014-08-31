@@ -112,7 +112,7 @@ router.post('/:url/new', function(req, res) {
                         user_id:user._id,
                         message_id:message._id
                     }).save(function(err){
-                        if(!err) res.redirect('/message');
+                        if(!err) res.redirect('/message/'+user.url);
                     });
                 }
             });
