@@ -68,27 +68,32 @@
             });
 
             $('#upload-carimg').click(function(){
-                $('#carimgs').click().change(function(e){
+                $('#carimgs').click().off('change').change(function(e){
                      var files = e.target.files;
                      var data = new FormData();
                      if (files && files.length > 0) {
-                     file = files[0];
-                     var fileReader = new FileReader();
-                     fileReader.onload = function (event) {
-                            data.append('img',$('#carimgs')[0].files[0]);
-                            console.info(event.target.result);
-                            $('.carimgs-list').append(new EJS({text:$('#carimg-template').html()}).render({src:event.target.result}));
-                     };
-                     fileReader.readAsDataURL(file);
+                         for(var i=0 ;i<files.length;i++){
+                             if((files[i].size)/1024 >5120){
+                                $script('/js/tip.js',function(){
+                                     Tip('图片'+files[i].name+'过大，请上传5m大小以下图片','error',function(){},3000);
+                                });
+                                continue;
+                             }
+                             var fileReader = new FileReader();
+                             fileReader.onload = function (event) {
+                                    data.append('imgs',$('#carimgs')[0].files[i]);
+                                    $('.carimgs-list').append(new EJS({text:$('#carimg-template').html()}).render({src:event.target.result}));
+                             };
+                             fileReader.readAsDataURL(files[i]);
+                         }
                      }
-                    });
+                });
             });
         });
 
         $('#addcar-form button[type="submit"]').click(function(e){
             e.preventDefault();
-            alert(111);
-        })
+        });
 
     })()
 </script>

@@ -11,18 +11,12 @@
             {{/isme}}
             {{^isme}}
             {{#isfollowing}}
-            <a id="del-relation" href="/relation/{{showuser.url}}/del" class="btn">
-                <i class="fa fa-check"></i>已关注
-            </a>
+            <a id="del-relation" href="/relation/{{showuser.url}}/del" class="btn"><i class="fa fa-check"></i>已经关注</a>
             {{/isfollowing}}
             {{^isfollowing}}
-            <a id="add-relation" href="/relation/{{showuser.url}}/new" class="btn">
-                <i class="fa fa-plus"></i>关注
-            </a>
+            <a id="add-relation" href="/relation/{{showuser.url}}/new" class="btn"><i class="fa fa-plus"></i>关注</a>
             {{/isfollowing}}
-            <a href="/message/{{showuser.url}}/new" class="btn">
-                <i class="fa fa-envelope-o"></i>私信
-            </a>
+            <a href="/message/{{showuser.url}}/new" class="btn"><i class="fa fa-envelope-o"></i>私信</a>
             {{/isme}}
         </div>
     </div>
@@ -79,7 +73,7 @@
                 $script('/js/tip.js',function(){
                     if(r.r===1){
                         Tip('关注+1');
-                        $(e.target).before('<i class="fa fa-check"></i>已关注');
+                        $(e.target).before('<i class="fa fa-check"></i>已经关注');
                         $(e.target).remove();
                     }else if(r.r===0){
                         Tip('已经关注');
@@ -128,6 +122,18 @@
      fileReader.readAsDataURL(file);
      }
     });
+
+
+    $('#del-relation').bind({
+        mouseover:function(){
+            $(this).addClass('godel');
+            $(this).html('<i class="fa fa-times"></i>取消关注')
+        },
+        mouseout:function(){
+            $(this).removeClass('godel');
+            $(this).html('<i class="fa fa-check"></i>已经关注')
+        }
+    })
 
  })()
 </script>

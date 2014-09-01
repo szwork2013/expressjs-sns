@@ -938,14 +938,19 @@
                     background:$action-green-hover;
                 }
             }
-            .following{
-                color:$action-green;
-            }
             #add-relation{
-                color:$action-green;
+
+            }
+            #del-relation{
+                background-color:$action-blue;
                 &:hover{
-                    color:#fff;
-                    background:$action-green;
+                    background:$action-blue-hover;
+                }
+                &.godel{
+                    background-color:$action-red;
+                    &:hover{
+                        background:$action-red-hover;
+                    }
                 }
             }
         }
@@ -1056,13 +1061,15 @@
         }
     }
     .carimgs-list{
+        width:1200px;
         @include clearfix();
     }
     .carimg{
         float:left;
+        margin-right:30px;
         img{
             width:200px;
-            height:200px;
+            height:150px;
         }
         input[type=text]{
             margin-top:8px;

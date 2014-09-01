@@ -11,6 +11,7 @@ var CarSchema = new Schema({
     desc:{type:String},
     owner:{type:ObjectId},
     changeitem:[{_id:false,type:String,name:String}],
+    carimgs:[{_id:false,desc:String,src:String}],
     create_date:{type: Date, default: Date.now},
     update_date:{type: Date, default: Date.now}
 });

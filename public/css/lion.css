@@ -1504,13 +1504,14 @@ footer {
         background-color: #1abc9c; }
         .user-wrapper .user-bar .action a:hover {
           background: #48c9b0; }
-      .user-wrapper .user-bar .action .following {
-        color: #1abc9c; }
-      .user-wrapper .user-bar .action #add-relation {
-        color: #1abc9c; }
-        .user-wrapper .user-bar .action #add-relation:hover {
-          color: #fff;
-          background: #1abc9c; }
+      .user-wrapper .user-bar .action #del-relation {
+        background-color: #3498db; }
+        .user-wrapper .user-bar .action #del-relation:hover {
+          background: #5dade2; }
+        .user-wrapper .user-bar .action #del-relation.godel {
+          background-color: #e74c3c; }
+          .user-wrapper .user-bar .action #del-relation.godel:hover {
+            background: #fc5140; }
   .user-wrapper .car-list {
     width: 750px;
     margin-left: 20px;
@@ -1599,16 +1600,19 @@ footer {
   height: 30px;
   line-height: 30px;
   color: #e74c3c; }
-#addcar-form .carimgs-list:before, #addcar-form .carimgs-list:after {
-  content: "";
-  display: table; }
-#addcar-form .carimgs-list:after {
-  clear: both; }
+#addcar-form .carimgs-list {
+  width: 1200px; }
+  #addcar-form .carimgs-list:before, #addcar-form .carimgs-list:after {
+    content: "";
+    display: table; }
+  #addcar-form .carimgs-list:after {
+    clear: both; }
 #addcar-form .carimg {
-  float: left; }
+  float: left;
+  margin-right: 30px; }
   #addcar-form .carimg img {
     width: 200px;
-    height: 200px; }
+    height: 150px; }
   #addcar-form .carimg input[type=text] {
     margin-top: 8px;
     -webkit-border-radius: 3px;
