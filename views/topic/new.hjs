@@ -28,7 +28,7 @@
         <button type="submit" class="btn">发出去</button>
         <a id="clear-save" href="javascript:void(0);"><i class="fa fa-trash-o"></i>清空保存</a>
         <input type="checkbox" id="auto-save-trigger">自动保存
-        <span id="auto-save">自动保存中...</span>
+        <span id="auto-save">保存中...</span>
     </div>
 </form>
 

@@ -41,7 +41,7 @@
             <a href="javascript:void(0);"><i title="分享到微信" class="fa fa-weixin"></i>
             </a>
             </li>
-            <li class="fr"><a href="javascript:void(0);" class="report topic-report"><i class="fa fa-flag-o"></i>举报</a></li>
+            <li class="fr"><a href="javascript:void(0);" class="report topic-report">举报</a></li>
         </ul>
     </div>
 
@@ -79,7 +79,7 @@
                         <li>
                         <a href="javascript:void(0);" class="reply-reply"><i class="fa  fa-comments-o"></i>回复</a>
                         </li>
-                        <li class="fr"><a href="javascript:void(0);" class="report reply-report"><i class="fa fa-flag-o"></i>举报</a></li>
+                        <li class="fr"><a href="javascript:void(0);" class="report reply-report">举报</a></li>
                     </ul>
                 </div>
             </div>
@@ -141,7 +141,7 @@
                     <li>
                         <a href="javascript:void(0);" class="reply-reply"><i class="fa fa-comments-o"></i>回复</a>
                     </li>
-                    <li class="fr"><a href="javascript:void(0);" class="report reply-report"><i class="fa fa-flag-o"></i>举报</a></li>
+                    <li class="fr"><a href="javascript:void(0);" class="report reply-report">举报</a></li>
                 </ul>
             </div>
         </div>

@@ -13,7 +13,7 @@ var BoardSchema = new Schema({
     type:{type:Number,require:true,default:1},
     name: {type:String,required:true},
     url: {type:String,required:true},
-    img_url: {type:String},
+    imgurl: {type:String},
     desc:{type:String},
     topic_count:{type:Number,default:0},
     last_reply:{type: Date, default: Date.now},

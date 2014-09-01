@@ -1,21 +1,4 @@
-<style>
-    .collect-list li{
-        height:45px;
-        line-height:45px;
-        border-bottom:1px solid #ddd;
-    }
-    .collect-list li .date{
-        color:#999;
-        margin-left:10px;
-    }
-    .collect-list li .topic-title:hover{
-        text-decoration:underline;
-    }
-</style>
-
 <h1>我的收藏</h1>
-
-
 <ul class="collect-list">
     {{#collects}}
     <li>

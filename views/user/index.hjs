@@ -6,21 +6,21 @@
     <div class="user-bar">
         <div class="action">
             {{#isme}}
-            <span>（推荐尺寸1000*300）</span><a href="javascript:void(0);" id="userbg-btn"><i class="fa fa-file-image-o"></i>更改背景</a>
+            <span>（推荐尺寸1000*300）</span><a href="javascript:void(0);" class="btn" id="userbg-btn"><i class="fa fa-file-image-o"></i>更改背景</a>
             <input type="file" id="upload-userbg" class="hide" accept="image/*">
             {{/isme}}
             {{^isme}}
             {{#isfollowing}}
-            <span class="following">
-            <i class="fa fa-check"></i>已关注
-            </span>
+            <a id="del-relation" href="/relation/{{showuser.url}}/del" class="btn">
+                <i class="fa fa-check"></i>已关注
+            </a>
             {{/isfollowing}}
             {{^isfollowing}}
-            <a id="add-relation" href="/relation/{{showuser.url}}/new">
+            <a id="add-relation" href="/relation/{{showuser.url}}/new" class="btn">
                 <i class="fa fa-plus"></i>关注
             </a>
             {{/isfollowing}}
-            <a href="/message/{{showuser.url}}/new">
+            <a href="/message/{{showuser.url}}/new" class="btn">
                 <i class="fa fa-envelope-o"></i>私信
             </a>
             {{/isme}}

@@ -1,4 +1,7 @@
 <h1>私信</h1>
+{{^msgs}}
+<p>暂无私信</p>
+{{/msgs}}
 <div>
     <ul class="message-list">
         {{#msgs}}

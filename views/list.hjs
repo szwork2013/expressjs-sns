@@ -106,7 +106,7 @@
 </div>
 
 <div class="sidebar">
-    <div class="side-mod ad1">
+    <div class="side-mod ad">
         <a href="/about/contact"></a>
     </div>
     <div class="side-mod last-reply-list">
@@ -196,10 +196,10 @@
 
     $(window).load(function(){
         $script('/js/loadimg.js',function(){
-            $('.ad1').append($('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>'));
+            $('.ad').append($('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>'));
             loadimg('http://cdn.ifanr.cn/wp-content/uploads/2014/06/IXDCifanr-02.jpg',function(img){
-                $('.ad1 .more').remove();
-                $(img).appendTo($('.ad1 a'));
+                $('.ad .more').remove();
+                $(img).appendTo($('.ad a'));
             })
         });
     });

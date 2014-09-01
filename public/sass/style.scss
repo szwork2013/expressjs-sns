@@ -19,18 +19,23 @@
 }
 .main{
     width:100%;
+    background:#f9f9f9;
+    padding:20px 0;
     .main-wrapper{
         @include clearfix();
-        margin:0px auto;
+        @include border-radius(5px);
+        background:#fff;
+        overflow:hidden;
+        margin:60px auto 10px;
         width:$main-width;
         min-height:650px;
-        padding:100px 10px 50px;
+        padding:30px;
         color:#666;
     }
 }
 .content{
     float:left;
-    width:740px;
+    width:800px;
     .list-wrapper{
         h1{
             float:left;
@@ -47,7 +52,7 @@
 }
 .sidebar{
     margin-left:30px;
-    width:270px;
+    width:300px;
     float:left;
     h3,h4{
         margin-bottom:10px;
@@ -58,6 +63,7 @@
     .ad{
         width:100%;
         img{
+            width:100%;
             max-width:100%;
         }
     }
@@ -121,7 +127,7 @@
     overflow:hidden;
     li{
         @include clearfix();
-        border-bottom:1px solid #e8e8e8;
+        border-bottom:1px solid $border-color;
         position:relative;
         padding:10px;
         h2{
@@ -133,12 +139,13 @@
                 font-size:14px;
             }
             a{
-                color:#111;
+                color:#333;
                 vertical-align:middle;
             }
         }
         .author-avatar{
             width:48px;
+            margin-right:2px;
             float:left;
             img{
                 background:#fff;
@@ -150,17 +157,17 @@
         .topic-title{
             float:left;
             overflow:hidden;
-            width:61%;
-            padding:0 2%;
+            width:500px;
+            padding:0 20px;
         }
         .topic-detail{
             line-height:48px;
             float:left;
-            width:10%;
+            width:90px;
         }
         .topic-last-reply{
             line-height:48px;
-            width:15%;
+            width:100px;
             float:left;
         }
     }
@@ -256,6 +263,7 @@
         }
     }
     .topic-meta{
+        font-size:14px;
         @include clearfix();
         li{
             color:#ccc;
@@ -273,9 +281,6 @@
                 font-size:14px;
                 margin-right:5px;
             }
-        }
-        .fa-clock-o{
-            font-size:16px;
         }
     }
 }
@@ -457,15 +462,14 @@
     font-size:14px;
     color:#fff;
     background:rgba(0,0,0,.7);
-    width:540px;
-    margin:0 150px;
+    width:530px;
+    margin:0 200px;
     h1{
         text-align:center;
         margin-bottom:30px;
     }
     .row{
-        margin:10px 0 0 0;
-        height:70px;
+        margin:30px 0 10px 0;
     }
     input[type="text"],input[type="password"]{
         width:80%;
@@ -753,7 +757,7 @@
     li{
         margin-top:10px;
         padding:10px 0;
-        border-bottom:1px solid #eee;
+        border-bottom:1px solid $border-color;
         .user-avatar{
             margin-right:12px;
         }
@@ -800,9 +804,21 @@
         }
     }
     .tips-item{
-        border-bottom:1px solid #ddd;
+        border-bottom:1px solid $border-color;
         padding:10px 0;
     }
+}
+.collect-list li{
+    height:45px;
+    line-height:45px;
+    border-bottom:1px solid $border-color;
+}
+.collect-list li .date{
+    color:#999;
+    margin-left:10px;
+}
+.collect-list li .topic-title:hover{
+    text-decoration:underline;
 }
 //tip
 .g-tip{
@@ -837,7 +853,6 @@
 }
 .user-wrapper{
     position:relative;
-    margin-top:-49px;
     overflow:hidden;
     .user-top-bg{
         position:relative;
@@ -909,26 +924,25 @@
         padding-left:280px;
         font-size:16px;
         .action{
+            font-size:13px;
+            vertical-align:middle;
+            float:right;
             color:#999;
+            .btn{
+                height:40px;
+            }
             a{
-                font-size:14px;
                 margin-left:10px;
-                color:#999;
-                border:1px solid #999;
-                padding:5px 10px;
-                @include border-radius(3px);
+                background-color:$action-green;
                 &:hover{
-                    color:#fff;
-                    background:#999;
+                    background:$action-green-hover;
                 }
             }
             .following{
                 color:$action-green;
             }
-            float:right;
             #add-relation{
                 color:$action-green;
-                border:1px solid $action-green;
                 &:hover{
                     color:#fff;
                     background:$action-green;
@@ -948,7 +962,7 @@
         padding:10px 0 10px 10px;
         float:right;
         h2{
-            color:#111;
+            color:#666;
             padding-left:10px;
             border-left:5px solid #ddd;
             .fa{
@@ -966,7 +980,7 @@
                     display:inline-block;
                     font-weight:bold;
                     text-decoration:none;
-                    color:#333;
+                    color:#666;
                     &:hover{
                         color:$link-color;
                     }
@@ -1019,7 +1033,7 @@
 //addcar
 #addcar-form{
     h2{
-        margin-top:12px;
+        margin:12px 0;
     }
     #showcarname{
         color:$action-red;
@@ -1030,13 +1044,38 @@
     .wycarname{
         margin:10px 0;
     }
-    button[type=submit]:hover{
-        background:$action-blue-hover;
+    .caritem{
+        .remove-item{
+            display:inline-block;
+            vertical-align:middle;
+            text-align:center;
+            width:30px;
+            height:30px;
+            line-height:30px;
+            color:$action-red;
+        }
+    }
+    .carimgs-list{
+        @include clearfix();
+    }
+    .carimg{
+        float:left;
+        img{
+            width:200px;
+            height:200px;
+        }
+        input[type=text]{
+            margin-top:8px;
+            @include border-radius(3px);
+            width:190px;
+            height:30px;
+            padding:0 5px;
+        }
     }
 }
 .about{
-    h3{
-        margin-top:20px;
+    h1,h3{
+        margin:20px 0;
     }
 }
 .user-list{
