@@ -31,6 +31,26 @@ router.post('/:url/new',function(req,res){
     });
 });
 
+router.post('/:url/del',function(req,res){
+    if(!req.session.user){
+        res.json({r:2});
+        return;
+    }
+    User.findOne({url:req.params.url},function(err,user){
+        Relation.findOneAndRemove({$and:[{following:req.session.user._id},{follower:user._id}]},function(err,relation){
+            if(err){
+                res.json({r:0});
+            }else{
+                    User.update({_id:req.session.user._id},{$pull:{following:{user_id:user._id}}},function(err,fuser){
+                        User.update({_id:user._id},{$pull:{follower:{user_id:req.session.user._id}}},function(err,fduser){
+                            if(relation && fuser && fduser) res.json({r:1});
+                        })
+                });
+            }
+        });
+    });
+});
+
 router.get('/:url/follower',function(req,res){
     User.findOne({url:req.params.url},function(err,user){
         Relation.find({follower:user._id},function(err,relation){

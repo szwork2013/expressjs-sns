@@ -1065,8 +1065,24 @@
         @include clearfix();
     }
     .carimg{
+        position:relative;
         float:left;
         margin-right:30px;
+        .remove-img{
+            position:absolute;
+            display:none;
+            top:-10px;
+            left:-10px;
+            width:20px;
+            height:20px;
+            text-align:center;
+            background:#fff;
+            @include border-radius(10px);
+            color:$action-red;
+            .fa{
+                font-size:20px;
+            }
+        }
         img{
             width:200px;
             height:150px;

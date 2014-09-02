@@ -41,6 +41,7 @@
 </script>
 <script type="text/template" id="carimg-template">
     <div class="row carimg">
+        <a href="javascript:void(0);" class="remove-img"><i class="fa fa-minus-circle"></i></a>
         <div>
             <img src="<%= src %>" alt="">
         </div>
@@ -67,6 +68,17 @@
                 });
             });
 
+            function ShowDel(el){
+                $(el).bind({
+                    'mouseover':function(){
+                        $(this).find('.remove-img').show();
+                    },
+                    'mouseout':function(){
+                        $(this).find('.remove-img').hide();
+                    }
+                })
+                return el;
+            }
             $('#upload-carimg').click(function(){
                 $('#carimgs').click().off('change').change(function(e){
                      var files = e.target.files;
@@ -83,6 +95,7 @@
                              fileReader.onload = function (event) {
                                     data.append('imgs',$('#carimgs')[0].files[i]);
                                     $('.carimgs-list').append(new EJS({text:$('#carimg-template').html()}).render({src:event.target.result}));
+                                    ShowDel($('.carimgs-list .carimg').last());
                              };
                              fileReader.readAsDataURL(files[i]);
                          }

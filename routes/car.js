@@ -16,7 +16,7 @@ var moment =  require('moment');
 
 router.get('/add',function(req,res){
     res.render('car/add',{
-        title:'添加新车'
+        title:'添加汽车'
     });
 });
 
@@ -54,10 +54,10 @@ router.post('/uploadcarimg', function(req, res) {
                 res.json({r:2});
                 return;
             }
-            var target_floder = process.cwd()+'/public/assets/userbg/'+req.session.user._id;
+            var target_floder = process.cwd()+'/public/assets/carimg/'+req.session.user._id;
             if(!fs.existsSync(target_floder)){
-                if(!fs.existsSync(process.cwd()+'/public/assets/userbg')){
-                    fs.mkdirSync(process.cwd()+'/public/assets/userbg');
+                if(!fs.existsSync(process.cwd()+'/public/assets/carimg')){
+                    fs.mkdirSync(process.cwd()+'/public/assets/carimg');
                 }
                 fs.mkdirSync(target_floder);
             }
