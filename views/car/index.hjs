@@ -1,1 +1,18 @@
-{{car.name}}
+<div class="car-main">
+    <h1 class="car-brand">{{car.brand}}</h1>
+    <h3 class="car-type">{{car.type}}</h3>
+    <p class="car-desc">{{car.desc}}</p>
+    <div class="car-img-list">
+
+    </div>
+    <div class="car-item-list">
+
+    </div>
+    <div class="car-reply-list">
+
+    </div>
+</div>
+<script>
+    (function(){
+    }()
+</script>

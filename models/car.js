@@ -5,9 +5,9 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 var CarSchema = new Schema({
+    url:{type:String,require:true},
     brand:{type:String,require:true},
     type:{type:String,require:true},
-    name:{type:String},
     desc:{type:String},
     owner:{type:ObjectId},
     changeitem:[{_id:false,type:String,name:String}],

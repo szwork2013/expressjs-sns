@@ -20,31 +20,29 @@ router.get('/add',function(req,res){
     });
 });
 
-router.post('/add', function(req, res){
-    new Car({
-        brand:req.body.carbrand,
-        type:req.body.cartype,
-        name:req.body.carname,
-        desc:req.body.cardesc,
-        owner:req.session.user._id
-    }).save(function(err,car){
-        if(!err){
-            res.redirect('/car/'+car.name);
-        }
-    });
-});
-
-router.get('/:name',function(req,res){
-    Car.findOne({name:req.params.name},function(err,car){
+router.get('/:url',function(req,res){
+    Car.findOne({name:req.params.url},function(err,car){
        res.render('car/index',{
-           title:car.name,
+           title:car.name'('+car.brand+')',
            car:car
        });
     })
 });
 
-router.post('/uploadcarimg', function(req, res) {
+router.post('/add', function(req, res) {
     new formidable.IncomingForm().parse(req,function(err,fields,files){
+        new Car({
+            brand:req.body.carbrand,
+            type:req.body.cartype,
+            name:req.body.carname,
+            desc:req.body.cardesc,
+            owner:req.session.user._id
+        }).save(function(err,car){
+            if(!err){
+                res.json({r:1,car:car})
+                //res.redirect('/car/'+car.name);
+            }
+        });
         var img = files.img;
         if(!img.name) {
             res.json({r:0});

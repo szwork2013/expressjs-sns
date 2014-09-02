@@ -11,9 +11,9 @@
         <input type="text" name="cartype" id="cartype" />
     </div>
     <div class="row">
-        <label for="carname">名称</label>
-        <input type="text" name="carname" id="carname" />
-        <p class="wycarname"><label></label>http://www.com/car/<span id="showcarname"></span></p>
+        <label for="carurl">网址</label>
+        <input type="text" name="carurl" id="carurl" />
+        <p class="wycarurl"><label></label>http://www.com/car/<span id="showcarurl"></span></p>
     </div>
     <div class="row">
         <label for="cardesc">描述</label>
@@ -21,13 +21,11 @@
     </div>
     <h2>改装件</h2>
     <a href="javascript:void(0);" class="add-caritem"><i class="fa fa-plus"></i>添加改装件</a>
-        <div class="caritem-list">
-        </div>
+    <div class="caritem-list"></div>
     <h2>上传图片</h2>
     <a href="javascript:void(0);" id="upload-carimg"><i class="fa fa-cloud-upload"></i>上传汽车图片</a><span>(支持多图上传)</span>
     <input type="file" name="carimgs" class="hide" id="carimgs" accept="image/*" multiple>
-    <div class="carimgs-list">
-    </div>
+    <div class="carimgs-list"></div>
     <div class="row">
         <button type="submit" class="btn">确定</button>
     </div>
@@ -42,19 +40,15 @@
 <script type="text/template" id="carimg-template">
     <div class="row carimg">
         <a href="javascript:void(0);" class="remove-img"><i class="fa fa-minus-circle"></i></a>
-        <div>
-            <img src="<%= src %>" alt="">
-        </div>
-        <div>
-            <input type="text" placeholder="描述....">
-        </div>
+        <div><img src="<%= src %>" alt=""></div>
+        <div><input type="text" placeholder="描述...."></div>
     </div>
 </script>
 <script>
     (function(){
 
-        $('#carname').keyup(function(e){
-            $('#showcarname').html($(this).val());
+        $('#carurl').keyup(function(e){
+            $('#showcarurl').html($(this).val());
         });
 
         $script('/js/ejs.js',function(){
@@ -106,6 +100,9 @@
 
         $('#addcar-form button[type="submit"]').click(function(e){
             e.preventDefault();
+            $script('/js/validator.js',function(){
+                console.info(e);
+            })
         });
 
     })()
