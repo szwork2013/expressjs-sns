@@ -34,10 +34,18 @@ router.get('/:url',function(req,res){
 });
 
 router.post('/add', function(req, res) {
-    console.info(req.files);
-    new formidable.IncomingForm().parse(req,function(err,fields,files){
+    var form = new formidable.IncomingForm(),
+    files = [];
+
+    form.on('file',function(field,file){
+        files.push(file);
+    });
+
+    form.parse(req,function(err,fields){
         console.info(fields);
         console.info(files);
+
+        /*
         new Car({
             brand:fields.carbrand,
             type:fields.cartype,
@@ -45,38 +53,11 @@ router.post('/add', function(req, res) {
             desc:fields.cardesc
         }).save(function(err,car){
             if(!err){
-                console.info('ok');
-                //res.json({r:1,car:car})
+                console.info(car);
+                res.json({r:1,car:car})
                 //res.redirect('/car/'+car.name);
             }
         });
-        /*
-        var img = files.img;
-        if(!img.name) {
-            res.json({r:0});
-            return;
-        }else{
-            if(parseInt(img.size/1024)>5120){
-                res.json({r:2});
-                return;
-            }
-            var target_floder = process.cwd()+'/public/assets/carimg/'+req.session.user._id;
-            if(!fs.existsSync(target_floder)){
-                if(!fs.existsSync(process.cwd()+'/public/assets/carimg')){
-                    fs.mkdirSync(process.cwd()+'/public/assets/carimg');
-                }
-                fs.mkdirSync(target_floder);
-            }
-            var save_url = '/assets/userbg/'+req.session.user._id+'/ubg'+req.session.user._id+path.extname(img.name);
-            gm(img.path).resize(1040).crop(1040,400).write(process.cwd()+'/public'+save_url,function(){
-                User.update({_id:req.session.user._id},{userbg_url:save_url},function(err){
-                    if(!err){
-                        req.session.user.userbg_url = save_url;
-                        res.json({r:1,url:save_url});
-                    }
-                });
-            })
-        }
         */
     });
 });

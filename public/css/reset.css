@@ -49,7 +49,10 @@ ul, ol {
   margin-right: 2px;
   vertical-align: baseline; }
   .fa.fa-spin {
-    color: #999; }
+    color: #666; }
+
+button[type="submit"] .fa-spin {
+  color: #fff; }
 
 .date {
   color: #ccc; }

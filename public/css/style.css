@@ -961,63 +961,80 @@
     color: #333;
     margin: 0; }
 
-#addcar-form h2 {
-  margin: 12px 0; }
-#addcar-form #showcarurl {
-  color: #e74c3c; }
-#addcar-form select {
-  width: 100px; }
-#addcar-form .wycarurl {
-  margin: 10px 0 0 5px; }
-#addcar-form .caritem .remove-item {
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  color: #e74c3c; }
-#addcar-form .carimgs-list {
-  width: 1200px; }
-  #addcar-form .carimgs-list:before, #addcar-form .carimgs-list:after {
-    content: "";
-    display: table; }
-  #addcar-form .carimgs-list:after {
-    clear: both; }
-#addcar-form .carimg {
-  position: relative;
-  float: left;
-  margin-right: 30px; }
-  #addcar-form .carimg .remove-img {
-    position: absolute;
-    display: none;
-    top: -10px;
-    left: -10px;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    background: #fff;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-    border-radius: 10px;
+#addcar-form {
+  padding: 0 30px; }
+  #addcar-form h2 {
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 6px;
+    margin: 18px 0; }
+  #addcar-form input[type=text], #addcar-form textarea {
+    width: 600px; }
+  #addcar-form #showcarurl {
     color: #e74c3c; }
-    #addcar-form .carimg .remove-img .fa {
-      font-size: 20px; }
-  #addcar-form .carimg img {
-    width: 200px;
-    height: 150px; }
-  #addcar-form .carimg input[type=text] {
-    margin-top: 8px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-    border-radius: 3px;
-    width: 190px;
+  #addcar-form label {
+    width: 80px; }
+  #addcar-form select {
+    width: 100px; }
+  #addcar-form .wycarurl {
+    margin: 10px 0 0 5px; }
+  #addcar-form .caritem .remove-item {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    width: 30px;
     height: 30px;
-    padding: 0 5px; }
+    line-height: 30px;
+    color: #e74c3c; }
+  #addcar-form .carimgs-list {
+    width: 1200px; }
+    #addcar-form .carimgs-list:before, #addcar-form .carimgs-list:after {
+      content: "";
+      display: table; }
+    #addcar-form .carimgs-list:after {
+      clear: both; }
+  #addcar-form .carimg {
+    position: relative;
+    float: left;
+    margin-right: 30px; }
+    #addcar-form .carimg .remove-img {
+      position: absolute;
+      display: none;
+      top: -10px;
+      left: -10px;
+      width: 20px;
+      height: 20px;
+      text-align: center;
+      background: #fff;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+      border-radius: 10px;
+      color: #e74c3c; }
+      #addcar-form .carimg .remove-img .fa {
+        font-size: 20px; }
+    #addcar-form .carimg img {
+      width: 200px;
+      height: 150px; }
+    #addcar-form .carimg input[type=text] {
+      margin-top: 8px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
+      border-radius: 3px;
+      width: 190px;
+      height: 30px;
+      padding: 0 5px; }
+  #addcar-form .ml10 {
+    margin-left: 10px; }
+  #addcar-form .params input[type=text] {
+    width: 50px;
+    margin-right: 5px; }
+  #addcar-form .params input[type=radio] {
+    vertical-align: middle; }
+  #addcar-form .base #cartype {
+    width: 400px; }
 
 .about h1, .about h3 {
   margin: 20px 0; }

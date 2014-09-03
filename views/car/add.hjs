@@ -1,31 +1,86 @@
 <form id="addcar-form" action="/car/add" method="post" class="form" enctype="multipart/form-data">
-    <h2>基础资料</h2>
-    <div class="row">
-        <label for="carbrand">品牌</label>
-        <select id="carbrand" name="carbrand">
-            <option value="amg">amg</option>
-        </select>
+    <div class="fieldarea">
+        <h2>是否拥有</h2>
+        <div class="row">
+            <input type="radio" name="owner" value="true">是
+            <input type="radio" name="owner" class="ml10" value="false">否
+        </div>
+        <div class="base">
+            <h2>基础资料</h2>
+            <div class="row">
+                <label for="carbrand">品牌</label>
+                <select id="carbrand" name="carbrand">
+                    <option value="amg">amg</option>
+                </select>
+            </div>
+            <div class="row">
+                <label for="cartype">型号</label>
+                <input type="text" name="cartype" id="cartype" />
+                <span>例如:m3,macan,golf gti,focus,sti,gt86...</span>
+            </div>
+            <div class="row">
+                <label for="carurl">网址</label>
+                <input type="text" name="carurl" id="carurl" />
+                <p class="wycarurl"><label></label>http://www.com/car/<span id="showcarurl"></span></p>
+            </div>
+            <div class="row">
+                <label for="cardesc">描述</label>
+                <textarea id="cardesc" name="cardesc"></textarea>
+            </div>
+        </div>
+        <div class="params">
+            <h2>参数</h2>
+            <div class="row">
+                <label for="engine">引擎排量</label>
+                <input type="text" name="engine" id="engine" />L
+            </div>
+            <div class="row">
+                <label for="turbe">涡轮增压</label>
+                <input type="radio" name="turbe" value="true">是
+                <input type="radio" name="turbe" value="false" class="ml10">否
+            </div>
+            <div class="row">
+                <label for="box">变速箱</label>
+                <input type="radio" name="box" value="mt">MT
+                <input type="radio" name="box" value="at" class="ml10">AT
+            </div>
+            <div class="row">
+                <label for="drivetype">驱动方式</label>
+                <input type="radio" name="drivetype" value="fd">前置前驱
+                <input type="radio" name="drivetype" value="rd" class="ml10">前置后驱
+                <input type="radio" name="drivetype" value="ad" class="ml10">四轮驱动
+            </div>
+            <div class="row">
+                <label for="speed">0-100加速</label>
+                <input type="text" name="speed" id="speed" />s
+            </div>
+            <div class="row">
+                <label for="maxps">最大马力</label>
+                <input type="text" name="maxps" id="maxps" />ps
+            </div>
+            <div class="row">
+                <label for="maxum">最大扭矩</label>
+                <input type="text" name="maxum" id="maxum" />u.m
+            </div>
+            <div class="row">
+                <label for="wheelsize">轮胎</label>
+                <input type="text" name="wheelsize" id="wheel-size" />(R)
+            </div>
+        </div>
+        <div class="items">
+            <h2>改装件</h2>
+            <a href="javascript:void(0);" class="add-caritem"><i class="fa fa-plus"></i>添加改装件</a>
+            <div class="caritem-list"></div>
+        </div>
     </div>
-    <div class="row">
-        <label for="cartype">型号</label>
-        <input type="text" name="cartype" id="cartype" />
+    <div class="imgsarea">
+        <div class="imgs">
+            <h2>上传图片</h2>
+            <a href="javascript:void(0);" id="upload-carimg"><i class="fa fa-cloud-upload"></i>上传汽车图片</a><span>(支持多图上传)</span>
+            <input type="file" name="uploadcarimgs" class="hide" id="uploadcarimgs" accept="image/*" multiple>
+            <div class="carimgs-list"></div>
+        </div>
     </div>
-    <div class="row">
-        <label for="carurl">网址</label>
-        <input type="text" name="carurl" id="carurl" />
-        <p class="wycarurl"><label></label>http://www.com/car/<span id="showcarurl"></span></p>
-    </div>
-    <div class="row">
-        <label for="cardesc">描述</label>
-        <textarea id="cardesc" name="cardesc"></textarea>
-    </div>
-    <h2>改装件</h2>
-    <a href="javascript:void(0);" class="add-caritem"><i class="fa fa-plus"></i>添加改装件</a>
-    <div class="caritem-list"></div>
-    <h2>上传图片</h2>
-    <a href="javascript:void(0);" id="upload-carimg"><i class="fa fa-cloud-upload"></i>上传汽车图片</a><span>(支持多图上传)</span>
-    <input type="file" name="uploadcarimgs" class="hide" id="uploadcarimgs" accept="image/*" multiple>
-    <div class="carimgs-list"></div>
     <div class="row">
         <button type="submit" class="btn">确定</button>
     </div>
@@ -39,7 +94,6 @@
 </script>
 <script type="text/template" id="carimg-template">
     <div class="row carimg">
-        <input type="text" class="hidden" value="<%= src %>" name="carimgs">
         <a href="javascript:void(0);" class="remove-img"><i class="fa fa-minus-circle"></i></a>
         <div><img src="<%= src %>" alt=""></div>
         <div><input type="text" placeholder="描述...."></div>
@@ -66,35 +120,39 @@
             function ShowDel(el){
                 $(el).bind({
                     'mouseover':function(){
-                        $(this).find('.remove-img').show();
+                        $(this).find('.remove-img').show().off('click').click(function(){
+                            console.info($('#uploadcarimgs')[0].files);
+                            $(el).remove();
+                        });
                     },
                     'mouseout':function(){
                         $(this).find('.remove-img').hide();
                     }
-                })
+                });
                 return el;
             }
+
             $('#upload-carimg').click(function(){
                 $('#uploadcarimgs').click().off('change').change(function(e){
-                     var files = e.target.files;
-                     var data = new FormData();
-                     if (files && files.length > 0) {
-                         for(var i=0 ;i<files.length;i++){
-                             if((files[i].size)/1024 >5120){
+                    var files = e.target.files;
+                    var data = new FormData();
+                    if (files && files.length > 0) {
+                        for(var i=0 ;i<files.length;i++){
+                            if((files[i].size)/1024 >5120){
                                 $script('/js/tip.js',function(){
-                                     Tip('图片'+files[i].name+'过大，请上传5m大小以下图片','error',function(){},3000);
+                                    Tip('图片'+files[i].name+'过大，请上传5m大小以下图片','error',function(){},3000);
                                 });
                                 continue;
-                             }
-                             var fileReader = new FileReader();
-                             fileReader.onload = function (event) {
-                                    //data.append('imgs[]',files[i]);
-                                 $('.carimgs-list').append(new EJS({text:$('#carimg-template').html()}).render({src:event.target.result}));
-                                    ShowDel($('.carimgs-list .carimg').last());
-                             };
-                             fileReader.readAsDataURL(files[i]);
-                         }
-                     }
+                            }
+                            var fileReader = new FileReader();
+                            fileReader.onload = function (event) {
+                                //data.append('imgs[]',files[i]);
+                                $('.carimgs-list').append(new EJS({text:$('#carimg-template').html()}).render({src:event.target.result}));
+                                ShowDel($('.carimgs-list .carimg').last());
+                            };
+                            fileReader.readAsDataURL(files[i]);
+                        }
+                    }
                 });
             });
         });
@@ -102,27 +160,28 @@
         $('#addcar-form button[type="submit"]').click(function(e){
             e.preventDefault();
             $script(['/js/validator.js','/js/tip.js'],function(){
+
                 var brandInput = $('#carbrand'),
                 typeInput = $('input[name="cartype"]'),
                 urlInput = $('input[name="carurl"]'),
                 descInput = $('textarea[name="cardesc"]');
 
-                if(validator.isNull(validator.trim(brandInput.val()))){
-                    Tip('请选择品牌','error');
-                    brandInput.focus();
-                    return;
-                }else if(validator.isNull(validator.trim(typeInput.val()))){
-                    Tip('请填写型号','error');
-                    typeInput.focus();
-                    return;
-                }else if(validator.isNull(validator.trim(urlInput.val())) || !validator.isAlphanumeric(urlInput.val())){
-                    Tip('请正确填写网址','error');
-                    urlInput.focus();
-                    return;
-                }else{
-                    $('#addcar-form button[type="submit"]').attr('disabled',true).html('<i class="fa fa-circle-o-notch  fa-spin"></i>');
-                    $('#addcar-form').submit();
-                }
+            if(validator.isNull(validator.trim(brandInput.val()))){
+                Tip('请选择品牌','error');
+                brandInput.focus();
+                return;
+            }else if(validator.isNull(validator.trim(typeInput.val()))){
+                Tip('请填写型号','error');
+                typeInput.focus();
+                return;
+            }else if(validator.isNull(validator.trim(urlInput.val())) || !validator.isAlphanumeric(urlInput.val())){
+                Tip('请正确填写网址','error');
+                urlInput.focus();
+                return;
+            }else{
+                $('#addcar-form button[type="submit"]').attr('disabled',true).html('<i class="fa fa-circle-o-notch  fa-spin"></i>正在提交...');
+                $('#addcar-form').submit();
+            }
             })
         });
 

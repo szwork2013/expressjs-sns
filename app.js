@@ -62,8 +62,8 @@ app.use(function(req, res, next){
 
 //global config
 app.locals = {
-    gtitle:'风车',
-    gurl:'www.xxx.com',
+    gtitle:'来者',
+    gurl:'www.autocomer.com',
     isdev:true,
     jsfolder:'/js',
 };
