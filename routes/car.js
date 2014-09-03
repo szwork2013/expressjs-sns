@@ -21,28 +21,36 @@ router.get('/add',function(req,res){
 });
 
 router.get('/:url',function(req,res){
-    Car.findOne({name:req.params.url},function(err,car){
-       res.render('car/index',{
-           title:car.name'('+car.brand+')',
-           car:car
-       });
+    Car.findOne({url:req.params.url},function(err,car){
+        if(!car || err){
+            res.redirect('/error');
+            return;
+        }
+        res.render('car/index',{
+            title:car.type+'('+car.brand+')',
+            car:car
+        });
     })
 });
 
 router.post('/add', function(req, res) {
+    console.info(req.files);
     new formidable.IncomingForm().parse(req,function(err,fields,files){
+        console.info(fields);
+        console.info(files);
         new Car({
-            brand:req.body.carbrand,
-            type:req.body.cartype,
-            name:req.body.carname,
-            desc:req.body.cardesc,
-            owner:req.session.user._id
+            brand:fields.carbrand,
+            type:fields.cartype,
+            url:fields.carurl,
+            desc:fields.cardesc
         }).save(function(err,car){
             if(!err){
-                res.json({r:1,car:car})
+                console.info('ok');
+                //res.json({r:1,car:car})
                 //res.redirect('/car/'+car.name);
             }
         });
+        /*
         var img = files.img;
         if(!img.name) {
             res.json({r:0});
@@ -69,6 +77,7 @@ router.post('/add', function(req, res) {
                 });
             })
         }
+        */
     });
 });
 

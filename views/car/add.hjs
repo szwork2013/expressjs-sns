@@ -1,8 +1,8 @@
-<form id="addcar-form" action="/car/add" method="post" class="form">
+<form id="addcar-form" action="/car/add" method="post" class="form" enctype="multipart/form-data">
     <h2>基础资料</h2>
     <div class="row">
         <label for="carbrand">品牌</label>
-        <select id="brandopts" name="brandopts">
+        <select id="carbrand" name="carbrand">
             <option value="amg">amg</option>
         </select>
     </div>
@@ -24,7 +24,7 @@
     <div class="caritem-list"></div>
     <h2>上传图片</h2>
     <a href="javascript:void(0);" id="upload-carimg"><i class="fa fa-cloud-upload"></i>上传汽车图片</a><span>(支持多图上传)</span>
-    <input type="file" name="carimgs" class="hide" id="carimgs" accept="image/*" multiple>
+    <input type="file" name="uploadcarimgs" class="hide" id="uploadcarimgs" accept="image/*" multiple>
     <div class="carimgs-list"></div>
     <div class="row">
         <button type="submit" class="btn">确定</button>
@@ -39,6 +39,7 @@
 </script>
 <script type="text/template" id="carimg-template">
     <div class="row carimg">
+        <input type="text" class="hidden" value="<%= src %>" name="carimgs">
         <a href="javascript:void(0);" class="remove-img"><i class="fa fa-minus-circle"></i></a>
         <div><img src="<%= src %>" alt=""></div>
         <div><input type="text" placeholder="描述...."></div>
@@ -74,7 +75,7 @@
                 return el;
             }
             $('#upload-carimg').click(function(){
-                $('#carimgs').click().off('change').change(function(e){
+                $('#uploadcarimgs').click().off('change').change(function(e){
                      var files = e.target.files;
                      var data = new FormData();
                      if (files && files.length > 0) {
@@ -87,8 +88,8 @@
                              }
                              var fileReader = new FileReader();
                              fileReader.onload = function (event) {
-                                    data.append('imgs',$('#carimgs')[0].files[i]);
-                                    $('.carimgs-list').append(new EJS({text:$('#carimg-template').html()}).render({src:event.target.result}));
+                                    //data.append('imgs[]',files[i]);
+                                 $('.carimgs-list').append(new EJS({text:$('#carimg-template').html()}).render({src:event.target.result}));
                                     ShowDel($('.carimgs-list .carimg').last());
                              };
                              fileReader.readAsDataURL(files[i]);
@@ -100,8 +101,28 @@
 
         $('#addcar-form button[type="submit"]').click(function(e){
             e.preventDefault();
-            $script('/js/validator.js',function(){
-                console.info(e);
+            $script(['/js/validator.js','/js/tip.js'],function(){
+                var brandInput = $('#carbrand'),
+                typeInput = $('input[name="cartype"]'),
+                urlInput = $('input[name="carurl"]'),
+                descInput = $('textarea[name="cardesc"]');
+
+                if(validator.isNull(validator.trim(brandInput.val()))){
+                    Tip('请选择品牌','error');
+                    brandInput.focus();
+                    return;
+                }else if(validator.isNull(validator.trim(typeInput.val()))){
+                    Tip('请填写型号','error');
+                    typeInput.focus();
+                    return;
+                }else if(validator.isNull(validator.trim(urlInput.val())) || !validator.isAlphanumeric(urlInput.val())){
+                    Tip('请正确填写网址','error');
+                    urlInput.focus();
+                    return;
+                }else{
+                    $('#addcar-form button[type="submit"]').attr('disabled',true).html('<i class="fa fa-circle-o-notch  fa-spin"></i>');
+                    $('#addcar-form').submit();
+                }
             })
         });
 

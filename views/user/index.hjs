@@ -66,7 +66,9 @@
 
     function AddRelation(){
         $('#add-relation').off('click').click(function(e){
-         e.preventDefault();
+            e.preventDefault();
+            e.stopPropagation();
+            var self = this;
             $.ajax({
                 url:$(this).attr('href'),
                 method:'post',
@@ -74,8 +76,8 @@
                     $script('/js/tip.js',function(){
                         if(r.r===1){
                             Tip('关注+1','success');
-                            $(e.target).before('<a id="del-relation" href="/relation/{{showuser.url}}/del" class="btn"><i class="fa fa-check"></i>已经关注</a>');
-                            $(e.target).remove();
+                            $(self).before('<a id="del-relation" href="/relation/{{showuser.url}}/del" class="btn"><i class="fa fa-check"></i>已经关注</a>');
+                            $(self).remove();
                             DelRelation();
                         }else if(r.r===0){
                             Tip('已经关注');
@@ -101,7 +103,9 @@
         })
 
         $('#del-relation').off('click').click(function(e){
-         e.preventDefault();
+            e.preventDefault();
+            e.stopPropagation();
+            var self = this;
             $.ajax({
                 url:$(this).attr('href'),
                 method:'post',
@@ -109,8 +113,8 @@
                     $script('/js/tip.js',function(){
                         if(r.r===1){
                             Tip('取消关注','success');
-                            $(e.target).before('<a id="add-relation" href="/relation/{{showuser.url}}/new" class="btn"><i class="fa fa-plus"></i>关注</a>');
-                            $(e.target).remove();
+                            $(self).before('<a id="add-relation" href="/relation/{{showuser.url}}/new" class="btn"><i class="fa fa-plus"></i>关注</a>');
+                            $(self).remove();
                             AddRelation();
                         }else if(r.r===0){
                             Tip('取消关注失败');

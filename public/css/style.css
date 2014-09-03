@@ -963,12 +963,12 @@
 
 #addcar-form h2 {
   margin: 12px 0; }
-#addcar-form #showcarname {
+#addcar-form #showcarurl {
   color: #e74c3c; }
 #addcar-form select {
   width: 100px; }
-#addcar-form .wycarname {
-  margin: 10px 0; }
+#addcar-form .wycarurl {
+  margin: 10px 0 0 5px; }
 #addcar-form .caritem .remove-item {
   display: inline-block;
   vertical-align: middle;
