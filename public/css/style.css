@@ -961,23 +961,23 @@
     color: #333;
     margin: 0; }
 
-#addcar-form {
+#addcar-form, #addcar-img {
   padding: 0 30px; }
-  #addcar-form h2 {
+  #addcar-form h2, #addcar-img h2 {
     border-bottom: 1px solid #f0f0f0;
     padding-bottom: 6px;
     margin: 18px 0; }
-  #addcar-form input[type=text], #addcar-form textarea {
+  #addcar-form input[type=text], #addcar-form textarea, #addcar-img input[type=text], #addcar-img textarea {
     width: 600px; }
-  #addcar-form #showcarurl {
+  #addcar-form #showcarurl, #addcar-img #showcarurl {
     color: #e74c3c; }
-  #addcar-form label {
+  #addcar-form label, #addcar-img label {
     width: 80px; }
-  #addcar-form select {
+  #addcar-form select, #addcar-img select {
     width: 100px; }
-  #addcar-form .wycarurl {
+  #addcar-form .wycarurl, #addcar-img .wycarurl {
     margin: 10px 0 0 5px; }
-  #addcar-form .caritem .remove-item {
+  #addcar-form .caritem .remove-item, #addcar-img .caritem .remove-item {
     display: inline-block;
     vertical-align: middle;
     text-align: center;
@@ -985,18 +985,18 @@
     height: 30px;
     line-height: 30px;
     color: #e74c3c; }
-  #addcar-form .carimgs-list {
+  #addcar-form .carimgs-list, #addcar-img .carimgs-list {
     width: 1200px; }
-    #addcar-form .carimgs-list:before, #addcar-form .carimgs-list:after {
+    #addcar-form .carimgs-list:before, #addcar-form .carimgs-list:after, #addcar-img .carimgs-list:before, #addcar-img .carimgs-list:after {
       content: "";
       display: table; }
-    #addcar-form .carimgs-list:after {
+    #addcar-form .carimgs-list:after, #addcar-img .carimgs-list:after {
       clear: both; }
-  #addcar-form .carimg {
+  #addcar-form .carimg, #addcar-img .carimg {
     position: relative;
     float: left;
     margin-right: 30px; }
-    #addcar-form .carimg .remove-img {
+    #addcar-form .carimg .remove-img, #addcar-img .carimg .remove-img {
       position: absolute;
       display: none;
       top: -10px;
@@ -1011,12 +1011,12 @@
       -o-border-radius: 10px;
       border-radius: 10px;
       color: #e74c3c; }
-      #addcar-form .carimg .remove-img .fa {
+      #addcar-form .carimg .remove-img .fa, #addcar-img .carimg .remove-img .fa {
         font-size: 20px; }
-    #addcar-form .carimg img {
+    #addcar-form .carimg img, #addcar-img .carimg img {
       width: 200px;
       height: 150px; }
-    #addcar-form .carimg input[type=text] {
+    #addcar-form .carimg input[type=text], #addcar-img .carimg input[type=text] {
       margin-top: 8px;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
@@ -1026,14 +1026,15 @@
       width: 190px;
       height: 30px;
       padding: 0 5px; }
-  #addcar-form .ml10 {
+  #addcar-form .ml10, #addcar-img .ml10 {
     margin-left: 10px; }
-  #addcar-form .params input[type=text] {
+  #addcar-form .params input[type=text], #addcar-img .params input[type=text] {
+    text-align: right;
     width: 50px;
     margin-right: 5px; }
-  #addcar-form .params input[type=radio] {
+  #addcar-form .params input[type=radio], #addcar-img .params input[type=radio] {
     vertical-align: middle; }
-  #addcar-form .base #cartype {
+  #addcar-form .base #cartype, #addcar-img .base #cartype {
     width: 400px; }
 
 .about h1, .about h3 {

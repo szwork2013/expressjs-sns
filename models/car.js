@@ -5,21 +5,21 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 var CarSchema = new Schema({
-    url:{type:String,require:true},
     brand:{type:String,require:true},
     type:{type:String,require:true},
     desc:{type:String},
-    owner:{type:ObjectId},
-    engine:{type:String},
+    user:{type:ObjectId},
+    isown:{type:Boolean},
+    engine:{type:Number},
     turbe:{type:Boolean},
     box:{type:String},
     drivetype:{type:String},
-    speed:{type:String},
-    maxps:{type:String},
-    maxum:{type:String},
-    wheelsize:{type:String},
-    changeitem:[{_id:false,type:String,name:String}],
-    carimgs:[{_id:false,desc:String,src:String}],
+    speed:{type:Number},
+    maxps:{type:Number},
+    maxum:{type:Number},
+    wheelsize:{type:Number},
+    items:[{_id:false,type:String,name:String}],
+    imgs:[{_id:false,desc:String,src:String}],
     create_date:{type: Date, default: Date.now},
     update_date:{type: Date, default: Date.now}
 });

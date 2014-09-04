@@ -137,10 +137,13 @@ textarea{
         border:1px solid #ddd;
         height:30px;
     }
-    .submit-btn,button[type=submit],.upload-trigger{
-        background:$action-blue;
-    }
-    .submit-btn,button[type=submit]:hover,.upload-trigger:hover{
-        background:$action-blue-hover;
-    }
+}
+.submit-btn,button[type=submit],.upload-trigger{
+    background:$action-blue;
+}
+.submit-btn:hover,button[type=submit]:hover,.upload-trigger:hover{
+    background:$action-blue-hover;
+}
+.form-action{
+    padding:30px;
 }

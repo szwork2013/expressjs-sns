@@ -1036,7 +1036,7 @@
     }
 }
 //addcar
-#addcar-form{
+#addcar-form,#addcar-img{
     padding:0 30px;
     h2{
         border-bottom:1px solid $border-color;
@@ -1109,6 +1109,7 @@
     }
     .params{
         input[type=text]{
+            text-align:right;
             width:50px;
             margin-right:5px;
         }

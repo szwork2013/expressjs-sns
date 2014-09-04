@@ -1,94 +1,87 @@
-<form id="addcar-form" action="/car/add" method="post" class="form" enctype="multipart/form-data">
-    <div class="fieldarea">
-        <h2>是否拥有</h2>
-        <div class="row">
-            <input type="radio" name="owner" value="true">是
-            <input type="radio" name="owner" class="ml10" value="false">否
-        </div>
-        <div class="base">
-            <h2>基础资料</h2>
-            <div class="row">
-                <label for="carbrand">品牌</label>
-                <select id="carbrand" name="carbrand">
-                    <option value="amg">amg</option>
-                </select>
-            </div>
-            <div class="row">
-                <label for="cartype">型号</label>
-                <input type="text" name="cartype" id="cartype" />
-                <span>例如:m3,macan,golf gti,focus,sti,gt86...</span>
-            </div>
-            <div class="row">
-                <label for="carurl">网址</label>
-                <input type="text" name="carurl" id="carurl" />
-                <p class="wycarurl"><label></label>{{gurl}}/car/<span id="showcarurl"></span></p>
-            </div>
-            <div class="row">
-                <label for="cardesc">描述</label>
-                <textarea id="cardesc" name="cardesc"></textarea>
-            </div>
-        </div>
-        <div class="params">
-            <h2>参数</h2>
-            <div class="row">
-                <label for="engine">引擎排量</label>
-                <input type="text" name="engine" id="engine" />L
-            </div>
-            <div class="row">
-                <label for="turbo">涡轮增压</label>
-                <input type="radio" name="turbo" value="true">是
-                <input type="radio" name="turbo" value="false" class="ml10">否
-            </div>
-            <div class="row">
-                <label for="boxtype">变速箱</label>
-                <input type="radio" name="boxtype" value="mt">MT
-                <input type="radio" name="boxtype" value="at" class="ml10">AT
-            </div>
-            <div class="row">
-                <label for="drivetype">驱动方式</label>
-                <input type="radio" name="drivetype" value="fd">前置前驱
-                <input type="radio" name="drivetype" value="rd" class="ml10">前置后驱
-                <input type="radio" name="drivetype" value="ad" class="ml10">四轮驱动
-            </div>
-            <div class="row">
-                <label for="speed">0-100加速</label>
-                <input type="text" name="speed" id="speed" />s
-            </div>
-            <div class="row">
-                <label for="maxps">最大马力</label>
-                <input type="text" name="maxps" id="maxps" />ps
-            </div>
-            <div class="row">
-                <label for="maxum">最大扭矩</label>
-                <input type="text" name="maxum" id="maxum" />u.m
-            </div>
-            <div class="row">
-                <label for="wheelsize">轮胎</label>
-                <input type="text" name="wheelsize" id="wheelsize" />(R)
-            </div>
-        </div>
-        <div class="items">
-            <h2>改装件</h2>
-            <a href="javascript:void(0);" class="add-caritem"><i class="fa fa-plus"></i>添加改装件</a>
-            <div class="caritem-list"></div>
-        </div>
-    </div>
-    <div class="imgsarea">
-        <div class="imgs">
-            <h2>上传图片</h2>
-            <a href="javascript:void(0);" id="upload-carimg"><i class="fa fa-cloud-upload"></i>上传汽车图片</a><span>(支持多图上传)</span>
-            <input type="file" name="uploadcarimgs" class="hide" id="uploadcarimgs" accept="image/*" multiple>
-            <div class="carimgs-list"></div>
-        </div>
-    </div>
+<form id="addcar-form" action="/car/add" method="post" class="form">
+    <h2>是否拥有</h2>
     <div class="row">
-        <button type="submit" class="btn">确定</button>
+        <input type="radio" name="isown" value="true">是
+        <input type="radio" name="isown" class="ml10" value="false">否
+    </div>
+    <div class="base">
+        <h2>基础资料</h2>
+        <div class="row">
+            <label for="carbrand">品牌</label>
+            <select id="carbrand" name="carbrand">
+                <option value="amg">amg</option>
+            </select>
+        </div>
+        <div class="row">
+            <label for="cartype">型号</label>
+            <input type="text" name="cartype" id="cartype" />
+            <span>eg.m3,macan,golf gti,focus,sti,gt86...</span>
+        </div>
+        <div class="row">
+            <label for="cardesc">描述</label>
+            <textarea id="cardesc" name="cardesc"></textarea>
+        </div>
+    </div>
+    <div class="params">
+        <h2>参数</h2>
+        <div class="row">
+            <label for="engine">引擎排量</label>
+            <input type="text" name="engine" id="engine" />L
+        </div>
+        <div class="row">
+            <label for="turbo">涡轮增压</label>
+            <input type="radio" name="turbo" value="true">是
+            <input type="radio" name="turbo" value="false" class="ml10">否
+        </div>
+        <div class="row">
+            <label for="boxtype">变速箱</label>
+            <input type="radio" name="boxtype" value="mt">MT
+            <input type="radio" name="boxtype" value="at" class="ml10">AT
+        </div>
+        <div class="row">
+            <label for="drivetype">驱动方式</label>
+            <input type="radio" name="drivetype" value="fd">前置前驱
+            <input type="radio" name="drivetype" value="rd" class="ml10">前置后驱
+            <input type="radio" name="drivetype" value="ad" class="ml10">四轮驱动
+        </div>
+        <div class="row">
+            <label for="speed">0-100加速</label>
+            <input type="text" name="speed" id="speed" />s
+        </div>
+        <div class="row">
+            <label for="maxps">最大马力</label>
+            <input type="text" name="maxps" id="maxps" />ps
+        </div>
+        <div class="row">
+            <label for="maxum">最大扭矩</label>
+            <input type="text" name="maxum" id="maxum" />u.m
+        </div>
+        <div class="row">
+            <label for="wheelsize">轮胎</label>
+            <input type="text" name="wheelsize" id="wheelsize" />R(直径)
+        </div>
+    </div>
+    <div class="items">
+        <h2>改装件</h2>
+        <a href="javascript:void(0);" class="add-caritem"><i class="fa fa-plus"></i>添加改装件</a>
+        <div class="caritem-list"></div>
     </div>
 </form>
+<form id="addcar-img" action="/car/uploadimg" method="post" class="form" enctype="multipart/form-data">
+    <div class="imgs">
+        <h2>上传图片</h2>
+        <a href="javascript:void(0);" id="upload-carimg"><i class="fa fa-cloud-upload"></i>上传汽车图片</a><span>(支持多图上传)</span>
+        <input type="file" name="uploadcarimgs" class="hide" id="uploadcarimgs" accept="image/*" multiple>
+        <div class="carimgs-list"></div>
+    </div>
+</form>
+<div class="form-action row">
+    <a href="javascript:void(0);" id="postform-btn" class="btn submit-btn">确定</a>
+</div>
 <script type="text/template" id="caritem-template">
     <div class="row caritem">
-        <select id="caritem-type" name="caritem-type"><option value="避震">避震</option></select>
-        <input type="text" name="caritem-name">
+        <select id="caritem-type" name="caritem[type]"><option value="避震">避震</option></select>
+        <input type="text" name="caritem[name]">
         <a href="javascript:void(0);" class="remove-item"><i class="fa fa-minus-circle"></i></a>
     </div>
 </script>
@@ -157,42 +150,67 @@
             });
         });
 
-        $('#addcar-form button[type="submit"]').click(function(e){
+        $('#postform-btn').click(function(e){
             e.preventDefault();
             $script(['/js/validator.js','/js/tip.js'],function(){
-
                 //是否拥有
-                var ownerInupt = $('input[name="owner"]');
-                if(!ownerInupt.is(':checked')){
+                var isownInupt = $('input[name="isown"]');
+                if(!isownInupt.is(':checked')){
                     Tip('请选择是否拥有','error');
-                    ownerInupt.focus();
+                    isownInupt.focus();
                     return;
                 }
-
                 //基础资料
                 var brandInput = $('#carbrand'),
                 typeInput = $('#cartype'),
-                urlInput = $('#carurl'),
                 descInput = $('#cardesc');
 
-                if(validator.isNull(validator.trim(brandInput.val()))){
-                    Tip('请选择品牌','error');
-                    brandInput.focus();
-                    return;
-                }else if(validator.isNull(validator.trim(typeInput.val()))){
-                    Tip('请填写型号','error');
-                    typeInput.focus();
-                    return;
-                }else if(validator.isNull(validator.trim(urlInput.val())) || !validator.isAlphanumeric(urlInput.val())){
-                    Tip('请正确填写网址','error');
-                    urlInput.focus();
-                    return;
-                }else{
-                    $('#addcar-form button[type="submit"]').attr('disabled',true).html('<i class="fa fa-circle-o-notch  fa-spin"></i>正在提交...');
-                    $('#addcar-form').submit();
-                }
+            if(validator.isNull(validator.trim(brandInput.val()))){
+                Tip('请选择品牌','error');
+                brandInput.focus();
+                return;
+            }else if(validator.isNull(validator.trim(typeInput.val()))){
+                Tip('请填写型号','error');
+                typeInput.focus();
+                return;
+            }
+            //参数
+            var engineInput = $('#engine'),
+                speedInput = $('#speed'),
+                maxpsInput = $('#maxps'),
+                maxumInput = $('#maxum'),
+                wheelsizeInput = $('#wheelsize');
+            if(validator.trim(engineInput.val()).length>0 && !validator.isFloat(validator.trim(engineInput.val()))){
+                Tip('引擎排量为数字格式','error');
+                engineInput.focus();
+                return;
+            }else if(validator.trim(speedInput.val()).length>0 && !validator.isFloat(validator.trim(speedInput.val()))){
+                Tip('0-100加速为数字格式','error');
+                speedInput.focus();
+                return;
+            }else if(validator.trim(maxpsInput.val()).length>0 && !validator.isFloat(validator.trim(maxpsInput.val()))){
+                Tip('最大马力为数字格式','error');
+                maxpsInput.focus();
+                return;
+            }else if(validator.trim(maxumInput.val()).length>0 && !validator.isFloat(validator.trim(maxumInput.val()))){
+                Tip('最大扭矩为数字格式','error');
+                maxumInput.focus();
+                return;
+            }else if(validator.trim(wheelsizeInput.val()).length>0 && !validator.isFloat(validator.trim(wheelsizeInput.val()))){
+                Tip('轮胎直径为数字格式','error');
+                wheelsizeInput.focus();
+                return;
+            }else{
+                $('#postform-btn').attr('disabled',true).html('<i class="fa fa-circle-o-notch  fa-spin"></i>正在提交...');
+                $.ajax('/car/add',{
+                    method:'post',
+                    data:$('#addcar-form').serialize(),
+                    success:function(re){
+                        console.info(re)
+                    }
+                });
+            }
             })
         });
-
     })()
 </script>

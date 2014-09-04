@@ -51,7 +51,7 @@ ul, ol {
   .fa.fa-spin {
     color: #666; }
 
-button[type="submit"] .fa-spin {
+.submit-btn .fa-spin, .upload-trigger .fa-spin, button[type="submit"] .fa-spin {
   color: #fff; }
 
 .date {

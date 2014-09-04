@@ -102,7 +102,12 @@ textarea {
   background-color: #f4f4f4;
   border: 1px solid #ddd;
   height: 30px; }
-.form .submit-btn, .form button[type=submit], .form .upload-trigger {
+
+.submit-btn, button[type=submit], .upload-trigger {
   background: #3498db; }
-.form .submit-btn, .form button[type=submit]:hover, .form .upload-trigger:hover {
+
+.submit-btn:hover, button[type=submit]:hover, .upload-trigger:hover {
   background: #5dade2; }
+
+.form-action {
+  padding: 30px; }
