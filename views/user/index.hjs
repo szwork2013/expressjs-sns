@@ -41,7 +41,9 @@
             </div>
         </div>
         <div class="car-list">
+            {{#isme}}
             <a href="/car/add"><i class="fa fa-plus"></i>添加汽车</a>
+            {{/isme}}
         </div>
         <div class="user-topics">
             <h2>最近发表过的帖子</h2>

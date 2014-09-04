@@ -71,7 +71,7 @@
                                 nameInput.focus();
                                 return;
                             }else if(re.r===0){
-                                $('#reg-form').find('button[type=submit]').attr('disabled',true).html('<i class="fa fa-circle-o-notch  fa-spin"></i>');
+                                $('#reg-form').find('button[type=submit]').attr('disabled',true).html('<i class="fa fa-circle-o-notch  fa-spin"></i>注册ing...');
                                 $('#reg-form').submit();
                             }
                         }

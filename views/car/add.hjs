@@ -21,7 +21,7 @@
             <div class="row">
                 <label for="carurl">网址</label>
                 <input type="text" name="carurl" id="carurl" />
-                <p class="wycarurl"><label></label>http://www.com/car/<span id="showcarurl"></span></p>
+                <p class="wycarurl"><label></label>{{gurl}}/car/<span id="showcarurl"></span></p>
             </div>
             <div class="row">
                 <label for="cardesc">描述</label>
@@ -35,14 +35,14 @@
                 <input type="text" name="engine" id="engine" />L
             </div>
             <div class="row">
-                <label for="turbe">涡轮增压</label>
-                <input type="radio" name="turbe" value="true">是
-                <input type="radio" name="turbe" value="false" class="ml10">否
+                <label for="turbo">涡轮增压</label>
+                <input type="radio" name="turbo" value="true">是
+                <input type="radio" name="turbo" value="false" class="ml10">否
             </div>
             <div class="row">
-                <label for="box">变速箱</label>
-                <input type="radio" name="box" value="mt">MT
-                <input type="radio" name="box" value="at" class="ml10">AT
+                <label for="boxtype">变速箱</label>
+                <input type="radio" name="boxtype" value="mt">MT
+                <input type="radio" name="boxtype" value="at" class="ml10">AT
             </div>
             <div class="row">
                 <label for="drivetype">驱动方式</label>
@@ -64,7 +64,7 @@
             </div>
             <div class="row">
                 <label for="wheelsize">轮胎</label>
-                <input type="text" name="wheelsize" id="wheel-size" />(R)
+                <input type="text" name="wheelsize" id="wheelsize" />(R)
             </div>
         </div>
         <div class="items">
@@ -161,27 +161,36 @@
             e.preventDefault();
             $script(['/js/validator.js','/js/tip.js'],function(){
 
-                var brandInput = $('#carbrand'),
-                typeInput = $('input[name="cartype"]'),
-                urlInput = $('input[name="carurl"]'),
-                descInput = $('textarea[name="cardesc"]');
+                //是否拥有
+                var ownerInupt = $('input[name="owner"]');
+                if(!ownerInupt.is(':checked')){
+                    Tip('请选择是否拥有','error');
+                    ownerInupt.focus();
+                    return;
+                }
 
-            if(validator.isNull(validator.trim(brandInput.val()))){
-                Tip('请选择品牌','error');
-                brandInput.focus();
-                return;
-            }else if(validator.isNull(validator.trim(typeInput.val()))){
-                Tip('请填写型号','error');
-                typeInput.focus();
-                return;
-            }else if(validator.isNull(validator.trim(urlInput.val())) || !validator.isAlphanumeric(urlInput.val())){
-                Tip('请正确填写网址','error');
-                urlInput.focus();
-                return;
-            }else{
-                $('#addcar-form button[type="submit"]').attr('disabled',true).html('<i class="fa fa-circle-o-notch  fa-spin"></i>正在提交...');
-                $('#addcar-form').submit();
-            }
+                //基础资料
+                var brandInput = $('#carbrand'),
+                typeInput = $('#cartype'),
+                urlInput = $('#carurl'),
+                descInput = $('#cardesc');
+
+                if(validator.isNull(validator.trim(brandInput.val()))){
+                    Tip('请选择品牌','error');
+                    brandInput.focus();
+                    return;
+                }else if(validator.isNull(validator.trim(typeInput.val()))){
+                    Tip('请填写型号','error');
+                    typeInput.focus();
+                    return;
+                }else if(validator.isNull(validator.trim(urlInput.val())) || !validator.isAlphanumeric(urlInput.val())){
+                    Tip('请正确填写网址','error');
+                    urlInput.focus();
+                    return;
+                }else{
+                    $('#addcar-form button[type="submit"]').attr('disabled',true).html('<i class="fa fa-circle-o-notch  fa-spin"></i>正在提交...');
+                    $('#addcar-form').submit();
+                }
             })
         });
 

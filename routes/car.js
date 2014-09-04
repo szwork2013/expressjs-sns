@@ -45,20 +45,28 @@ router.post('/add', function(req, res) {
         console.info(fields);
         console.info(files);
 
-        /*
-        new Car({
+
+        var query = {
+            user:req.session.user,
+            owner:fields.owner,
             brand:fields.carbrand,
             type:fields.cartype,
             url:fields.carurl,
             desc:fields.cardesc
-        }).save(function(err,car){
+        }
+        if(fields.engine){
+            query.engine = fields.engine;
+        }else if(turbo){
+            query.turbo = fields.turbo;
+        }
+
+        new Car(query).save(function(err,car){
             if(!err){
                 console.info(car);
                 res.json({r:1,car:car})
                 //res.redirect('/car/'+car.name);
             }
         });
-        */
     });
 });
 

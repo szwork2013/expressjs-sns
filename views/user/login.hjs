@@ -37,7 +37,7 @@
                     pwdInput.focus();
                    return;
                 }else{
-                    $('#login-form').find('button[type=submit]').attr('disabled',true).html('<i class="fa fa-circle-o-notch  fa-spin"></i>');
+                    $('#login-form').find('button[type=submit]').attr('disabled',true).html('<i class="fa fa-circle-o-notch  fa-spin"></i>登陆ing...');
                     $('#login-form').submit();
                 }
 
