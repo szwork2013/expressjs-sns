@@ -64,113 +64,105 @@
     </div>
 </div>
 <script>
-(function(){
+    (function(){
 
-    function AddRelation(){
-        $('#add-relation').off('click').click(function(e){
-            e.preventDefault();
-            e.stopPropagation();
-            var self = this;
-            $.ajax({
-                url:$(this).attr('href'),
-                method:'post',
-                success:function(r){
-                    $script('/js/tip.js',function(){
-                        if(r.r===1){
-                            Tip('关注+1','success');
-                            $(self).before('<a id="del-relation" href="/relation/{{showuser.url}}/del" class="btn"><i class="fa fa-check"></i>已经关注</a>');
-                            $(self).remove();
-                            DelRelation();
-                        }else if(r.r===0){
-                            Tip('已经关注');
-                        }else if(r.r===2){
-                            Tip('未登陆，请先登陆');
-                        }
-                    })
-                }
-            })
-        });
-    }
+        function AddRelation(){
+            $('#add-relation').off('click').click(function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                var self = this;
+                $.ajax({
+                    url:$(this).attr('href'),
+                    method:'post',
+                    success:function(r){
+                        $script('/js/tip.js',function(){
+                            if(r.r===1){
+                                Tip('关注+1','success');
+                                $(self).before('<a id="del-relation" href="/relation/{{showuser.url}}/del" class="btn"><i class="fa fa-check"></i>已经关注</a>');
+                                $(self).remove();
+                                DelRelation();
+                            }else if(r.r===0){
+                                Tip('已经关注');
+                            }else if(r.r===2){
+                                Tip('未登陆，请先登陆');
+                            }
+                        })
+                    }
+                })
+            });
+        }
 
-    function DelRelation(){
-        $('#del-relation').bind({
-            mouseover:function(){
-                $(this).addClass('godel');
-                $(this).html('<i class="fa fa-times"></i>取消关注')
-            },
+        function DelRelation(){
+            $('#del-relation').bind({
+                mouseover:function(){
+                    $(this).addClass('godel');
+                    $(this).html('<i class="fa fa-times"></i>取消关注')
+                },
             mouseout:function(){
                 $(this).removeClass('godel');
                 $(this).html('<i class="fa fa-check"></i>已经关注')
             }
-        })
-
-        $('#del-relation').off('click').click(function(e){
-            e.preventDefault();
-            e.stopPropagation();
-            var self = this;
-            $.ajax({
-                url:$(this).attr('href'),
-                method:'post',
-                success:function(r){
-                    $script('/js/tip.js',function(){
-                        if(r.r===1){
-                            Tip('取消关注','success');
-                            $(self).before('<a id="add-relation" href="/relation/{{showuser.url}}/new" class="btn"><i class="fa fa-plus"></i>关注</a>');
-                            $(self).remove();
-                            AddRelation();
-                        }else if(r.r===0){
-                            Tip('取消关注失败');
-                        }else if(r.r===2){
-                            Tip('未登陆，请先登陆');
-                        }
-                    })
-                }
             })
-        });
-    }
-    AddRelation();
-    DelRelation();
 
-
-    //更换背景
-    $('#userbg-btn').click(function(){
-        $('#upload-userbg').click();
-    });
-
-    $('#upload-userbg').change(function(e){
-     var files = e.target.files;
-     if (files && files.length > 0) {
-     file = files[0];
-     var fileReader = new FileReader();
-     fileReader.onload = function (event) {
-            var data = new FormData();
-            data.append('img',$('#upload-userbg')[0].files[0]);
-            $.ajax({
-                url:'/user/uploaduserbg',
-                method:'post',
-                contentType: false,
-                processData: false,
-                data:data,
-                success:function(re){
-                    if(re.r===0){
+            $('#del-relation').off('click').click(function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                var self = this;
+                $.ajax({
+                    url:$(this).attr('href'),
+                    method:'post',
+                    success:function(r){
                         $script('/js/tip.js',function(){
-                            Tip('上传失败','error');
+                            if(r.r===1){
+                                Tip('取消关注','success');
+                                $(self).before('<a id="add-relation" href="/relation/{{showuser.url}}/new" class="btn"><i class="fa fa-plus"></i>关注</a>');
+                                $(self).remove();
+                                AddRelation();
+                            }else if(r.r===0){
+                                Tip('取消关注失败');
+                            }else if(r.r===2){
+                                Tip('未登陆，请先登陆');
+                            }
                         })
-                    }else if(re.r===2){
-                        $script('/js/tip.js',function(){
-                            Tip('图片尺寸过大，请上传<5mb的图片','error');
-                        })
-                    }else if(re.r===1){
-                        location.reload();
                     }
-                }
+                })
             });
-     };
-     fileReader.readAsDataURL(file);
-     }
-    });
+        }
+        AddRelation();
+        DelRelation();
 
 
+        //更换背景
+        $('#userbg-btn').click(function(){
+            $('#upload-userbg').click();
+        });
 
- })()
+        $('#upload-userbg').change(function(e){
+            var files = e.target.files;
+            if (files && files.length > 0) {
+                file = files[0];
+                var data = new FormData();
+                data.append('img',file);
+                $.ajax('/user/uploaduserbg',{
+                    method:'post',
+                    contentType: false,
+                    processData: false,
+                    data:data,
+                    success:function(re){
+                        $script('/js/tip.js',function(){
+                            if(re.r===0){
+                                Tip('上传失败','error');
+                            }else if(re.r===2){
+                                Tip('图片尺寸过大，请上传<5mb的图片','error');
+                            }else if(re.r===1){
+                                Tip('上传背景图片成功','success',function(){
+                                    location.reload();
+                                });
+                            }
+                        })
+                    }
+                });
+            }
+        });
+    })()
 </script>

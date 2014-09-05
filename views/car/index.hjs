@@ -1,6 +1,6 @@
 <div class="car-main">
-    <h1 class="car-brand">{{car.brand}}</h1>
-    <h3 class="car-type">{{car.type}}</h3>
+    <h1 class="car-type">{{car.name}}</h1>
+    <h3 class="car-brand">{{car.brand}}</h3>
     <p class="car-desc">{{car.desc}}</p>
     <div class="car-img-list">
 

@@ -14,7 +14,7 @@
         </div>
         <div class="row">
             <label for="carname">型号</label>
-            <input type="text" name="carname" id="carname" placeholder="例如:宝马m3,保时捷macan,高尔夫gti,福克斯,奔驰c63 amg,斯巴鲁brz,丰田86..."/>
+            <input type="text" name="carname" id="carname" placeholder="例:M3,Macan,高尔夫gti,福克斯,C63 AMG,brz,gt86,Lancer Ex..."/>
         </div>
         <div class="row">
             <label for="cardesc">描述</label>
@@ -65,8 +65,6 @@
         <a href="javascript:void(0);" class="add-caritem"><i class="fa fa-plus"></i>添加改装件</a>
         <div class="caritem-list"></div>
     </div>
-</form>
-<form id="addcar-img" action="/car/uploadimg" method="post" class="form" enctype="multipart/form-data">
     <div class="imgs">
         <h2>上传图片</h2>
         <a href="javascript:void(0);" id="upload-carimg"><i class="fa fa-cloud-upload"></i>上传汽车图片</a><span>(支持多图上传)</span>
@@ -86,9 +84,10 @@
 </script>
 <script type="text/template" id="carimg-template">
     <div class="row carimg">
+        <input type="text" class="hidden" name="carimg[<%=id %>][imgsrc]" value="<%= src %>">
         <a href="javascript:void(0);" class="remove-img"><i class="fa fa-minus-circle"></i></a>
         <div><img src="<%= src %>" alt=""></div>
-        <div><input type="text" placeholder="描述...."></div>
+        <div><input type="text" placeholder="描述...." name="carimg[<%=id %>][imgdesc]"></div>
     </div>
 </script>
 <script>
@@ -98,7 +97,7 @@
             $('#showcarurl').html($(this).val());
         });
 
-        var itemid = 0;
+        var itemid = 0,imgid=0;
         $script('/js/ejs.js',function(){
             $('.add-caritem').click(function(){
                 $('.caritem-list').append(new EJS({text:$('#caritem-template').html()}).render({id:itemid}));
@@ -138,16 +137,21 @@
                                 });
                                 continue;
                             }
-                            var fileReader = new FileReader();
-                            fileReader.onload = function (event) {
-                                //data.append('imgs[]',files[i]);
-                                $('.carimgs-list').append(new EJS({text:$('#carimg-template').html()}).render({src:event.target.result}));
-                                ShowDel($('.carimgs-list .carimg').last());
-                            };
-                            fileReader.readAsDataURL(files[i]);
+                            data.append('img-'+i,$('#uploadcarimgs')[0].files[i]);
                         }
+                        $.ajax('/car/uploadimg',{
+                            method:'post',
+                            contentType: false,
+                            processData: false,
+                            data:data,
+                            success:function(re){
+                                $('.carimgs-list').append(new EJS({text:$('#carimg-template').html()}).render({src:'',id:imgid}));
+                                ShowDel($('.carimgs-list .carimg').last());
+                                imgid++;
+                            }
+                        })
                     }
-                });
+                })
             });
         });
 
@@ -206,8 +210,15 @@
                 $.ajax('/car/add',{
                     method:'post',
                     data:$('#addcar-form').serialize(),
+                    beforeSend:function(){
+                        $('#postform-btn').attr('disabled',true).html('<i class="fa fa-circle-o-notch  fa-spin"></i>正在提交...');
+                    },
                     success:function(re){
-                        console.info(re)
+                        if(re.r===1){
+                            Tip('添加汽车成功','success',function(){
+                                location.href="/car/"+re.car._id;
+                            });
+                        }
                     }
                 });
             }
