@@ -6,7 +6,7 @@ var ObjectId = Schema.ObjectId;
 
 var CarSchema = new Schema({
     brand:{type:String,require:true},
-    type:{type:String,require:true},
+    name:{type:String,require:true},
     desc:{type:String},
     user:{type:ObjectId},
     isown:{type:Boolean},
@@ -18,8 +18,8 @@ var CarSchema = new Schema({
     maxps:{type:Number},
     maxum:{type:Number},
     wheelsize:{type:Number},
-    items:[{_id:false,type:String,name:String}],
-    imgs:[{_id:false,desc:String,src:String}],
+    items:[{_id:false,itemtype:String,itemname:String}],
+    imgs:[{_id:false,imgdesc:String,imgsrc:String}],
     create_date:{type: Date, default: Date.now},
     update_date:{type: Date, default: Date.now}
 });

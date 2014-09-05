@@ -797,9 +797,9 @@
             padding:10px;
             @include border-radius(5px);
             color:#fff;
-            background:#999;
+            background:$action-red;
             &:hover{
-                background:#666;
+                background:$action-red-hover;
             }
         }
     }
@@ -1118,8 +1118,8 @@
         }
     }
     .base{
-        #cartype{
-            width:400px;
+        #carname{
+            width:500px;
         }
     }
 }

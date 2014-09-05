@@ -737,9 +737,9 @@
     -o-border-radius: 5px;
     border-radius: 5px;
     color: #fff;
-    background: #999; }
+    background: #e74c3c; }
     .tips-list .action-bar a:hover {
-      background: #666; }
+      background: #fc5140; }
 .tips-list .tips-item {
   border-bottom: 1px solid #f0f0f0;
   padding: 10px 0; }
@@ -1034,8 +1034,8 @@
     margin-right: 5px; }
   #addcar-form .params input[type=radio], #addcar-img .params input[type=radio] {
     vertical-align: middle; }
-  #addcar-form .base #cartype, #addcar-img .base #cartype {
-    width: 400px; }
+  #addcar-form .base #carname, #addcar-img .base #carname {
+    width: 500px; }
 
 .about h1, .about h3 {
   margin: 20px 0; }

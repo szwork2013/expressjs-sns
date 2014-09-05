@@ -40,7 +40,7 @@ router.post('/add', function(req, res) {
             user:req.session.user._id,
             isown:req.body.isown === 'true'?true:false,
             brand:req.body.carbrand,
-            type:req.body.cartype,
+            name:req.body.carname,
             desc:req.body.cardesc
         }
 
@@ -52,18 +52,15 @@ router.post('/add', function(req, res) {
         if(req.body.maxps) query.maxps = parseFloat(req.body.maxps);
         if(req.body.maxum) query.maxum = parseFloat(req.body.maxum);
         if(req.body.wheelsize) query.wheelsize = parseFloat(req.body.wheelsize);
+        if(req.body.caritem) query.items  = req.body.caritem;
 
-
-        /*
         new Car(query).save(function(err,car){
             if(!car || err){
                 res.json({r:0})
             }else{
-                console.info(car);
                 res.json({r:1,car:car})
             }
         });
-        */
 });
 
 router.post('/uploadimg', function(req, res) {

@@ -13,20 +13,19 @@
             </select>
         </div>
         <div class="row">
-            <label for="cartype">型号</label>
-            <input type="text" name="cartype" id="cartype" />
-            <span>eg.m3,macan,golf gti,focus,sti,gt86...</span>
+            <label for="carname">型号</label>
+            <input type="text" name="carname" id="carname" placeholder="例如:宝马m3,保时捷macan,高尔夫gti,福克斯,奔驰c63 amg,斯巴鲁brz,丰田86..."/>
         </div>
         <div class="row">
             <label for="cardesc">描述</label>
-            <textarea id="cardesc" name="cardesc"></textarea>
+            <textarea id="cardesc" name="cardesc" placeholder="碉堡了的介绍..."></textarea>
         </div>
     </div>
     <div class="params">
         <h2>参数</h2>
         <div class="row">
             <label for="engine">引擎排量</label>
-            <input type="text" name="engine" id="engine" />L
+            <input type="text" name="engine" id="engine" placeholder="例:2.0"/>L
         </div>
         <div class="row">
             <label for="turbo">涡轮增压</label>
@@ -46,19 +45,19 @@
         </div>
         <div class="row">
             <label for="speed">0-100加速</label>
-            <input type="text" name="speed" id="speed" />s
+            <input type="text" name="speed" id="speed" placeholder="例:9.7"/>s
         </div>
         <div class="row">
             <label for="maxps">最大马力</label>
-            <input type="text" name="maxps" id="maxps" />ps
+            <input type="text" name="maxps" id="maxps" placeholder="例:200"/>ps
         </div>
         <div class="row">
             <label for="maxum">最大扭矩</label>
-            <input type="text" name="maxum" id="maxum" />u.m
+            <input type="text" name="maxum" id="maxum" placeholder="例:400"/>u.m
         </div>
         <div class="row">
             <label for="wheelsize">轮胎</label>
-            <input type="text" name="wheelsize" id="wheelsize" />R(直径)
+            <input type="text" name="wheelsize" id="wheelsize" placeholder="例:18" />R(直径)
         </div>
     </div>
     <div class="items">
@@ -80,8 +79,8 @@
 </div>
 <script type="text/template" id="caritem-template">
     <div class="row caritem">
-        <select id="caritem-type" name="caritem[type]"><option value="避震">避震</option></select>
-        <input type="text" name="caritem[name]">
+        <select id="caritem-type" name="caritem[<%=id %>][itemtype]"><option value="避震">避震</option></select>
+        <input type="text" name="caritem[<%=id %>][itemname]">
         <a href="javascript:void(0);" class="remove-item"><i class="fa fa-minus-circle"></i></a>
     </div>
 </script>
@@ -99,13 +98,15 @@
             $('#showcarurl').html($(this).val());
         });
 
+        var itemid = 0;
         $script('/js/ejs.js',function(){
             $('.add-caritem').click(function(){
-                $('.caritem-list').append(new EJS({text:$('#caritem-template').html()}).render({}));
+                $('.caritem-list').append(new EJS({text:$('#caritem-template').html()}).render({id:itemid}));
+                itemid++;
                 $('.caritem-list .caritem').last().find('.remove-item').click(function(){
                     var self = $(this).parent('.caritem');
                     $(self).fadeOut(500,function(){
-                        $(self).remove()
+                        $(self).remove();
                     });
                 });
             });
@@ -162,16 +163,16 @@
                 }
                 //基础资料
                 var brandInput = $('#carbrand'),
-                typeInput = $('#cartype'),
+                nameInput = $('#carname'),
                 descInput = $('#cardesc');
 
             if(validator.isNull(validator.trim(brandInput.val()))){
                 Tip('请选择品牌','error');
                 brandInput.focus();
                 return;
-            }else if(validator.isNull(validator.trim(typeInput.val()))){
+            }else if(validator.isNull(validator.trim(nameInput.val()))){
                 Tip('请填写型号','error');
-                typeInput.focus();
+                nameInput.focus();
                 return;
             }
             //参数
