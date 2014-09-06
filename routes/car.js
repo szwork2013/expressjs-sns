@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var crypto = require('crypto');
 var async =  require('async');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
@@ -59,24 +60,20 @@ router.post('/uploadimg', function(req, res) {
     });
 
     form.parse(req,function(err){
-        /*
-        var target_floder = process.cwd()+'/public/assets/carimg/'+req.session.user._id;
-        if(!fs.existsSync(target_floder)){
-            if(!fs.existsSync(process.cwd()+'/public/assets/carimg')){
-                fs.mkdirSync(process.cwd()+'/public/assets/caimg');
-            }
-            fs.mkdirSync(target_floder);
+        if(!fs.existsSync(process.cwd()+'/public/assets/carimg')){
+            fs.mkdirSync(process.cwd()+'/public/assets/carimg');
         }
-        */
+        var urls = []
         async.eachSeries(files,function(file,cb){
-            console.info(file);
-            cb();
+            var url = '/assets/carimg/'+crypto.createHash('md5').update((new Date()).valueOf().toString()+crypto.randomBytes(10).toString('hex')).digest('hex')+path.extname(file.name);
+            gm(file.path).write(process.cwd()+'/public'+url,function(){
+                urls.push(url);
+                cb();
+            })
         },function(){
-            res.json({r:1});
+            res.json({r:1,urls:urls});
         });
-
     });
-
 });
 
 router.get('/:id',function(req,res){

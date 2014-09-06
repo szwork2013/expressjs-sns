@@ -14,7 +14,7 @@
         </div>
         <div class="row">
             <label for="carname">型号</label>
-            <input type="text" name="carname" id="carname" placeholder="例:M3,Macan,高尔夫gti,福克斯,C63 AMG,brz,gt86,Lancer Ex..."/>
+            <input type="text" name="carname" id="carname" placeholder="例:M3,Macan,高尔夫gti,福克斯,C63 AMG,brz,gt86,Lancer EVO..."/>
         </div>
         <div class="row">
             <label for="cardesc">描述</label>
@@ -84,9 +84,9 @@
 </script>
 <script type="text/template" id="carimg-template">
     <div class="row carimg">
-        <input type="text" class="hidden" name="carimg[<%=id %>][imgsrc]" value="<%= src %>">
+        <input type="text" class="hide" name="carimg[<%=id %>][imgsrc]" value="<%= url %>">
         <a href="javascript:void(0);" class="remove-img"><i class="fa fa-minus-circle"></i></a>
-        <div><img src="<%= src %>" alt=""></div>
+        <div><img src="<%= url %>" alt=""></div>
         <div><input type="text" placeholder="描述...." name="carimg[<%=id %>][imgdesc]"></div>
     </div>
 </script>
@@ -114,8 +114,9 @@
                 $(el).bind({
                     'mouseover':function(){
                         $(this).find('.remove-img').show().off('click').click(function(){
-                            console.info($('#uploadcarimgs')[0].files);
-                            $(el).remove();
+                            $(el).fadeOut(500,function(){
+                                $(this).remove();
+                            })
                         });
                     },
                     'mouseout':function(){
@@ -144,12 +145,31 @@
                             contentType: false,
                             processData: false,
                             data:data,
+                            beforeSend:function(XMLHttpRequest){
+                                console.info(XMLHttpRequest);
+                                /*
+                                XMLHttpRequest.upload.addEventListener("progress", function(evt){
+                                  console.info(evt);
+                                  if (evt.lengthComputable) {
+                                    var percentComplete = evt.loaded / evt.total;
+                                    console.info(percentComplete);
+                                  }
+                                }, false);
+                                */
+                            },
+                            uploadProgress:function(){
+                                console.info(arguments);
+                            },
                             success:function(re){
-                                $('.carimgs-list').append(new EJS({text:$('#carimg-template').html()}).render({src:'',id:imgid}));
-                                ShowDel($('.carimgs-list .carimg').last());
-                                imgid++;
+                                if(re.r===1 && re.urls.length>0){
+                                    $(re.urls).each(function(k,url){
+                                        $('.carimgs-list').append(new EJS({text:$('#carimg-template').html()}).render({url:url,id:imgid}));
+                                        ShowDel($('.carimgs-list .carimg').last());
+                                        imgid++;
+                                    })
+                                }
                             }
-                        })
+                        });
                     }
                 })
             });
@@ -218,6 +238,8 @@
                             Tip('添加汽车成功','success',function(){
                                 location.href="/car/"+re.car._id;
                             });
+                        }else{
+                            Tip('添加汽车失败','error');
                         }
                     }
                 });
