@@ -16,7 +16,7 @@
             {{^isfollowing}}
             <a id="add-relation" href="/relation/{{showuser.url}}/new" class="btn"><i class="fa fa-plus"></i>关注</a>
             {{/isfollowing}}
-            <a href="/message/{{showuser.url}}/new" class="btn"><i class="fa fa-envelope-o"></i>私信</a>
+            <a href="/message/{{showuser.url}}/new" class="message-btn btn"><i class="fa fa-envelope-o"></i>私信</a>
             {{/isme}}
         </div>
     </div>
@@ -44,6 +44,13 @@
             {{#isme}}
             <a href="/car/add"><i class="fa fa-plus"></i>添加汽车</a>
             {{/isme}}
+            <ul>
+                {{#cars}}
+                <li>
+                    <a href="/car/{{_id}}">{{name}}</a>
+                </li>
+                {{/cars}}
+            </ul>
         </div>
         <div class="user-topics">
             <h2>最近发表过的帖子</h2>
@@ -131,7 +138,6 @@
         AddRelation();
         DelRelation();
 
-
         //更换背景
         $('#userbg-btn').click(function(){
             $('#upload-userbg').click();
@@ -155,9 +161,8 @@
                             }else if(re.r===2){
                                 Tip('图片尺寸过大，请上传<5mb的图片','error');
                             }else if(re.r===1){
-                                Tip('上传背景图片成功','success',function(){
-                                    location.reload();
-                                });
+                                Tip('上传背景图片成功','success');
+                                $('#user-top-bg').attr('src',re.url)
                             }
                         })
                     }

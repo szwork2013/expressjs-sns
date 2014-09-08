@@ -8,6 +8,10 @@
         <div class="switch-content">
             <form action="/user/savebasesettings" method="post" id="base-form" class="form">
                 <div class="row">
+                    <label for="uemail">邮箱</label>
+                    <span>{{user.email}}</span>
+                </div>
+                <div class="row">
                     <label for="uname">昵称</label>
                     <input type="text" name="uname" id="uname" value="{{user.name}}">
                 </div>
@@ -18,10 +22,6 @@
                     <p class="wyurl">{{gurl}}/<span id="showurl">{{user.url}}</span></p>
                 </div>
                 <div class="row">
-                    <label for="uemail">邮箱</label>
-                    <input type="text" name="uemail" id="uemail" value="{{user.email}}">
-                </div>
-                <div class="row">
                     <label for="usign">签名</label>
                     <input type="text" name="usign" id="usign" value="{{user.signature}}">
                 </div>
@@ -29,7 +29,7 @@
                     <label for="udesc">个性描述</label>
                     <textarea name="udesc" id="udesc">{{user.desc}}</textarea>
                 </div>
-                <div class="row">
+                <div class="row form-action">
                     <button type="submit" class="ml btn">保存</button>
                 </div>
             </form>
@@ -44,7 +44,7 @@
                     <label for="newupwd">新密码</label>
                     <input type="password" name="newupwd" id="newupwd" value="">
                 </div>
-                <div class="row">
+                <div class="row form-action">
                     <button type="submit" class="ml btn">保存</button>
                 </div>
             </form>
@@ -56,7 +56,7 @@
                     <input name="avatar" type="file" accept="image/*" id="take-avatar" class="hide"></input>
                     <img id="show-avatar" src="{{user.avatar_url_l}}" alt="" >
                 </div>
-                <div class="row"><button type="submit" class="btn">保存</button></div>
+                <div class="form-action row"><button type="submit" class="btn">保存</button></div>
             </form>
         </div>
     </div>
@@ -101,18 +101,14 @@ $('#uploadimg-form .up-trigger').click(function(){
 
 var url_reg = /^(?!(?:settings|collect|message|about|search|channel|topic|user|login|register|car|b)$)/;
 
-$script('/js/validator.js',function(){
+$script(['/js/validator.js','/js/tip.js'],function(){
         $('#base-form button[type=submit]').click(function(e){
             e.preventDefault();
             var nameInput = $('input[name="uname"]'),
-            emailInput = $('input[name="uemail"]'),
             urlInput = $('input[name="uurl"]'),
             signInput = $('input[name="usign"]');
 
-            if(!validator.isEmail(emailInput.val())){
-            emailInput.focus();
-            return;
-            }else if(validator.isNull(validator.trim(nameInput.val()))){
+            if(validator.isNull(validator.trim(nameInput.val()))){
             nameInput.focus();
             return;
             }else if(validator.isNull(validator.trim(urlInput.val())) || !validator.matches(urlInput.val(),url_reg) || !validator.isAlphanumeric(urlInput.val())){
@@ -125,19 +121,23 @@ $script('/js/validator.js',function(){
                 $.ajax({
                     url:'user/validatebase',
                     method:'post',
-                    data:'url='+urlInput.val()+'&name='+nameInput.val()+'&email='+emailInput.val(),
+                    data:'url='+urlInput.val()+'&name='+nameInput.val(),
                     success:function(re){
-                        $script('/js/tip.js',function(){
-                            if(re.r===2){
-                                    Tip('该域名已经存在！');
-                            }else if(re.r===1){
-                                    Tip('该昵称已经存在！');
-                            }else if(re.r===3){
-                                    Tip('该邮箱已经存在！');
-                            }else if(re.r===0){
-                                $('#base-form').submit();
-                            }
-                        })
+                        if(re.r===2){
+                                Tip('该域名已经存在！');
+                        }else if(re.r===1){
+                                Tip('该昵称已经存在！');
+                        }else if(re.r===0){
+                            $.ajax('/user/savebasesettings',{
+                                method:'post',
+                                data:$('#base-form').serialize(),
+                                success:function(re){
+                                    if(re.r===1){
+                                        Tip('修改成功','success');
+                                    }
+                                }
+                            });
+                        }
                     }
                 })
             }
@@ -154,15 +154,41 @@ $script('/js/validator.js',function(){
             newpwdInput.focus();
             return;
             }else{
-            $('#changepwd-form').submit();
+                $.ajax($('#changepwd-form').attr('action'),{
+                    method:'post',
+                    data:$('#changepwd-form').serialize(),
+                    success:function(re){
+                        $('#changepwd-form').find('input').val('');
+                        if(re.r===1){
+                            Tip('修改密码成功','success');
+                        }else if(re.r===2){
+                            Tip('旧密码输入错误','error');
+                        }
+                    }
+                });
             }
         });
 
-        /*
-           $('#uploadimg-form button[type=submit]').click(function(e){
-           e.preventDefault();
-           });
-         */
+        $('#uploadimg-form button[type=submit]').click(function(e){
+            e.preventDefault();
+            var data = new FormData();
+            data.append('avatar', $('#take-avatar')[0].files[0]);
+            $.ajax($('#uploadimg-form').attr('action'),{
+                method:'post',
+                data:data,
+                contentType: false,
+                processData: false,
+                cache:false,
+                success:function(re){
+                    if(re.r===1){
+                        Tip('修改头像成功','success');
+                        $('.nav .menu .menu-avatar').attr('src',re.avatar_url_s);
+                    }else if(re.r===0){
+                        Tip('修改头像失败','error');
+                    }
+                }
+            });
+        })
 });
 
 </script>

@@ -8,6 +8,7 @@ var User = mongoose.model('User');
 var Topic = mongoose.model('Topic');
 var Reply = mongoose.model('Reply');
 var Board = mongoose.model('Board');
+var Car = mongoose.model('Car');
 var Relation = mongoose.model('Relation');
 
 
@@ -91,27 +92,31 @@ router.get('/:url', function(req, res,next) {
             next();
         }else{
             GetTopicAndReplyByUser(user,function(topics,replys){
-                if(req.session.user){
-                    Relation.findOne({$and:[{following:req.session.user._id},{follower:user._id}]},function(err,relation){
-                        res.render('./user/index', {
-                            title:user.name,
-                            showuser:user,
-                            topics:topics,
-                            replys:replys,
-                            isme:user._id.equals(req.session.user._id)?[1]:null,
-                            isfollowing:relation?true:false
+                Car.find({user_id:req.session.user._id},function(err,cars){
+                    if(req.session.user){
+                        Relation.findOne({$and:[{following:req.session.user._id},{follower:user._id}]},function(err,relation){
+                            res.render('./user/index', {
+                                title:user.name,
+                                showuser:user,
+                                topics:topics,
+                                replys:replys,
+                                cars:cars,
+                                isme:user._id.equals(req.session.user._id)?[1]:null,
+                                isfollowing:relation?true:false
+                            });
                         });
-                    });
-                }else{
-                        res.render('./user/index', {
-                            title:user.name,
-                            showuser:user,
-                            topics:topics,
-                            replys:replys,
-                            isme:null,
-                            isfollowing:false
-                        });
-                }
+                    }else{
+                            res.render('./user/index', {
+                                title:user.name,
+                                showuser:user,
+                                topics:topics,
+                                replys:replys,
+                                cars:cars,
+                                isme:null,
+                                isfollowing:false
+                            });
+                    }
+                })
             });
         }
     });

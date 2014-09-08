@@ -2,13 +2,13 @@
 <html>
 <head>
 {{^title}}
-<title>{{ gtitle }}</title>
+<title>{{ gtitle }} - 改装车友和汽车发烧友的社区</title>
 {{/title}}
 {{#title}}
 <title>{{ title }} - {{ gtitle }}</title>
 {{/title}}
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<link href="/css/font-awesome.css" rel="stylesheet">
+<link href="/css/f.css" rel="stylesheet">
 {{#isdev}}
 <link href="/css/lion.css" rel="stylesheet">
 {{/isdev}}
@@ -70,7 +70,7 @@
             <li><a href="/about/suggest">意见反馈</a></li>
             <li><a href="/about/disclaimer">免责声明</a></li>
         </ul>
-        <p>Copyright &copy;2014-2014 , all rights reserved xxx.com</p>
+        <p>Copyright &copy; 2014-2014 , All rights reserved.</p>
     </div>
 </footer>
 <script>

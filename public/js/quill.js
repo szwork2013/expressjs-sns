@@ -9250,6 +9250,7 @@ DEFAULT_STYLES = {
     'white-space': 'pre-wrap'
   },
   '.editor-container p': {
+    'line-height': '1.7',
     'margin': '0',
     'padding': '0'
   },

@@ -63,7 +63,7 @@ app.use(function(req, res, next){
 //global config
 app.locals = {
     gtitle:'来者',
-    gurl:'www.autocomer.com',
+    gurl:'autocomer.com',
     isdev:true,
     jsfolder:'/js',
 };

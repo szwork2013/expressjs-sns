@@ -19,6 +19,9 @@ body{
         &:hover{
             color:$link-hover-color;
         }
+        &:active,&:hover,&:link,&:visited{
+            outline:0;
+        }
     }
     h1,h2,{
         font-size:18px;
@@ -61,7 +64,6 @@ ul,ol{
     }
 }
 .fa{
-    min-width:16px;
     font-size:14px;
     margin-right:2px;
     vertical-align:baseline;
@@ -76,4 +78,7 @@ ul,ol{
 }
 .date{
     color:#ccc;
+}
+.del{
+    color:#999;
 }

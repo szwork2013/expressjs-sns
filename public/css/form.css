@@ -103,11 +103,17 @@ textarea {
   border: 1px solid #ddd;
   height: 30px; }
 
+button[type=submit] {
+  box-sizing: content-box; }
+
 .submit-btn, button[type=submit], .upload-trigger {
   background: #3498db; }
 
 .submit-btn:hover, button[type=submit]:hover, .upload-trigger:hover {
   background: #5dade2; }
 
-.form-action {
-  padding: 30px; }
+.form-action .btn {
+  font-size: 14px;
+  height: 16px;
+  line-height: 16px;
+  padding: 10px 20px; }

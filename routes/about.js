@@ -11,6 +11,9 @@ router.get('/contact', function(req, res) {
 });
 
 router.get('/suggest', function(req, res) {
+    if(!req.session.user){
+        res.redirect('/login');
+    }
     res.render('about/suggest', { title: '意见反馈' });
 });
 
@@ -18,20 +21,21 @@ router.get('/disclaimer', function(req, res) {
     res.render('about/disclaimer', { title: '免责声明' });
 });
 
-var smtpTransport = nodemailer.createTransport("SMTP",{
-    service: "Gmail",
+
+var transporter = nodemailer.createTransport('SMTP',{
+    host:'mail.privateemail.com',
     auth: {
-        user: "spirityy109@gmail.com",
-        pass: "xxx"
+        user: 'admin@autocomer.com',
+        pass: 'sp19881009'
     }
 });
 
 router.post('/postsuggest', function(req, res,next) {
-    var uemail=req.session.user?req.session.user.email:req.body.uemail;
-    smtpTransport.sendMail({
+    transporter.sendMail({
+        from:'admin@autocomer.com',
         to: 'spirityy109@gmail.com',
-        subject: "Suggest by" + uemail,
-        text: req.body.uname+':'+req.body.suggestcontent
+        subject: "注册用户:" + req.session.user.email,
+        text: req.body.uname+'(邮箱:'+req.body.uemail+')'+'说:'+req.body.suggestcontent
     }, function(err, response){
         if(err){
             res.redirect('/error');

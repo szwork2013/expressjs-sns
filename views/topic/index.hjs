@@ -1,48 +1,51 @@
 <div class="content">
-    <div class="topic-main">
-        <h1>{{topic.title}}<a class="user-avatar fr" title="{{author.name}}" href="/{{author.url}}"><img src="{{author.avatar_url_s}}"></a>
-        </h1>
-        <ul class="topic-meta">
-            <li>
-                <span>{{topic.create_date_format}}</span>
-            </li>
-        </ul>
-        <div class="topic-content">
-            {{{topic.content}}}
+    <div class="topic-wrapper">
+        <a  class="fr" title="{{author.name}}" href="/{{author.url}}"><img class="user-avatar" src="{{author.avatar_url_s}}"></a>
+        <div class="topic-main">
+            <h1>{{topic.title}}
+            </h1>
+            <ul class="topic-meta">
+                <li>
+                    <span>{{topic.create_date_format}}</span>
+                </li>
+            </ul>
+            <div class="topic-content">
+                {{{topic.content}}}
+            </div>
+            <ul class="topic-meta">
+                <!--<li>
+                    <i class="fa fa-tags"></i>
+                    <span>djksajdj</span>
+                </li>-->
+                <li>
+                    {{#iscollect}}
+                    <a href="javascript:void(0);" id="addcollect"><i class="fa fa-star"></i>已收藏</a>
+                    {{/iscollect}}
+                    {{^iscollect}}
+                    <a href="javascript:void(0);" id="addcollect"><i class="fa fa-star-o"></i>收藏</a>
+                    {{/iscollect}}
+                </li>
+                <li>
+                    {{#islike}}
+                    <a href="javascript:void(0);" id="addlike"><i class="fa fa-heart"></i>已喜欢</a>
+                    {{/islike}}
+                    {{^islike}}
+                    <a href="javascript:void(0);" id="addlike"><i class="fa fa-heart-o"></i>喜欢</a>
+                    {{/islike}}
+                    {{#liker_count}}
+                    <span class="liker_count">,已被{{liker_count}}人喜欢</span>
+                    {{/liker_count}}
+                </li>
+                <li class="share">
+                    <span>分享到：</span>
+                    <a title="分享到微博" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=appkey',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','','{{topic.title}}','http://dev:8080/topic/{{topic._id}}','utf-8'));"><i class="fa fa-weibo"></i></a>
+                    <a title="分享到qq空间" href="javascript:void(0);" onclick="window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?summary={{topic.title}}&url=http://127.0.0.1:8080/topic/{{topic._id}}')" title="分享到QQ空间"><i class="fa fa-qq"></i></a>
+                    <a href="javascript:void(0);"><i title="分享到微信" class="fa fa-weixin"></i>
+                    </a>
+                </li>
+                <li class="fr"><a href="javascript:void(0);" class="report topic-report">举报</a></li>
+            </ul>
         </div>
-        <ul class="topic-meta">
-            <!--<li>
-            <i class="fa fa-tags"></i>
-            <span>djksajdj</span>
-            </li>-->
-            <li>
-            {{#iscollect}}
-            <a href="javascript:void(0);" id="addcollect"><i class="fa fa-star"></i>已收藏</a>
-            {{/iscollect}}
-            {{^iscollect}}
-            <a href="javascript:void(0);" id="addcollect"><i class="fa fa-star-o"></i>收藏</a>
-            {{/iscollect}}
-            </li>
-            <li>
-            {{#islike}}
-            <a href="javascript:void(0);" id="addlike"><i class="fa fa-heart"></i>已喜欢</a>
-            {{/islike}}
-            {{^islike}}
-            <a href="javascript:void(0);" id="addlike"><i class="fa fa-heart-o"></i>喜欢</a>
-            {{/islike}}
-            {{#liker_count}}
-            <span class="liker_count">,已被{{liker_count}}人喜欢</span>
-            {{/liker_count}}
-            </li>
-            <li class="share">
-            <span>分享到：</span>
-            <a title="分享到微博" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=appkey',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','','{{topic.title}}','http://dev:8080/topic/{{topic._id}}','utf-8'));"><i class="fa fa-weibo"></i></a>
-            <a title="分享到qq空间" href="javascript:void(0);" onclick="window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?summary={{topic.title}}&url=http://127.0.0.1:8080/topic/{{topic._id}}')" title="分享到QQ空间"><i class="fa fa-qq"></i></a>
-            <a href="javascript:void(0);"><i title="分享到微信" class="fa fa-weixin"></i>
-            </a>
-            </li>
-            <li class="fr"><a href="javascript:void(0);" class="report topic-report">举报</a></li>
-        </ul>
     </div>
 
     {{#hotreplys.length}}
@@ -51,20 +54,17 @@
         {{#hotreplys}}
         <div class="reply-item" rid="{{_id}}" id="{{_id}}">
             <div class="reply-wrapper">
-                <div class="vote">
-                    <i class="fa fa-chevron-up up"></i>
-                    <b class="vote-num">{{up}}</b>
-                    <i class="fa fa-chevron-down down"></i>
-                </div>
                 <div class="user-avatar-wrapper">
                     <img class="user-avatar" src="{{avatar_url_s}}" />
                 </div>
                 <div class="reply-main">
-                    <span class="uname"><a href="/{{author_url}}">{{author_name}}</a></span>
-                    {{#author_signature}}
+                    <div class="reply-author">
+                        <span class="uname"><a href="/{{author_url}}">{{author_name}}</a></span>
+                        {{#author_signature}}
                         <span class="usignature">,{{author_signature}}</span>
-                    {{/author_signature}}
-                    <span class="date">{{create_date_format}}</span>
+                        {{/author_signature}}
+                        <span class="date">{{create_date_format}}</span>
+                    </div>
                     {{#reply_id}}
                     <div class="reply-content rrwrapper">
                         <span class="rrdesc">回复 “{{replyedauthor}}：{{replyedcontent}}”</span>
@@ -73,14 +73,17 @@
                     <div class="reply-content">
                         <span class="rcontent">{{content}}</span>
                     </div>
-                </div>
-                <div class="reply-meta">
-                    <ul>
-                        <li>
-                        <a href="javascript:void(0);" class="reply-reply"><i class="fa  fa-comments-o"></i>回复</a>
-                        </li>
-                        <li class="fr"><a href="javascript:void(0);" class="report reply-report">举报</a></li>
-                    </ul>
+                    <div class="reply-meta">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0);" class="reply-reply"><i class="fa  fa-comments-o"></i>回复</a>
+                            </li>
+                            <li class="vote">
+                                <a href="javascript:void(0);" class="up"><i class="fa fa-thumbs-o-up"></i>赞(<span class="vote-num">{{up}}</span>)</a>
+                            </li>
+                            <li class="fr"><a href="javascript:void(0);" class="report reply-report">举报</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -95,7 +98,7 @@
     </div>
     <form action="/topic/addreply" method="post" class="reply-form" id="reply-form">
         <div class="row">
-            <textarea id="reply_content" name="reply_content" placeholder="回复内容...."></textarea>
+            <textarea id="reply_content" name="reply_content" placeholder="说两句评论...."></textarea>
         </div>
         <div class="row act">
             <button type="submit" class="btn">顶上去</button>
@@ -113,36 +116,36 @@
     </div>
 </div>
 <script type="text/template" id="reply-item-temp">
-<div class="reply-item" rid="<%=_id%>" id="<%=_id%>">
+    <div class="reply-item" rid="<%=_id%>" id="<%=_id%>">
         <div class="reply-wrapper">
-            <div class="vote">
-                <i class="fa fa-chevron-up up"></i>
-                <b class="vote-num"><%= up %></b>
-                <i class="fa fa-chevron-down down"></i>
-            </div>
             <div class="user-avatar-wrapper">
                 <img class="user-avatar" src="<%= avatar_url_s %>" />
             </div>
             <div class="reply-main">
-                <span class="uname"><a href="/<%= author_url %>"><%= author_name %></a></span>
-                <% if (author_signature) { %><span class="usignature">,<%=author_signature %></span><% } %>
-                <span class="date"><%= create_date_format %></span>
-                <% if (reply_id) { %>
-                <div class="reply-content rrwrapper">
-                    <span class="rrdesc">回复 “<%= replyedauthor %>：<%= replyedcontent %>”</span>
+                <div class="reply-author">
+                    <span class="uname"><a href="/<%= author_url %>"><%= author_name %></a></span>
+                    <% if (author_signature) { %><span class="usignature">,<%=author_signature %></span><% } %>
+                    <span class="date"><%= create_date_format %></span>
                 </div>
-                <% } %>
+                <% if (reply_id) { %>
+                    <div class="reply-content rrwrapper">
+                        <span class="rrdesc">回复 “<%= replyedauthor %>：<%= replyedcontent %>”</span>
+                    </div>
+                    <% } %>
                 <div class="reply-content">
                     <span class="rcontent"><%= content %></span>
                 </div>
-            </div>
-            <div class="reply-meta">
-                <ul>
-                    <li>
-                        <a href="javascript:void(0);" class="reply-reply"><i class="fa fa-comments-o"></i>回复</a>
-                    </li>
-                    <li class="fr"><a href="javascript:void(0);" class="report reply-report">举报</a></li>
-                </ul>
+                <div class="reply-meta">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0);" class="reply-reply"><i class="fa fa-comments-o"></i>回复</a>
+                        </li>
+                        <li class="vote">
+                            <a href="javascript:void(0);" class="up"><i class="fa fa-thumbs-o-up"></i>赞(<span class="vote-num"><%= up %></span>)</a>
+                        </li>
+                        <li class="fr"><a href="javascript:void(0);" class="report reply-report">举报</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -151,18 +154,18 @@
     <div class="pager row">
         <ul class="pager-wrapper">
             <%if (prev) { %>
-            <li><a href="javascript:void(0);" p="<%= prev %>"><i class="fa fa-chevron-circle-left"></i></a></li>
-            <% } %>
+                <li><a href="javascript:void(0);" p="<%= prev %>"><i class="fa fa-chevron-circle-left"></i></a></li>
+                <% } %>
             <% for(var i=0; i<pagenums.length; i++) {%>
                 <%if (pagenums[i].curnum) { %>
                     <li><a class="nums cur" href="javascript:void(0);"  p="<%= pagenums[i].curnum %>"><%= pagenums[i].curnum %></a></li>
-                <% }else{ %>
+                    <% }else{ %>
                     <li><a class="nums" href="javascript:void(0);" p="<%= pagenums[i].num %>"><%= pagenums[i].num %></a></li>
+                    <% } %>
                 <% } %>
-            <% } %>
             <%if (next) { %>
-            <li><a href="javascript:void(0);" p="<%= next %>"><i class="fa fa-chevron-circle-right"></i></a></li>
-            <% } %>
+                <li><a href="javascript:void(0);" p="<%= next %>"><i class="fa fa-chevron-circle-right"></i></a></li>
+                <% } %>
         </ul>
     </div>
 </script>
@@ -170,10 +173,10 @@
     <li><i class="fa fa-caret-right"></i><a href="<%= url %>"><%= title %></a></li>
 </script>
 <script>
-(function(){
+    (function(){
         //图片缩放
         $script('/js/spopup.js',function(){
-             $('.topic-content img').each(function(k,v){
+            $('.topic-content img').each(function(k,v){
                 var image = new Image();
                 image.src = $(this).attr("src");
                 $(v).addClass('canzoom');
@@ -187,78 +190,78 @@
                     popup_img.find('img').click(function(){
                         popup_img.close();
                     });
-                 })
-             })
+                })
+            })
         });
 
         $script(['/js/validator.js','/js/ejs.js'],function(){
-        //最近浏览
-        if(window.localStorage){
-            //获得最近浏览并渲染
-            var viewd = localStorage.getItem('viewhistory')?JSON.parse(localStorage.getItem('viewhistory')):[];
-            if(viewd.length>0){
-                $(viewd).each(function(k,v){
-                    $('.history-list').append(new EJS({text:$('#history-item').html()}).render(v));
+            //最近浏览
+            if(window.localStorage){
+                //获得最近浏览并渲染
+                var viewd = localStorage.getItem('viewhistory')?JSON.parse(localStorage.getItem('viewhistory')):[];
+                if(viewd.length>0){
+                    $(viewd).each(function(k,v){
+                        $('.history-list').append(new EJS({text:$('#history-item').html()}).render(v));
+                    })
+                }
+                //最近浏览重组
+                var cur = {title:'{{topic.title}}',url:'/topic/{{topic._id}}'};
+                viewd = $.grep(viewd, function(v) {
+                    if(typeof(cur) === 'object'){
+                        return v.title != cur.title;
+                    }else{
+                        return v != cur;
+                    }
+                });
+                viewd.unshift(cur)
+
+                    //浏览记录长度限制
+                    if(viewd.length>10) viewd.splice(9,viewd.length);
+                localStorage.setItem('viewhistory',JSON.stringify(viewd));
+            }
+
+            //添加举报事件
+            function AddReportEvent(el){
+                $(el).unbind('mouseover').unbind('mouseout').bind({
+                    'mouseover':function(){
+                        $(this).find('.report').show().off('click').click(function(e){
+                            e.stopPropagation();
+                            var data = '';
+                            if($(this).hasClass('topic-report')){
+                                data = 'topic_id={{topic._id}}';
+                            }else if($(this).hasClass('reply-report')){
+                                data = 'reply_id=' + $(this).parents('.reply-item').attr('id');
+                            }
+                            var self = this;
+                            $.ajax({
+                                url:'/topic/addreport',
+                                data:data,
+                                method:'post',
+                                success:function(re){
+                                    $script('/js/tip.js',function(){
+                                        if(re.r === 1){
+                                            $(self).html('已举报');
+                                            Tip('举报成功','success');
+                                        }else if(re.r===0){
+                                            Tip('已经举报过了');
+                                        }else if(re.r===3){
+                                            Tip('未登录，请登录');
+                                        }
+                                    });
+                                }
+                            })
+                        });
+                    },
+                    'mouseout':function(){
+                        $(this).find('.report').hide();
+                    }
                 })
             }
-            //最近浏览重组
-            var cur = {title:'{{topic.title}}',url:'/topic/{{topic._id}}'};
-            viewd = $.grep(viewd, function(v) {
-                if(typeof(cur) === 'object'){
-                  return v.title != cur.title;
-                }else{
-                  return v != cur;
-                }
-            });
-            viewd.unshift(cur)
 
-            //浏览记录长度限制
-            if(viewd.length>10) viewd.splice(9,viewd.length);
-            localStorage.setItem('viewhistory',JSON.stringify(viewd));
-        }
-
-        //添加举报事件
-        function AddReportEvent(el){
-            $(el).unbind('mouseover').unbind('mouseout').bind({
-                'mouseover':function(){
-                    $(this).find('.report').show().off('click').click(function(e){
-                        e.stopPropagation();
-                        var data = '';
-                        if($(this).hasClass('topic-report')){
-                            data = 'topic_id={{topic._id}}';
-                        }else if($(this).hasClass('reply-report')){
-                            data = 'reply_id=' + $(this).parents('.reply-item').attr('id');
-                        }
-                        var self = this;
-                        $.ajax({
-                            url:'/topic/addreport',
-                            data:data,
-                            method:'post',
-                            success:function(re){
-                                $script('/js/tip.js',function(){
-                                    if(re.r === 1){
-                                        $(self).html('已举报');
-                                        Tip('举报成功','success');
-                                    }else if(re.r===0){
-                                        Tip('已经举报过了');
-                                    }else if(re.r===3){
-                                        Tip('未登录，请登录');
-                                    }
-                                });
-                            }
-                        })
-                    });
-                },
-                'mouseout':function(){
-                    $(this).find('.report').hide();
-                }
-            })
-        }
-
-        //加载留言
-        function fetchreplys(pid,cb){
-            var hash = window.location.hash;
-            //if($(window).scrollTop()+$(window).height()>$('.reply-list').offset().top || $('.reply-list').offset().top < $(window).height()){
+            //加载留言
+            function fetchreplys(pid,cb){
+                var hash = window.location.hash;
+                //if($(window).scrollTop()+$(window).height()>$('.reply-list').offset().top || $('.reply-list').offset().top < $(window).height()){
                 //$(window).off('scroll');
                 p = pid?'&p='+pid:'';
                 $.ajax({
@@ -287,168 +290,169 @@
                         if(cb && typeof(cb) == "function") cb();
                     }
                 });
-            //}
-        }
+                //}
+            }
 
-        {{#topic.reply_count}}
-        //$(window).on('scroll',fetchreplys);
-        $(document).ready(function(){ fetchreplys(); });
-        {{/topic.reply_count}}
+            {{#topic.reply_count}}
+            //$(window).on('scroll',fetchreplys);
+            $(document).ready(function(){ fetchreplys(); });
+            {{/topic.reply_count}}
 
-        function RenderReplyList(replys){
-            if(replys && replys.length>0){
-                $(replys).each(function(k,v){
-                    if(!$('.reply-list h2').length) $('.reply-list').append($('<h2><i class="fa fa-comment"></i>评论</h2>'));
-                    $('.reply-list').append($(new EJS({text:$('#reply-item-temp').html()}).render(v)).css('opacity',0).animate({
-                        'opacity':1
-                    }));
-                    UpReplyBind($('.reply-item').last().find('.up,.down'));
-                    Replytoreply($('.reply-item').last().find('.reply-reply'));
-                    AddReportEvent($('.reply-item').last());
+            function RenderReplyList(replys){
+                if(replys && replys.length>0){
+                    $(replys).each(function(k,v){
+                        if(!$('.reply-list h2').length) $('.reply-list').append($('<h2><i class="fa fa-comment"></i>评论</h2>'));
+                        $('.reply-list').append($(new EJS({text:$('#reply-item-temp').html()}).render(v)).css('opacity',0).animate({
+                            'opacity':1
+                        }));
+                        UpReplyBind($('.reply-item').last().find('.up,.down'));
+                        Replytoreply($('.reply-item').last().find('.reply-reply'));
+                        AddReportEvent($('.reply-item').last());
+                    });
+                }
+            }
+
+            function UpReplyBind(els){
+                els.off('click').click(function(){
+                    var self = this;
+                    var num = $(this).hasClass('up')?1:-1;
+                    $.ajax({
+                        url:'upreply',
+                        data:'reply_id='+$(this).parents('.reply-item').attr('rid')+'&num='+num,
+                        method:'post',
+                        success:function(re){
+                            $script('/js/tip.js',function(){
+                                if(re.r===1){
+                                    Tip('赞+1','success');
+                                    $(self).parent('.vote').find('.vote-num').html(re.reply.up);
+                                }else if(re.r ===0){
+                                    Tip('不能重复提交');
+                                }else if(re.r === 2){
+                                    Tip('不能给自己投票');
+                                }else if(re.r===3){
+                                    Tip('未登录，请登录');
+                                }
+                            });
+                        }
+                    })
                 });
             }
-        }
 
-        function UpReplyBind(els){
-            els.off('click').click(function(){
+            var contentInput = $('#reply_content'),rrcontentInput = $('#reply-reply-desc');
+
+            function Replytoreply(els){
+                els.off('click').click(function(){
+                    var item = $(this).parents('.reply-item'),rrcontent = item.find('.reply-content .rcontent').text();
+                    contentInput.focus();
+                    contentInput.attr('rrid',item.attr('rid'));
+                    rrcontentInput.find('.rr-name').html(item.find('.uname a').text());
+                    rrcontentInput.find('.rr-content').html(rrcontent.length>20?rrcontent.substring(0,20)+'...':rrcontent);
+                    rrcontentInput.show();
+                });
+
+                rrcontentInput.find('.fa-times').click(function(){
+                    rrcontentInput.hide();
+                    contentInput.removeAttr('rrid');
+                })
+            }
+
+            $('.reply-form button[type="submit"]').click(function(e){
+                e.preventDefault();
+                if(validator.isNull(validator.trim(contentInput.val()))){
+                    $script('/js/tip.js',function(){
+                        Tip('请填写内容');
+                    });
+                    return;
+                }
+                $script(['/js/xss.js','/js/tip.js'],function(){
+                    var replycontent = filterXSS($('#reply_content').val());
+                    var rridstr = contentInput.attr('rrid')?'&reply_id='+contentInput.attr('rrid'):'';
+                    $.ajax({
+                        url:'addreply',
+                        method:'post',
+                        data:'reply_content='+replycontent+'&topic_id={{topic._id}}&board_id={{board._id}}'+rridstr,
+                        beforeSend:function(){
+                            $('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>').appendTo($('.reply-list'));
+                        },
+                        success:function(re){
+                            $('.reply-list .more').remove();
+                            if(re.r === 3){
+                                Tip('未登录，请登录');
+                                return;
+                            }else if(re.r === 0){
+                                Tip('留言失败','error');
+                                return;
+                            }
+                            $('#reply_content').val('');
+                            if($('#reply-reply-desc').css('display')==='block') $('#reply-reply-desc .fa-times').click();
+                            Tip('回复成功','success');
+                            //add html dom
+                            RenderReplyList([re]);
+                        }
+                    })
+                })
+            });
+
+            $('#addcollect').click(function(){
                 var self = this;
-                var num = $(this).hasClass('up')?1:-1;
                 $.ajax({
-                    url:'upreply',
-                    data:'reply_id='+$(this).parents('.reply-item').attr('rid')+'&num='+num,
+                    url:'/collect/new',
+                    data:'topic_id={{topic._id}}',
                     method:'post',
                     success:function(re){
                         $script('/js/tip.js',function(){
-                            if(re.r===1){
-                                $(self).parent('.vote').find('.vote-num').html(re.reply.up);
-                            }else if(re.r ===0){
-                                Tip('不能重复提交');
-                            }else if(re.r === 2){
-                                Tip('不能给自己投票');
+                            if(re.s === 1){
+                                $(self).find('.fa').removeClass('fa-star-o').addClass('fa-star');
+                                $(self).html('<i class="fa fa-star"></i>已收藏');
+                                Tip('收藏成功','success');
+                            }else if(re.s===2){
+                                Tip('已经收藏');
+                            }else if(re.s===3){
+                                Tip('未登录，请登录');
+                            }
+                        });
+                    }
+                });
+            });
+
+            $('#addlike').click(function(){
+                var self = this;
+                $.ajax({
+                    url:'/topic/addlike',
+                    data:'topic_id={{topic._id}}',
+                    method:'post',
+                    success:function(re){
+                        $script('/js/tip.js',function(){
+                            if(re.r === 1){
+                                $(self).html('<i class="fa fa-heart"></i>已喜欢');
+                                Tip('标注喜欢成功','success');
+                            }else if(re.r===2){
+                                Tip('无法自恋');
+                            }else if(re.r===0){
+                                Tip('已经标注喜欢');
                             }else if(re.r===3){
                                 Tip('未登录，请登录');
                             }
                         });
                     }
-                })
-            });
-        }
-
-        var contentInput = $('#reply_content'),rrcontentInput = $('#reply-reply-desc');
-
-        function Replytoreply(els){
-            els.off('click').click(function(){
-                var item = $(this).parents('.reply-item'),rrcontent = item.find('.reply-content .rcontent').text();
-                contentInput.focus();
-                contentInput.attr('rrid',item.attr('rid'));
-                rrcontentInput.find('.rr-name').html(item.find('.uname a').text());
-                rrcontentInput.find('.rr-content').html(rrcontent.length>20?rrcontent.substring(0,20)+'...':rrcontent);
-                rrcontentInput.show();
-            });
-
-            rrcontentInput.find('.fa-times').click(function(){
-                rrcontentInput.hide();
-                contentInput.removeAttr('rrid');
-            })
-        }
-
-        $('.reply-form button[type="submit"]').click(function(e){
-            e.preventDefault();
-            if(validator.isNull(validator.trim(contentInput.val()))){
-                $script('/js/tip.js',function(){
-                    Tip('请填写内容');
-                });
-                return;
-            }
-            $script(['/js/xss.js','/js/tip.js'],function(){
-                var replycontent = filterXSS($('#reply_content').val());
-                var rridstr = contentInput.attr('rrid')?'&reply_id='+contentInput.attr('rrid'):'';
-                $.ajax({
-                    url:'addreply',
-                    method:'post',
-                    data:'reply_content='+replycontent+'&topic_id={{topic._id}}&board_id={{board._id}}'+rridstr,
-                    beforeSend:function(){
-                        $('<div class="more"><i class="fa fa-circle-o-notch fa-spin"></i></div>').appendTo($('.reply-list'));
-                    },
-                    success:function(re){
-                        $('.reply-list .more').remove();
-                        if(re.r === 3){
-                            Tip('未登录，请登录');
-                            return;
-                        }else if(re.r === 0){
-                            Tip('留言失败','error');
-                            return;
-                        }
-                        $('#reply_content').val('');
-                        if($('#reply-reply-desc').css('display')==='block') $('#reply-reply-desc .fa-times').click();
-                        Tip('回复成功！','success');
-                        //add html dom
-                        RenderReplyList([re]);
-                    }
-                })
-            })
-        });
-
-        $('#addcollect').click(function(){
-            var self = this;
-            $.ajax({
-                url:'/collect/new',
-                data:'topic_id={{topic._id}}',
-                method:'post',
-                success:function(re){
-                    $script('/js/tip.js',function(){
-                        if(re.s === 1){
-                            $(self).find('.fa').removeClass('fa-star-o').addClass('fa-star');
-                            $(self).html('<i class="fa fa-star"></i>已收藏');
-                            Tip('收藏成功','success');
-                        }else if(re.s===2){
-                            Tip('已经收藏');
-                        }else if(re.s===3){
-                            Tip('未登录，请登录');
-                        }
-                    });
-                }
-            });
-        });
-
-        $('#addlike').click(function(){
-            var self = this;
-            $.ajax({
-                url:'/topic/addlike',
-                data:'topic_id={{topic._id}}',
-                method:'post',
-                success:function(re){
-                    $script('/js/tip.js',function(){
-                        if(re.r === 1){
-                            $(self).html('<i class="fa fa-heart"></i>已喜欢');
-                            Tip('标注喜欢成功','success');
-                        }else if(re.r===2){
-                            Tip('无法自恋');
-                        }else if(re.r===0){
-                            Tip('已经标注喜欢');
-                        }else if(re.r===3){
-                            Tip('未登录，请登录');
-                        }
-                    });
-                }
-            });
-        });
-
-        //微信二维码
-        $('.fa-weixin').click(function(){
-            $script('/js/spopup.js',function(){
-                $('<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&choe=UTF-8&chld=L|2&chl=http://127.0.0.1:8080/topic/{{topic._id}}" width="200" height="200"/></img></div>').spopup({
-                    width:'200px',
-                    height:'200px',
-                    clickClose:true
                 });
             });
-        });
 
-        //init topic report and hot reply
-        UpReplyBind($('.hot-reply-list .reply-item').find('.up,.down'));
-        Replytoreply($('.hot-reply-list .reply-item').find('.reply-reply'));
-        AddReportEvent($('.topic-main,.hot-reply-list .reply-item'));
-    });
-})()
+            //微信二维码
+            $('.fa-weixin').click(function(){
+                $script('/js/spopup.js',function(){
+                    $('<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&choe=UTF-8&chld=L|2&chl=http://127.0.0.1:8080/topic/{{topic._id}}" width="200" height="200"/></img></div>').spopup({
+                        width:'200px',
+                        height:'200px',
+                        clickClose:true
+                    });
+                });
+            });
+
+            //init topic report and hot reply
+            UpReplyBind($('.hot-reply-list .reply-item').find('.up,.down'));
+            Replytoreply($('.hot-reply-list .reply-item').find('.reply-reply'));
+            AddReportEvent($('.topic-main,.hot-reply-list .reply-item'));
+        });
+    })()
 </script>

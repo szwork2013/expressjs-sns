@@ -94,7 +94,7 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js','/js/tip.js'],function()
                     $(this).find('#upimg-trigger').click(function(){
                         $('#uploadimg').click();
                     });
-                    $('#uploadimg').change(function(e){
+                    $('#uploadimg').off('change').change(function(e){
                         var files = e.target.files;
                         if (files && files.length > 0) {
                         file = files[0];
@@ -207,15 +207,15 @@ $script(['/js/quill.js','/js/validator.js','/js/xss.js','/js/tip.js'],function()
             e.preventDefault();
             $('#hiddeninput').text(filterXSS(editor.getHTML()));
             if(validator.isNull(validator.trim(titleInput.val()))){
-                Tip('请填写标题！');
+                Tip('请填写标题','error');
                 titleInput.focus();
                 return;
             }else if(validator.isNull(validator.trim(editor.getText()))){
-                Tip('请填写内容！');
+                Tip('请填写内容','error');
                 editor.focus();
                 return;
             }else{
-                Tip('发布成功！','success',function(){
+                Tip('发布成功','success',function(){
                    if(localStorage.getItem('temptitle') || localStorage.getItem('tempcontent')){
                        localStorage.setItem('temptitle','');
                        localStorage.setItem('tempcontent','');

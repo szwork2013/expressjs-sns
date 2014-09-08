@@ -138,6 +138,9 @@ textarea{
         height:30px;
     }
 }
+button[type=submit]{
+    box-sizing:content-box;
+}
 .submit-btn,button[type=submit],.upload-trigger{
     background:$action-blue;
 }
@@ -145,5 +148,10 @@ textarea{
     background:$action-blue-hover;
 }
 .form-action{
-    padding:30px;
+    .btn{
+        font-size:14px;
+        height:16px;
+        line-height:16px;
+        padding:10px 20px;
+    }
 }

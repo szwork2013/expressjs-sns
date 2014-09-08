@@ -5,10 +5,10 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 var CarSchema = new Schema({
+    user_id:{type:ObjectId,require:true},
     brand:{type:String,require:true},
     name:{type:String,require:true},
     desc:{type:String},
-    user:{type:ObjectId},
     isown:{type:Boolean},
     engine:{type:Number},
     turbe:{type:Boolean},

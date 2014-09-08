@@ -9,12 +9,39 @@
         <div class="row">
             <label for="carbrand">品牌</label>
             <select id="carbrand" name="carbrand">
-                <option value="amg">amg</option>
+                <option value="奥迪">奥迪</option>
+                <option value="保时捷">保时捷</option>
+                <option value="宝马">宝马</option>
+                <option value="奔驰">奔驰</option>
+                <option value="本田">本田</option>
+                <option value="标致">标致</option>
+                <option value="别克">别克</option>
+                <option value="DS">DS</option>
+                <option value="大众">大众</option>
+                <option value="法拉利">法拉利</option>
+                <option value="福特">福特</option>
+                <option value="丰田">丰田</option>
+                <option value="捷豹">捷豹</option>
+                <option value="凯迪拉克">保时捷</option>
+                <option value="兰博基尼">兰博基尼</option>
+                <option value="路虎">路虎</option>
+                <option value="马自达">马自达</option>
+                <option value="起亚">起亚</option>
+                <option value="日产">日产</option>
+                <option value="三菱">三菱</option>
+                <option value="斯巴鲁">斯巴鲁</option>
+                <option value="TESLA">TESLA</option>
+                <option value="沃尔沃">沃尔沃</option>
+                <option value="现代">现代</option>
+                <option value="雪佛兰">雪佛兰</option>
+                <option value="英菲尼迪">英菲尼迪</option>
+                <option value="其他">其他</option>
             </select>
+            <input type="text" name="otherbrand" id="otherbrand" placeholder="其他品牌">
         </div>
         <div class="row">
             <label for="carname">型号</label>
-            <input type="text" name="carname" id="carname" placeholder="例:M3,Macan,高尔夫gti,福克斯,C63 AMG,brz,gt86,Lancer EVO..."/>
+            <input type="text" name="carname" id="carname" placeholder="例:福克斯2013 AT 2.0L 自动旗舰版,三菱翼神2014 MT 2.0 手动豪华版"/>
         </div>
         <div class="row">
             <label for="cardesc">描述</label>
@@ -71,14 +98,29 @@
         <input type="file" name="uploadcarimgs" class="hide" id="uploadcarimgs" accept="image/*" multiple>
         <div class="carimgs-list"></div>
     </div>
+    <div class="form-action row">
+        <a href="javascript:void(0);" id="postform-btn" class="submit-btn btn">保存</a>
+    </div>
 </form>
-<div class="form-action row">
-    <a href="javascript:void(0);" id="postform-btn" class="btn submit-btn">确定</a>
-</div>
 <script type="text/template" id="caritem-template">
     <div class="row caritem">
-        <select id="caritem-type" name="caritem[<%=id %>][itemtype]"><option value="避震">避震</option></select>
-        <input type="text" name="caritem[<%=id %>][itemname]">
+        <select id="caritem-type" name="caritem[<%=id %>][itemtype]">
+            <option value="引擎">引擎</option>
+            <option value="涡轮">涡轮</option>
+            <option value="进排气">进排气</option>
+            <option value="轮胎">轮胎</option>
+            <option value="轮毂">轮毂</option>
+            <option value="制动">制动</option>
+            <option value="包围">包围</option>
+            <option value="车灯">车灯</option>
+            <option value="外观">外观</option>
+            <option value="导航">导航</option>
+            <option value="ECU">ECU</option>
+            <option value="尾翼">尾翼</option>
+            <option value="车油">车油</option>
+            <option value="其他">其他</option>
+        </select>
+        <input type="text" name="caritem[<%=id %>][itemname]" placeholder="改装件的品牌及规格...">
         <a href="javascript:void(0);" class="remove-item"><i class="fa fa-minus-circle"></i></a>
     </div>
 </script>
@@ -92,6 +134,15 @@
 </script>
 <script>
     (function(){
+
+        //其他品牌
+        $('#carbrand').change(function(e){
+            if($(this).val() === '其他'){
+                $(this).next('#otherbrand').show();
+            }else{
+                $(this).next('#otherbrand').hide();
+            }
+        });
 
         $('#carurl').keyup(function(e){
             $('#showcarurl').html($(this).val());
@@ -140,27 +191,17 @@
                             }
                             data.append('img-'+i,$('#uploadcarimgs')[0].files[i]);
                         }
+                        var self = this;
                         $.ajax('/car/uploadimg',{
                             method:'post',
                             contentType: false,
                             processData: false,
                             data:data,
                             beforeSend:function(XMLHttpRequest){
-                                console.info(XMLHttpRequest);
-                                /*
-                                XMLHttpRequest.upload.addEventListener("progress", function(evt){
-                                  console.info(evt);
-                                  if (evt.lengthComputable) {
-                                    var percentComplete = evt.loaded / evt.total;
-                                    console.info(percentComplete);
-                                  }
-                                }, false);
-                                */
-                            },
-                            uploadProgress:function(){
-                                console.info(arguments);
+                                $(self).after($('<span id="uploading"><i class="fa fa-circle-o-notch  fa-spin"></i>上传中..</span>'));
                             },
                             success:function(re){
+                                $('#uploading').remove();
                                 if(re.r===1 && re.urls.length>0){
                                     $(re.urls).each(function(k,url){
                                         $('.carimgs-list').append(new EJS({text:$('#carimg-template').html()}).render({url:url,id:imgid}));
@@ -226,7 +267,6 @@
                 wheelsizeInput.focus();
                 return;
             }else{
-                $('#postform-btn').attr('disabled',true).html('<i class="fa fa-circle-o-notch  fa-spin"></i>正在提交...');
                 $.ajax('/car/add',{
                     method:'post',
                     data:$('#addcar-form').serialize(),

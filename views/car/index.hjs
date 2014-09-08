@@ -1,15 +1,34 @@
-<div class="car-main">
-    <h1 class="car-type">{{car.name}}</h1>
-    <h3 class="car-brand">{{car.brand}}</h3>
-    <p class="car-desc">{{car.desc}}</p>
-    <div class="car-img-list">
+<div class="car-container">
+    <div class="car-main">
+        {{#ismy}}
+        {{/ismy}}
+        <h1 class="car-name">{{car.name}}<h3 class="car-brand">{{car.brand}}</h3></h1>
+        <p class="car-desc">{{car.desc}}</p>
+        <div class="car-spec">
+            <h3>参数</h3>
+        </div>
+        <div class="car-img-list">
+            <h3>图片</h3>
+            {{#car.imgs}}
+            <div class="img">
+                <img src="{{imgsrc}}" alt="">
+            </div>
+            {{/car.imgs}}
+        </div>
+        <div class="car-reply-list">
+            <h3>评论</h3>
 
+        </div>
     </div>
-    <div class="car-item-list">
-
-    </div>
-    <div class="car-reply-list">
-
+    <div class="car-side">
+        <h3>改装清单</h3>
+        <div class="car-item-list">
+            <ul>
+                {{#car.items}}
+                    <li>{{itemtype}}:{{itemname}}</li>
+                {{/car.items}}
+            </ul>
+        </div>
     </div>
 </div>
 <script>

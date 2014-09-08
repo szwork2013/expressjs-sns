@@ -8,7 +8,6 @@ var Topic = mongoose.model('Topic');
 var Board = mongoose.model('Board');
 var Reply = mongoose.model('Reply');
 var Car = mongoose.model('Car');
-
 var formidable = require('formidable');
 var gm = require( 'gm' );
 var path = require( 'path' );
@@ -25,13 +24,15 @@ router.get('/add',function(req,res){
 });
 
 router.post('/add', function(req, res) {
+
     var query = {
-        user:req.session.user._id,
+        user_id:req.session.user._id,
         isown:req.body.isown === 'true'?true:false,
-        brand:req.body.carbrand,
+        brand:req.body.carbrand==='其他'?req.body.otherbrand:req.body.carbrand,
         name:req.body.carname,
         desc:req.body.cardesc
     }
+
     if(req.body.engine) query.engine = parseFloat(req.body.engine);
     if(req.body.turbo) query.turbo = req.body.turbo==='true'?true:false;
     if(req.body.boxtype) query.boxtype = req.body.boxtype;
@@ -41,6 +42,9 @@ router.post('/add', function(req, res) {
     if(req.body.maxum) query.maxum = parseFloat(req.body.maxum);
     if(req.body.wheelsize) query.wheelsize = parseFloat(req.body.wheelsize);
     if(req.body.caritem) query.items  = req.body.caritem;
+    if(req.body.carimg) query.imgs  = req.body.carimg;
+
+
 
     new Car(query).save(function(err,car){
         if(!car || err){
@@ -83,7 +87,8 @@ router.get('/:id',function(req,res){
             return;
         }
         res.render('car/index',{
-            title:car.name+'('+car.brand+')',
+            title:car.name,
+            ismy:car.user_id.equals(req.session.user._id)?true:false,
             car:car
         });
     })

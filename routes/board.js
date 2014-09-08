@@ -115,11 +115,11 @@ router.get('/:url/new', function(req, res) {
     })
 });
 
-router.get('/:url/newvote', function(req, res) {
+router.get('/:url/vote', function(req, res) {
     if(!req.session.user) res.redirect('/login');
 
     Board.findOne({url:req.params.url},function(err,board){
-        res.render('topic/newvote',{
+        res.render('topic/vote',{
             title:'新建投票票',
             board:board
         });
